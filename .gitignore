@@ -1,0 +1,20 @@
+# Django / Python
+db.sqlite3
+
+# Environment & dependencies
+.venv/
+.env
+
+# Static & media (optional if generated or large)
+staticfiles/
+media/
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# pytest / coverage / test artifacts
+.pytest_cache/
+
+# ruff
+.ruff_cache/
