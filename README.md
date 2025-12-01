@@ -1,4 +1,5 @@
 # 582-41E-VA-LIA-Final_Project
+
 Block 4 - Web Project Planning and Management - Final Project
 
 A small full-stack upgrade of a ceramics portfolio site for the LIA Final Project – Freelancer Simulation.  
@@ -38,44 +39,51 @@ The goal is to turn a static one-page layout into a functional mini e‑commerce
 
 - uv init - Initialize project
 - uv venv - creates virtual environment
-- source .venv/bin/activate  # or .venv\Scripts\activate on Windows - Activates Virtual Environment
+- source .venv/bin/activate # or .venv\Scripts\activate on Windows - Activates Virtual Environment
 - uv add package-name - to add dependencies
 - uv sync - to install requirements from pyproject.toml
 
-### 3. Environment variables
+### 3. Install Django (and other dependencies)
 
-- Create a `.env` file in the project root (not committed to Git) with at least:
-- DJANGO_SECRET_KEY=your-secret-key 
-- DJANGO_DEBUG=True 
-- STRIPE_PUBLIC_KEY=pk_test_… 
-- STRIPE_SECRET_KEY=sk_test_… 
-- STRIPE_WEBHOOK_SECRET=whsec_…  # optional if using webhooks
+- uv add django
+- uv add stripe
+- uv add python-dotenv
 
-### 4. Install Django (and other dependencies)
-- uv add install django stripe 
-- uv add install stripe
-- uv add install python-dotenv
-
-### 5. Create the Django project
+### 4. Create the Django project
 
 From the repo root:
-- uv run django-admin startproject project
+
+- uv run django-admin startproject shop
 - This creates `manage.py` and a `config/` directory with `settings.py`, `urls.py`, etc.
 
-### 6. Create core apps
+### 5. Create core apps
+
 - uv run manage.py startapp inventory
 - uv run manage.py startapp contact
+- uv run manage.py startapp cart
+- uv run manage.py startapp account
 
+### 6. Environment variables
+
+- Create a `.env` file in the project root (not committed to Git) with at least:
+- DJANGO_SECRET_KEY=your-secret-key
+- DJANGO_DEBUG=True
+- STRIPE*PUBLIC_KEY=pk_test*…
+- STRIPE*SECRET_KEY=sk_test*…
+- STRIPE*WEBHOOK_SECRET=whsec*… # optional if using webhooks
 
 ### 7. Database setup
 
 Once the models are created:
+
 - uv run manage.py makemigrations
 - uv run manage.py migrate
 - uv run manage.py createsuperuser
 
 ### 8. Run server
+
 - uv run manage.py runserver
 
 ### 9. Testing
+
 - uv run manage.py test
