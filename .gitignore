@@ -6,7 +6,6 @@ db.sqlite3
 .env
 
 # Static & media (optional if generated or large)
-staticfiles/
 media/
 
 # VS Code / IDE
