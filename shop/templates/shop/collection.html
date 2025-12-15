@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% load i18n %} {% block content %}
+<section class="category">
+	{% if collection %}
+	<div class="container">
+		<h1 class="title">{{ collection.name }}</h1>
+		<p class="subtitle">{{ collection.description }}</p>
+	</div>
+	<div class="grid">
+		{% for product in products %}
+		<article class="card">
+			<h2 class="card-title">{{ product.name }}</h2>
+			<p>{{ product.description }}</p>
+			<a href="{% url 'shop:product' product.id %}" class="card-lin;"
+				>{% translate "See Details." %}</a
+			>
+		</article>
+		{% empty %}
+		<p>{% translate "No products registered in this category." %}</p>
+		{% endfor %}
+	</div>
+	{%else%}
+	<div class="container">
+		<h1 class="title">{% translate "Collection Not Found" %}</h1>
+	</div>
+	{% endif %}
+</section>
+{% endblock %}

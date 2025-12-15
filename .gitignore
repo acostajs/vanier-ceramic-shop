@@ -17,3 +17,6 @@ media/
 
 # ruff
 .ruff_cache/
+
+# dummy data
+dummy_data.json

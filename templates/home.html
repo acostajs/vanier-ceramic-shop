@@ -1,0 +1,55 @@
+{% extends 'base.html' %}{% load i18n %}{% block content %}
+
+<section class="landing-hero">
+	<div class="container">
+		<div class="flex">
+			<div class="left">
+				<h1>Welcome to Laura Melissa Ceramics</h1>
+			</div>
+			<div class="right">
+				<figure>
+					<img src="" alt="Ceramic" />
+				</figure>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="landing-recent">
+	<div class="container">
+		<h2>{% translate "Recent Work" %}</h2>
+		<div class="grid">
+			{% if collections %} {% for collection in collections %}
+			<a href="{% url 'shop:collection' collection.id %}">
+				<article class="landing-recent-card">
+					<figure><img src="{{ collection.image.url }}" alt="" /></figure>
+					<div class="landing-recent-card-text">
+						<h3>{{ collection.name }}</h3>
+						<span> {{ collection.ceramic_type }} </span>
+					</div>
+				</article>
+			</a>
+
+			{% endfor %} {% else %}
+			<p>{% translate "No collections have been registered yet" %}</p>
+			{% endif %}
+		</div>
+	</div>
+</section>
+
+<section class="landing-about">
+	<div class="container">
+		<h2>{% translate "Litle bit about me" %}</h2>
+		<div class="flex">
+			<div class="left">left</div>
+			<div class="right">right</div>
+		</div>
+	</div>
+</section>
+
+<section class="landing-contact">
+	<div class="container">
+		<h2>{% translate "Let's talk" %}</h2>
+	</div>
+</section>
+{% endblock %}

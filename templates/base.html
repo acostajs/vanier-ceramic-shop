@@ -1,0 +1,49 @@
+{% load static %} {% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>
+			{% blocktranslate %}"Laura Melissa Ceramics - Handcrafted Ceramic Art &
+			Pottery" {% endblocktranslate %}
+		</title>
+
+		<meta
+			name="description"
+			content="Discover unique handcrafted ceramics by Laura Melissa. Exquisite pottery, artisanal tableware, and custom ceramic sculptures made with love and precision. Shop now for timeless pieces."
+		/>
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:title"
+			content="Laura Melissa Ceramics - Handcrafted Ceramic Art"
+		/>
+		<meta
+			property="og:description"
+			content="Unique handcrafted ceramics, pottery, and artisanal tableware by Laura Melissa. Shop exquisite, timeless pieces."
+		/>
+		{% comment %}
+		<meta property="og:image" content="/images/og-image-ceramics.jpg" />
+		{% endcomment %}
+		<meta property="og:url" content="https://www.lauramelissajaramillo.com/" />
+
+		<link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}" />
+
+		<!-- Keywords & Business -->
+		<meta
+			name="keywords"
+			content="ceramics, pottery, handcrafted ceramics, artisanal pottery, Laura Melissa, ceramic shop, handmade pottery, ceramic art"
+		/>
+		<meta name="author" content="Laura Melissa" />
+		<meta name="robots" content="index, follow" />
+
+		<link rel="stylesheet" href="{% static 'style.css' %}" />
+	</head>
+	<body>
+		{% include 'partials/nav.html' %} {% block content %} {% endblock %}
+		{%include 'partials/footer.html' %}
+	</body>
+</html>

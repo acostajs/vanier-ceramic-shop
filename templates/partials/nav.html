@@ -1,0 +1,55 @@
+{% load static %} {% load i18n %}
+
+<header>
+	<nav>
+		<div class="container">
+			<div class="flex">
+				<div class="left">
+					<a href="{% url 'home' %}">Laura Melissa</a>
+				</div>
+
+				<div class="right">
+					<ul>
+						<li>
+							<button>{% translate "Collections" %}</button>
+							<ul class="hidden">
+								{% if collections %} {% for collection in collections %}
+								<li><a href="#">{{ collection.name }}</a></li>
+								{% endfor %} {% else %}
+								<li>
+									{% translate "No collections have been registered yet" %}
+								</li>
+								{% endif %}
+								<li><hr /></li>
+								<li>
+									<a href="{% url 'shop:shop' %}">
+										{% translate "See them all!" %}
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Laura Melissa</a>
+						</li>
+						<li>
+							<a href="#">{% translate "Contact" %}</a>
+						</li>
+						<li class="nav-icons">
+							<a href="#">
+								<figure>
+									<img src="" alt="icon 1" />
+								</figure>
+							</a>
+
+							<a href="#">
+								<figure>
+									<img src="" alt="icon 2" />
+								</figure>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>
