@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load i18n %} {% block content %}
+<section class="shop">
+	<div class="container">
+		<h1 class="title">{% translate "My Collections" %}</h1>
+		<p class="subtitle">
+			{% blocktranslate %} Explore the universe of different shapes and colors.
+			Each collection represents a different phase of my passion for clay.
+			{%endblocktranslate %}
+		</p>
+	</div>
+	<div class="grid">
+		{% if collections %} {% for collection in collections %}
+		<article class="card">
+			<h2 class="card-title">{{ collection.name }}</h2>
+			<p>{{ collection.description }}</p>
+			<a href="{% url 'shop:collection' collection.id %}" class="shop-card-line"
+				>{% translate "See Products." %}</a
+			>
+		</article>
+		{% endfor %} {% else %}
+		<p>{% translate "No collections registered" %}</p>
+		{% endif %}
+	</div>
+</section>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load i18n %} {% block content %}
+<section class="category">
+	{% if product %}
+	<div class="container">
+		<h1 class="title">{{ product.name }}</h1>
+	</div>
+	<div class="flex">
+		<div class="left">
+			<figure>
+				<img src="{{ product.image.url }}" alt="" />
+			</figure>
+		</div>
+		<div class="right">
+			<article class="product-info">
+				<h2>{{ product.name }}</h2>
+				<p>{{ product.description }}</p>
+
+				{% if product.discount_percentage > 0%}
+				<ul>
+					<li>
+						<del>{% translate "Price" %} {{product.price_in_dollars}}</del>
+					</li>
+					<li>{% translate "Discount %:"%} {{product.discount_percentage}}</li>
+					<li>
+						{% translate "New Price:" %} {{product.discounted_price_in_dollars}}
+					</li>
+				</ul>
+				{% else %}
+				<span>{% translate "Price" %} {{ product.price_in_dollars }}</span>
+				{%endif%}
+			</article>
+		</div>
+	</div>
+	{% else %}
+	<div class="container">
+		<h1 class="title">{% translate "Product Not Found" %}</h1>
+	</div>
+	{% endif%}
+</section>
+{% endblock %}

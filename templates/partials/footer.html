@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<footer>
+	<ul>
+		<li>
+			<a href="{% url 'home' %}">Home</a>
+		</li>
+		<li>
+			<a href="{% url 'shop:shop' %}">{% translate "Shop" %}</a>
+		</li>
+		<li>
+			<a href="/about/">Laura Melissa</a>
+		</li>
+		<li>
+			<a href="/contact/">{% translate "Contact" %}</a>
+		</li>
+		<li class="nav-icons">
+			<a href="#">
+				<figure>
+					<img src="" alt="icon 1" />
+				</figure>
+			</a>
+
+			<a href="#">
+				<figure>
+					<img src="" alt="icon 2" />
+				</figure>
+			</a>
+		</li>
+	</ul>
+	<p>
+		{% blocktranslate %} © 2025 Laura Melissa Ceramics - Handcrafted Ceramic
+		Art. All rights reserved. {% endblocktranslate %}
+	</p>
+</footer>
