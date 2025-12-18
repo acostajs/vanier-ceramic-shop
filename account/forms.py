@@ -25,7 +25,7 @@ class BillingForm(forms.ModelForm):
         fields = [
             "billing_address_line1",
             "billing_address_line2",
-            "shipping_city",
+            "billing_city",
             "billing_postal_code",
             "billing_country",
         ]

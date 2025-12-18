@@ -8,7 +8,6 @@ from .models import Order
 @csrf_exempt
 def stripe_webhook(request):
     """Handle Stripe events."""
-    print("webhook is running")
     payload = request.body
     sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
 
@@ -23,18 +22,14 @@ def stripe_webhook(request):
         event["type"] == "checkout.session.completed"
         or event["type"] == "checkout.session.async_payment_succeeded"
     ):
-        print("Handling checkout.session.completed")
         stripe_session = event["data"]["object"]
-        print("session:", stripe_session)
         order_id = stripe_session["client_reference_id"]
-        print("order_id:", order_id)
         try:
             order = Order.objects.get(id=order_id)
         except Order.DoesNotExist:
             return HttpResponse(status=404)
 
         if not order.account:
-            print(f"Order {order_id} has no associated account")
             return HttpResponse(status=400)
 
         account = order.account
@@ -67,6 +62,5 @@ def stripe_webhook(request):
             return HttpResponse(status=200)
 
         order.set_status("cancelled")
-        print(f"Order {order.id} cancelled")
 
     return HttpResponse(status=200)
