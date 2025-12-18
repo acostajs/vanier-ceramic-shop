@@ -1,74 +1,157 @@
 {% extends 'base.html' %} {% load i18n %} {% block content %}
-<section class="category">
+
+<section
+	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 to-white"
+>
 	{% if product %}
-	<div class="container">
-		<h1 class="title">{{ product.name }}</h1>
-	</div>
-	<div class="flex">
-		<div class="left">
-			<figure>
-				<img src="{{ product.image.url }}" alt="" />
-			</figure>
+	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="mb-10">
+			<h1
+				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gray-900"
+			>
+				{{ product.name }}
+			</h1>
 		</div>
-		<div class="right">
-			<article class="product-info">
-				<h2>{{ product.name }}</h2>
-				<p>{{ product.description }}</p>
 
-				{% if product.discount_percentage > 0%}
-				<ul>
-					<li>
-						<del>{% translate "Price" %} {{product.price_in_dollars}}</del>
-					</li>
-					<li>{% translate "Discount %:"%} {{product.discount_percentage}}</li>
-					<li>
-						{% translate "New Price:" %} {{product.discounted_price_in_dollars}}
-					</li>
-				</ul>
-				{% else %}
-				<span>{% translate "Price" %} {{ product.price_in_dollars }}</span>
-				{%endif%}
-
-				<form action="{% url 'cart:add_to_cart' product.id %}" method="POST">
-					{% csrf_token %}
-
-					<label for="quantity"
-						><strong>{% translate "Quantity:" %}</strong></label
-					>
-
-					<div class="form-cart-controllers">
-						<input
-							type="number"
-							id="quantity"
-							name="quantity"
-							value="1"
-							min="1"
-							max="{{ product.quantity }}"
-							class="quantity-input"
-						/>
-						<button type="submit">{% translate "Add to Cart" %}</button>
-					</div>
-				</form>
-
-				{% if user.is_authenticated %}
-				<form
-					action="{% url 'account:add_to_wishlist' product.id %}"
-					method="POST"
-					class="add-to-wishlist-form"
+		<div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+			<div>
+				{% if product.image %}
+				<div
+					class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-6 lg:p-8 shadow-2xl border border-amber-100 overflow-hidden"
 				>
-					{% csrf_token %}
-					<button type="submit" class="btn btn--cta">
-						{% translate "Add to Wishlist" %}
-					</button>
-				</form>
+					<img
+						src="{{ product.image.url }}"
+						alt="{{ product.name }}"
+						class="w-full h-80 sm:h-96 lg:h-[420px] object-cover rounded-2xl shadow-xl"
+					/>
+				</div>
 				{% endif %}
-			</article>
+			</div>
+
+			<div>
+				<article
+					class="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 sm:p-8 space-y-5"
+				>
+					<h2 class="text-2xl sm:text-3xl font-serif font-bold text-gray-900">
+						{{ product.name }}
+					</h2>
+
+					{% if product.description %}
+					<p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+						{{ product.description }}
+					</p>
+					{% endif %}
+
+					<div class="pt-4 border-t border-gray-100">
+						{% if product.discount_percentage > 0 %}
+						<div class="space-y-2">
+							<p class="text-sm text-gray-500 uppercase tracking-wide">
+								{% translate "Limited offer" %}
+							</p>
+							<div class="flex items-baseline gap-3">
+								<span class="text-sm text-gray-400 line-through">
+									{% translate "Price" %} {{ product.price_in_dollars }}
+								</span>
+								<span class="text-2xl font-bold text-amber-700">
+									{{ product.discounted_price_in_dollars }}
+								</span>
+							</div>
+							<p class="text-sm text-amber-700 font-semibold">
+								{% translate "Discount %:" %} {{ product.discount_percentage }}%
+							</p>
+						</div>
+						{% else %}
+						<div class="space-y-1">
+							<p class="text-sm text-gray-500 uppercase tracking-wide">
+								{% translate "Price" %}
+							</p>
+							<p class="text-2xl font-bold text-gray-900">
+								{{ product.price_in_dollars }}
+							</p>
+						</div>
+						{% endif %}
+					</div>
+
+					<div class="pt-4 border-t border-gray-100">
+						<form
+							action="{% url 'cart:add_to_cart' product.id %}"
+							method="POST"
+							class="space-y-3"
+						>
+							{% csrf_token %}
+							<label
+								for="quantity"
+								class="block text-sm font-medium text-gray-700"
+							>
+								{% translate "Quantity:" %}
+							</label>
+							<div class="flex items-center gap-3">
+								<input
+									type="number"
+									id="quantity"
+									name="quantity"
+									value="1"
+									min="1"
+									max="{{ product.quantity }}"
+									class="w-20 rounded-xl border border-gray-300 px-3 py-2 text-center text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+								/>
+								<button
+									type="submit"
+									class="inline-flex items-center justify-center px-6 py-2.5 rounded-2xl bg-amber-600 text-white text-sm sm:text-base font-semibold shadow-md hover:bg-amber-700 hover:shadow-lg transition-all duration-300"
+								>
+									{% translate "Add to Cart" %}
+								</button>
+							</div>
+							<p class="text-xs text-gray-500">
+								{% translate "Available stock:" %} {{ product.quantity }}
+							</p>
+						</form>
+					</div>
+
+					{% if user.is_authenticated %}
+					<div class="pt-4 border-t border-gray-100">
+						<form
+							action="{% url 'account:add_to_wishlist' product.id %}"
+							method="POST"
+							class="inline-block"
+						>
+							{% csrf_token %}
+							<button
+								type="submit"
+								class="inline-flex items-center justify-center px-5 py-2.5 rounded-2xl border border-amber-200 text-sm sm:text-base font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 hover:border-amber-300 transition-all duration-300"
+							>
+								{% translate "Add to Wishlist" %}
+								<svg
+									class="w-4 h-4 ml-2"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z"
+									/>
+								</svg>
+							</button>
+						</form>
+					</div>
+					{% endif %}
+				</article>
+			</div>
 		</div>
 	</div>
 	{% else %}
-	<div class="container">
-		<h1 class="title">{% translate "Product Not Found" %}</h1>
+	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+		<h1 class="text-4xl sm:text-5xl font-serif font-bold text-gray-900 mb-4">
+			{% translate "Product Not Found" %}
+		</h1>
+		<p class="text-lg text-gray-600">
+			{% translate "The product you are looking for does not exist." %}
+		</p>
 	</div>
-	{% endif%}
+	{% endif %}
 </section>
+
 {% endblock %}
