@@ -1,0 +1,45 @@
+{% extends 'base.html' %}{% load i18n %}{% block content %}
+
+<section class="account-section">
+	<div class="container account-wrapper">
+		<div class="account-card">
+			<h3>{{ account.username }}</h3>
+			<small>{% translate "Account Panel" %}</small>
+
+			<hr />
+
+			<p>{% translate "First name" %}: {{ account.first_name }}</p>
+			<p>{% translate "Last name" %}: {{ account.last_name }}</p>
+			<p>{% translate "Email" %}: {{ user.email }}</p>
+			<a href="{% url "account:shipping" %}"> {% translate "Update your Shipping Information" %} </a>
+			<a href="{% url "account:billing" %}"> {% translate "Update your Billing Information" %} </a>
+
+			<hr />
+
+			<h4>{% translate "My Orders" %}</h4>
+			<ul>
+				{% for order in orders %}
+				<li>
+					<strong> {% translate "Order" %} #{{ order.id }} </strong>
+					<span> {{ order.created_at|date:"Y-m-d H:i" }} </span>						
+						<strong>{% translate "Total" %}: {{ order.total_in_dollars }}</strong>
+						<span>
+							{{ order.status }}
+						</span>
+					</div>
+
+					<a href="{% url 'cart:order_details' order.id %}">
+						{% translate "View Details" %}
+					</a>
+				</li>
+				{% empty %}
+				<li>{% translate "No orders yet" %}.</li>
+				{% endfor %}
+			</ul>
+
+			<a href="{% url 'account:logout' %}"> {% translate "Logout" %} </a>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

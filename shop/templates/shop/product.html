@@ -28,6 +28,40 @@
 				{% else %}
 				<span>{% translate "Price" %} {{ product.price_in_dollars }}</span>
 				{%endif%}
+
+				<form action="{% url 'cart:add_to_cart' product.id %}" method="POST">
+					{% csrf_token %}
+
+					<label for="quantity"
+						><strong>{% translate "Quantity:" %}</strong></label
+					>
+
+					<div class="form-cart-controllers">
+						<input
+							type="number"
+							id="quantity"
+							name="quantity"
+							value="1"
+							min="1"
+							max="{{ product.quantity }}"
+							class="quantity-input"
+						/>
+						<button type="submit">{% translate "Add to Cart" %}</button>
+					</div>
+				</form>
+
+				{% if user.is_authenticated %}
+				<form
+					action="{% url 'account:add_to_wishlist' product.id %}"
+					method="POST"
+					class="add-to-wishlist-form"
+				>
+					{% csrf_token %}
+					<button type="submit" class="btn btn--cta">
+						{% translate "Add to Wishlist" %}
+					</button>
+				</form>
+				{% endif %}
 			</article>
 		</div>
 	</div>

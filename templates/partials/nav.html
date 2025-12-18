@@ -14,7 +14,7 @@
 							<button>{% translate "Collections" %}</button>
 							<ul class="hidden">
 								{% if collections %} {% for collection in collections %}
-								<li><a href="#">{{ collection.name }}</a></li>
+								<li><a href="{% url "shop:collection" collection.id %}">{{ collection.name }}</a></li>
 								{% endfor %} {% else %}
 								<li>
 									{% translate "No collections have been registered yet" %}
@@ -26,12 +26,22 @@
 										{% translate "See them all!" %}
 									</a>
 								</li>
+								
 							</ul>
 						</li>
 						<li>
-							<a href="#">Laura Melissa</a>
+							<a href="{% url "about" %}">Laura Melissa</a>
 						</li>
 						<li>
+							{% if user.is_authenticated %}
+								<a href="{% url 'account:account' %}">{% translate "Account" %}</a>
+								<a href="{% url 'account:wishlist_detail' %}"> {% translate "Wishlist"%} </a>
+								<a href="{% url 'cart:cart' %}"> {% translate "Cart"%} </a>
+							{% else %}
+								<a href="{% url 'account:login' %}">{% translate "Login"%}</a>
+								<a href="{% url 'account:registration' %}">{% translate "Register"%}</a>
+							{% endif %}
+						</li>
 							<a href="#">{% translate "Contact" %}</a>
 						</li>
 						<li class="nav-icons">
