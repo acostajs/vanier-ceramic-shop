@@ -1,105 +1,166 @@
-{% extends 'base.html' %}{% load i18n %}{% block content %}
+{% extends 'base.html' %} {% load i18n %} {% block content %}
 
-<section class="section section-checkout-page">
-	<div class="container checkout-container">
-		<h2>{% translate "Checkout" %}</h2>
+<section
+	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 via-white to-amber-50/30"
+>
+	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+		<h1
+			class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6"
+		>
+			{% translate "Checkout" %}
+		</h1>
 
 		{% if cart_items %}
-		<div class="checkout-wrapper">
-			<div class="checkout-summary">
-				<h3>{% translate "Order Summary" %}</h3>
+		<div
+			class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8 space-y-8"
+		>
+			<div>
+				<h2
+					class="text-xl sm:text-2xl font-serif font-semibold text-gray-900 mb-4"
+				>
+					{% translate "Order Summary" %}
+				</h2>
 
-				<table class="table cart-table checkout-table">
-					<thead>
-						<tr>
-							<th>{% translate "Product" %}</th>
-							<th>{% translate "Unit" %}</th>
-							<th>{% translate "Qty" %}</th>
-							<th>{% translate "Line" %}</th>
-							<th>{% translate "Actions" %}</th>
-						</tr>
-					</thead>
+				<div class="overflow-x-auto">
+					<table class="min-w-full border-separate border-spacing-y-2">
+						<thead>
+							<tr
+								class="text-xs sm:text-sm uppercase tracking-wide text-gray-500"
+							>
+								<th class="text-left py-2 pr-4">{% translate "Product" %}</th>
+								<th class="text-right py-2 px-4">{% translate "Unit" %}</th>
+								<th class="text-center py-2 px-4">{% translate "Qty" %}</th>
+								<th class="text-right py-2 px-4">{% translate "Line" %}</th>
+								<th class="text-right py-2 pl-4">{% translate "Actions" %}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in cart_items %}
+							<tr class="bg-gray-50 rounded-2xl shadow-sm">
+								<td class="py-3 pr-4 align-top">
+									<a
+										href="{% url 'shop:product' item.product.id %}"
+										class="flex items-center gap-3 text-sm sm:text-base text-gray-900 hover:text-amber-700"
+									>
+										<div
+											class="w-14 h-14 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0"
+										>
+											<img
+												src="{{ item.product.image.url }}"
+												alt="{{ item.product.name }}"
+												class="w-full h-full object-cover"
+											/>
+										</div>
+										<span class="font-medium">{{ item.product.name }}</span>
+									</a>
+								</td>
 
-					<tbody>
-						{% for item in cart_items %}
-						<tr>
-							<td>
-								<a href="{% url 'shop:product' item.product.id %}">
-									<img
-										src="{{ item.product.image.url }}"
-										alt="{{ item.product.name }}"
-									/>
-									{{ item.product.name }}
-								</a>
-							</td>
-
-							<td>{{ item.unit_dollars }}</td>
-
-							<td>
-								<form
-									method="post"
-									action="{% url 'cart:update_cart_checkout' item.product.id %}"
-									class="qty-update-form"
+								<td
+									class="py-3 px-4 text-right text-sm sm:text-base text-gray-800 align-middle"
 								>
-									{% csrf_token %}
-									<input
-										type="number"
-										name="quantity"
-										value="{{ item.quantity }}"
-										min="1"
-										max="{{ item.product.quantity }}"
-										class="qty-input"
-									/>
-									<button type="submit" class="btn btn--secondary btn--sm">
-										{% translate "Update" %}
-									</button>
-								</form>
-							</td>
+									{{ item.unit_dollars }}
+								</td>
 
-							<td>{{ item.line_dollars }}</td>
+								<td class="py-3 px-4 text-center align-middle">
+									<form
+										method="post"
+										action="{% url 'cart:update_cart_checkout' item.product.id %}"
+										class="inline-flex items-center gap-2"
+									>
+										{% csrf_token %}
+										<input
+											type="number"
+											name="quantity"
+											value="{{ item.quantity }}"
+											min="1"
+											max="{{ item.product.quantity }}"
+											class="w-16 rounded-xl border border-gray-300 px-2 py-1 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+										/>
+										<button
+											type="submit"
+											class="px-3 py-1.5 rounded-xl border border-gray-200 text-xs sm:text-sm font-semibold text-gray-700 bg-white hover:bg-gray-100 transition-colors"
+										>
+											{% translate "Update" %}
+										</button>
+									</form>
+								</td>
 
-							<td>
-								<form
-									method="post"
-									action="{% url 'cart:remove_from_cart_checkout' item.product.id %}"
-									class="remove-form"
+								<td
+									class="py-3 px-4 text-right text-sm sm:text-base text-gray-900 font-medium align-middle"
 								>
-									{% csrf_token %}
-									<button type="submit" class="btn btn--warning btn--sm">
-										{% translate "Remove" %}
-									</button>
-								</form>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
+									{{ item.line_dollars }}
+								</td>
 
-					<tfoot>
-						<tr>
-							<td><strong>{% translate "Total" %}</strong></td>
-							<td><strong>{{ subtotal_dollars }}</strong></td>
-						</tr>
-					</tfoot>
-				</table>
+								<td class="py-3 pl-4 pr-2 text-right align-middle">
+									<form
+										method="post"
+										action="{% url 'cart:remove_from_cart_checkout' item.product.id %}"
+										class="inline-block"
+									>
+										{% csrf_token %}
+										<button
+											type="submit"
+											class="px-3 py-1.5 rounded-xl bg-red-50 text-xs sm:text-sm font-semibold text-red-600 hover:bg-red-100 transition-colors"
+										>
+											{% translate "Remove" %}
+										</button>
+									</form>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+						<tfoot>
+							<tr>
+								<td
+									colspan="3"
+									class="pt-4 text-right text-sm sm:text-base font-semibold text-gray-700"
+								>
+									{% translate "Total" %}
+								</td>
+								<td class="pt-4 text-right text-xl font-bold text-gray-900">
+									{{ subtotal_dollars }}
+								</td>
+								<td></td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
 			</div>
 
-			<div class="checkout-actions">
-				<a href="{% url 'cart:cart' %}"> {% translate "Back to Cart" %} </a>
+			<div
+				class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-100"
+			>
+				<a
+					href="{% url 'cart:cart' %}"
+					class="text-sm sm:text-base font-semibold text-gray-900 hover:text-amber-700 transition-colors"
+				>
+					← {% translate "Back to Cart" %}
+				</a>
 
 				<form method="post" action="{% url 'cart:create_checkout_session' %}">
 					{% csrf_token %}
-					<button type="submit" class="btn btn--cta">
+					<button
+						type="submit"
+						class="inline-flex items-center justify-center px-8 py-3.5 rounded-2xl bg-amber-600 text-white text-sm sm:text-lg font-semibold shadow-md hover:bg-amber-700 hover:shadow-lg transition-all duration-300"
+					>
 						{% translate "Proceed to Payment" %}
 					</button>
 				</form>
 			</div>
 		</div>
-
 		{% else %}
-		<div>
-			<p>{% translate "Your cart is empty." %}</p>
-
-			<a href="{% url 'shop:shop' %}"> {% translate "Continue Shopping" %} </a>
+		<div
+			class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 text-center"
+		>
+			<p class="text-lg text-gray-600 mb-4">
+				{% translate "Your cart is empty." %}
+			</p>
+			<a
+				href="{% url 'shop:shop' %}"
+				class="inline-flex items-center justify-center px-8 py-3.5 rounded-2xl bg-amber-600 text-white text-base font-semibold shadow-md hover:bg-amber-700 hover:shadow-lg transition-all duration-300"
+			>
+				{% translate "Continue Shopping" %}
+			</a>
 		</div>
 		{% endif %}
 	</div>

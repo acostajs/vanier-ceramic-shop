@@ -1,43 +1,117 @@
-{% extends 'base.html' %}{% load i18n %}{% block content %}
+{% extends 'base.html' %} {% load i18n %} {% block content %}
 
-<section class="account-section">
-	<div class="container account-wrapper">
-		<div class="account-card">
-			<h3>{{ account.username }}</h3>
-			<small>{% translate "Account Panel" %}</small>
+<section
+	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 via-white to-amber-50/30"
+>
+	<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="mb-8">
+			<h1
+				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gray-900"
+			>
+				{{ account.username }}
+			</h1>
+			<p class="text-sm sm:text-base text-gray-600 mt-1">
+				{% translate "Account Panel" %}
+			</p>
+		</div>
 
-			<hr />
+		<div class="grid lg:grid-cols-3 gap-8 items-start">
+			<div
+				class="lg:col-span-1 bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-7 space-y-4"
+			>
+				<h2 class="text-lg font-serif font-semibold text-gray-900 mb-2">
+					{% translate "Profile" %}
+				</h2>
+				<p class="text-sm text-gray-700">
+					<span class="font-medium">{% translate "First name" %}:</span>
+					{{account.first_name|default:"—" }}
+				</p>
+				<p class="text-sm text-gray-700">
+					<span class="font-medium">{% translate "Last name" %}:</span>
+					{{account.last_name|default:"—" }}
+				</p>
+				<p class="text-sm text-gray-700">
+					<span class="font-medium">{% translate "Email" %}:</span>
+					{{user.email}}
+				</p>
 
-			<p>{% translate "First name" %}: {{ account.first_name }}</p>
-			<p>{% translate "Last name" %}: {{ account.last_name }}</p>
-			<p>{% translate "Email" %}: {{ user.email }}</p>
-			<a href="{% url "account:shipping" %}"> {% translate "Update your Shipping Information" %} </a>
-			<a href="{% url "account:billing" %}"> {% translate "Update your Billing Information" %} </a>
-
-			<hr />
-
-			<h4>{% translate "My Orders" %}</h4>
-			<ul>
-				{% for order in orders %}
-				<li>
-					<strong> {% translate "Order" %} #{{ order.id }} </strong>
-					<span> {{ order.created_at|date:"Y-m-d H:i" }} </span>						
-						<strong>{% translate "Total" %}: {{ order.total_in_dollars }}</strong>
-						<span>
-							{{ order.status }}
-						</span>
-					</div>
-
-					<a href="{% url 'cart:order_details' order.id %}">
-						{% translate "View Details" %}
+				<div class="pt-4 space-y-2 border-t border-gray-100 mt-2">
+					<a
+						href="{% url 'account:shipping' %}"
+						class="block text-sm font-semibold text-gray-900 hover:text-amber-700 transition-colors"
+					>
+						{% translate "Update your Shipping Information" %}
 					</a>
-				</li>
-				{% empty %}
-				<li>{% translate "No orders yet" %}.</li>
-				{% endfor %}
-			</ul>
+					<a
+						href="{% url 'account:billing' %}"
+						class="block text-sm font-semibold text-gray-900 hover:text-amber-700 transition-colors"
+					>
+						{% translate "Update your Billing Information" %}
+					</a>
+				</div>
 
-			<a href="{% url 'account:logout' %}"> {% translate "Logout" %} </a>
+				<div class="pt-4 mt-2 border-t border-gray-100">
+					<a
+						href="{% url 'account:logout' %}"
+						class="text-sm font-semibold text-red-600 hover:text-red-700 transition-colors"
+					>
+						{% translate "Logout" %}
+					</a>
+				</div>
+			</div>
+
+			<div
+				class="lg:col-span-2 bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-7"
+			>
+				<h2
+					class="text-lg sm:text-xl font-serif font-semibold text-gray-900 mb-4"
+				>
+					{% translate "My Orders" %}
+				</h2>
+
+				{% if orders %}
+				<ul class="space-y-4">
+					{% for order in orders %}
+					<li
+						class="border border-gray-100 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+					>
+						<div>
+							<p class="text-sm text-gray-500">
+								{% translate "Order" %} #{{ order.id }}
+							</p>
+							<p class="text-xs text-gray-400 mt-0.5">
+								{{ order.created_at|date:"Y-m-d H:i" }}
+							</p>
+							<p class="mt-2 text-sm text-gray-700">
+								<span class="font-medium">{% translate "Total" %}:</span>
+								{{ order.total_in_dollars }}
+							</p>
+							<p class="mt-1">
+								<span
+									class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium {% if order.status == 'paid' %} bg-emerald-50 text-emerald-700 {% elif order.status == 'pending' %} bg-amber-50 text-amber-700 {% else %} bg-gray-100 text-gray-700 {% endif %}"
+								>
+									{{ order.status }}
+								</span>
+							</p>
+						</div>
+
+						<div class="sm:text-right">
+							<a
+								href="{% url 'cart:order_details' order.id %}"
+								class="inline-flex items-center px-4 py-2 rounded-2xl border border-gray-200 text-xs sm:text-sm font-semibold text-gray-900 bg-white hover:bg-gray-50 transition-colors"
+							>
+								{% translate "View Details" %}
+							</a>
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+				<p class="text-sm sm:text-base text-gray-600">
+					{% translate "No orders yet" %}.
+				</p>
+				{% endif %}
+			</div>
 		</div>
 	</div>
 </section>
