@@ -16,5 +16,5 @@ urlpatterns += i18n_patterns(
     path("shop/", include("shop.urls")),
     path("cart/", include("cart.urls")),
     path("account/", include("account.urls")),
-    # path("contact/", include("contact.urls")),
+    path("contact/", include("contact.urls")),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

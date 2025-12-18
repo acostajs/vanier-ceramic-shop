@@ -20,3 +20,6 @@ mediafiles/
 
 # dummy data
 dummy_data.json
+
+# cache
+__pycache__

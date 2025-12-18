@@ -1,0 +1,8 @@
+{% extends 'base.html' %}{% load i18n %}{% block content %}
+
+<form action="{% url 'contact:contact_submit' %}" method="post">
+	{% csrf_token %} {{ form }}
+	<button>{% translate "Send" %}</button>
+</form>
+
+{% endblock %}

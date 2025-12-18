@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # To use account as the Authorized user
 AUTH_USER_MODEL = "account.Account"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 # To use as media folder
