@@ -1,0 +1,47 @@
+{% extends 'base.html' %}{% load i18n %}{% block content %}
+
+<section>
+	<div>
+		<div>
+			<h3>{% translate "Shipping Information" %}</h3>
+
+			<table>
+				<thead>
+					<th>{% translate "address line 1" %}</th>
+					<th>{% translate "address line 2" %}</th>
+					<th>{% translate "City" %}</th>
+					<th>{% translate "Postal Code" %}</th>
+					<th>{% translate "Country" %}</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ account.billing_address_line1 }}</td>
+						<td>{{ account.billing_address_line2 }}</td>
+						<td>{{ account.billing_city }}</td>
+						<td>{{ account.billing_postal_code }}</td>
+						<td>{{ account.billing_country }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<form method="post" action="{% url 'account:billing_submit' %}">
+				{% csrf_token %} {{ form.non_field_errors }} {% for field in form %}
+				<div>
+					{{ field.label_tag }} {{ field }} {% if field.errors %}
+					<div>{{ field.errors }}</div>
+					{% endif %}
+				</div>
+				{% endfor %}
+
+				<button>{% translate "Submit" %}</button>
+			</form>
+
+			<div>
+				<a href="{% url 'account:account' %}"> {% translate "Go Back" %} </a>
+				<br />
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

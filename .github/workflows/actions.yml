@@ -12,6 +12,8 @@ jobs:
         run: uv run ruff check
       - name: Run Tests
         run: uv run manage.py test
-        # env:
-        #   STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-        #   STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+        env:
+          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
+          DJANGO_DEBUG: ${{ secrets.DJANGO_DEBUG }}

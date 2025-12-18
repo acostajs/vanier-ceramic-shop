@@ -1,0 +1,30 @@
+{% extends 'base.html' %}{% load i18n %}{% block content %}
+
+<section>
+	<div>
+		<div>
+			<h3>{% translate "Log In" %}</h3>
+
+			<form method="post" action="{% url 'account:login_submit' %}">
+				{% csrf_token %} {{ form.non_field_errors }} {% for field in form %}
+				<div>
+					{{ field.label_tag }} {{ field }} {% if field.errors %}
+					<div>{{ field.errors }}</div>
+					{% endif %}
+				</div>
+				{% endfor %}
+
+				<button>{% translate "Log In" %}</button>
+			</form>
+
+			<div>
+				<a href="{% url 'account:registration' %}">
+					{% translate "Dont have an account? Register" %}
+				</a>
+				<br />
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
