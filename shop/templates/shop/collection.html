@@ -1,27 +1,99 @@
 {% extends 'base.html' %} {% load i18n %} {% block content %}
-<section class="category">
+
+<section
+	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 to-white"
+>
 	{% if collection %}
-	<div class="container">
-		<h1 class="title">{{ collection.name }}</h1>
-		<p class="subtitle">{{ collection.description }}</p>
+	<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+		<h1
+			class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-4"
+		>
+			{{ collection.name }}
+		</h1>
+		{% if collection.description %}
+		<p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+			{{ collection.description }}
+		</p>
+		{% endif %}
 	</div>
-	<div class="grid">
-		{% for product in products %}
-		<article class="card">
-			<h2 class="card-title">{{ product.name }}</h2>
-			<p>{{ product.description }}</p>
-			<a href="{% url 'shop:product' product.id %}" class="card-lin;"
-				>{% translate "See Details." %}</a
-			>
-		</article>
-		{% empty %}
-		<p>{% translate "No products registered in this category." %}</p>
-		{% endfor %}
-	</div>
-	{%else%}
-	<div class="container">
-		<h1 class="title">{% translate "Collection Not Found" %}</h1>
+	{% else %}
+	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+		<h1 class="text-4xl sm:text-5xl font-serif font-bold text-gray-900 mb-4">
+			{% translate "Collection Not Found" %}
+		</h1>
+		<p class="text-lg text-gray-600">
+			{% translate "The collection you are looking for does not exist." %}
+		</p>
 	</div>
 	{% endif %}
 </section>
-{% endblock %}
+
+{% if collection %}
+<section
+	class="pb-18 lg:pb-22 bg-gradient-to-br from-amber-50/40 via-white to-gray-50"
+>
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		{% if products %}
+		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
+			{% for product in products %}
+			<article
+				class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl border border-amber-50 hover:border-amber-200 transition-all duration-500 hover:-translate-y-1.5 hover:scale-[1.01] flex flex-col overflow-hidden"
+			>
+				{% if product.image %}
+				<div class="aspect-[4/3] overflow-hidden bg-gray-50">
+					<img
+						src="{{ product.image.url }}"
+						alt="{{ product.name }}"
+						class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-105 transition-all duration-700"
+					/>
+				</div>
+				{% endif %}
+
+				<div class="flex-1 p-6 flex flex-col">
+					<h2
+						class="text-2xl font-serif font-bold text-gray-900 mb-3 group-hover:text-amber-700 transition-colors"
+					>
+						{{ product.name }}
+					</h2>
+					{% if product.description %}
+					<p
+						class="text-sm sm:text-base text-gray-600 leading-relaxed mb-5 line-clamp-3"
+					>
+						{{ product.description }}
+					</p>
+					{% endif %}
+					<div class="mt-auto">
+						<a
+							href="{% url 'shop:product' product.id %}"
+							class="inline-flex items-center text-sm sm:text-base font-semibold text-amber-700 hover:text-amber-800"
+						>
+							{% translate "See Details." %}
+							<svg
+								class="w-4 h-4 ml-2"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M17 8l4 4m0 0l-4 4m4-4H3"
+								></path>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</article>
+			{% endfor %}
+		</div>
+		{% else %}
+		<div class="py-16 text-center">
+			<p class="text-xl text-gray-500">
+				{% translate "No products registered in this category." %}
+			</p>
+		</div>
+		{% endif %}
+	</div>
+</section>
+{% endif %} {% endblock %}
