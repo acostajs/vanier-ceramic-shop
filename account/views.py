@@ -136,7 +136,8 @@ def clear_wishlist(request):
     """Clear the wishlist from all products if the user is logged in."""
     wishlist = get_object_or_404(Wishlist, account=request.user)
     wishlist.clear()
-    messages.info(request, _("Wishlist cleared."))
+    msg = _("Wishlist cleared.")
+    messages.info(request, msg)
     return redirect("account:wishlist_detail")
 
 
@@ -144,15 +145,16 @@ def clear_wishlist(request):
 @require_POST
 def transfer_to_cart(request, product_id):
     """Transfer all the products in the wishlist to the user account related cart."""
-    wishlist = Wishlist.objects.get(account=request.user)
-    cart = Cart(request)
-    for product in wishlist.product.all():
-        cart.add(product, quantity=1)
-    wishlist.clear()
-    msg = "You have succesfully transfer the item to your shopping cart."
+    account = request.user
+    wishlist = Wishlist.objects.get(account=account)
+    cart = get_object_or_404(Cart, account=account)
+    product = wishlist.product.get(pk=product_id)
+    cart.add(product, quantity=1, replace=True)
+    wishlist.remove(product)
+    msg = _("You have succesfully transfer the item to your shopping cart.")
     messages.success(request, msg)
 
-    return redirect("cart:cart_detail")
+    return redirect("cart:cart")
 
 
 @login_required(login_url="account:login")
