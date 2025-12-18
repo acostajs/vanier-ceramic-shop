@@ -2,6 +2,18 @@
 
 <section>
 	<h1>Order Details</h1>
+	<ul>
+		<li>{{ order.payment_id }}</li>
+		<li>${{ order.total_in_dollars }}</li>
+		<li>{% translate "Status" %}: {{ order.status }}</li>
+		<li>{{ order.created_at }}</li>
+		<li>{{ order.billing_address_line1 }}</li>
+		<li>{{ order.billing_address_line2 }}</li>
+		<li>{{ order.billing_city }}</li>
+		<li>{{ order.billing_postal_code }}</li>
+		<li>{{ order.billing_country }}</li>
+	</ul>
+	<a href="{% url 'account:account' %}"> {% translate "Back to Account" %} </a>
 </section>
 
 {% endblock %}
