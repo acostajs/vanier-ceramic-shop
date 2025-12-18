@@ -1,7 +1,149 @@
-{% extends 'base.html' %}{% load i18n %}{% block content %}
+{% extends "base.html" %} {% load i18n %} {% load static %} {% block content %}
 
-<section>
-	<h1>About Page</h1>
+<section
+	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 to-white"
+>
+	<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+		<h1
+			class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-4"
+		>
+			{% translate "Laura Melissa" %}
+		</h1>
+		<p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
+			{% blocktranslate %} Ceramist exploring time as form, color as accent, and
+			the circle as a living language. {% endblocktranslate %}
+		</p>
+	</div>
+</section>
+
+<section
+	class="pb-16 lg:pb-20 bg-gradient-to-br from-amber-50/40 via-white to-gray-50"
+>
+	<div
+		class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-start"
+	>
+		<div>
+			<h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mb-6">
+				{% translate "Statement" %}
+			</h2>
+			<div class="space-y-4 text-lg text-gray-700 leading-relaxed">
+				<p>
+					{% blocktranslate %} My work stems from a deep fascination with the
+					potter's wheel and the forms that emerge from circular movement.
+					{%endblocktranslate %}
+				</p>
+				<p>
+					{% blocktranslate %} I am interested in rotation: that primary,
+					repetitive, and constant gesture that allows us to think about time,
+					form, and memory. {% endblocktranslate %}
+				</p>
+				<p>
+					{% blocktranslate %} In my practice, the circle and concentric forms
+					are inevitable presences. I am drawn to their ability to reveal
+					movement, their enveloping quality, and their insistence. They define
+					not only the aesthetics of my pieces but embody a vision of time as
+					something that repeats, accumulates, and intertwines.
+					{%endblocktranslate %}
+				</p>
+				<p>
+					{% blocktranslate %} I work with the circle as a structure open to
+					constant transformation, that contains and, at the same time, is
+					infinite. {% endblocktranslate %}
+				</p>
+				<p>
+					{% blocktranslate %} In this process, color is a tool that intervenes
+					directly in the construction of formal language. It allows me to
+					highlight planes, outline volumes, and mark rhythms, tracing visual
+					accents that guide the gaze and reveal internal tensions. Color does
+					not decorate: it activates the surface, exposes its layers, and
+					amplifies the form. {% endblocktranslate %}
+				</p>
+				<p class="font-medium italic">
+					{% blocktranslate %} My work is an exploration of time as form, color
+					as accent, and the circle as language. {% endblocktranslate %}
+				</p>
+			</div>
+		</div>
+
+		<!-- Image -->
+		<div class="relative">
+			<div
+				class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 lg:p-10 shadow-2xl border border-amber-100 overflow-hidden"
+			>
+				<img
+					src="{% static 'images/about-statement.webp' %}"
+					alt="Circular ceramic work by Laura Melissa"
+					class="w-full h-80 sm:h-96 lg:h-[420px] object-cover rounded-2xl shadow-xl"
+				/>
+			</div>
+			<div
+				class="hidden lg:block absolute -top-6 -left-6 w-20 h-20 bg-amber-200/60 rounded-2xl"
+			></div>
+		</div>
+	</div>
+</section>
+
+<section class="py-16 lg:py-20 bg-white">
+	<div
+		class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-start"
+	>
+		<!-- Image -->
+		<div class="relative order-2 lg:order-1">
+			<div
+				class="bg-gradient-to-br from-gray-50 to-amber-50 rounded-3xl p-8 lg:p-10 shadow-2xl border border-gray-100 overflow-hidden"
+			>
+				<img
+					src="{% static 'images/about-portrait.webp' %}"
+					alt="Portrait of Laura Melissa in her studio"
+					class="w-full h-80 sm:h-96 lg:h-[420px] object-cover rounded-2xl shadow-xl"
+				/>
+			</div>
+			<div
+				class="hidden lg:block absolute -bottom-6 -right-6 w-24 h-24 bg-amber-100/70 rounded-3xl"
+			></div>
+		</div>
+
+		<div class="order-1 lg:order-2">
+			<h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mb-6">
+				{% translate "BIO" %}
+			</h2>
+			<div class="space-y-4 text-lg text-gray-700 leading-relaxed">
+				<p>
+					{% blocktranslate %} Trained as an Industrial Designer, she finds in
+					ceramics the manifestation of her passion for manual work and crafts,
+					and it is in the practice of the potter's wheel where she develops
+					most of her pieces. Attention to detail, exploration of form, and the
+					possibilities that arise from circular movement, as well as her bold
+					use of colors, define her style. {% endblocktranslate %}
+				</p>
+				<p>
+					{% blocktranslate %} Her pieces are a fusion of the utilitarian,
+					symbolic, and decorative, allowing the viewer to freely interpret
+					their use and purpose. {% endblocktranslate %}
+				</p>
+				<p>
+					{% blocktranslate %} In recent years, her selection for the Mexican
+					Utilitarian Ceramics Biennial of IVEC and her participation in the
+					collective exhibition "1000 Vases" during Design Week in Milan stand
+					out. She currently lives in Xalapa, Veracruz where her workshop is
+					located and is co-founder of the ceramics objects store & workshop
+					Satélite & Co, a space where she produces her work and teaches wheel
+					throwing workshops. {% endblocktranslate %}
+				</p>
+				<p>
+					{% blocktranslate %} Her pieces have been exhibited in Oaxaca, Mexico,
+					and Milan, Italy, and are sold in Mexico, Colombia, the United States,
+					and Canada. {% endblocktranslate %}
+				</p>
+				<p class="mt-4">
+					<strong class="block text-gray-900 text-lg"
+						>Laura Melissa Jaramillo Rueda.</strong
+					>
+					<em class="text-gray-500 text-sm">(Bucaramanga, Colombia. 1987)</em>
+				</p>
+			</div>
+		</div>
+	</div>
 </section>
 
 {% endblock %}
