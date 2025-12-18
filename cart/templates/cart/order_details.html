@@ -1,19 +1,84 @@
-{% extends 'base.html' %}{% load i18n %}{% block content %}
+{% extends 'base.html' %} {% load i18n %} {% block content %}
 
-<section>
-	<h1>Order Details</h1>
-	<ul>
-		<li>{{ order.payment_id }}</li>
-		<li>${{ order.total_in_dollars }}</li>
-		<li>{% translate "Status" %}: {{ order.status }}</li>
-		<li>{{ order.created_at }}</li>
-		<li>{{ order.billing_address_line1 }}</li>
-		<li>{{ order.billing_address_line2 }}</li>
-		<li>{{ order.billing_city }}</li>
-		<li>{{ order.billing_postal_code }}</li>
-		<li>{{ order.billing_country }}</li>
-	</ul>
-	<a href="{% url 'account:account' %}"> {% translate "Back to Account" %} </a>
+<section
+	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 via-white to-amber-50/30"
+>
+	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="mb-8">
+			<h1
+				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gray-900"
+			>
+				{% translate "Order details" %}
+			</h1>
+			<p class="mt-2 text-gray-600">
+				{% blocktranslate %} Thank you for your purchase. Here is a summary of
+				your order. {%endblocktranslate%}
+			</p>
+		</div>
+
+		<div
+			class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8 space-y-6"
+		>
+			<div class="grid sm:grid-cols-3 gap-4 border-b border-gray-100 pb-4">
+				<div>
+					<p class="text-xs uppercase tracking-wide text-gray-500">
+						{% translate "Payment ID" %}
+					</p>
+					<p class="mt-1 font-mono text-sm text-gray-900 break-all">
+						{{ order.payment_id }}
+					</p>
+				</div>
+				<div>
+					<p class="text-xs uppercase tracking-wide text-gray-500">
+						{% translate "Total" %}
+					</p>
+					<p class="mt-1 text-xl font-bold text-gray-900">
+						${{ order.total_in_dollars }}
+					</p>
+				</div>
+				<div>
+					<p class="text-xs uppercase tracking-wide text-gray-500">
+						{% translate "Status" %}
+					</p>
+					<p
+						class="mt-1 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {% if order.status == 'paid' %} bg-emerald-50 text-emerald-700 {% elif order.status == 'pending' %} bg-amber-50 text-amber-700 {% else %} bg-gray-100 text-gray-700 {% endif %}"
+					>
+						{{ order.status }}
+					</p>
+				</div>
+			</div>
+
+			<div class="border-b border-gray-100 pb-4">
+				<p class="text-xs uppercase tracking-wide text-gray-500">
+					{% translate "Placed on" %}
+				</p>
+				<p class="mt-1 text-sm text-gray-800">{{ order.created_at }}</p>
+			</div>
+
+			<div>
+				<p class="text-xs uppercase tracking-wide text-gray-500 mb-1">
+					{% translate "Billing address" %}
+				</p>
+				<div class="text-sm text-gray-800 leading-relaxed">
+					<p>{{ order.billing_address_line1 }}</p>
+					{% if order.billing_address_line2 %}
+					<p>{{ order.billing_address_line2 }}</p>
+					{% endif %}
+					<p>{{ order.billing_city }} {{ order.billing_postal_code }}</p>
+					<p>{{ order.billing_country }}</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="mt-8">
+			<a
+				href="{% url 'account:account' %}"
+				class="inline-flex items-center text-sm sm:text-base font-semibold text-gray-900 hover:text-amber-700 transition-colors"
+			>
+				← {% translate "Back to Account" %}
+			</a>
+		</div>
+	</div>
 </section>
 
 {% endblock %}

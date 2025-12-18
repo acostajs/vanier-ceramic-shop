@@ -13,8 +13,10 @@
           </a>
         </div>
 
+        
         <div class="hidden lg:flex items-center space-x-1">
 
+          
           <div class="relative group">
             <button class="text-lg font-medium text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100 transition-all duration-200 flex items-center gap-1">
               {% translate "Collections" %}
@@ -46,22 +48,15 @@
             </ul>
           </div>
 
-
+          
           <a href="{% url "about" %}" class="text-lg font-medium text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100 transition-all duration-200">
             {% translate "About" %}
           </a>
 
+          
           {% if user.is_authenticated %}
             <a href="{% url 'account:account' %}" class="text-lg font-medium text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100 transition-all duration-200">
               {% translate "Account" %}
-            </a>
-            <a href="{% url 'account:wishlist_detail' %}" class="text-lg font-medium text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100 transition-all duration-200 relative">
-              {% translate "Wishlist" %}
-              <span class="ml-1 w-4 h-4 bg-amber-500 text-white text-xs rounded-full flex items-center justify-center">2</span>
-            </a>
-            <a href="{% url 'cart:cart' %}" class="text-lg font-medium text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100 transition-all duration-200 relative">
-              {% translate "Cart" %}
-              <span class="ml-1 w-4 h-4 bg-amber-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
             </a>
           {% else %}
             <a href="{% url 'account:login' %}" class="text-lg font-medium text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100 transition-all duration-200">
@@ -72,40 +67,52 @@
             </a>
           {% endif %}
 
-          {% if user.is_authenticated %}
+          
+          <div class="flex items-center space-x-2 ml-4">
+            {% if user.is_authenticated %}
+              
+              <a href="{% url 'account:wishlist_detail' %}" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all duration-200 relative">
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
+                </svg>
+                {% if wishlist_count|default:0 > 0 %}
+                  <span class="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 text-white text-xs rounded-full flex items-center justify-center">
+                    {{ wishlist_count }}
+                  </span>
+                {% endif %}
+              </a>
 
-            <a href="{% url 'cart:cart' %}" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all duration-200 ml-2 relative">
-              <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-              </svg>
-              <span class="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
-            </a>
+              
+              <a href="{% url 'cart:cart' %}" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all duration-200 relative">
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+                {% if cart_count|default:0 > 0 %}
+                  <span class="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 text-white text-xs rounded-full flex items-center justify-center">
+                    {{ cart_count }}
+                  </span>
+                {% endif %}
+              </a>
+            {% endif %}
 
-            <a href="{% url 'account:wishlist_detail' %}" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all duration-200 relative">
+            
+            <a href="{% url "contact:contact" %}" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all duration-200">
               <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.27 7.27c.883.883 2.317.883 3.2 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
-              <span class="absolute -top-1 -right-1 w-5 h-5 bg-amber-500 text-white text-xs rounded-full flex items-center justify-center">2</span>
             </a>
-          {% else %}
-
-            <a href="{% url "contact:contact" %}" class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all duration-200 ml-2">
-              <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.27 7.27c.883.883 2.317.883 3.2 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-            </a>
-          {% endif %}
+          </div>
         </div>
 
-
-        <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+        <!-- Mobile menu button -->
+        <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
           <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
     </div>
-
 
     <div class="lg:hidden hidden" id="mobile-menu">
       <!-- Mobile menu content goes here -->

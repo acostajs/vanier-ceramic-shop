@@ -1,8 +1,63 @@
-{% extends 'base.html' %}{% load i18n %}{% block content %}
+{% extends 'base.html' %} {% load i18n %} {% block content %}
 
-<form action="{% url 'contact:contact_submit' %}" method="post">
-	{% csrf_token %} {{ form }}
-	<button>{% translate "Send" %}</button>
-</form>
+<section
+	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 via-white to-amber-50/30"
+>
+	<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="text-center mb-10">
+			<h1
+				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-3"
+			>
+				{% translate "Let's talk" %}
+			</h1>
+			<p class="text-lg sm:text-xl text-gray-600">
+				{% blocktranslate %} Share a project idea, a question, or simply say
+				hello. Each message is read with care. {% endblocktranslate %}
+			</p>
+		</div>
+
+		<div
+			class="bg-gray-50 rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8 lg:p-10"
+		>
+			<form
+				method="post"
+				action="{% url 'contact:contact_submit' %}"
+				class="space-y-6"
+			>
+				{% csrf_token %} {{ form.non_field_errors }} {% for field in form %}
+				<div class="pb-4 border-b border-gray-200 last:border-b-0">
+					<label class="block text-sm font-medium text-gray-700 mb-1">
+						{{ field.label }}
+					</label>
+					<div class="mt-1">{{ field }}</div>
+					{% if field.errors %}
+					<div class="mt-1 text-sm text-red-600">{{ field.errors }}</div>
+					{% endif %}
+				</div>
+				{% endfor %}
+
+				<button
+					type="submit"
+					class="mt-2 inline-flex items-center justify-center px-8 py-3.5 rounded-2xl bg-amber-600 text-white text-base sm:text-lg font-semibold shadow-md hover:bg-amber-700 hover:shadow-lg transition-all duration-300"
+				>
+					{% translate "Send" %}
+					<svg
+						class="w-5 h-5 ml-2"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M5 13l4 4L19 7"
+						></path>
+					</svg>
+				</button>
+			</form>
+		</div>
+	</div>
+</section>
 
 {% endblock %}
