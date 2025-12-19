@@ -1,0 +1,882 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-18 20:25-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+#: account/forms.py:47
+msgid "username"
+msgstr "nombre de usuario"
+
+#: account/forms.py:48
+msgid "password"
+msgstr "contraseña"
+
+#: account/models.py:11 cart/models.py:36
+msgid "billing_address_line1"
+msgstr "dirección de facturación línea 1"
+
+#: account/models.py:14 cart/models.py:39
+msgid "billing_address_line2"
+msgstr "dirección de facturación línea 2"
+
+#: account/models.py:17 cart/models.py:42
+msgid "billing_city"
+msgstr "ciudad de facturación"
+
+#: account/models.py:20 cart/models.py:45
+msgid "billing_postal_code"
+msgstr "código postal de facturación"
+
+#: account/models.py:23 cart/models.py:48
+msgid "billing_country"
+msgstr "país de facturación"
+
+#: account/models.py:27 cart/models.py:52
+msgid "shipping_address_line1"
+msgstr "dirección de envío línea 1"
+
+#: account/models.py:30 cart/models.py:55
+msgid "shipping_address_line2"
+msgstr "dirección de envío línea 2"
+
+#: account/models.py:33 cart/models.py:58
+msgid "shipping_city"
+msgstr "ciudad de envío"
+
+#: account/models.py:36 cart/models.py:61
+msgid "shipping_postal_code"
+msgstr "código postal de envío"
+
+#: account/models.py:39 cart/models.py:64
+msgid "shipping_country"
+msgstr "país de envío"
+
+#: account/templates/account/account.html:14
+msgid "Account Panel"
+msgstr "Panel de cuenta"
+
+#: account/templates/account/account.html:23
+msgid "Profile"
+msgstr "Perfil"
+
+#: account/templates/account/account.html:26
+msgid "First name"
+msgstr "Nombre"
+
+#: account/templates/account/account.html:30
+msgid "Last name"
+msgstr "Apellido"
+
+#: account/templates/account/account.html:34
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: account/templates/account/account.html:43
+msgid "Update your Shipping Information"
+msgstr "Actualizar información de envío"
+
+#: account/templates/account/account.html:49
+msgid "Update your Billing Information"
+msgstr "Actualizar información de facturación"
+
+#: account/templates/account/account.html:58
+msgid "Logout"
+msgstr "Cerrar sesión"
+
+#: account/templates/account/account.html:69
+msgid "My Orders"
+msgstr "Mis pedidos"
+
+#: account/templates/account/account.html:80
+msgid "Order"
+msgstr "Pedido"
+
+#: account/templates/account/account.html:86 cart/templates/cart/cart.html:112
+#: cart/templates/cart/checkout.html:118
+#: cart/templates/cart/order_details.html:34
+msgid "Total"
+msgstr "Total"
+
+#: account/templates/account/account.html:103
+msgid "View Details"
+msgstr "Ver detalles"
+
+#: account/templates/account/account.html:111
+msgid "No orders yet"
+msgstr "Todavía no hay pedidos"
+
+#: account/templates/account/billing.html:10
+msgid "Billing Information"
+msgstr "Información de facturación"
+
+#: account/templates/account/billing.html:19
+msgid "Current billing address"
+msgstr "Dirección de facturación actual"
+
+#: account/templates/account/billing.html:27
+#: account/templates/account/shipping.html:27
+msgid "Address line 1"
+msgstr "Dirección línea 1"
+
+#: account/templates/account/billing.html:28
+#: account/templates/account/shipping.html:28
+msgid "Address line 2"
+msgstr "Dirección línea 2"
+
+#: account/templates/account/billing.html:29
+#: account/templates/account/shipping.html:29
+msgid "City"
+msgstr "Ciudad"
+
+#: account/templates/account/billing.html:30
+#: account/templates/account/shipping.html:30
+msgid "Postal Code"
+msgstr "Código postal"
+
+#: account/templates/account/billing.html:31
+#: account/templates/account/shipping.html:31
+msgid "Country"
+msgstr "País"
+
+#: account/templates/account/billing.html:61
+msgid "Update billing address"
+msgstr "Actualizar dirección de facturación"
+
+#: account/templates/account/billing.html:86
+#: account/templates/account/shipping.html:86
+msgid "Go Back"
+msgstr "Volver"
+
+#: account/templates/account/billing.html:92
+#: account/templates/account/shipping.html:92
+msgid "Submit"
+msgstr "Enviar"
+
+#: account/templates/account/login.html:9
+#: account/templates/account/login.html:39
+msgid "Log In"
+msgstr "Iniciar sesión"
+
+#: account/templates/account/login.html:12
+msgid ""
+" Access your account to view orders, manage your\n"
+"\t\t\t\twishlist, and keep track of your favorite pieces. "
+msgstr ""
+" Accede a tu cuenta para ver tus pedidos, gestionar tu "
+"lista de deseos y llevar un registro de tus piezas favoritas. "
+
+#: account/templates/account/login.html:48
+msgid "Dont have an account? Register"
+msgstr "¿No tienes una cuenta? Regístrate"
+
+
+##: account/templates/account/registration.html:9
+msgid "Create an Account"
+msgstr "Crea una cuenta"
+
+#: account/templates/account/registration.html:12
+msgid ""
+" Save your details, track your orders, and keep your\n"
+"\t\t\t\tfavorite pieces close. "
+msgstr ""
+" Guarda tus datos, sigue tus pedidos y mantén tus piezas favoritas cerca. "
+
+#: account/templates/account/registration.html:39
+#: templates/partials/nav.html:66
+msgid "Register"
+msgstr "Registrarse"
+
+#: account/templates/account/registration.html:48
+msgid "Already have an account? Log in"
+msgstr "¿Ya tienes una cuenta? Inicia sesión"
+
+#: account/templates/account/shipping.html:10
+msgid "Shipping Information"
+msgstr "Información de envío"
+
+#: account/templates/account/shipping.html:19
+msgid "Current address"
+msgstr "Dirección actual"
+
+#: account/templates/account/shipping.html:61
+msgid "Update shipping address"
+msgstr "Actualizar dirección de envío"
+
+#: account/templates/account/wishlist.html:10
+msgid "Your Wishlist"
+msgstr "Tu lista de deseos"
+
+#: account/templates/account/wishlist.html:23 cart/templates/cart/cart.html:23
+#: cart/templates/cart/checkout.html:30
+msgid "Product"
+msgstr "Producto"
+
+#: account/templates/account/wishlist.html:24
+msgid "Unit Price"
+msgstr "Precio unitario"
+
+#: account/templates/account/wishlist.html:26
+msgid "Discounted Price"
+msgstr "Precio con descuento"
+
+#: account/templates/account/wishlist.html:29 cart/templates/cart/cart.html:27
+#: cart/templates/cart/checkout.html:34
+msgid "Actions"
+msgstr "Acciones"
+
+
+#: account/templates/account/wishlist.html:80 cart/templates/cart/cart.html:98
+#: cart/templates/cart/checkout.html:105
+msgid "Remove"
+msgstr "Eliminar"
+
+#: account/templates/account/wishlist.html:96
+msgid "Transfer to Cart"
+msgstr "Pasar al carrito"
+
+#: account/templates/account/wishlist.html:115
+msgid "Clear Wishlist"
+msgstr "Vaciar lista de deseos"
+
+#: account/templates/account/wishlist.html:123
+#: account/templates/account/wishlist.html:138
+#: cart/templates/cart/cart.html:155 cart/templates/cart/checkout.html:162
+msgid "Continue Shopping"
+msgstr "Seguir comprando"
+
+#: account/templates/account/wishlist.html:132
+msgid "Your wishlist is empty."
+msgstr "Tu lista de deseos está vacía."
+
+#: account/views.py:69
+msgid "Invalid username or password"
+msgstr "Nombre de usuario o contraseña inválidos"
+
+#: account/views.py:139
+msgid "Wishlist cleared."
+msgstr "Lista de deseos vaciada."
+
+#: account/views.py:154
+msgid "You have succesfully transfer the item to your shopping cart."
+msgstr "Has transferido el artículo a tu carrito de compra correctamente."
+
+#: cart/helpers.py:19
+msgid "get_cart() called without an authenticated user"
+msgstr "get_cart() llamado sin un usuario autenticado"
+
+#: cart/models.py:27
+msgid "payment_id"
+msgstr "ID de pago"
+
+#: cart/models.py:29
+msgid "total_cents"
+msgstr "total_en_centavos"
+
+#: cart/models.py:31
+msgid "status"
+msgstr "estado"
+
+#: cart/models.py:178 cart/models.py:259 shop/models.py:26
+msgid "quantity"
+msgstr "cantidad"
+
+#: cart/models.py:179
+msgid "unit_price_cents"
+msgstr "precio_unitario_en_centavos"
+
+#: cart/templates/cart/cancel.html:28
+msgid "Payment canceled"
+msgstr "Pago cancelado"
+
+#: cart/templates/cart/cancel.html:31
+msgid ""
+" Your payment was canceled and no charge was made. You\n"
+"\t\t\tcan review your cart and try again whenever you are ready.\n"
+"\t\t\t"
+msgstr ""
+" Tu pago fue cancelado y no se realizó ningún cargo. Puedes "
+"revisar tu carrito y volver a intentarlo cuando estés listo.\n"
+"\t\t\t"
+
+#: cart/templates/cart/cancel.html:41
+msgid "Back to cart"
+msgstr "Volver al carrito"
+
+#: cart/templates/cart/cancel.html:47 cart/templates/cart/success.html:41
+msgid "Continue browsing"
+msgstr "Seguir navegando"
+
+#: cart/templates/cart/cart.html:10
+msgid "Your Cart"
+msgstr "Tu carrito"
+
+#: cart/templates/cart/cart.html:24 cart/templates/cart/checkout.html:31
+msgid "Unit"
+msgstr "Unidad"
+
+#: cart/templates/cart/cart.html:25 cart/templates/cart/checkout.html:32
+msgid "Qty"
+msgstr "Cant."
+
+#: cart/templates/cart/cart.html:26 cart/templates/cart/checkout.html:33
+msgid "Line"
+msgstr "Línea"
+
+#: cart/templates/cart/cart.html:76 cart/templates/cart/checkout.html:83
+msgid "Update"
+msgstr "Actualizar"
+
+#: cart/templates/cart/cart.html:132
+msgid "Clear Cart"
+msgstr "Vaciar carrito"
+
+#: cart/templates/cart/cart.html:140 cart/templates/cart/checkout.html:10
+msgid "Checkout"
+msgstr "Pagar"
+
+#: cart/templates/cart/cart.html:149 cart/templates/cart/checkout.html:156
+#: cart/views.py:120
+msgid "Your cart is empty."
+msgstr "Tu carrito está vacío."
+
+#: cart/templates/cart/checkout.html:21
+msgid "Order Summary"
+msgstr "Resumen del pedido"
+
+#: cart/templates/cart/checkout.html:137
+msgid "Back to Cart"
+msgstr "Volver al carrito"
+
+#: cart/templates/cart/checkout.html:146
+msgid "Proceed to Payment"
+msgstr "Proceder al pago"
+
+#: cart/templates/cart/order_details.html:11
+msgid "Order details"
+msgstr "Detalles del pedido"
+
+#: cart/templates/cart/order_details.html:14
+msgid ""
+" Thank you for your purchase. Here is a summary of\n"
+"\t\t\t\tyour order. "
+msgstr ""
+" Gracias por tu compra. Aquí tienes un resumen "
+"de tu pedido. "
+
+#: cart/templates/cart/order_details.html:26
+msgid "Payment ID"
+msgstr "ID de pago"
+
+#: cart/templates/cart/order_details.html:42
+msgid "Status"
+msgstr "Estado"
+
+#: cart/templates/cart/order_details.html:54
+msgid "Placed on"
+msgstr "Realizado el"
+
+#: cart/templates/cart/order_details.html:64
+msgid "Billing address"
+msgstr "Dirección de facturación"
+
+#: cart/templates/cart/order_details.html:79
+msgid "Shipping address"
+msgstr "Dirección de envío"
+
+#: cart/templates/cart/order_details.html:98
+msgid "Items in this order"
+msgstr "Artículos en este pedido"
+
+#: cart/templates/cart/order_details.html:133
+msgid "Quantity"
+msgstr "Cantidad"
+
+#: cart/templates/cart/order_details.html:137
+msgid "Unit price"
+msgstr "Precio unitario"
+
+
+#: cart/templates/cart/order_details.html:141
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#: cart/templates/cart/order_details.html:150
+msgid "No items found for this order."
+msgstr "No se encontraron artículos para este pedido."
+
+#: cart/templates/cart/order_details.html:160
+msgid "Back to Account"
+msgstr "Volver a la cuenta"
+
+#: cart/templates/cart/success.html:28
+msgid "Order successful"
+msgstr "Pedido realizado con éxito"
+
+#: cart/templates/cart/success.html:31
+msgid ""
+" Thank you for your purchase. Your pieces are now\n"
+"\t\t\tbeing prepared with the same care they were created with.\n"
+"\t\t\t"
+msgstr ""
+" Gracias por tu compra. Tus piezas están siendo preparadas "
+"con el mismo cuidado con el que fueron creadas.\n"
+"\t\t\t"
+
+#: cart/templates/cart/success.html:47
+msgid "View your orders"
+msgstr "Ver tus pedidos"
+
+#: cart/views.py:66
+msgid "Cart Cleared."
+msgstr "Carrito vaciado."
+
+#: cart/views.py:113
+msgid "Please complete your billing and shipping address before checkout."
+msgstr "Por favor completa tu dirección de facturación y envío antes de pagar."
+
+#: cart/views.py:131
+msgid "Payment successful! Your order has been placed."
+msgstr "¡Pago exitoso! Tu pedido ha sido realizado."
+
+#: contact/models.py:8 shop/models.py:12 shop/models.py:24
+msgid "name"
+msgstr "nombre"
+
+#: contact/models.py:9
+msgid "email"
+msgstr "correo electrónico"
+
+#: contact/models.py:10
+msgid "subject"
+msgstr "asunto"
+
+#: contact/models.py:11
+msgid "message"
+msgstr "mensaje"
+
+
+#: contact/templates/contact/contact_form.html:11 templates/home.html:212
+msgid "Let's talk"
+msgstr "Hablemos"
+
+#: contact/templates/contact/contact_form.html:14
+msgid ""
+" Share a project idea, a question, or simply say\n"
+"\t\t\t\thello. Each message is read with care. "
+msgstr ""
+" Comparte una idea de proyecto, una pregunta o simplemente di "
+"hola. Cada mensaje se lee con atención. "
+
+#: contact/templates/contact/contact_form.html:43
+msgid "Send"
+msgstr "Enviar"
+
+#: contact/views.py:34
+#, python-format
+msgid ""
+"Thank you for reaching out %(name)s! We'll get back to you at %(email)s."
+msgstr ""
+"Gracias por escribir, %(name)s. Nos pondremos en contacto contigo en %(email)s."
+
+#: shop/models.py:13 shop/models.py:25
+msgid "description"
+msgstr "descripción"
+
+#: shop/models.py:14 shop/models.py:27
+msgid "image"
+msgstr "imagen"
+
+#: shop/models.py:15
+msgid "ceramic type"
+msgstr "tipo de cerámica"
+
+#: shop/models.py:28
+msgid "price"
+msgstr "precio"
+
+#: shop/models.py:32
+msgid "discount_percentage"
+msgstr "porcentaje_de_descuento"
+
+#: shop/templates/shop/collection.html:31
+msgid "Collection"
+msgstr "Colección"
+
+#: shop/templates/shop/collection.html:99
+msgid "See Details."
+msgstr "Ver detalles."
+
+#: shop/templates/shop/collection.html:122
+msgid "No products registered in this category."
+msgstr "No hay productos registrados en esta categoría."
+
+#: shop/templates/shop/product.html:49
+msgid "Limited offer"
+msgstr "Oferta limitada"
+
+#: shop/templates/shop/product.html:53 shop/templates/shop/product.html:66
+msgid "Price"
+msgstr "Precio"
+
+#: shop/templates/shop/product.html:60
+#, python-format
+msgid "Discount %%:"
+msgstr "Descuento %%:"
+
+#: shop/templates/shop/product.html:86
+msgid "Quantity:"
+msgstr "Cantidad:"
+
+#: shop/templates/shop/product.html:102
+msgid "Add to Cart"
+msgstr "Añadir al carrito"
+
+#: shop/templates/shop/product.html:106
+msgid "Available stock:"
+msgstr "Stock disponible:"
+
+#: shop/templates/shop/product.html:123
+msgid "Add to Wishlist"
+msgstr "Añadir a la lista de deseos"
+
+#: shop/templates/shop/product.html:148
+msgid "Product Not Found"
+msgstr "Producto no encontrado"
+
+#: shop/templates/shop/product.html:151
+msgid "The product you are looking for does not exist."
+msgstr "El producto que buscas no existe."
+
+#: shop/templates/shop/shop.html:10
+msgid "My Collections"
+msgstr "Mis colecciones"
+
+#: shop/templates/shop/shop.html:13
+msgid ""
+" Explore the universe of different shapes and colors.\n"
+"\t\t\tEach collection represents a different phase of my passion for clay.\n"
+"\t\t\t"
+msgstr ""
+" Explora el universo de diferentes formas y colores.\n"
+"\t\t\tCada colección representa una etapa distinta de mi pasión por la cerámica.\n"
+"\t\t\t"
+
+#: shop/templates/shop/shop.html:58
+msgid "See Products."
+msgstr "Ver productos."
+
+#: shop/templates/shop/shop.html:81
+msgid "No collections registered"
+msgstr "No hay colecciones registradas"
+
+#: templates/about.html:10
+msgid "Laura Melissa"
+msgstr "Laura Melissa"
+
+
+#: templates/about.html:13
+msgid ""
+" Ceramist exploring time as form, color as accent, and\n"
+"\t\t\tthe circle as a living language. "
+msgstr ""
+" Ceramista que explora el tiempo como forma, el color como acento "
+"y el círculo como un lenguaje vivo. "
+
+#: templates/about.html:27
+msgid "Statement"
+msgstr "Declaración"
+
+#: templates/about.html:31
+msgid ""
+" My work stems from a deep fascination with the\n"
+"\t\t\t\t\tpotter's wheel and the forms that emerge from circular movement.\n"
+"\t\t\t\t\t"
+msgstr ""
+" Mi trabajo nace de una profunda fascinación por el torno de alfarero "
+"y por las formas que surgen del movimiento circular.\n"
+"\t\t\t\t\t"
+
+#: templates/about.html:36
+msgid ""
+" I am interested in rotation: that primary,\n"
+"\t\t\t\t\trepetitive, and constant gesture that allows us to think about "
+"time,\n"
+"\t\t\t\t\tform, and memory. "
+msgstr ""
+" Me interesa la rotación: ese gesto primario, repetitivo y constante "
+"que nos permite pensar el tiempo, la forma y la memoria. "
+
+#: templates/about.html:41
+msgid ""
+" In my practice, the circle and concentric forms\n"
+"\t\t\t\t\tare inevitable presences. I am drawn to their ability to reveal\n"
+"\t\t\t\t\tmovement, their enveloping quality, and their insistence. They "
+"define\n"
+"\t\t\t\t\tnot only the aesthetics of my pieces but embody a vision of time "
+"as\n"
+"\t\t\t\t\tsomething that repeats, accumulates, and intertwines.\n"
+"\t\t\t\t\t"
+msgstr ""
+" En mi práctica, el círculo y las formas concéntricas son presencias "
+"inevitables. Me atrae su capacidad de revelar el movimiento, su carácter "
+"envolvente y su insistencia. Definen no solo la estética de mis piezas, "
+"sino que encarnan una visión del tiempo como algo que se repite, se "
+"acumula y se entrelaza.\n"
+"\t\t\t\t\t"
+
+#: templates/about.html:49
+msgid ""
+" I work with the circle as a structure open to\n"
+"\t\t\t\t\tconstant transformation, that contains and, at the same time, is\n"
+"\t\t\t\t\tinfinite. "
+msgstr ""
+" Trabajo con el círculo como una estructura abierta a la transformación "
+"constante, que contiene y, al mismo tiempo, es infinita. "
+
+#: templates/about.html:54
+msgid ""
+" In this process, color is a tool that intervenes\n"
+"\t\t\t\t\tdirectly in the construction of formal language. It allows me to\n"
+"\t\t\t\t\thighlight planes, outline volumes, and mark rhythms, tracing "
+"visual\n"
+"\t\t\t\t\taccents that guide the gaze and reveal internal tensions. Color "
+"does\n"
+"\t\t\t\t\tnot decorate: it activates the surface, exposes its layers, and\n"
+"\t\t\t\t\tamplifies the form. "
+msgstr ""
+" En este proceso, el color es una herramienta que interviene directamente "
+"en la construcción del lenguaje formal. Me permite destacar planos, "
+"delimitar volúmenes y marcar ritmos, trazando acentos visuales que guían "
+"la mirada y revelan tensiones internas. El color no decora: activa la "
+"superficie, expone sus capas y amplifica la forma. "
+
+
+#: templates/about.html:62
+msgid ""
+" My work is an exploration of time as form, color\n"
+"\t\t\t\t\tas accent, and the circle as language. "
+msgstr ""
+" Mi trabajo es una exploración del tiempo como forma, el color "
+"como acento y el círculo como lenguaje. "
+
+#: templates/about.html:108
+msgid "BIO"
+msgstr "BIO"
+
+#: templates/about.html:112
+msgid ""
+" Trained as an Industrial Designer, she finds in\n"
+"\t\t\t\t\tceramics the manifestation of her passion for manual work and "
+"crafts,\n"
+"\t\t\t\t\tand it is in the practice of the potter's wheel where she "
+"develops\n"
+"\t\t\t\t\tmost of her pieces. Attention to detail, exploration of form, and "
+"the\n"
+"\t\t\t\t\tpossibilities that arise from circular movement, as well as her "
+"bold\n"
+"\t\t\t\t\tuse of colors, define her style. "
+msgstr ""
+" Formada como diseñadora industrial, encuentra en la cerámica la "
+"manifestación de su pasión por el trabajo manual y los oficios, y es en "
+"la práctica del torno donde desarrolla la mayoría de sus piezas. La "
+"atención al detalle, la exploración de la forma y las posibilidades que "
+"surgen del movimiento circular, así como su atrevido uso del color, "
+"definen su estilo. "
+
+#: templates/about.html:120
+msgid ""
+" Her pieces are a fusion of the utilitarian,\n"
+"\t\t\t\t\tsymbolic, and decorative, allowing the viewer to freely interpret\n"
+"\t\t\t\t\ttheir use and purpose. "
+msgstr ""
+" Sus piezas son una fusión de lo utilitario, lo simbólico y lo "
+"decorativo, lo que permite al espectador interpretar libremente su uso y "
+"su propósito. "
+
+#: templates/about.html:125
+msgid ""
+" In recent years, her selection for the Mexican\n"
+"\t\t\t\t\tUtilitarian Ceramics Biennial of IVEC and her participation in "
+"the\n"
+"\t\t\t\t\tcollective exhibition \"1000 Vases\" during Design Week in Milan "
+"stand\n"
+"\t\t\t\t\tout. She currently lives in Xalapa, Veracruz where her workshop "
+"is\n"
+"\t\t\t\t\tlocated and is co-founder of the ceramics objects store & "
+"workshop\n"
+"\t\t\t\t\tSatélite & Co, a space where she produces her work and teaches "
+"wheel\n"
+"\t\t\t\t\tthrowing workshops. "
+msgstr ""
+" En los últimos años destacan su selección en la Bienal de Cerámica "
+"Utilitaria del IVEC y su participación en la exposición colectiva "
+"\"1000 Vases\" durante la Design Week de Milán. Actualmente vive en "
+"Xalapa, Veracruz, donde se encuentra su taller, y es cofundadora de la "
+"tienda‑taller de objetos de cerámica Satélite & Co, espacio en el que "
+"produce su obra e imparte talleres de torno. "
+
+#: templates/about.html:134
+msgid ""
+" Her pieces have been exhibited in Oaxaca, Mexico,\n"
+"\t\t\t\t\tand Milan, Italy, and are sold in Mexico, Colombia, the United "
+"States,\n"
+"\t\t\t\t\tand Canada. "
+msgstr ""
+" Sus piezas se han exhibido en Oaxaca, México, y en Milán, Italia, y se "
+"venden en México, Colombia, Estados Unidos y Canadá. "
+
+
+#: templates/base.html:9
+msgid ""
+"\"Laura Melissa Ceramics - Handcrafted Ceramic Art &\n"
+"\t\t\tPottery\" "
+msgstr ""
+"\"Laura Melissa Ceramics - Arte cerámico hecho a mano y\n"
+"\t\t\talfarería\" "
+
+#: templates/home.html:12
+msgid "Handcrafted Ceramics"
+msgstr "Cerámica hecha a mano"
+
+#: templates/home.html:17
+msgid "Welcome to"
+msgstr "Bienvenida a"
+
+#: templates/home.html:19
+msgid "Ceramics"
+msgstr "Cerámica"
+
+#: templates/home.html:24
+msgid ""
+" Unique handcrafted ceramics and pottery. Each\n"
+"\t\t\t\t\tpiece tells a story of earth, fire, and time. "
+msgstr ""
+" Piezas de cerámica y alfarería únicas, hechas a mano. Cada "
+"pieza cuenta una historia de tierra, fuego y tiempo. "
+
+#: templates/home.html:32
+msgid "Shop Collections"
+msgstr "Ver colecciones"
+
+#: templates/home.html:51
+msgid "Learn More"
+msgstr "Saber más"
+
+#: templates/home.html:79
+msgid "Recent Work"
+msgstr "Trabajo reciente"
+
+#: templates/home.html:82
+msgid ""
+" Discover the latest collections, each piece\n"
+"\t\t\t\thandcrafted with care and precision on the potter's wheel.\n"
+"\t\t\t\t"
+msgstr ""
+" Descubre las colecciones más recientes, cada pieza "
+"elaborada con cuidado y precisión en el torno de alfarero.\n"
+"\t\t\t\t"
+
+#: templates/home.html:148 templates/partials/nav.html:39
+msgid "No collections have been registered yet"
+msgstr "Todavía no se han registrado colecciones"
+
+#: templates/home.html:162
+msgid "A little bit"
+msgstr "Un poco"
+
+#: templates/home.html:164
+msgid "about me"
+msgstr "sobre mí"
+
+
+#: templates/home.html:167
+msgid ""
+" Trained as an Industrial Designer, I found\n"
+"\t\t\t\t\tceramics to be the perfect union of form, function, and emotion. "
+"Each\n"
+"\t\t\t\t\tpiece emerges from the potter's wheel, shaped by circular movement "
+"and\n"
+"\t\t\t\t\tfired with intention. "
+msgstr ""
+" Formada como diseñadora industrial, encontré en la cerámica la unión "
+"perfecta entre forma, función y emoción. Cada pieza surge del torno, "
+"moldeada por el movimiento circular y cocida con intención. "
+
+#: templates/home.html:176
+msgid "Read my story"
+msgstr "Lee mi historia"
+
+#: templates/home.html:217
+msgid ""
+" Ready to bring your vision to life through ceramics?\n"
+"\t\t\tLet's create something beautiful together. "
+msgstr ""
+" ¿Lista para dar vida a tu visión a través de la cerámica? "
+"Creemos algo hermoso juntas. "
+
+#: templates/home.html:227
+msgid "Get in touch"
+msgstr "Ponte en contacto"
+
+#: templates/partials/footer.html:16
+msgid ""
+" © 2025 Laura Melissa Ceramics - Handcrafted\n"
+"\t\t\t\t\tCeramic Art. All rights reserved. "
+msgstr ""
+" © 2025 Laura Melissa Ceramics - Arte cerámico hecho a mano. "
+"Todos los derechos reservados. "
+
+#: templates/partials/footer.html:39
+msgid "Shop"
+msgstr "Tienda"
+
+#: templates/partials/footer.html:47 templates/partials/nav.html:53
+msgid "About"
+msgstr "Sobre mí"
+
+#: templates/partials/footer.html:55
+msgid "Contact"
+msgstr "Contacto"
+
+#: templates/partials/footer.html:63
+msgid "Connect"
+msgstr "Conectar"
+
+#: templates/partials/footer.html:124
+msgid ""
+" Handcrafted with ❤️ in Xalapa, Veracruz\n"
+"\t\t\t\t"
+msgstr ""
+" Hecho a mano con ❤️ en Xalapa, Veracruz\n"
+"\t\t\t\t"
+
+#: templates/partials/nav.html:22
+msgid "Collections"
+msgstr "Colecciones"
+
+#: templates/partials/nav.html:45
+msgid "See them all!"
+msgstr "¡Ver todas!"
+
+#: templates/partials/nav.html:59
+msgid "Account"
+msgstr "Cuenta"
+
+#: templates/partials/nav.html:63
+msgid "Login"
+msgstr "Iniciar sesión"
