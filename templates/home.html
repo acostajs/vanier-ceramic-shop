@@ -59,7 +59,7 @@
 					class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 lg:p-12 shadow-2xl border border-amber-100 overflow-hidden"
 				>
 					<img
-						src="{% static 'images/home-hero-img.webp' %}"
+						src="{% static 'images/home-hero-img.avif' %}"
 						alt="Laura Melissa Ceramics Hero"
 						class="w-full h-[400px] lg:h-[500px] object-cover rounded-2xl shadow-2xl"
 					/>
@@ -86,9 +86,7 @@
 		</div>
 
 		{% if collections %}
-		<div
-			class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8"
-		>
+		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 			{% for collection in collections %}
 			<a href="{% url 'shop:collection' collection.id %}" class="group">
 				<article
@@ -198,7 +196,7 @@
 					class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-12 lg:p-16 shadow-2xl border border-amber-100 overflow-hidden"
 				>
 					<img
-						src="{% static 'images/about-teaser-img.webp' %}"
+						src="{% static 'images/about-teaser-img.avif' %}"
 						alt="Laura Melissa at work"
 						class="w-full h-[400px] lg:h-[450px] object-cover rounded-2xl shadow-2xl"
 					/>
