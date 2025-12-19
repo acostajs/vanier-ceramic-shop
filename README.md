@@ -17,7 +17,7 @@ The goal is to turn a static one-page layout into a functional mini e‑commerce
 ## Tech Stack
 
 - **Backend:** Django (Python)
-- **Frontend:** HTML5, CSS, a bit of TS
+- **Frontend:** Django Template System, Tailwind CSS.
 - **Payments:** Stripe Checkout
 - **Tooling:** Git, GitHub Projects, uv
 - **Database:** SQLite in development
@@ -53,12 +53,12 @@ The goal is to turn a static one-page layout into a functional mini e‑commerce
 
 From the repo root:
 
-- uv run django-admin startproject shop
+- uv run django-admin startproject main
 - This creates `manage.py` and a `config/` directory with `settings.py`, `urls.py`, etc.
 
 ### 5. Create core apps
 
-- uv run manage.py startapp inventory
+- uv run manage.py startapp shop
 - uv run manage.py startapp contact
 - uv run manage.py startapp cart
 - uv run manage.py startapp account
