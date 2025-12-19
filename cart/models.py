@@ -185,6 +185,14 @@ class OrderItem(models.Model):
     def line_total_cents(self):
         return self.quantity * self.unit_price_cents
 
+    @property
+    def unit_price_dollars(self):
+        return self.unit_price_cents / 100
+
+    @property
+    def line_total_dollars(self):
+        return self.line_total_cents / 100
+
 
 class Cart(models.Model):
     """Represents an account related Cart."""

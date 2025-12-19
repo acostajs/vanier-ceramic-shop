@@ -1,30 +1,59 @@
 {% extends 'base.html' %} {% load i18n %} {% block content %}
 
-<section
-	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 to-white"
->
+<section class="pt-28 lg:pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white">
 	{% if collection %}
-	<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-		<h1
-			class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-4"
+	<article
+		class="relative overflow-hidden group min-h-[260px] sm:min-h-[340px] lg:min-h-[420px]"
+	>
+		{# Full‑width background image #}
+		<div
+			class="absolute inset-0 bg-cover bg-center"
+			style="background-image: url('{{ collection.image.url }}');"
+		></div>
+
+		{# Dark overlay for readability #}
+		<div
+			class="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition-colors duration-500"
+		></div>
+
+		{# Content constrained in the middle with generous padding #}
+		<div
+			class="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 py-12 sm:py-16 lg:py-20"
 		>
-			{{ collection.name }}
-		</h1>
-		{% if collection.description %}
-		<p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-			{{ collection.description }}
-		</p>
-		{% endif %}
-	</div>
-	{% else %}
-	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-		<h1 class="text-4xl sm:text-5xl font-serif font-bold text-gray-900 mb-4">
-			{% translate "Collection Not Found" %}
-		</h1>
-		<p class="text-lg text-gray-600">
-			{% translate "The collection you are looking for does not exist." %}
-		</p>
-	</div>
+			<div class="flex flex-col sm:flex-row">
+				{# Left: label + title #}
+				<div
+					class="w-full sm:w-1/2 pr-0 sm:pr-8 lg:pr-12 flex flex-col justify-center text-white space-y-4 group-hover:opacity-0 group-hover:-translate-x-4 transition-all duration-500"
+				>
+					<p
+						class="text-sm font-semibold tracking-[0.3em] uppercase text-amber-300 mb-3"
+					>
+						{% translate "Collection" %}
+					</p>
+					<h1
+						class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold"
+					>
+						{{ collection.name }}
+					</h1>
+					{% if collection.year %}
+					<p class="text-sm text-amber-100/80">{{ collection.year }}</p>
+					{% endif %}
+				</div>
+
+				{# Right: description on hover #} {% if collection.description %}
+				<div
+					class="w-full sm:w-1/2 pl-0 sm:pl-8 lg:pl-12 mt-8 sm:mt-0 flex items-center text-white opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500"
+				>
+					<p
+						class="text-sm sm:text-base lg:text-lg leading-relaxed max-w-md text-amber-50"
+					>
+						{{ collection.description }}
+					</p>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</article>
 	{% endif %}
 </section>
 

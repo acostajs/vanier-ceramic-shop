@@ -1,9 +1,9 @@
-{% extends 'base.html' %} {% load i18n %} {% block content %}
+{% extends 'base.html' %} {% load i18n %} {% load static %} {% block content %}
 
 <section
 	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 via-white to-amber-50/30"
 >
-	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+	<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="mb-8">
 			<h1
 				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-gray-900"
@@ -12,10 +12,11 @@
 			</h1>
 			<p class="mt-2 text-gray-600">
 				{% blocktranslate %} Thank you for your purchase. Here is a summary of
-				your order. {%endblocktranslate%}
+				your order. {% endblocktranslate %}
 			</p>
 		</div>
 
+		<!-- Order summary card -->
 		<div
 			class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8 space-y-6"
 		>
@@ -25,7 +26,7 @@
 						{% translate "Payment ID" %}
 					</p>
 					<p class="mt-1 font-mono text-sm text-gray-900 break-all">
-						{{ order.payment_id }}
+						{{ order.payment_id|default:"—" }}
 					</p>
 				</div>
 				<div>
@@ -55,7 +56,10 @@
 				<p class="mt-1 text-sm text-gray-800">{{ order.created_at }}</p>
 			</div>
 
-			<div>
+		<div class="border-b border-gray-100 pb-4">
+			<div class="grid sm:grid-cols-2 gap-6">
+				<!-- Billing -->
+				<div>
 				<p class="text-xs uppercase tracking-wide text-gray-500 mb-1">
 					{% translate "Billing address" %}
 				</p>
@@ -67,7 +71,85 @@
 					<p>{{ order.billing_city }} {{ order.billing_postal_code }}</p>
 					<p>{{ order.billing_country }}</p>
 				</div>
+				</div>
+
+				<!-- Shipping -->
+				<div>
+				<p class="text-xs uppercase tracking-wide text-gray-500 mb-1">
+					{% translate "Shipping address" %}
+				</p>
+				<div class="text-sm text-gray-800 leading-relaxed">
+					<p>{{ order.shipping_address_line1 }}</p>
+					{% if order.shipping_address_line2 %}
+					<p>{{ order.shipping_address_line2 }}</p>
+					{% endif %}
+					<p>{{ order.shipping_city }} {{ order.shipping_postal_code }}</p>
+					<p>{{ order.shipping_country }}</p>
+				</div>
+				</div>
 			</div>
+		</div>
+
+		<!-- Items list -->
+		<div
+			class="mt-10 bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8"
+		>
+			<p class="text-xs uppercase tracking-wide text-gray-500 mb-4">
+				{% translate "Items in this order" %}
+			</p>
+
+			{% if order.items.all %}
+			<div class="divide-y divide-gray-100">
+				{% for item in order.items.all %}
+				<div
+					class="py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+				>
+					<div class="flex items-start gap-4">
+						{% if item.product.image %}
+						<img
+							src="{{ item.product.image.url }}"
+							alt="{{ item.product.name }}"
+							class="w-16 h-16 rounded-xl object-cover border border-gray-100"
+						/>
+						{% endif %}
+						<div>
+							<p class="text-sm font-semibold text-gray-900">
+								{{ item.product.name }}
+							</p>
+							{% if item.product.collection %}
+							<p class="text-xs text-gray-500">
+								{{ item.product.collection.name }}
+							</p>
+							{% endif %} {% if item.product.description %}
+							<p class="mt-1 text-xs text-gray-500 line-clamp-2">
+								{{ item.product.description }}
+							</p>
+							{% endif %}
+						</div>
+					</div>
+
+					<div class="text-sm text-gray-800 text-left sm:text-right space-y-1">
+						<p>
+							{% translate "Quantity" %}:
+							<span class="font-semibold">{{ item.quantity }}</span>
+						</p>
+						<p>
+							{% translate "Unit price" %}:
+							<span class="font-semibold">${{ item.unit_price_dollars }}</span>
+						</p>
+						<p>
+							{% translate "Subtotal" %}:
+							<span class="font-bold">${{ item.line_total_dollars }}</span>
+						</p>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			{% else %}
+			<p class="text-sm text-gray-500">
+				{% translate "No items found for this order." %}
+			</p>
+			{% endif %}
 		</div>
 
 		<div class="mt-8">
