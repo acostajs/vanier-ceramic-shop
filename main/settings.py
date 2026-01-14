@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 import stripe
 from dotenv import load_dotenv
-import dj_database_url
+# import dj_database_url
 
 load_dotenv()
 
@@ -21,7 +21,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
 # SECURITY WARNINGS
-SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 ALLOWED_HOSTS = []
 
@@ -99,10 +99,10 @@ DATABASES = {
     }
 }
 
-if os.getenv("DATABASE_URL"):
-    DATABASES["default"] = dj_database_url.parse(
-        os.getenv("DATABASE_URL"), conn_max_age=600
-    )
+# if os.getenv("DATABASE_URL"):
+#     DATABASES["default"] = dj_database_url.parse(
+#         os.getenv("DATABASE_URL"), conn_max_age=600
+#     )
 
 # Password validators
 AUTH_PASSWORD_VALIDATORS = [
