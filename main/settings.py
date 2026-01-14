@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 import stripe
 from dotenv import load_dotenv
-# import dj_database_url
+import dj_database_url
 
 load_dotenv()
 
@@ -99,10 +99,10 @@ DATABASES = {
     }
 }
 
-# if os.getenv("DATABASE_URL"):
-#     DATABASES["default"] = dj_database_url.parse(
-#         os.getenv("DATABASE_URL"), conn_max_age=600
-#     )
+if os.getenv("DATABASE_URL"):
+    DATABASES["default"] = dj_database_url.parse(
+        os.getenv("DATABASE_URL"), conn_max_age=600
+    )
 
 # Password validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -130,3 +130,26 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Testing for production :
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        }
+    },
+    "handlers": {"console": {"class": "logging.StreamHandler", "formatter": "verbose"}},
+    "loggers": {
+        "django": {"handlers": ["console"], "level": "INFO"},
+        "django.request": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
+}
