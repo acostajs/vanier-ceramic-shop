@@ -8,7 +8,9 @@ db.sqlite3
 .env
 
 # Static & media (optional if generated or large)
+staticfiles/
 mediafiles/
+test*.jpg
 
 # VS Code / IDE
 .vscode/
