@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "whitenoise.runserver_nostatic",  # WhiteNoise
+    "whitenoise.runserver_nostatic",
 ]
 
 # Render/prod overrides
@@ -130,26 +130,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Default
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# Testing for production :
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
-            "style": "{",
-        }
-    },
-    "handlers": {"console": {"class": "logging.StreamHandler", "formatter": "verbose"}},
-    "loggers": {
-        "django": {"handlers": ["console"], "level": "INFO"},
-        "django.request": {
-            "handlers": ["console"],
-            "level": "DEBUG",
-            "propagate": False,
-        },
-    },
-}
