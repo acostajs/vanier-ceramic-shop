@@ -1,0 +1,72 @@
+{
+	"meta": {
+		"title": "Ceramics Portfolio – Full-Stack Django E-Commerce",
+		"role": "Full-Stack Developer",
+		"type": "Academic project (Freelancer simulation)",
+		"audience": ["Recruiters", "Instructors", "Developers"],
+		"status": "Completed"
+	},
+
+	"overview": {
+		"summary": "A full-stack Django e-commerce application built as a freelance-style upgrade of a ceramic artist’s portfolio site.",
+		"problem": "The original site functioned only as a static portfolio and lacked product management, payments, and client interaction features.",
+		"solution": "A complete Django-based e-commerce experience with product collections, Stripe Checkout integration, and an accessible, responsive front end."
+	},
+
+	"responsibilities": [
+		"Planned and implemented the full-stack architecture based on a simulated client brief",
+		"Built Django models for products, collections, and contact submissions",
+		"Integrated Stripe Checkout for secure payment processing in test mode",
+		"Developed accessible, responsive templates using Django and Tailwind CSS"
+	],
+
+	"tech_stack": [
+		"Python",
+		"Django",
+		"Django Templates",
+		"Tailwind CSS",
+		"Stripe Checkout",
+		"SQLite",
+		"GitHub",
+		"uv"
+	],
+
+	"architecture": {
+		"approach": "Modular Django application with clear separation between models, views, templates, and configuration, designed to reflect real-world freelance delivery.",
+		"data_flow": "Product and collection data is managed through Django models and rendered via server-side templates; Stripe handles payment flow externally while order intent is managed internally.",
+		"deployment": "Designed for local development and demonstration, with configuration ready for production deployment."
+	},
+
+	"key_features": [
+		"Django-powered product and collection management",
+		"Stripe Checkout integration for real payment flows",
+		"Accessible, semantic HTML with responsive layouts",
+		"Contact form backed by Django models and email handling"
+	],
+
+	"challenges_and_learnings": [
+		"Designing a clean Django architecture from a client-style brief",
+		"Integrating third-party payment services securely",
+		"Balancing backend logic with front-end accessibility and UX",
+		"Making practical trade-offs common in freelance projects"
+	],
+
+	"skills_demonstrated": [
+		"Full-stack Django development",
+		"Payment integration with Stripe",
+		"Accessible and responsive UI development",
+		"Project planning and feature scoping"
+	],
+
+	"future_improvements": [
+		"Add persistent order history and user accounts",
+		"Replace SQLite with a production database",
+		"Introduce admin-side inventory management tools",
+		"Deploy the application to a cloud hosting platform"
+	],
+
+	"links": {
+		"live_demo": "",
+		"source_code": "https://github.com/acostajs/vanier-ceramic-shop"
+	}
+}

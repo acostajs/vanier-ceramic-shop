@@ -1,89 +1,102 @@
-# 582-41E-VA-LIA-Final_Project
+# Ceramics Portfolio – Full-Stack Django E-Commerce
 
-Block 4 - Web Project Planning and Management - Final Project
+**LIA Final Project – Freelancer Simulation**
 
-A small full-stack upgrade of a ceramics portfolio site for the LIA Final Project – Freelancer Simulation.  
-The goal is to turn a static one-page layout into a functional mini e‑commerce experience with a Django backend, Stripe payments, and an accessible, responsive front end.
+This project is a full-stack upgrade of a ceramic artist’s portfolio site. It was built as part of the LIA Final Project, simulating a freelance client brief.
 
-## Features
+The objective was to evolve a static, one-page portfolio into a small but complete e-commerce experience. The application uses Django for the backend, Stripe Checkout for payments, and a responsive, accessible front end.
 
-- Semantic, accessible one-page layout for an independent ceramic artist.
-- Responsive product grid for the collections and other series.
-- Django backend with `Product` and `Collection` models.
-- Stripe Checkout integration for secure payments.
-- Contact form backed by Django models and email.
-- Managed with [`uv`](https://docs.astral.sh/uv/) from Astral for Python, virtualenv, and dependency management.
+For recruiters, this project demonstrates end-to-end feature planning, Django architecture, third-party payment integration, and attention to accessibility and UX.
+
+## Key Features
+
+- Accessible, semantic one-page layout
+- Responsive product grid for collections and series
+- Django backend with `Product` and `Collection` models
+- Stripe Checkout integration (test mode)
+- Contact form backed by Django models and email
+- Tailwind CSS for responsive styling
+- Python environment and dependency management with `uv`
 
 ## Tech Stack
 
 - **Backend:** Django (Python)
-- **Frontend:** Django Template System, Tailwind CSS.
+- **Frontend:** Django Templates, Tailwind CSS
 - **Payments:** Stripe Checkout
+- **Database:** SQLite (development)
 - **Tooling:** Git, GitHub Projects, uv
-- **Database:** SQLite in development
 
-## Getting Started
+## Local Setup
 
 ### Prerequisites
 
-- `uv` installed (see Astral’s docs).
-- Stripe account with test API keys.
-- Python supported by uv (e.g. 3.11+).
+- Python 3.11+
+- `uv` (Astral)
+- Stripe account with test API keys
 
-### 1. Clone the repository
+### Clone the repository
 
-- git clone https://github.com//.git project
-- cd project
+```bash
+git clone https://github.com/<your-repo>/<project>.git
+cd <project>
+```
 
-### 2. Create environment and install dependencies
+### Create and activate the environment
 
-- uv init - Initialize project
-- uv venv - creates virtual environment
-- source .venv/bin/activate # or .venv\Scripts\activate on Windows - Activates Virtual Environment
-- uv add package-name - to add dependencies
-- uv sync - to install requirements from pyproject.toml
+```bash
+uv init
+uv venv
+source .venv/bin/activate      # macOS / Linux
+.venv\Scripts\activate         # Windows
+```
 
-### 3. Install Django (and other dependencies)
+Install dependencies:
 
-- uv add django
-- uv add stripe
-- uv add python-dotenv
+```bash
+uv sync
+```
 
-### 4. Create the Django project
+### Environment variables
 
-From the repo root:
+Create a `.env` file in the project root (not committed):
 
-- uv run django-admin startproject main
-- This creates `manage.py` and a `config/` directory with `settings.py`, `urls.py`, etc.
+```env
+DJANGO_SECRET_KEY=your-secret-key
+DJANGO_DEBUG=True
 
-### 5. Create core apps
+STRIPE_PUBLIC_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...  # Optional
+```
 
-- uv run manage.py startapp shop
-- uv run manage.py startapp contact
-- uv run manage.py startapp cart
-- uv run manage.py startapp account
+### Database setup
 
-### 6. Environment variables
+```bash
+uv run manage.py makemigrations
+uv run manage.py migrate
+uv run manage.py createsuperuser
+```
 
-- Create a `.env` file in the project root (not committed to Git) with at least:
-- DJANGO_SECRET_KEY=your-secret-key
-- DJANGO_DEBUG=True
-- STRIPE*PUBLIC_KEY=pk_test*…
-- STRIPE*SECRET_KEY=sk_test*…
-- STRIPE*WEBHOOK_SECRET=whsec*… # optional if using webhooks
+### Run the server
 
-### 7. Database setup
+```bash
+uv run manage.py runserver
+```
 
-Once the models are created:
+The application will be available at
+`http://127.0.0.1:8000/`
 
-- uv run manage.py makemigrations
-- uv run manage.py migrate
-- uv run manage.py createsuperuser
+### Run tests
 
-### 8. Run server
+```bash
+uv run manage.py test
+```
 
-- uv run manage.py runserver
+## Project Focus
 
-### 9. Testing
+This project emphasizes:
 
-- uv run manage.py test
+- Clean Django app separation
+- Real payment flow using Stripe Checkout
+- Accessibility-first HTML and responsive layouts
+- Practical full-stack decision-making in a freelance context
