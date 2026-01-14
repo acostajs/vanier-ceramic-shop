@@ -58,10 +58,10 @@ if os.getenv("RENDER"):
     SECURE_HSTS_PRELOAD = True
 
 
-# Middleware (WhiteNoise after Security)
+# Middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # Add here
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",

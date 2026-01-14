@@ -41,8 +41,6 @@
 		<meta name="robots" content="index, follow" />
 
 		<script src="https://cdn.tailwindcss.com"></script>
-
-		<link rel="stylesheet" href="{% static 'style.css' %}" />
 	</head>
 	<body class="min-h-screen flex flex-col">
 		{% include 'partials/nav.html' %} {% if messages %}
@@ -151,7 +149,7 @@
 		</div>
 		{% endif %}
 
-		<main class="flex-1">{% block content %}{% endblock %}</main>
+		<main class="flex-1 pb-32">{% block content %}{% endblock %}</main>
 
 		{% include 'partials/footer.html' %}
 	</body>
