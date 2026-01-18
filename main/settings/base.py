@@ -1,31 +1,27 @@
 from pathlib import Path
 import os
-import stripe
 from dotenv import load_dotenv
 import dj_database_url
+import stripe
 
 load_dotenv()
 
-stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
-STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET")
 
-# Build paths
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Custom user
 AUTH_USER_MODEL = "account.Account"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# Media (change to static for free Render demo)
+
+# Stripe
+stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET")
+
+# Media URLs
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
-# SECURITY WARNINGS
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
-DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
-ALLOWED_HOSTS = []
-
-# Apps
+# Apps (shared)
 INSTALLED_APPS = [
     "shop.apps.InventoryConfig",
     "cart.apps.CartConfig",
@@ -39,34 +35,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "whitenoise.runserver_nostatic",
 ]
-
-# Render/prod overrides
-if os.getenv("RENDER"):
-    DEBUG = False
-    ALLOWED_HOSTS += [os.getenv("RENDER_EXTERNAL_HOSTNAME")]
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    # Security
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = "DENY"
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-    AWS_STORAGE_BUCKET_NAME = "vanier-ceramic-shop-images-juan-2026"
-    AWS_S3_REGION_NAME = "us-east-1"
-    AWS_S3_CUSTOM_DOMAIN = (
-        "vanier-ceramic-shop-images-juan-2026.s3.us-east-1.amazonaws.com"
-    )
-    AWS_DEFAULT_ACL = "public-read"
-    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
 
 # Middleware
 MIDDLEWARE = [
@@ -101,7 +69,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "main.wsgi.application"
 
-# Database (SQLite dev, Postgres prod)
+# Database base (SQLite default, overridden in envs)
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -109,6 +77,7 @@ DATABASES = {
     }
 }
 
+# Override with DATABASE_URL if present
 if os.getenv("DATABASE_URL"):
     DATABASES["default"] = dj_database_url.parse(
         os.getenv("DATABASE_URL"), conn_max_age=600
@@ -132,11 +101,13 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# Static files
+# Static files base
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-
-# Default
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Base security (overridden in prod)
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+ALLOWED_HOSTS = ["*"]

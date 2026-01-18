@@ -15,5 +15,8 @@ dependencies = [
     "python-dotenv>=1.2.1",
     "ruff>=0.14.7",
     "stripe>=14.0.1",
+    "uvicorn>=0.40.0",
     "whitenoise>=6.11.0",
 ]
+[tool.ruff]
+lint.extend-per-file-ignores = { "main/settings/**.py" = ["F403", "F405"] }
