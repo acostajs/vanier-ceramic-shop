@@ -6,6 +6,13 @@ import stripe
 
 load_dotenv()
 
+ALLOWED_HOSTS = []
+
+if os.getenv("RENDER_EXTERNAL_HOSTNAME"):
+    ALLOWED_HOSTS.append(os.getenv("RENDER_EXTERNAL_HOSTNAME"))
+
+ALLOWED_HOSTS += ["localhost", "127.0.0.1"]
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -16,10 +23,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # Stripe
 stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET")
-
-# Media URLs
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
 # Apps (shared)
 INSTALLED_APPS = [
@@ -34,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "whitenoise.runserver_nostatic",
+    "storages",
 ]
 
 # Middleware

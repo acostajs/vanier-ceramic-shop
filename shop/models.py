@@ -11,7 +11,7 @@ class Collection(models.Model):
 
     name = models.CharField(_("name"), max_length=100)
     description = models.TextField(_("description"))
-    image = models.ImageField(_("image"))
+    image = models.ImageField(_("image"), upload_to="collections/")
     ceramic_type = models.CharField(_("ceramic type"), max_length=100)
 
     def __str__(self):
@@ -24,7 +24,7 @@ class Product(models.Model):
     name = models.CharField(_("name"), max_length=200)
     description = models.TextField(_("description"))
     quantity = models.IntegerField(_("quantity"), default=0)
-    image = models.ImageField(_("image"))
+    image = models.ImageField(_("image"), upload_to="products/")
     price_in_cents = models.IntegerField(_("price"), default=0)
     created_date = models.DateTimeField(default=timezone.now)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE)

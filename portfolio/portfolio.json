@@ -4,19 +4,21 @@
 		"role": "Full-Stack Developer",
 		"type": "Academic project (Freelancer simulation)",
 		"audience": ["Recruiters", "Instructors", "Developers"],
-		"status": "Completed"
+		"status": "Ongoing"
 	},
 
 	"overview": {
-		"summary": "A full-stack Django e-commerce application built as a freelance-style upgrade of a ceramic artist’s portfolio site.",
-		"problem": "The original site functioned only as a static portfolio and lacked product management, payments, and client interaction features.",
-		"solution": "A complete Django-based e-commerce experience with product collections, Stripe Checkout integration, and an accessible, responsive front end."
+		"summary": "A full-stack Django e-commerce application built as a freelance-style upgrade of a ceramic artist’s portfolio site, deployed on Render with cloud-based storage and database services.",
+		"problem": "The original site functioned only as a static portfolio and lacked product management, payments, persistent data storage, and scalable media handling.",
+		"solution": "A complete Django-based e-commerce experience with product collections, Stripe Checkout integration, cloud-hosted PostgreSQL for structured data, and AWS S3 for scalable image storage."
 	},
 
 	"responsibilities": [
 		"Planned and implemented the full-stack architecture based on a simulated client brief",
 		"Built Django models for products, collections, and contact submissions",
 		"Integrated Stripe Checkout for secure payment processing in test mode",
+		"Configured AWS S3 for handling product image uploads and media storage",
+		"Set up PostgreSQL as the primary database for production deployment on Render",
 		"Developed accessible, responsive templates using Django and Tailwind CSS"
 	],
 
@@ -26,26 +28,31 @@
 		"Django Templates",
 		"Tailwind CSS",
 		"Stripe Checkout",
-		"SQLite",
+		"PostgreSQL (prod)",
+		"AWS S3",
+		"Render",
+		"SQLite (dev)",
 		"GitHub",
 		"uv"
 	],
 
 	"architecture": {
-		"approach": "Modular Django application with clear separation between models, views, templates, and configuration, designed to reflect real-world freelance delivery.",
-		"data_flow": "Product and collection data is managed through Django models and rendered via server-side templates; Stripe handles payment flow externally while order intent is managed internally.",
-		"deployment": "Designed for local development and demonstration, with configuration ready for production deployment."
+		"approach": "Modular Django application with clear separation between models, views, templates, and configuration, designed to reflect real-world freelance delivery and production constraints.",
+		"data_flow": "Product, collection, and contact data are persisted in a PostgreSQL database; media assets are stored in AWS S3 and served externally; Stripe handles payment flow externally while order intent is managed internally.",
+		"deployment": "Deployed on Render with environment-based configuration, using PostgreSQL for production data and AWS S3 for scalable, persistent image storage."
 	},
 
 	"key_features": [
 		"Django-powered product and collection management",
 		"Stripe Checkout integration for real payment flows",
+		"Cloud-based image storage using AWS S3",
 		"Accessible, semantic HTML with responsive layouts",
 		"Contact form backed by Django models and email handling"
 	],
 
 	"challenges_and_learnings": [
 		"Designing a clean Django architecture from a client-style brief",
+		"Configuring cloud services such as AWS S3 and PostgreSQL for a production-like environment",
 		"Integrating third-party payment services securely",
 		"Balancing backend logic with front-end accessibility and UX",
 		"Making practical trade-offs common in freelance projects"
@@ -53,16 +60,19 @@
 
 	"skills_demonstrated": [
 		"Full-stack Django development",
+		"Cloud deployment with Render",
+		"Database management with PostgreSQL",
+		"Media storage and handling with AWS S3",
 		"Payment integration with Stripe",
 		"Accessible and responsive UI development",
 		"Project planning and feature scoping"
 	],
 
 	"future_improvements": [
-		"Add persistent order history and user accounts",
-		"Replace SQLite with a production database",
-		"Introduce admin-side inventory management tools",
-		"Deploy the application to a cloud hosting platform"
+		"Resolve authentication edge cases and improve user account flows",
+		"Optimize layouts and performance for mobile-first usage",
+		"Add persistent order history tied to authenticated users",
+		"Introduce admin-side inventory and order management tools"
 	],
 
 	"links": {
