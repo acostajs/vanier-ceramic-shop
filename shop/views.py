@@ -25,3 +25,9 @@ def product(request, product_id):
         "product": product,
     }
     return render(request, "shop/product.html", context)
+
+
+def home(request):
+    """Display the homepage, showing the most recent products."""
+    recent_products = Product.objects.all().order_by("-created_date")[:3]
+    return render(request, "home.html", {"recent_products": recent_products})

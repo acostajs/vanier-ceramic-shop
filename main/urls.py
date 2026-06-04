@@ -5,13 +5,15 @@ from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import TemplateView
 
+from shop import views as shop_views
+
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
 ]
 
 urlpatterns += i18n_patterns(
     path("admin/", admin.site.urls),
-    path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    path("", shop_views.home, name="home"),
     path("about/", TemplateView.as_view(template_name="about.html"), name="about"),
     path("shop/", include("shop.urls")),
     path("cart/", include("cart.urls")),

@@ -83,72 +83,286 @@
 			</p>
 		</div>
 
-		{% if collections %}
 		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-			{% for collection in collections %}
-			<a href="{% url 'shop:collection' collection.id %}" class="group">
+			{% if recent_products %}
+				{% for product in recent_products %}
 				<article
-					class="group bg-surface-card rounded-md overflow-hidden border border-hairline transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal"
+					class="group bg-surface-card rounded-md overflow-hidden border border-hairline transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal flex flex-col"
 				>
-					<div
-						class="aspect-[4/3] overflow-hidden bg-canvas relative"
-					>
-						{% if collection.image %}
+					{% if product.image %}
+					<div class="aspect-[4/3] overflow-hidden bg-canvas relative">
 						<img
-							src="{{ collection.image.url }}"
-							alt="{{ collection.name }}"
+							src="{{ product.image.url }}"
+							alt="{{ product.name }}"
 							class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
 							loading="lazy"
 						/>
-						{% else %}
-						<img
-							src="{% static 'images/collection-placeholder.webp' %}"
-							alt="Collection placeholder"
-							class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
-							loading="lazy"
-						/>
-						{% endif %}
 					</div>
-					<div class="p-8">
-						<h3
-							class="text-2xl font-serif font-normal text-gray-900 mb-3 group-hover:text-amber-700 transition-colors"
-						>
-							{{ collection.name }}
-						</h3>
-						<span
-							class="inline-block bg-amber-100 text-amber-800 text-sm font-medium px-3 py-1 rounded-full"
-						>
-							{{ collection.ceramic_type }}
-						</span>
+					{% endif %}
+					<div class="p-6 flex-1 flex flex-col">
+						<div class="flex justify-between items-start gap-4 mb-2">
+							<h3
+								class="text-2xl font-serif font-normal text-gray-900 group-hover:text-brand-terracotta transition-colors"
+							>
+								{{ product.name }}
+							</h3>
+							<div class="text-right flex-shrink-0">
+								{% if product.discount_percentage > 0 %}
+								<div class="flex flex-col items-end">
+									<span class="text-lg font-bold text-[#a63a3a]">
+										{{ product.discounted_price_in_dollars }}
+									</span>
+									<span class="text-xs text-gray-400 line-through">
+										{{ product.price_in_dollars }}
+									</span>
+								</div>
+								{% else %}
+								<span class="text-lg font-semibold text-gray-900">
+									{{ product.price_in_dollars }}
+								</span>
+								{% endif %}
+							</div>
+						</div>
+
+						<div class="mb-4">
+							{% if product.quantity == 0 %}
+							<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-red-50 text-error">
+								{% translate "Sold Out" %}
+							</span>
+							{% elif product.quantity <= 3 %}
+							<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-orange-50 text-warning">
+								{% translate "Low Stock" %} ({{ product.quantity }})
+							</span>
+							{% else %}
+							<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-green-50 text-success">
+								{% translate "In Stock" %}
+							</span>
+							{% endif %}
+						</div>
+
+						<p class="text-sm text-body leading-relaxed mb-5 line-clamp-3">
+							{{ product.description }}
+						</p>
+
+						<div class="mt-auto">
+							<a
+								href="{% url 'shop:product' product.id %}"
+								class="inline-flex items-center text-sm font-semibold text-brand-terracotta hover:text-brand-terracotta/90 transition-colors"
+							>
+								{% translate "See Details" %}
+								<svg
+									class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M17 8l4 4m0 0l-4 4m4-4H3"
+									></path>
+								</svg>
+							</a>
+						</div>
 					</div>
 				</article>
-			</a>
-			{% endfor %}
-		</div>
-		{% else %}
-		<div class="text-center py-32">
-			<div
-				class="w-32 h-32 bg-gray-100 rounded-md flex items-center justify-center mx-auto mb-8"
-			>
-				<svg
-					class="w-16 h-16 text-gray-400"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
+				{% endfor %}
+			{% else %}
+				{# Fallback mineral-toned product cards #}
+				<!-- Card 1: Sage Green Glaze Bowl -->
+				<article
+					class="group bg-surface-card rounded-md overflow-hidden border border-hairline transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal flex flex-col"
 				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-					></path>
-				</svg>
-			</div>
-			<p class="text-2xl text-gray-500 font-medium">
-				{% translate "No collections have been registered yet" %}
-			</p>
+					<div class="aspect-[4/3] overflow-hidden bg-canvas relative">
+						<img
+							src="{% static 'images/about-statement.avif' %}"
+							alt="Sage Green Bowl"
+							class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
+							loading="lazy"
+						/>
+					</div>
+					<div class="p-6 flex-1 flex flex-col">
+						<div class="flex justify-between items-start gap-4 mb-2">
+							<h3
+								class="text-2xl font-serif font-normal text-gray-900 group-hover:text-brand-terracotta transition-colors"
+							>
+								{% translate "Sage Glazed Bowl" %}
+							</h3>
+							<div class="text-right flex-shrink-0">
+								<span class="text-lg font-semibold text-gray-900">
+									$65.00
+								</span>
+							</div>
+						</div>
+
+						<div class="mb-4">
+							<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-green-50 text-success">
+								{% translate "In Stock" %}
+							</span>
+						</div>
+
+						<p class="text-sm font-semibold tracking-[0.2px] text-muted mb-3">
+							{% translate "Dimensions:" %} 15cm × 15cm × 8cm &bull; {% translate "Clay:" %} Sandstone
+						</p>
+
+						<p class="text-sm text-body leading-relaxed mb-5 line-clamp-3">
+							{% translate "Hand-thrown stoneware bowl featuring a rustic, dripped sage green glaze finish. Perfect for daily rituals." %}
+						</p>
+
+						<div class="mt-auto">
+							<a
+								href="{% url 'shop:shop' %}"
+								class="inline-flex items-center text-sm font-semibold text-brand-terracotta hover:text-brand-terracotta/90 transition-colors"
+							>
+								{% translate "See Details" %}
+								<svg
+									class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M17 8l4 4m0 0l-4 4m4-4H3"
+									></path>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- Card 2: Celadon Tea Cup -->
+				<article
+					class="group bg-surface-card rounded-md overflow-hidden border border-hairline transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal flex flex-col"
+				>
+					<div class="aspect-[4/3] overflow-hidden bg-canvas relative">
+						<img
+							src="{% static 'images/home-hero-img.avif' %}"
+							alt="Celadon Tea Cup"
+							class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
+							loading="lazy"
+						/>
+					</div>
+					<div class="p-6 flex-1 flex flex-col">
+						<div class="flex justify-between items-start gap-4 mb-2">
+							<h3
+								class="text-2xl font-serif font-normal text-gray-900 group-hover:text-brand-terracotta transition-colors"
+							>
+								{% translate "Celadon Ochre Cup" %}
+							</h3>
+							<div class="text-right flex-shrink-0">
+								<span class="text-lg font-semibold text-gray-900">
+									$48.00
+								</span>
+							</div>
+						</div>
+
+						<div class="mb-4">
+							<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-green-50 text-success">
+								{% translate "In Stock" %}
+							</span>
+						</div>
+
+						<p class="text-sm font-semibold tracking-[0.2px] text-muted mb-3">
+							{% translate "Dimensions:" %} 8cm × 8cm × 10cm &bull; {% translate "Clay:" %} Stoneware
+						</p>
+
+						<p class="text-sm text-body leading-relaxed mb-5 line-clamp-3">
+							{% translate "A delicate tea cup showcasing the crackled beauty of a mineral-tinted celadon glaze over a textured stoneware body." %}
+						</p>
+
+						<div class="mt-auto">
+							<a
+								href="{% url 'shop:shop' %}"
+								class="inline-flex items-center text-sm font-semibold text-brand-terracotta hover:text-brand-terracotta/90 transition-colors"
+							>
+								{% translate "See Details" %}
+								<svg
+									class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M17 8l4 4m0 0l-4 4m4-4H3"
+									></path>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- Card 3: Terracotta Studio Vase -->
+				<article
+					class="group bg-surface-card rounded-md overflow-hidden border border-hairline transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal flex flex-col"
+				>
+					<div class="aspect-[4/3] overflow-hidden bg-canvas relative">
+						<img
+							src="{% static 'images/about-portrait.avif' %}"
+							alt="Terracotta Studio Vase"
+							class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
+							loading="lazy"
+						/>
+					</div>
+					<div class="p-6 flex-1 flex flex-col">
+						<div class="flex justify-between items-start gap-4 mb-2">
+							<h3
+								class="text-2xl font-serif font-normal text-gray-900 group-hover:text-brand-terracotta transition-colors"
+							>
+								{% translate "Terracotta Studio Vase" %}
+							</h3>
+							<div class="text-right flex-shrink-0">
+								<span class="text-lg font-semibold text-gray-900">
+									$120.00
+								</span>
+							</div>
+						</div>
+
+						<div class="mb-4">
+							<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-green-50 text-success">
+								{% translate "In Stock" %}
+							</span>
+						</div>
+
+						<p class="text-sm font-semibold tracking-[0.2px] text-muted mb-3">
+							{% translate "Dimensions:" %} 12cm × 12cm × 24cm &bull; {% translate "Clay:" %} Terracotta
+						</p>
+
+						<p class="text-sm text-body leading-relaxed mb-5 line-clamp-3">
+							{% translate "Tall, unglazed terracotta exterior vase with a glazed white interior for flower staging. Exudes hand-carved finger marks." %}
+						</p>
+
+						<div class="mt-auto">
+							<a
+								href="{% url 'shop:shop' %}"
+								class="inline-flex items-center text-sm font-semibold text-brand-terracotta hover:text-brand-terracotta/90 transition-colors"
+							>
+								{% translate "See Details" %}
+								<svg
+									class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M17 8l4 4m0 0l-4 4m4-4H3"
+									></path>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</article>
+			{% endif %}
 		</div>
-		{% endif %}
 	</div>
 </section>
 
@@ -208,11 +422,11 @@
 		>
 			<a
 				href="{% url 'contact:contact' %}"
-				class="inline-flex items-center justify-center px-12 py-6 bg-canvas border border-hairline text-gray-900 text-xl font-semibold rounded-sm hover:bg-surface-soft transition-all duration-300 shadow-sm hover:scale-[1.02] hover:-translate-y-0.5"
+				class="inline-flex items-center justify-center h-[46px] px-12 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-all duration-300 hover:bg-[#2b2a28] hover:-translate-y-0.5"
 			>
 				{% translate "Get in touch" %}
 				<svg
-					class="w-6 h-6 ml-3"
+					class="w-4 h-4 ml-2"
 					fill="none"
 					stroke="currentColor"
 					viewBox="0 0 24 24"
