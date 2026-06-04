@@ -73,7 +73,7 @@
 	</div>
 </section>
 
-<section class="py-24 lg:py-32 bg-white">
+<section class="py-24 lg:py-32 bg-canvas">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-20 reveal">
 			<h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6">
@@ -91,10 +91,10 @@
 			{% for collection in collections %}
 			<a href="{% url 'shop:collection' collection.id %}" class="group">
 				<article
-					class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal"
+					class="group bg-surface-card rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal"
 				>
 					<div
-						class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-50 to-amber-50 relative"
+						class="aspect-[4/3] overflow-hidden bg-canvas relative"
 					>
 						{% if collection.image %}
 						<img
@@ -220,11 +220,11 @@
 			Let's create something beautiful together. {% endblocktranslate %}
 		</p>
 		<div
-			class="bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-3xl p-12"
+			class="bg-surface-card border border-hairline rounded-[12px] p-12"
 		>
 			<a
 				href="{% url 'contact:contact' %}"
-				class="inline-flex items-center justify-center px-12 py-6 bg-white text-gray-900 text-xl font-semibold rounded-3xl hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-[1.02] hover:-translate-y-1"
+				class="inline-flex items-center justify-center px-12 py-6 bg-canvas border border-hairline text-gray-900 text-xl font-semibold rounded-[6px] hover:bg-surface-soft transition-all duration-300 shadow-sm hover:scale-[1.02] hover:-translate-y-0.5"
 			>
 				{% translate "Get in touch" %}
 				<svg
