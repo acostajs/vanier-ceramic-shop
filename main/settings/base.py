@@ -112,6 +112,8 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+TAILWIND_CLI_SRC_CSS = BASE_DIR / "static" / "css" / "source.css"
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Base security (overridden in prod)
