@@ -1,12 +1,13 @@
-from account.models import Wishlist, Account
+from account.models import Wishlist
 
 
 def wishlist_info(request):
     """Get the total count of products inside Wishlist."""
+    if not request.user or not request.user.is_authenticated:
+        return {"wishlist_count": 0}
     try:
-        account = Account.objects.get(username=request.user)
-        wishlist = Wishlist.objects.get(account=account)
+        wishlist = Wishlist.objects.get(account=request.user)
         count = wishlist.count()
-    except (Account.DoesNotExist, Wishlist.DoesNotExist):
+    except Wishlist.DoesNotExist:
         count = 0
     return {"wishlist_count": count}
