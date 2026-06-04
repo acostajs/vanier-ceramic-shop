@@ -5,7 +5,7 @@
 >
 	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
 		<h1
-			class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-gray-900 mb-6"
+			class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-ink mb-6"
 		>
 			{% translate "Your Wishlist" %}
 		</h1>
@@ -18,7 +18,7 @@
 				<table class="min-w-full border-separate border-spacing-y-2">
 					<thead>
 						<tr
-							class="text-xs sm:text-sm uppercase tracking-wide text-gray-500"
+							class="text-xs sm:text-sm uppercase tracking-wide text-muted"
 						>
 							<th class="text-left py-2 pr-4">{% translate "Product" %}</th>
 							<th class="text-right py-2 px-4">{% translate "Unit Price" %}</th>
@@ -36,10 +36,10 @@
 							<td class="py-3 pr-4 align-top">
 								<a
 									href="{% url 'shop:product' product.id %}"
-									class="flex items-center gap-3 text-sm sm:text-base text-gray-900 hover:text-amber-700"
+									class="flex items-center gap-3 text-sm sm:text-base text-ink hover:text-warning"
 								>
 									<div
-										class="w-14 h-14 rounded-sm overflow-hidden bg-gray-100 flex-shrink-0"
+										class="w-14 h-14 rounded-sm overflow-hidden bg-hairline flex-shrink-0"
 									>
 										<img
 											src="{{ product.image.url }}"
@@ -53,17 +53,17 @@
 							</td>
 
 							<td
-								class="py-3 px-4 text-right text-sm sm:text-base text-gray-800 align-middle"
+								class="py-3 px-4 text-right text-sm sm:text-base text-body-strong align-middle"
 							>
 								{{ product.price_in_dollars }}
 							</td>
 
 							<td
-								class="py-3 px-4 text-right text-sm sm:text-base text-gray-900 align-middle"
+								class="py-3 px-4 text-right text-sm sm:text-base text-ink align-middle"
 							>
 								{% if product.discounted_price_in_dollars %} {{
 								product.discounted_price_in_dollars }} {% else %}
-								<span class="text-gray-400">—</span>
+								<span class="text-muted">—</span>
 								{% endif %}
 							</td>
 
@@ -76,7 +76,7 @@
 									{% csrf_token %}
 									<button
 										type="submit"
-										class="px-3 py-1.5 rounded-sm bg-red-50 text-xs sm:text-sm font-semibold text-red-600 hover:bg-red-100 transition-colors"
+										class="px-3 py-1.5 rounded-sm bg-error/10 text-xs sm:text-sm font-semibold text-error hover:bg-error/20 transition-colors"
 									>
 										{% translate "Remove" %}
 									</button>
@@ -92,7 +92,7 @@
 									{% csrf_token %}
 									<button
 										type="submit"
-										class="px-3 py-1.5 rounded-sm bg-amber-50 text-xs sm:text-sm font-semibold text-amber-700 hover:bg-amber-100 transition-colors"
+										class="px-3 py-1.5 rounded-sm border border-hairline text-xs sm:text-sm font-semibold text-ink bg-transparent hover:bg-surface-soft transition-colors"
 									>
 										{% translate "Transfer to Cart" %}
 									</button>
@@ -111,7 +111,7 @@
 					{% csrf_token %}
 					<button
 						type="submit"
-						class="inline-flex items-center justify-center px-6 py-2.5 rounded-sm border border-hairline text-sm sm:text-base font-semibold text-gray-800 bg-canvas hover:bg-surface-soft transition-all duration-200"
+						class="button-secondary px-6"
 					>
 						{% translate "Clear Wishlist" %}
 					</button>
@@ -119,7 +119,7 @@
 
 				<a
 					href="{% url 'shop:shop' %}"
-					class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+					class="button-primary"
 				>
 					{% translate "Continue Shopping" %}
 				</a>
@@ -129,12 +129,12 @@
 		<div
 			class="bg-surface-card rounded-md border border-hairline p-8 text-center"
 		>
-			<p class="text-lg text-gray-600 mb-4">
+			<p class="text-lg text-muted mb-4">
 				{% translate "Your wishlist is empty." %}
 			</p>
 			<a
 				href="{% url 'shop:shop' %}"
-				class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+				class="button-primary font-semibold"
 			>
 				{% translate "Continue Shopping" %}
 			</a>
