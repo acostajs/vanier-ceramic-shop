@@ -79,6 +79,7 @@ def checkout(request):
     return render(request, "cart/checkout.html", context)
 
 
+@login_required
 @require_POST
 def update_cart_checkout(request, product_id):
     """Update a product's quantity during checkout."""
@@ -90,6 +91,7 @@ def update_cart_checkout(request, product_id):
     return redirect("cart:checkout")
 
 
+@login_required
 @require_POST
 def remove_from_cart_checkout(request, product_id):
     """Remove a product from the cart during checkout."""
@@ -123,6 +125,7 @@ def create_checkout_session(request):
     return redirect(session.url, code=303)
 
 
+@login_required
 def success(request):
     """Handle succesful Stripe Payments."""
     session_id = request.GET.get("session_id")
