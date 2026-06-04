@@ -32,3 +32,6 @@ __pycache__
 .DS_Store
 
 .docs
+
+# Tailwind CLI binary folder
+.django_tailwind_cli/

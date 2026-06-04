@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "whitenoise.runserver_nostatic",
     "storages",
+    "django_tailwind_cli",
 ]
 
 # Middleware
