@@ -32,6 +32,9 @@ module.exports = {
         sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
         serif: ["Playfair Display", "Georgia", "serif"],
       },
+      maxWidth: {
+        content: "1320px",
+      },
       keyframes: {
         "fade-in-up-subtle": {
           "0%": {
