@@ -11,14 +11,14 @@
 		<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 			<div class="lg:col-span-8">
 				<h1
-					class="text-5xl lg:text-7xl xl:text-8xl font-serif font-normal text-gray-900 leading-tight mb-8"
+					class="text-5xl lg:text-7xl xl:text-8xl font-serif font-normal text-ink leading-tight mb-8"
 				>
 					{% translate "Welcome to" %}<br />
 					<span class="text-brand-terracotta">Laura Melissa</span><br />
 					{% translate "Ceramics" %}
 				</h1>
 				<p
-					class="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl"
+					class="text-xl lg:text-2xl text-muted leading-relaxed max-w-2xl"
 				>
 					{% blocktranslate %} Unique handcrafted ceramics and pottery. Each
 					piece tells a story of earth, fire, and time. {% endblocktranslate %}
@@ -28,7 +28,7 @@
 			<div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-5 justify-center items-center lg:items-center w-full">
 				<a
 					href="{% url 'shop:shop' %}"
-					class="inline-flex items-center justify-center h-[54px] px-8 rounded-sm bg-primary text-on-primary text-[14px] font-semibold tracking-[2px] uppercase transition-all duration-300 hover:bg-[#2b2a28] hover:-translate-y-0.5 w-full sm:w-[280px] lg:w-[300px] text-center"
+					class="button-primary w-full sm:w-[280px] lg:w-[300px] text-center hover:-translate-y-0.5"
 				>
 					{% translate "Shop Collections" %}
 					<svg
@@ -47,7 +47,7 @@
 				</a>
 				<a
 					href="{% url 'about' %}"
-					class="inline-flex items-center justify-center h-[54px] px-8 rounded-sm border border-hairline bg-transparent text-ink text-[14px] font-semibold tracking-[2px] uppercase transition-all duration-300 hover:bg-surface-soft hover:-translate-y-0.5 w-full sm:w-[280px] lg:w-[300px] text-center"
+					class="button-secondary w-full sm:w-[280px] lg:w-[300px] text-center hover:-translate-y-0.5"
 				>
 					{% translate "Learn More" %}
 				</a>
@@ -59,10 +59,10 @@
 <section class="py-section bg-canvas">
 	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-20 reveal">
-			<h2 class="text-4xl lg:text-5xl font-serif font-normal text-gray-900 mb-6">
+			<h2 class="text-4xl lg:text-5xl font-serif font-normal text-ink mb-6">
 				{% translate "Recent Work" %}
 			</h2>
-			<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+			<p class="text-xl text-muted max-w-2xl mx-auto">
 				{% blocktranslate %} Discover the latest collections, each piece
 				handcrafted with care and precision on the potter's wheel.
 				{%endblocktranslate %}
@@ -88,7 +88,7 @@
 					<div class="p-6 flex-1 flex flex-col">
 						<div class="flex justify-between items-start gap-4 mb-2">
 							<h3
-								class="text-2xl font-serif font-normal text-gray-900 group-hover:text-brand-terracotta transition-colors"
+								class="text-2xl font-serif font-normal text-ink group-hover:text-brand-terracotta transition-colors"
 							>
 								{{ product.name }}
 							</h3>
@@ -98,12 +98,12 @@
 									<span class="text-lg font-bold text-[#a63a3a]">
 										{{ product.discounted_price_in_dollars }}
 									</span>
-									<span class="text-xs text-gray-400 line-through">
+									<span class="text-xs text-muted line-through">
 										{{ product.price_in_dollars }}
 									</span>
 								</div>
 								{% else %}
-								<span class="text-lg font-semibold text-gray-900">
+								<span class="text-lg font-semibold text-ink">
 									{{ product.price_in_dollars }}
 								</span>
 								{% endif %}
@@ -171,12 +171,12 @@
 					<div class="p-6 flex-1 flex flex-col">
 						<div class="flex justify-between items-start gap-4 mb-2">
 							<h3
-								class="text-2xl font-serif font-normal text-gray-900 group-hover:text-brand-terracotta transition-colors"
+								class="text-2xl font-serif font-normal text-ink group-hover:text-brand-terracotta transition-colors"
 							>
 								{% translate "Sage Glazed Bowl" %}
 							</h3>
 							<div class="text-right flex-shrink-0">
-								<span class="text-lg font-semibold text-gray-900">
+								<span class="text-lg font-semibold text-ink">
 									$65.00
 								</span>
 							</div>
@@ -235,12 +235,12 @@
 					<div class="p-6 flex-1 flex flex-col">
 						<div class="flex justify-between items-start gap-4 mb-2">
 							<h3
-								class="text-2xl font-serif font-normal text-gray-900 group-hover:text-brand-terracotta transition-colors"
+								class="text-2xl font-serif font-normal text-ink group-hover:text-brand-terracotta transition-colors"
 							>
 								{% translate "Celadon Ochre Cup" %}
 							</h3>
 							<div class="text-right flex-shrink-0">
-								<span class="text-lg font-semibold text-gray-900">
+								<span class="text-lg font-semibold text-ink">
 									$48.00
 								</span>
 							</div>
@@ -299,12 +299,12 @@
 					<div class="p-6 flex-1 flex flex-col">
 						<div class="flex justify-between items-start gap-4 mb-2">
 							<h3
-								class="text-2xl font-serif font-normal text-gray-900 group-hover:text-brand-terracotta transition-colors"
+								class="text-2xl font-serif font-normal text-ink group-hover:text-brand-terracotta transition-colors"
 							>
 								{% translate "Terracotta Studio Vase" %}
 							</h3>
 							<div class="text-right flex-shrink-0">
-								<span class="text-lg font-semibold text-gray-900">
+								<span class="text-lg font-semibold text-ink">
 									$120.00
 								</span>
 							</div>
@@ -357,13 +357,13 @@
 		<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 			<div class="reveal">
 				<h2
-					class="text-4xl lg:text-5xl font-serif font-normal text-gray-900 mb-6 leading-tight"
+					class="text-4xl lg:text-5xl font-serif font-normal text-ink mb-6 leading-tight"
 				>
 					{% translate "A little bit" %}
 					<br />
 					<span class="text-brand-terracotta">{% translate "about me" %}</span>
 				</h2>
-				<p class="text-xl text-gray-600 leading-relaxed mb-8 max-w-lg">
+				<p class="text-xl text-muted leading-relaxed mb-8 max-w-lg">
 					{% blocktranslate %} Trained as an Industrial Designer, I found
 					ceramics to be the perfect union of form, function, and emotion. Each
 					piece emerges from the potter's wheel, shaped by circular movement and
@@ -371,7 +371,7 @@
 				</p>
 				<a
 					href="{% url 'about' %}"
-					class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm border border-hairline bg-transparent text-ink text-[13px] font-semibold tracking-[1.5px] uppercase transition-all duration-300 hover:bg-surface-soft hover:-translate-y-0.5"
+					class="button-secondary hover:-translate-y-0.5"
 				>
 					{% translate "Read my story" %}
 				</a>
@@ -408,7 +408,7 @@
 		>
 			<a
 				href="{% url 'contact:contact' %}"
-				class="inline-flex items-center justify-center h-[46px] px-12 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-all duration-300 hover:bg-[#2b2a28] hover:-translate-y-0.5"
+				class="button-primary px-12 hover:-translate-y-0.5"
 			>
 				{% translate "Get in touch" %}
 				<svg

@@ -8,7 +8,7 @@
 		{% include 'partials/breadcrumbs.html' %}
 		<div class="mb-10">
 			<h1
-				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-gray-900"
+				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-ink"
 			>
 				{{ product.name }}
 			</h1>
@@ -34,47 +34,47 @@
 				<article
 					class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8 space-y-5"
 				>
-					<h2 class="text-xs font-semibold tracking-widest text-amber-800 uppercase">
+					<h2 class="text-xs font-semibold tracking-widest text-brand-terracotta uppercase">
 						{% translate "Product Details" %}
 					</h2>
 
 					{% if product.description %}
-					<p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+					<p class="text-base sm:text-lg text-body leading-relaxed">
 						{{ product.description }}
 					</p>
 					{% endif %}
 
-					<div class="pt-4 border-t border-gray-100">
+					<div class="pt-4 border-t border-hairline">
 						{% if product.discount_percentage > 0 %}
 						<div class="space-y-2">
-							<p class="text-sm text-gray-500 uppercase tracking-wide">
+							<p class="text-sm text-muted uppercase tracking-wide">
 								{% translate "Limited offer" %}
 							</p>
 							<div class="flex items-baseline gap-3">
-								<span class="text-sm text-gray-400 line-through">
+								<span class="text-sm text-muted line-through">
 									{% translate "Price" %} {{ product.price_in_dollars }}
 								</span>
-								<span class="text-2xl font-bold text-amber-700">
+								<span class="text-2xl font-bold text-warning">
 									{{ product.discounted_price_in_dollars }}
 								</span>
 							</div>
-							<p class="text-sm text-amber-700 font-semibold">
+							<p class="text-sm text-warning font-semibold">
 								{% translate "Discount:" %} {{ product.discount_percentage }}%
 							</p>
 						</div>
 						{% else %}
 						<div class="space-y-1">
-							<p class="text-sm text-gray-500 uppercase tracking-wide">
+							<p class="text-sm text-muted uppercase tracking-wide">
 								{% translate "Price" %}
 							</p>
-							<p class="text-2xl font-bold text-gray-900">
+							<p class="text-2xl font-bold text-ink">
 								{{ product.price_in_dollars }}
 							</p>
 						</div>
 						{% endif %}
 					</div>
 
-					<div class="pt-4 border-t border-gray-100">
+					<div class="pt-4 border-t border-hairline">
 						{% if product.quantity > 0 %}
 						<form
 							action="{% url 'cart:add_to_cart' product.id %}"
@@ -84,7 +84,7 @@
 							{% csrf_token %}
 							<label
 								for="quantity"
-								class="block text-sm font-medium text-gray-700"
+								class="block text-sm font-medium text-body"
 							>
 								{% translate "Quantity:" %}
 							</label>
@@ -96,16 +96,16 @@
 									value="1"
 									min="1"
 									max="{{ product.quantity }}"
-									class="w-20 rounded-sm border border-gray-300 px-3 py-2 text-center text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+									class="w-20 rounded-sm border border-hairline px-3 py-2 text-center text-base text-ink focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
 								/>
 								<button
 									type="submit"
-									class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+									class="button-primary"
 								>
 									{% translate "Add to Cart" %}
 								</button>
 							</div>
-							<p class="text-xs text-gray-500">
+							<p class="text-xs text-muted">
 								{% translate "Available stock:" %} {{ product.quantity }}
 							</p>
 						</form>
@@ -113,7 +113,7 @@
 						<div class="space-y-3">
 							<button
 								disabled
-								class="w-full inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-surface-soft text-muted text-[13px] font-semibold tracking-[1.5px] uppercase cursor-not-allowed"
+								class="button-sold-out w-full"
 							>
 								{% translate "Sold Out" %}
 							</button>
@@ -122,7 +122,7 @@
 					</div>
 
 					{% if user.is_authenticated %}
-					<div class="pt-4 border-t border-gray-100">
+					<div class="pt-4 border-t border-hairline">
 						<form
 							action="{% url 'account:add_to_wishlist' product.id %}"
 							method="POST"
@@ -131,7 +131,7 @@
 							{% csrf_token %}
 							<button
 								type="submit"
-								class="inline-flex items-center justify-center px-5 py-2.5 rounded-md border border-amber-200 text-sm sm:text-base font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 hover:border-amber-300 transition-all duration-300"
+								class="button-secondary"
 							>
 								{% translate "Add to Wishlist" %}
 								<svg
@@ -157,10 +157,10 @@
 	</div>
 	{% else %}
 	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-		<h1 class="text-4xl sm:text-5xl font-serif font-normal text-gray-900 mb-4">
+		<h1 class="text-4xl sm:text-5xl font-serif font-normal text-ink mb-4">
 			{% translate "Product Not Found" %}
 		</h1>
-		<p class="text-lg text-gray-600">
+		<p class="text-lg text-muted">
 			{% translate "The product you are looking for does not exist." %}
 		</p>
 	</div>

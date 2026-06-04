@@ -6,11 +6,11 @@
 	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="mb-8">
 			<h1
-				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-gray-900"
+				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-ink"
 			>
 				{{ account.username }}
 			</h1>
-			<p class="text-sm sm:text-base text-gray-600 mt-1">
+			<p class="text-sm sm:text-base text-muted mt-1">
 				{% translate "Account Panel" %}
 			</p>
 		</div>
@@ -19,18 +19,18 @@
 			<div
 				class="lg:col-span-1 bg-surface-card rounded-md border border-hairline p-6 sm:p-7 space-y-4"
 			>
-				<h2 class="text-lg font-serif font-medium text-gray-900 mb-2">
+				<h2 class="text-lg font-serif font-medium text-ink mb-2">
 					{% translate "Profile" %}
 				</h2>
-				<p class="text-sm text-gray-700">
+				<p class="text-sm text-body">
 					<span class="font-medium">{% translate "First name" %}:</span>
 					{{account.first_name|default:"—" }}
 				</p>
-				<p class="text-sm text-gray-700">
+				<p class="text-sm text-body">
 					<span class="font-medium">{% translate "Last name" %}:</span>
 					{{account.last_name|default:"—" }}
 				</p>
-				<p class="text-sm text-gray-700">
+				<p class="text-sm text-body">
 					<span class="font-medium">{% translate "Email" %}:</span>
 					{{user.email}}
 				</p>
@@ -38,13 +38,13 @@
 				<div class="pt-4 space-y-2 border-t border-hairline mt-2">
 					<a
 						href="{% url 'account:shipping' %}"
-						class="block text-sm font-semibold text-gray-900 hover:text-amber-700 transition-colors"
+						class="block text-sm font-semibold text-ink hover:text-warning transition-colors"
 					>
 						{% translate "Update your Shipping Information" %}
 					</a>
 					<a
 						href="{% url 'account:billing' %}"
-						class="block text-sm font-semibold text-gray-900 hover:text-amber-700 transition-colors"
+						class="block text-sm font-semibold text-ink hover:text-warning transition-colors"
 					>
 						{% translate "Update your Billing Information" %}
 					</a>
@@ -64,7 +64,7 @@
 				class="lg:col-span-2 bg-surface-card rounded-md border border-hairline p-6 sm:p-7"
 			>
 				<h2
-					class="text-lg sm:text-xl font-serif font-medium text-gray-900 mb-4"
+					class="text-lg sm:text-xl font-serif font-medium text-ink mb-4"
 				>
 					{% translate "My Orders" %}
 				</h2>
@@ -76,19 +76,19 @@
 						class="border border-hairline rounded-sm p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
 					>
 						<div>
-							<p class="text-sm text-gray-500">
+							<p class="text-sm text-muted">
 								{% translate "Order" %} #{{ order.id }}
 							</p>
-							<p class="text-xs text-gray-400 mt-0.5">
+							<p class="text-xs text-muted mt-0.5">
 								{{ order.created_at|date:"Y-m-d H:i" }}
 							</p>
-							<p class="mt-2 text-sm text-gray-700">
+							<p class="mt-2 text-sm text-body">
 								<span class="font-medium">{% translate "Total" %}:</span>
 								{{ order.total_in_dollars }}
 							</p>
 							<p class="mt-1">
 								<span
-									class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium {% if order.status == 'paid' %} bg-emerald-50 text-emerald-700 {% elif order.status == 'pending' %} bg-amber-50 text-amber-700 {% else %} bg-gray-100 text-gray-700 {% endif %}"
+									class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium {% if order.status == 'paid' %} bg-success/10 text-success {% elif order.status == 'pending' %} bg-warning/10 text-warning {% else %} bg-hairline text-body {% endif %}"
 								>
 									{{ order.status }}
 								</span>
@@ -98,7 +98,7 @@
 						<div class="sm:text-right">
 							<a
 								href="{% url 'cart:order_details' order.id %}"
-								class="inline-flex items-center px-4 py-2 rounded-sm border border-hairline text-xs sm:text-sm font-semibold text-gray-900 bg-canvas hover:bg-surface-soft transition-colors"
+								class="inline-flex items-center px-4 py-2 rounded-sm border border-hairline text-xs sm:text-sm font-semibold text-ink bg-canvas hover:bg-surface-soft transition-colors"
 							>
 								{% translate "View Details" %}
 							</a>
@@ -107,7 +107,7 @@
 					{% endfor %}
 				</ul>
 				{% else %}
-				<p class="text-sm sm:text-base text-gray-600">
+				<p class="text-sm sm:text-base text-muted">
 					{% translate "No orders yet" %}.
 				</p>
 				{% endif %}

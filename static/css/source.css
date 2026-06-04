@@ -1,2 +1,14 @@
 @import "tailwindcss";
 @config "../../tailwind.config.js";
+
+@utility button-primary {
+  @apply bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase h-[46px] px-6 rounded-sm inline-flex items-center justify-center transition-all duration-200 hover:bg-[#2b2a28];
+}
+
+@utility button-secondary {
+  @apply bg-transparent text-ink border border-hairline text-[13px] font-semibold tracking-[1.5px] uppercase h-[46px] px-6 rounded-sm inline-flex items-center justify-center transition-all duration-200 hover:bg-surface-soft;
+}
+
+@utility button-sold-out {
+  @apply bg-surface-soft text-muted text-[13px] font-semibold tracking-[1.5px] uppercase h-[46px] px-6 rounded-sm inline-flex items-center justify-center cursor-not-allowed;
+}

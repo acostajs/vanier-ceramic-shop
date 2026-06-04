@@ -5,10 +5,10 @@
 >
 	<div class="max-w-md sm:max-w-lg mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-8">
-			<h1 class="text-3xl sm:text-4xl font-serif font-normal text-gray-900 mb-2">
+			<h1 class="text-3xl sm:text-4xl font-serif font-normal text-ink mb-2">
 				{% translate "Log In" %}
 			</h1>
-			<p class="text-sm sm:text-base text-gray-600">
+			<p class="text-sm sm:text-base text-muted">
 				{% blocktranslate %} Access your account to view orders, manage your
 				wishlist, and keep track of your favorite pieces. {%endblocktranslate%}
 			</p>
@@ -34,7 +34,7 @@
 
 				<button
 					type="submit"
-					class="mt-2 inline-flex items-center justify-center w-full h-[46px] rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+					class="button-primary w-full mt-2"
 				>
 					{% translate "Log In" %}
 				</button>
@@ -43,7 +43,7 @@
 			<div class="mt-6 text-center">
 				<a
 					href="{% url 'account:registration' %}"
-					class="text-sm text-gray-700 hover:text-amber-700 font-medium"
+					class="text-sm text-body hover:text-warning font-medium"
 				>
 					{% translate "Dont have an account? Register" %}
 				</a>
