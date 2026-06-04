@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% load i18n %} {% block title %}{{ collection.name }} | Laura Melissa Ceramics{% endblock %} {% block content %}
 
-<section class="pt-28 lg:pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white">
+<section class="pt-28 lg:pt-32 pb-20 bg-canvas">
 	{% if collection %}
 	<article
 		class="relative overflow-hidden group min-h-[260px] sm:min-h-[340px] lg:min-h-[420px]"
@@ -59,7 +59,7 @@
 
 {% if collection %}
 <section
-	class="pb-18 lg:pb-22 bg-gradient-to-br from-amber-50/40 via-white to-gray-50"
+	class="pb-18 lg:pb-22 bg-canvas"
 >
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		{% include 'partials/breadcrumbs.html' %}
@@ -67,10 +67,10 @@
 		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
 			{% for product in products %}
 			<article
-				class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl border border-amber-50 hover:border-amber-200 transition-all duration-500 hover:-translate-y-1.5 hover:scale-[1.01] flex flex-col overflow-hidden"
+				class="group bg-surface-card rounded-3xl border border-hairline transition-all duration-500 hover:-translate-y-1.5 hover:scale-[1.01] flex flex-col overflow-hidden"
 			>
 				{% if product.image %}
-				<div class="aspect-[4/3] overflow-hidden bg-gray-50">
+				<div class="aspect-[4/3] overflow-hidden bg-canvas">
 					<img
 						src="{{ product.image.url }}"
 						alt="{{ product.name }}"

@@ -48,7 +48,7 @@
 		<link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
 		{% block extra_head %}{% endblock %}
 	</head>
-	<body class="min-h-screen flex flex-col">
+	<body class="min-h-screen flex flex-col bg-canvas text-ink">
 		{% include 'partials/nav.html' %} {% if messages %}
 		<div
 			class="fixed top-24 left-1/2 transform -translate-x-1/2 z-40 w-full max-w-md sm:max-w-lg"
@@ -58,7 +58,7 @@
 				class="animate-in slide-in-from-top-4 fade-in duration-500 mb-3 last:mb-0 {{ message.tags }} toast-message transition-opacity duration-500"
 			>
 				<div
-					class="bg-white/90 backdrop-blur-md border rounded-2xl shadow-xl p-6 border-opacity-50 flex items-start gap-3"
+					class="bg-canvas/90 backdrop-blur-md border rounded-2xl shadow-xl p-6 border-opacity-50 flex items-start gap-3"
 				>
 					<!-- Icon -->
 					{% if message.tags == 'success' %}
