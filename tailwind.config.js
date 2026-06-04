@@ -40,6 +40,9 @@ module.exports = {
         sm: "6px",
         md: "12px",
       },
+      spacing: {
+        section: "112px",
+      },
       keyframes: {
         "fade-in-up-subtle": {
           "0%": {
