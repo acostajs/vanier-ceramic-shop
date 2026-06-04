@@ -6,7 +6,25 @@ from django.utils.translation import gettext_lazy as _
 User = get_user_model()
 
 
-class RegistrationForm(UserCreationForm):
+class StyledFormMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if isinstance(field.widget, forms.CheckboxInput):
+                field.widget.attrs.update(
+                    {
+                        "class": "rounded text-amber-600 focus:ring-amber-500 h-4 w-4 border-gray-300"
+                    }
+                )
+            else:
+                field.widget.attrs.update(
+                    {
+                        "class": "rounded-xl border border-gray-300 px-4 py-3 w-full text-base focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    }
+                )
+
+
+class RegistrationForm(StyledFormMixin, UserCreationForm):
     class Meta:
         model = User
         fields = [
@@ -19,7 +37,7 @@ class RegistrationForm(UserCreationForm):
         ]
 
 
-class BillingForm(forms.ModelForm):
+class BillingForm(StyledFormMixin, forms.ModelForm):
     class Meta:
         model = User
         fields = [
@@ -31,7 +49,7 @@ class BillingForm(forms.ModelForm):
         ]
 
 
-class ShippingForm(forms.ModelForm):
+class ShippingForm(StyledFormMixin, forms.ModelForm):
     class Meta:
         model = User
         fields = [
@@ -43,6 +61,6 @@ class ShippingForm(forms.ModelForm):
         ]
 
 
-class LoginForm(forms.Form):
+class LoginForm(StyledFormMixin, forms.Form):
     username = forms.CharField(label=_("username"))
     password = forms.CharField(label=_("password"), widget=forms.PasswordInput)
