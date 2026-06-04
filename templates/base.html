@@ -46,6 +46,7 @@
 		/>
 
 		<link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+		{% block extra_head %}{% endblock %}
 	</head>
 	<body class="min-h-screen flex flex-col">
 		{% include 'partials/nav.html' %} {% if messages %}
@@ -195,5 +196,6 @@
 				});
 			});
 		</script>
+		{% block extra_js %}{% endblock %}
 	</body>
 </html>
