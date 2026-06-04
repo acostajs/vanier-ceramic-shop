@@ -5,7 +5,12 @@ module.exports = {
     "./**/templates/**/*.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+        serif: ["Playfair Display", "Georgia", "serif"],
+      },
+    },
   },
   plugins: [],
 }
