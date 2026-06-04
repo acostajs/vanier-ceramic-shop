@@ -1,16 +1,15 @@
 {% extends 'base.html' %} {% load i18n %} {% block title %}{% translate "Home" %} | Laura Melissa Ceramics{% endblock %} {% load static %} {% block content %}
 
 <section
-	class="pt-28 lg:pt-38 pb-20 lg:pb-28 bg-canvas"
+	class="relative pt-28 lg:pt-38 pb-20 lg:pb-28 bg-cover bg-center bg-no-repeat"
+	style="background-image: url('{% static 'images/about-portrait.avif' %}');"
 >
-	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center lg:max-h-[680px]">
-			<div class="lg:col-span-7">
-				<div
-					class="inline-block bg-surface-soft border border-hairline px-3 py-1 rounded-xs text-[13px] font-medium tracking-[0.5px] text-ink mb-8"
-				>
-					{% translate "Handcrafted Ceramics" %}
-				</div>
+	<!-- Oatmeal wash overlay to ensure text contrast and premium feel -->
+	<div class="absolute inset-0 bg-canvas/85 backdrop-blur-[2px]"></div>
+
+	<div class="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8 z-10">
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+			<div class="lg:col-span-8">
 				<h1
 					class="text-5xl lg:text-7xl xl:text-8xl font-serif font-normal text-gray-900 leading-tight mb-8"
 				>
@@ -19,52 +18,39 @@
 					{% translate "Ceramics" %}
 				</h1>
 				<p
-					class="text-xl lg:text-2xl text-gray-600 leading-relaxed mb-12 max-w-lg"
+					class="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl"
 				>
 					{% blocktranslate %} Unique handcrafted ceramics and pottery. Each
 					piece tells a story of earth, fire, and time. {% endblocktranslate %}
 				</p>
-				<div class="flex flex-col sm:flex-row gap-4">
-					<a
-						href="{% url 'shop:shop' %}"
-						class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-all duration-300 hover:bg-[#2b2a28] hover:-translate-y-0.5"
-					>
-						{% translate "Shop Collections" %}
-						<svg
-							class="w-5 h-5 ml-2"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M17 8l4 4m0 0l-4 4m4-4H3"
-							></path>
-						</svg>
-					</a>
-					<a
-						href="{% url 'about' %}"
-						class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm border border-hairline bg-transparent text-ink text-[13px] font-semibold tracking-[1.5px] uppercase transition-all duration-300 hover:bg-surface-soft hover:-translate-y-0.5"
-					>
-						{% translate "Learn More" %}
-					</a>
-				</div>
 			</div>
 
-			<!-- Hero Image -->
-			<div class="lg:col-span-5 relative">
-				<div
-					class="bg-surface-card rounded-md p-8 lg:p-12 border border-hairline overflow-hidden"
+			<div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-5 justify-center items-center lg:items-center w-full">
+				<a
+					href="{% url 'shop:shop' %}"
+					class="inline-flex items-center justify-center h-[54px] px-8 rounded-sm bg-primary text-on-primary text-[14px] font-semibold tracking-[2px] uppercase transition-all duration-300 hover:bg-[#2b2a28] hover:-translate-y-0.5 w-full sm:w-[280px] lg:w-[300px] text-center"
 				>
-					<img
-						src="{% static 'images/home-hero-img.avif' %}"
-						alt="Laura Melissa Ceramics Hero"
-						class="w-full h-[350px] lg:h-[450px] object-cover rounded-md border border-hairline"
-						fetchpriority="high"
-					/>
-				</div>
+					{% translate "Shop Collections" %}
+					<svg
+						class="w-5 h-5 ml-2"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M17 8l4 4m0 0l-4 4m4-4H3"
+						></path>
+					</svg>
+				</a>
+				<a
+					href="{% url 'about' %}"
+					class="inline-flex items-center justify-center h-[54px] px-8 rounded-sm border border-hairline bg-transparent text-ink text-[14px] font-semibold tracking-[2px] uppercase transition-all duration-300 hover:bg-surface-soft hover:-translate-y-0.5 w-full sm:w-[280px] lg:w-[300px] text-center"
+				>
+					{% translate "Learn More" %}
+				</a>
 			</div>
 		</div>
 	</div>
