@@ -29,8 +29,8 @@ module.exports = {
         error: "#a63a3a",
       },
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
-        serif: ["Playfair Display", "Georgia", "serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        serif: ["Inter", "system-ui", "sans-serif"],
       },
       maxWidth: {
         content: "1320px",
