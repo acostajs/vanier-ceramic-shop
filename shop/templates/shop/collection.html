@@ -81,11 +81,46 @@
 				{% endif %}
 
 				<div class="flex-1 p-6 flex flex-col">
-					<h2
-						class="text-2xl font-serif font-normal text-gray-900 mb-3 group-hover:text-amber-700 transition-colors"
-					>
-						{{ product.name }}
-					</h2>
+					<div class="flex justify-between items-start gap-4 mb-2">
+						<h2
+							class="text-2xl font-serif font-normal text-gray-900 group-hover:text-amber-700 transition-colors"
+						>
+							{{ product.name }}
+						</h2>
+						<div class="text-right flex-shrink-0">
+							{% if product.discount_percentage > 0 %}
+							<div class="flex flex-col items-end">
+								<span class="text-lg font-bold text-[#a63a3a]">
+									{{ product.discounted_price_in_dollars }}
+								</span>
+								<span class="text-xs text-gray-400 line-through">
+									{{ product.price_in_dollars }}
+								</span>
+							</div>
+							{% else %}
+							<span class="text-lg font-semibold text-gray-900">
+								{{ product.price_in_dollars }}
+							</span>
+							{% endif %}
+						</div>
+					</div>
+
+					<div class="mb-4">
+						{% if product.quantity == 0 %}
+						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-red-50 text-error">
+							{% translate "Sold Out" %}
+						</span>
+						{% elif product.quantity <= 3 %}
+						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-orange-50 text-warning">
+							{% translate "Low Stock" %} ({{ product.quantity }})
+						</span>
+						{% else %}
+						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-green-50 text-success">
+							{% translate "In Stock" %}
+						</span>
+						{% endif %}
+					</div>
+
 					{% if product.description %}
 					<p
 						class="text-sm sm:text-base text-gray-600 leading-relaxed mb-5 line-clamp-3"
