@@ -9,13 +9,13 @@ class StyledFormMixin:
             if isinstance(field.widget, forms.CheckboxInput):
                 field.widget.attrs.update(
                     {
-                        "class": "rounded text-amber-600 focus:ring-amber-500 h-4 w-4 border-gray-300"
+                        "class": "rounded-xs text-primary focus:ring-primary h-4 w-4 border-hairline bg-canvas"
                     }
                 )
             else:
                 field.widget.attrs.update(
                     {
-                        "class": "rounded-xl border border-gray-300 px-4 py-3 w-full text-base focus:outline-none focus:ring-2 focus:ring-amber-500"
+                        "class": "rounded-sm border border-hairline bg-canvas text-ink px-4 py-3 w-full text-base focus:outline-none focus:ring-1 focus:ring-primary"
                     }
                 )
 
