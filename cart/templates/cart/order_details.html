@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load i18n %} {% block title %}Order #{{ order.id }} | Laura Melissa Ceramics{% endblock %} {% load static %} {% block content %}
 
 <section
-	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-gradient-to-b from-gray-50 via-white to-amber-50/30"
+	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-canvas"
 >
 	<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 		{% include 'partials/breadcrumbs.html' %}
@@ -19,9 +19,9 @@
 
 		<!-- Order summary card -->
 		<div
-			class="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8 space-y-6"
+			class="bg-surface-card rounded-[12px] border border-hairline p-6 sm:p-8 space-y-6"
 		>
-			<div class="grid sm:grid-cols-3 gap-4 border-b border-gray-100 pb-4">
+			<div class="grid sm:grid-cols-3 gap-4 border-b border-hairline pb-4">
 				<div>
 					<p class="text-xs uppercase tracking-wide text-gray-500">
 						{% translate "Payment ID" %}
@@ -50,14 +50,14 @@
 				</div>
 			</div>
 
-			<div class="border-b border-gray-100 pb-4">
+			<div class="border-b border-hairline pb-4">
 				<p class="text-xs uppercase tracking-wide text-gray-500">
 					{% translate "Placed on" %}
 				</p>
 				<p class="mt-1 text-sm text-gray-800">{{ order.created_at }}</p>
 			</div>
 
-		<div class="border-b border-gray-100 pb-4">
+		<div class="border-b border-hairline pb-4">
 			<div class="grid sm:grid-cols-2 gap-6">
 				<!-- Billing -->
 				<div>
@@ -93,14 +93,14 @@
 
 		<!-- Items list -->
 		<div
-			class="mt-10 bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8"
+			class="mt-10 bg-surface-card rounded-[12px] border border-hairline p-6 sm:p-8"
 		>
 			<p class="text-xs uppercase tracking-wide text-gray-500 mb-4">
 				{% translate "Items in this order" %}
 			</p>
 
 			{% if order.items.all %}
-			<div class="divide-y divide-gray-100">
+			<div class="divide-y divide-hairline">
 				{% for item in order.items.all %}
 				<div
 					class="py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
@@ -110,7 +110,7 @@
 						<img
 							src="{{ item.product.image.url }}"
 							alt="{{ item.product.name }}"
-							class="w-16 h-16 rounded-xl object-cover border border-gray-100"
+							class="w-16 h-16 rounded-[6px] object-cover border border-hairline"
 							loading="lazy"
 						/>
 						{% endif %}
