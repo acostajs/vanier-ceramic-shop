@@ -91,18 +91,18 @@
             </a>
           </div>
 
-          <div class="flex items-center space-x-1 ml-2">
+          <div class="flex items-center space-x-3 ml-4">
             <form method="post" action="{% url 'set_language' %}" class="inline">
               {% csrf_token %}
               <input type="hidden" name="language" value="en">
               <input type="hidden" name="next" value="{{ request.get_full_path }}">
               <button
                 type="submit"
-                class="text-xs font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-xs
-                      {% if LANGUAGE_CODE == 'en' %}
-                        bg-primary text-on-primary
+                class="text-xs uppercase tracking-[0.18em] py-0.5 transition-all duration-200
+                      {% if LANGUAGE_CODE|slice:':2' == 'en' %}
+                        text-ink font-semibold border-b border-ink
                       {% else %}
-                        text-muted hover:text-ink hover:bg-surface-soft
+                        text-muted font-normal hover:text-ink
                       {% endif %}"
               >
                 EN
@@ -115,11 +115,11 @@
               <input type="hidden" name="next" value="{{ request.get_full_path }}">
               <button
                 type="submit"
-                class="text-xs font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-xs
-                      {% if LANGUAGE_CODE == 'es' %}
-                        bg-primary text-on-primary
+                class="text-xs uppercase tracking-[0.18em] py-0.5 transition-all duration-200
+                      {% if LANGUAGE_CODE|slice:':2' == 'es' %}
+                        text-ink font-semibold border-b border-ink
                       {% else %}
-                        text-muted hover:text-ink hover:bg-surface-soft
+                        text-muted font-normal hover:text-ink
                       {% endif %}"
               >
                 ES
@@ -132,11 +132,11 @@
               <input type="hidden" name="next" value="{{ request.get_full_path }}">
               <button
                 type="submit"
-                class="text-xs font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-xs
-                      {% if LANGUAGE_CODE == 'fr' %}
-                        bg-primary text-on-primary
+                class="text-xs uppercase tracking-[0.18em] py-0.5 transition-all duration-200
+                      {% if LANGUAGE_CODE|slice:':2' == 'fr' %}
+                        text-ink font-semibold border-b border-ink
                       {% else %}
-                        text-muted hover:text-ink hover:bg-surface-soft
+                        text-muted font-normal hover:text-ink
                       {% endif %}"
               >
                 FR
@@ -220,7 +220,7 @@
               {% csrf_token %}
               <input type="hidden" name="language" value="en">
               <input type="hidden" name="next" value="{{ request.get_full_path }}">
-              <button type="submit" class="text-xs font-semibold px-3 py-1.5 rounded-xs {% if LANGUAGE_CODE == 'en' %} bg-primary text-on-primary {% else %} text-muted hover:bg-surface-soft {% endif %}">
+              <button type="submit" class="text-xs font-semibold px-3 py-1.5 rounded-xs {% if LANGUAGE_CODE|slice:':2' == 'en' %} bg-primary text-on-primary {% else %} text-muted hover:bg-surface-soft {% endif %}">
                 EN
               </button>
             </form>
@@ -228,7 +228,7 @@
               {% csrf_token %}
               <input type="hidden" name="language" value="es">
               <input type="hidden" name="next" value="{{ request.get_full_path }}">
-              <button type="submit" class="text-xs font-semibold px-3 py-1.5 rounded-xs {% if LANGUAGE_CODE == 'es' %} bg-primary text-on-primary {% else %} text-muted hover:bg-surface-soft {% endif %}">
+              <button type="submit" class="text-xs font-semibold px-3 py-1.5 rounded-xs {% if LANGUAGE_CODE|slice:':2' == 'es' %} bg-primary text-on-primary {% else %} text-muted hover:bg-surface-soft {% endif %}">
                 ES
               </button>
             </form>
@@ -236,7 +236,7 @@
               {% csrf_token %}
               <input type="hidden" name="language" value="fr">
               <input type="hidden" name="next" value="{{ request.get_full_path }}">
-              <button type="submit" class="text-xs font-semibold px-3 py-1.5 rounded-xs {% if LANGUAGE_CODE == 'fr' %} bg-primary text-on-primary {% else %} text-muted hover:bg-surface-soft {% endif %}">
+              <button type="submit" class="text-xs font-semibold px-3 py-1.5 rounded-xs {% if LANGUAGE_CODE|slice:':2' == 'fr' %} bg-primary text-on-primary {% else %} text-muted hover:bg-surface-soft {% endif %}">
                 FR
               </button>
             </form>
