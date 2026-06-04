@@ -23,10 +23,30 @@ def stripe_webhook(request):
         or event["type"] == "checkout.session.async_payment_succeeded"
     ):
         stripe_session = event["data"]["object"]
-        order_id = stripe_session["client_reference_id"]
-        try:
-            order = Order.objects.get(id=order_id)
-        except Order.DoesNotExist:
+        session_id = stripe_session.get("id")
+        pi_id = stripe_session.get("payment_intent")
+        order_id = stripe_session.get("client_reference_id")
+
+        order = None
+        if order_id:
+            try:
+                order = Order.objects.get(id=order_id)
+            except (Order.DoesNotExist, ValueError):
+                pass
+
+        if not order and pi_id:
+            try:
+                order = Order.objects.get(payment_id=pi_id)
+            except Order.DoesNotExist:
+                pass
+
+        if not order and session_id:
+            try:
+                order = Order.objects.get(payment_id=session_id)
+            except Order.DoesNotExist:
+                pass
+
+        if not order:
             return HttpResponse(status=404)
 
         if not order.account:
@@ -36,7 +56,7 @@ def stripe_webhook(request):
         order.fulfill(
             name=f"{account.first_name} {account.last_name}".strip(),
             email=account.email,
-            payment_id=stripe_session["payment_intent"],
+            payment_id=pi_id,
             total_cents=order.total_cents,
             billing_address_line1=account.billing_address_line1,
             billing_address_line2=account.billing_address_line2,
