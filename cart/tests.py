@@ -191,7 +191,13 @@ class OrderCreateFromCartTests(BaseCartSetupMixin, TestCase):
         request.user = self.account
 
         mock_stripe.return_value = type(
-            "DummySession", (), {"url": "https://stripe.test"}
+            "DummySession",
+            (),
+            {
+                "url": "https://stripe.test",
+                "id": "cs_test_123",
+                "payment_intent": "pi_test_123",
+            },
         )()
 
         session, order = Order.create_from_cart(request, self.cart, self.account)
@@ -204,6 +210,7 @@ class OrderCreateFromCartTests(BaseCartSetupMixin, TestCase):
         item = order.items.get(product=self.product1)
         self.assertEqual(item.quantity, 2)
         self.assertEqual(item.unit_price_cents, self.product1.price_in_cents)
+        self.assertEqual(order.payment_id, "pi_test_123")
         self.assertTrue(mock_stripe.called)
 
 
@@ -258,3 +265,115 @@ class CartViewTests(BaseCartSetupMixin, TestCase):
         self.client.login(username="juan", password="testpass123")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
+
+
+class StripeWebhookTests(BaseCartSetupMixin, TestCase):
+    """Test Stripe webhook handling."""
+
+    def setUp(self):
+        super().setUp()
+        import os
+
+        self.old_webhook_secret = os.environ.get("STRIPE_WEBHOOK_SECRET")
+        os.environ["STRIPE_WEBHOOK_SECRET"] = "test_webhook_secret"
+
+    def tearDown(self):
+        import os
+
+        if self.old_webhook_secret is not None:
+            os.environ["STRIPE_WEBHOOK_SECRET"] = self.old_webhook_secret
+        else:
+            del os.environ["STRIPE_WEBHOOK_SECRET"]
+        super().tearDown()
+
+    @patch("cart.webhooks.stripe.Webhook.construct_event")
+    def test_stripe_webhook_checkout_session_completed(self, mock_construct):
+        from django.urls import reverse
+
+        order = Order.objects.create(
+            account=self.account,
+            total_cents=1000,
+            payment_id="pi_test_123",
+        )
+        mock_construct.return_value = {
+            "type": "checkout.session.completed",
+            "data": {
+                "object": {
+                    "client_reference_id": str(order.id),
+                    "payment_intent": "pi_test_123",
+                    "id": "cs_test_123",
+                }
+            },
+        }
+
+        response = self.client.post(
+            reverse("cart:stripe_webhook"),
+            data="dummy payload",
+            content_type="application/json",
+            HTTP_STRIPE_SIGNATURE="dummy signature",
+        )
+        self.assertEqual(response.status_code, 200)
+        order.refresh_from_db()
+        self.assertEqual(order.status, Order.STATUS_PAID)
+        self.assertEqual(order.payment_id, "pi_test_123")
+
+    @patch("cart.webhooks.stripe.Webhook.construct_event")
+    def test_stripe_webhook_checkout_session_completed_lookup_by_payment_id(
+        self, mock_construct
+    ):
+        from django.urls import reverse
+
+        # Create an order where client_reference_id might be missing but payment_id matches
+        order = Order.objects.create(
+            account=self.account,
+            total_cents=1000,
+            payment_id="pi_test_123",
+        )
+        mock_construct.return_value = {
+            "type": "checkout.session.completed",
+            "data": {
+                "object": {
+                    "client_reference_id": None,
+                    "payment_intent": "pi_test_123",
+                    "id": "cs_test_123",
+                }
+            },
+        }
+
+        response = self.client.post(
+            reverse("cart:stripe_webhook"),
+            data="dummy payload",
+            content_type="application/json",
+            HTTP_STRIPE_SIGNATURE="dummy signature",
+        )
+        self.assertEqual(response.status_code, 200)
+        order.refresh_from_db()
+        self.assertEqual(order.status, Order.STATUS_PAID)
+
+    @patch("cart.webhooks.stripe.Webhook.construct_event")
+    def test_stripe_webhook_payment_intent_failed(self, mock_construct):
+        from django.urls import reverse
+
+        order = Order.objects.create(
+            account=self.account,
+            total_cents=1000,
+            payment_id="pi_test_123",
+        )
+        mock_construct.return_value = {
+            "type": "payment_intent.payment_failed",
+            "data": {
+                "object": {
+                    "id": "pi_test_123",
+                }
+            },
+        }
+
+        response = self.client.post(
+            reverse("cart:stripe_webhook"),
+            data="dummy payload",
+            content_type="application/json",
+            HTTP_STRIPE_SIGNATURE="dummy signature",
+        )
+        self.assertEqual(response.status_code, 200)
+        order.refresh_from_db()
+        self.assertEqual(order.status, Order.STATUS_CANCELLED)
