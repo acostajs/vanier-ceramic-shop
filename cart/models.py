@@ -160,6 +160,10 @@ class Order(models.Model):
         }
 
         checkout_session = stripe.checkout.Session.create(**session_args)
+        order.payment_id = getattr(checkout_session, "payment_intent", None) or getattr(
+            checkout_session, "id", None
+        )
+        order.save()
         return checkout_session, order
 
     @property
