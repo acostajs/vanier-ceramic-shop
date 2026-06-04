@@ -205,3 +205,56 @@ class OrderCreateFromCartTests(BaseCartSetupMixin, TestCase):
         self.assertEqual(item.quantity, 2)
         self.assertEqual(item.unit_price_cents, self.product1.price_in_cents)
         self.assertTrue(mock_stripe.called)
+
+
+class CartViewTests(BaseCartSetupMixin, TestCase):
+    """Test login protection on cart views."""
+
+    def test_update_cart_checkout_requires_login(self):
+        from django.urls import reverse
+
+        # Anonymous request redirects to login
+        url = reverse("cart:update_cart_checkout", args=[self.product1.id])
+        response = self.client.post(url)
+        # Check redirect. Because of i18n_patterns, the prefix might be added
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("login", response.url)
+
+        # Logged-in request works (redirects to checkout after update)
+        self.client.login(username="juan", password="testpass123")
+        response = self.client.post(url, {"quantity": 3})
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(
+            response, reverse("cart:checkout"), fetch_redirect_response=False
+        )
+
+    def test_remove_from_cart_checkout_requires_login(self):
+        from django.urls import reverse
+
+        # Anonymous request redirects to login
+        url = reverse("cart:remove_from_cart_checkout", args=[self.product1.id])
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("login", response.url)
+
+        # Logged-in request works
+        self.client.login(username="juan", password="testpass123")
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(
+            response, reverse("cart:checkout"), fetch_redirect_response=False
+        )
+
+    def test_success_requires_login(self):
+        from django.urls import reverse
+
+        # Anonymous request redirects to login
+        url = reverse("cart:success")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("login", response.url)
+
+        # Logged-in request works
+        self.client.login(username="juan", password="testpass123")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
