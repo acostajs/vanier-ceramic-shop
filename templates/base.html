@@ -159,5 +159,31 @@
 		<main class="flex-1 pb-32">{% block content %}{% endblock %}</main>
 
 		{% include 'partials/footer.html' %}
+
+		<!-- Scroll Reveal Script -->
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				var revealElements = document.querySelectorAll(".reveal");
+
+				var observer = new IntersectionObserver(
+					function (entries, observer) {
+						entries.forEach(function (entry) {
+							if (entry.isIntersecting) {
+								entry.target.classList.add("revealed");
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{
+						threshold: 0.1,
+						rootMargin: "0px 0px -50px 0px",
+					}
+				);
+
+				revealElements.forEach(function (el) {
+					observer.observe(el);
+				});
+			});
+		</script>
 	</body>
 </html>
