@@ -5,11 +5,11 @@
 >
 	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 lg:mb-28">
 		<h1
-			class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-gray-900 mb-4"
+			class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-ink mb-4"
 		>
 			{% translate "My Collections" %}
 		</h1>
-		<p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+		<p class="text-lg sm:text-xl text-muted max-w-3xl mx-auto">
 			{% blocktranslate %} Explore the universe of different shapes and colors.
 			Each collection represents a different phase of my passion for clay.
 			{%endblocktranslate %}
@@ -36,13 +36,13 @@
 
 				<div class="flex-1 p-6 flex flex-col">
 					<h2
-						class="text-2xl font-serif font-normal text-gray-900 mb-3 group-hover:text-amber-700 transition-colors"
+						class="text-2xl font-serif font-normal text-ink mb-3 group-hover:text-brand-terracotta transition-colors"
 					>
 						{{ collection.name }}
 					</h2>
 					{% if collection.description %}
 					<p
-						class="text-sm sm:text-base text-gray-600 leading-relaxed mb-5 line-clamp-3"
+						class="text-sm sm:text-base text-muted leading-relaxed mb-5 line-clamp-3"
 					>
 						{{ collection.description }}
 					</p>
@@ -50,7 +50,7 @@
 					<div class="mt-auto">
 						<a
 							href="{% url 'shop:collection' collection.id %}"
-							class="inline-flex items-center text-sm sm:text-base font-semibold text-amber-700 hover:text-amber-800"
+							class="inline-flex items-center text-sm sm:text-base font-semibold text-brand-terracotta hover:text-brand-terracotta/90"
 						>
 							{% translate "See Products." %}
 							<svg
@@ -74,15 +74,15 @@
 		</div>
 		{% else %}
 		<div class="text-center py-32 reveal">
-			<div class="w-32 h-32 bg-gray-100 rounded-md flex items-center justify-center mx-auto mb-8">
-				<svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<div class="w-32 h-32 bg-hairline rounded-md flex items-center justify-center mx-auto mb-8">
+				<svg class="w-16 h-16 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
 				</svg>
 			</div>
-			<p class="text-2xl text-gray-500 font-medium">
+			<p class="text-2xl text-muted font-medium">
 				{% translate "No collections registered" %}
 			</p>
-			<a href="{% url 'home' %}" class="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white text-base font-semibold rounded-md hover:bg-gray-800 transition-colors mt-6">
+			<a href="{% url 'home' %}" class="button-primary mt-6">
 				{% translate "Back to Home" %}
 			</a>
 		</div>

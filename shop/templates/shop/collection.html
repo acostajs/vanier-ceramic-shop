@@ -26,7 +26,7 @@
 					class="w-full sm:w-1/2 pr-0 sm:pr-8 lg:pr-12 flex flex-col justify-center text-white space-y-4 group-hover:opacity-0 group-hover:-translate-x-4 transition-all duration-500"
 				>
 					<p
-						class="text-sm font-semibold tracking-[0.3em] uppercase text-amber-300 mb-3"
+						class="text-sm font-semibold tracking-[0.3em] uppercase text-brand-ochre mb-3"
 					>
 						{% translate "Collection" %}
 					</p>
@@ -36,7 +36,7 @@
 						{{ collection.name }}
 					</h1>
 					{% if collection.year %}
-					<p class="text-sm text-amber-100/80">{{ collection.year }}</p>
+					<p class="text-sm text-brand-sand">{{ collection.year }}</p>
 					{% endif %}
 				</div>
 
@@ -45,7 +45,7 @@
 					class="w-full sm:w-1/2 pl-0 sm:pl-8 lg:pl-12 mt-8 sm:mt-0 flex items-center text-white opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500"
 				>
 					<p
-						class="text-sm sm:text-base lg:text-lg leading-relaxed max-w-md text-amber-50"
+						class="text-sm sm:text-base lg:text-lg leading-relaxed max-w-md text-on-primary"
 					>
 						{{ collection.description }}
 					</p>
@@ -83,7 +83,7 @@
 				<div class="flex-1 p-6 flex flex-col">
 					<div class="flex justify-between items-start gap-4 mb-2">
 						<h2
-							class="text-2xl font-serif font-normal text-gray-900 group-hover:text-amber-700 transition-colors"
+							class="text-2xl font-serif font-normal text-ink group-hover:text-brand-terracotta transition-colors"
 						>
 							{{ product.name }}
 						</h2>
@@ -93,12 +93,12 @@
 								<span class="text-lg font-bold text-[#a63a3a]">
 									{{ product.discounted_price_in_dollars }}
 								</span>
-								<span class="text-xs text-gray-400 line-through">
+								<span class="text-xs text-muted line-through">
 									{{ product.price_in_dollars }}
 								</span>
 							</div>
 							{% else %}
-							<span class="text-lg font-semibold text-gray-900">
+							<span class="text-lg font-semibold text-ink">
 								{{ product.price_in_dollars }}
 							</span>
 							{% endif %}
@@ -123,7 +123,7 @@
 
 					{% if product.description %}
 					<p
-						class="text-sm sm:text-base text-gray-600 leading-relaxed mb-5 line-clamp-3"
+						class="text-sm sm:text-base text-muted leading-relaxed mb-5 line-clamp-3"
 					>
 						{{ product.description }}
 					</p>
@@ -131,7 +131,7 @@
 					<div class="mt-auto">
 						<a
 							href="{% url 'shop:product' product.id %}"
-							class="inline-flex items-center text-sm sm:text-base font-semibold text-amber-700 hover:text-amber-800"
+							class="inline-flex items-center text-sm sm:text-base font-semibold text-brand-terracotta hover:text-brand-terracotta/90"
 						>
 							{% translate "See Details." %}
 							<svg
@@ -155,15 +155,15 @@
 		</div>
 		{% else %}
 		<div class="text-center py-32 reveal">
-			<div class="w-32 h-32 bg-gray-100 rounded-md flex items-center justify-center mx-auto mb-8">
-				<svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<div class="w-32 h-32 bg-hairline rounded-md flex items-center justify-center mx-auto mb-8">
+				<svg class="w-16 h-16 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
 				</svg>
 			</div>
-			<p class="text-2xl text-gray-500 font-medium">
+			<p class="text-2xl text-muted font-medium">
 				{% translate "No products registered in this category." %}
 			</p>
-			<a href="{% url 'shop:shop' %}" class="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white text-base font-semibold rounded-md hover:bg-gray-800 transition-colors mt-6">
+			<a href="{% url 'shop:shop' %}" class="button-primary mt-6">
 				{% translate "Explore Other Collections" %}
 			</a>
 		</div>

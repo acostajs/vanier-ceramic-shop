@@ -1,70 +1,70 @@
 {% load i18n %}
 <nav aria-label="{% translate 'Breadcrumb' %}" class="py-4 mb-6">
-  <ol class="flex items-center space-x-2 text-sm text-gray-500 font-medium">
+  <ol class="flex items-center space-x-2 text-sm text-muted font-medium">
     <li>
-      <a href="{% url 'home' %}" class="hover:text-amber-800 hover:underline transition-colors">{% translate "Home" %}</a>
+      <a href="{% url 'home' %}" class="hover:text-brand-terracotta hover:underline transition-colors">{% translate "Home" %}</a>
     </li>
     
     {% if product %}
       <li>
-        <svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-hairline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
         </svg>
       </li>
       <li>
-        <a href="{% url 'shop:shop' %}" class="hover:text-amber-800 hover:underline transition-colors">{% translate "Collections" %}</a>
+        <a href="{% url 'shop:shop' %}" class="hover:text-brand-terracotta hover:underline transition-colors">{% translate "Collections" %}</a>
       </li>
       {% if product.collection %}
         <li>
-          <svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 text-hairline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
           </svg>
         </li>
         <li>
-          <a href="{% url 'shop:collection' product.collection.id %}" class="hover:text-amber-800 hover:underline transition-colors">{{ product.collection.name }}</a>
+          <a href="{% url 'shop:collection' product.collection.id %}" class="hover:text-brand-terracotta hover:underline transition-colors">{{ product.collection.name }}</a>
         </li>
       {% endif %}
       <li>
-        <svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-hairline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
         </svg>
       </li>
       <li>
-        <span class="text-gray-900" aria-current="page">{{ product.name }}</span>
+        <span class="text-ink" aria-current="page">{{ product.name }}</span>
       </li>
     {% elif collection %}
       <li>
-        <svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-hairline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
         </svg>
       </li>
       <li>
-        <a href="{% url 'shop:shop' %}" class="hover:text-amber-800 hover:underline transition-colors">{% translate "Collections" %}</a>
+        <a href="{% url 'shop:shop' %}" class="hover:text-brand-terracotta hover:underline transition-colors">{% translate "Collections" %}</a>
       </li>
       <li>
-        <svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-hairline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
         </svg>
       </li>
       <li>
-        <span class="text-gray-900" aria-current="page">{{ collection.name }}</span>
+        <span class="text-ink" aria-current="page">{{ collection.name }}</span>
       </li>
     {% elif order %}
       <li>
-        <svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-hairline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
         </svg>
       </li>
       <li>
-        <a href="{% url 'account:account' %}" class="hover:text-amber-800 hover:underline transition-colors">{% translate "Account" %}</a>
+        <a href="{% url 'account:account' %}" class="hover:text-brand-terracotta hover:underline transition-colors">{% translate "Account" %}</a>
       </li>
       <li>
-        <svg class="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-hairline flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
         </svg>
       </li>
       <li>
-        <span class="text-gray-900" aria-current="page">{% translate "Order" %} #{{ order.id }}</span>
+        <span class="text-ink" aria-current="page">{% translate "Order" %} #{{ order.id }}</span>
       </li>
     {% endif %}
   </ol>
