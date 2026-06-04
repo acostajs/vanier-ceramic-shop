@@ -17,7 +17,7 @@
 
 		<div class="grid lg:grid-cols-3 gap-8 items-start">
 			<div
-				class="lg:col-span-1 bg-surface-card rounded-[12px] border border-hairline p-6 sm:p-7 space-y-4"
+				class="lg:col-span-1 bg-surface-card rounded-md border border-hairline p-6 sm:p-7 space-y-4"
 			>
 				<h2 class="text-lg font-serif font-medium text-gray-900 mb-2">
 					{% translate "Profile" %}
@@ -61,7 +61,7 @@
 			</div>
 
 			<div
-				class="lg:col-span-2 bg-surface-card rounded-[12px] border border-hairline p-6 sm:p-7"
+				class="lg:col-span-2 bg-surface-card rounded-md border border-hairline p-6 sm:p-7"
 			>
 				<h2
 					class="text-lg sm:text-xl font-serif font-medium text-gray-900 mb-4"
@@ -73,7 +73,7 @@
 				<ul class="space-y-4">
 					{% for order in orders %}
 					<li
-						class="border border-hairline rounded-[6px] p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+						class="border border-hairline rounded-sm p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
 					>
 						<div>
 							<p class="text-sm text-gray-500">
@@ -98,7 +98,7 @@
 						<div class="sm:text-right">
 							<a
 								href="{% url 'cart:order_details' order.id %}"
-								class="inline-flex items-center px-4 py-2 rounded-[6px] border border-hairline text-xs sm:text-sm font-semibold text-gray-900 bg-canvas hover:bg-surface-soft transition-colors"
+								class="inline-flex items-center px-4 py-2 rounded-sm border border-hairline text-xs sm:text-sm font-semibold text-gray-900 bg-canvas hover:bg-surface-soft transition-colors"
 							>
 								{% translate "View Details" %}
 							</a>
