@@ -29,7 +29,7 @@ module.exports = {
         error: "#a63a3a",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
         serif: ["Playfair Display", "Georgia", "serif"],
       },
       keyframes: {
