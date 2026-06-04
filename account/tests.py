@@ -89,3 +89,57 @@ class WishlistModelTests(TestCase):
         self.assertEqual(self.wishlist.account, self.account)
         with self.assertRaises(Exception):
             Wishlist.objects.create(account=self.account)
+
+
+class WishlistContextProcessorTests(TestCase):
+    """To Test Wishlist Context Processor."""
+
+    def setUp(self):
+        self.account = Account.objects.create_user(
+            username="juan",
+            email="juan@example.com",
+            password="testpass123",
+        )
+        self.wishlist = Wishlist.objects.create(account=self.account)
+        self.collection = Collection.objects.create(name="Default collection")
+        self.product = Product.objects.create(
+            name="Mug",
+            price_in_cents=1500,
+            collection=self.collection,
+        )
+
+    def test_anonymous_user_wishlist_count(self):
+        from django.test import RequestFactory
+        from account.context_processors import wishlist_info
+        from django.contrib.auth.models import AnonymousUser
+
+        factory = RequestFactory()
+        request = factory.get("/")
+        request.user = AnonymousUser()
+
+        context = wishlist_info(request)
+        self.assertEqual(context["wishlist_count"], 0)
+
+    def test_authenticated_user_empty_wishlist(self):
+        from django.test import RequestFactory
+        from account.context_processors import wishlist_info
+
+        factory = RequestFactory()
+        request = factory.get("/")
+        request.user = self.account
+
+        context = wishlist_info(request)
+        self.assertEqual(context["wishlist_count"], 0)
+
+    def test_authenticated_user_with_wishlist_items(self):
+        from django.test import RequestFactory
+        from account.context_processors import wishlist_info
+
+        self.wishlist.add(self.product)
+
+        factory = RequestFactory()
+        request = factory.get("/")
+        request.user = self.account
+
+        context = wishlist_info(request)
+        self.assertEqual(context["wishlist_count"], 1)
