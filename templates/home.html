@@ -74,7 +74,7 @@
 
 <section class="py-24 lg:py-32 bg-white">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="text-center mb-20">
+		<div class="text-center mb-20 reveal">
 			<h2 class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6">
 				{% translate "Recent Work" %}
 			</h2>
@@ -90,7 +90,7 @@
 			{% for collection in collections %}
 			<a href="{% url 'shop:collection' collection.id %}" class="group">
 				<article
-					class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02]"
+					class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal"
 				>
 					<div
 						class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-50 to-amber-50 group-hover:scale-110 transition-transform duration-700 relative"
@@ -155,7 +155,7 @@
 <section class="py-24 lg:py-32 bg-gradient-to-t from-gray-50 via-white">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-			<div>
+			<div class="reveal">
 				<h2
 					class="text-4xl lg:text-5xl font-serif font-bold text-gray-900 mb-6 leading-tight"
 				>
@@ -191,7 +191,7 @@
 			</div>
 
 			<!-- About Image -->
-			<div class="relative">
+			<div class="relative reveal">
 				<div
 					class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-12 lg:p-16 shadow-2xl border border-amber-100 overflow-hidden"
 				>
@@ -207,7 +207,7 @@
 </section>
 
 <section class="py-24 lg:py-32">
-	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+	<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
 		<h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6">
 			{% translate "Let's talk" %}
 		</h2>
