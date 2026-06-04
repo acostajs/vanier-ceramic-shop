@@ -18,12 +18,12 @@
 			<div>
 				{% if product.image %}
 				<div
-					class="bg-surface-card rounded-md p-6 lg:p-8 shadow-2xl border border-amber-100 overflow-hidden"
+					class="bg-surface-card rounded-md p-6 lg:p-8 border border-hairline overflow-hidden"
 				>
 					<img
 						src="{{ product.image.url }}"
 						alt="{{ product.name }}"
-						class="w-full h-80 sm:h-96 lg:h-[420px] object-cover rounded-md shadow-xl"
+						class="w-full h-80 sm:h-96 lg:h-[420px] object-cover rounded-md border border-hairline"
 						fetchpriority="high"
 					/>
 				</div>
