@@ -16,7 +16,7 @@ def contact(request):
 def contact_submit(request):
     form = ContactForm(request.POST)
     if not form.is_valid():
-        return redirect("contact:contact")
+        return render(request, "contact/contact_form.html", {"form": form})
 
     form.save()
     data = form.cleaned_data
