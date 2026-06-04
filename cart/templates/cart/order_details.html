@@ -19,7 +19,7 @@
 
 		<!-- Order summary card -->
 		<div
-			class="bg-surface-card rounded-[12px] border border-hairline p-6 sm:p-8 space-y-6"
+			class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8 space-y-6"
 		>
 			<div class="grid sm:grid-cols-3 gap-4 border-b border-hairline pb-4">
 				<div>
@@ -93,7 +93,7 @@
 
 		<!-- Items list -->
 		<div
-			class="mt-10 bg-surface-card rounded-[12px] border border-hairline p-6 sm:p-8"
+			class="mt-10 bg-surface-card rounded-md border border-hairline p-6 sm:p-8"
 		>
 			<p class="text-xs uppercase tracking-wide text-gray-500 mb-4">
 				{% translate "Items in this order" %}
@@ -110,7 +110,7 @@
 						<img
 							src="{{ item.product.image.url }}"
 							alt="{{ item.product.name }}"
-							class="w-16 h-16 rounded-[6px] object-cover border border-hairline"
+							class="w-16 h-16 rounded-sm object-cover border border-hairline"
 							loading="lazy"
 						/>
 						{% endif %}

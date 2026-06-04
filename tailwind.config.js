@@ -35,6 +35,11 @@ module.exports = {
       maxWidth: {
         content: "1320px",
       },
+      borderRadius: {
+        xs: "4px",
+        sm: "6px",
+        md: "12px",
+      },
       keyframes: {
         "fade-in-up-subtle": {
           "0%": {

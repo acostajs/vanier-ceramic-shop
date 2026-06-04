@@ -18,12 +18,12 @@
 			<div>
 				{% if product.image %}
 				<div
-					class="bg-surface-card rounded-3xl p-6 lg:p-8 shadow-2xl border border-amber-100 overflow-hidden"
+					class="bg-surface-card rounded-md p-6 lg:p-8 shadow-2xl border border-amber-100 overflow-hidden"
 				>
 					<img
 						src="{{ product.image.url }}"
 						alt="{{ product.name }}"
-						class="w-full h-80 sm:h-96 lg:h-[420px] object-cover rounded-2xl shadow-xl"
+						class="w-full h-80 sm:h-96 lg:h-[420px] object-cover rounded-md shadow-xl"
 						fetchpriority="high"
 					/>
 				</div>
@@ -32,7 +32,7 @@
 
 			<div>
 				<article
-					class="bg-surface-card rounded-3xl border border-hairline p-6 sm:p-8 space-y-5"
+					class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8 space-y-5"
 				>
 					<h2 class="text-xs font-semibold tracking-widest text-amber-800 uppercase">
 						{% translate "Product Details" %}
@@ -96,11 +96,11 @@
 									value="1"
 									min="1"
 									max="{{ product.quantity }}"
-									class="w-20 rounded-xl border border-gray-300 px-3 py-2 text-center text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+									class="w-20 rounded-sm border border-gray-300 px-3 py-2 text-center text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
 								/>
 								<button
 									type="submit"
-									class="inline-flex items-center justify-center h-[46px] px-6 rounded-[6px] bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+									class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
 								>
 									{% translate "Add to Cart" %}
 								</button>
@@ -113,7 +113,7 @@
 						<div class="space-y-3">
 							<button
 								disabled
-								class="w-full inline-flex items-center justify-center h-[46px] px-6 rounded-[6px] bg-surface-soft text-muted text-[13px] font-semibold tracking-[1.5px] uppercase cursor-not-allowed"
+								class="w-full inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-surface-soft text-muted text-[13px] font-semibold tracking-[1.5px] uppercase cursor-not-allowed"
 							>
 								{% translate "Sold Out" %}
 							</button>
@@ -131,7 +131,7 @@
 							{% csrf_token %}
 							<button
 								type="submit"
-								class="inline-flex items-center justify-center px-5 py-2.5 rounded-2xl border border-amber-200 text-sm sm:text-base font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 hover:border-amber-300 transition-all duration-300"
+								class="inline-flex items-center justify-center px-5 py-2.5 rounded-md border border-amber-200 text-sm sm:text-base font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 hover:border-amber-300 transition-all duration-300"
 							>
 								{% translate "Add to Wishlist" %}
 								<svg

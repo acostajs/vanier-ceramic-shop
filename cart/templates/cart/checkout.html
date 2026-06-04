@@ -12,7 +12,7 @@
 
 		{% if cart_items %}
 		<div
-			class="bg-surface-card rounded-[12px] border border-hairline p-6 sm:p-8 space-y-8"
+			class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8 space-y-8"
 		>
 			<div>
 				<h2
@@ -36,14 +36,14 @@
 						</thead>
 						<tbody>
 							{% for item in cart_items %}
-							<tr class="bg-canvas rounded-[6px] border border-hairline">
+							<tr class="bg-canvas rounded-sm border border-hairline">
 								<td class="py-3 pr-4 align-top">
 									<a
 										href="{% url 'shop:product' item.product.id %}"
 										class="flex items-center gap-3 text-sm sm:text-base text-gray-900 hover:text-amber-700"
 									>
 										<div
-											class="w-14 h-14 rounded-[6px] overflow-hidden bg-gray-100 flex-shrink-0"
+											class="w-14 h-14 rounded-sm overflow-hidden bg-gray-100 flex-shrink-0"
 										>
 											<img
 												src="{{ item.product.image.url }}"
@@ -75,11 +75,11 @@
 											value="{{ item.quantity }}"
 											min="1"
 											max="{{ item.product.quantity }}"
-											class="w-16 rounded-[6px] border border-hairline px-2 py-1 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+											class="w-16 rounded-sm border border-hairline px-2 py-1 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
 										/>
 										<button
 											type="submit"
-											class="px-3 py-1.5 rounded-[6px] border border-hairline text-xs sm:text-sm font-semibold text-gray-700 bg-canvas hover:bg-surface-soft transition-colors"
+											class="px-3 py-1.5 rounded-sm border border-hairline text-xs sm:text-sm font-semibold text-gray-700 bg-canvas hover:bg-surface-soft transition-colors"
 										>
 											{% translate "Update" %}
 										</button>
@@ -101,7 +101,7 @@
 										{% csrf_token %}
 										<button
 											type="submit"
-											class="px-3 py-1.5 rounded-[6px] bg-red-50 text-xs sm:text-sm font-semibold text-red-600 hover:bg-red-100 transition-colors"
+											class="px-3 py-1.5 rounded-sm bg-red-50 text-xs sm:text-sm font-semibold text-red-600 hover:bg-red-100 transition-colors"
 										>
 											{% translate "Remove" %}
 										</button>
@@ -142,7 +142,7 @@
 					{% csrf_token %}
 					<button
 						type="submit"
-						class="inline-flex items-center justify-center h-[46px] px-6 rounded-[6px] bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+						class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
 					>
 						{% translate "Proceed to Payment" %}
 					</button>
@@ -151,14 +151,14 @@
 		</div>
 		{% else %}
 		<div
-			class="bg-surface-card rounded-[12px] border border-hairline p-8 text-center"
+			class="bg-surface-card rounded-md border border-hairline p-8 text-center"
 		>
 			<p class="text-lg text-gray-600 mb-4">
 				{% translate "Your cart is empty." %}
 			</p>
 			<a
 				href="{% url 'shop:shop' %}"
-				class="inline-flex items-center justify-center h-[46px] px-6 rounded-[6px] bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+				class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
 			>
 				{% translate "Continue Shopping" %}
 			</a>
