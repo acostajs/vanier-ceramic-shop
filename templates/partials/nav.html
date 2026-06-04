@@ -85,58 +85,60 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.27 7.27c.883.883 2.317.883 3.2 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
             </a>
+          </div>
 
-        <div class="flex items-center space-x-1 ml-2">
-          <form method="post" action="{% url 'set_language' %}" class="inline">
-            {% csrf_token %}
-            <input type="hidden" name="language" value="en">
-            <input type="hidden" name="next" value="{{ request.get_full_path }}">
-            <button
-              type="submit"
-              class="text-xs font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-full
-                    {% if LANGUAGE_CODE == 'en' %}
-                      bg-gray-900 text-white
-                    {% else %}
-                      text-gray-500 hover:text-gray-900 hover:bg-gray-100
-                    {% endif %}"
-            >
-              EN
-            </button>
-          </form>
+          <div class="flex items-center space-x-1 ml-2">
+            <form method="post" action="{% url 'set_language' %}" class="inline">
+              {% csrf_token %}
+              <input type="hidden" name="language" value="en">
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <button
+                type="submit"
+                class="text-xs font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-full
+                      {% if LANGUAGE_CODE == 'en' %}
+                        bg-gray-900 text-white
+                      {% else %}
+                        text-gray-500 hover:text-gray-900 hover:bg-gray-100
+                      {% endif %}"
+              >
+                EN
+              </button>
+            </form>
 
-          <form method="post" action="{% url 'set_language' %}" class="inline">
-            {% csrf_token %}
-            <input type="hidden" name="language" value="es">
-            <input type="hidden" name="next" value="{{ request.get_full_path }}">
-            <button
-              type="submit"
-              class="text-xs font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-full
-                    {% if LANGUAGE_CODE == 'es' %}
-                      bg-gray-900 text-white
-                    {% else %}
-                      text-gray-500 hover:text-gray-900 hover:bg-gray-100
-                    {% endif %}"
-            >
-              ES
-            </button>
-          </form>
+            <form method="post" action="{% url 'set_language' %}" class="inline">
+              {% csrf_token %}
+              <input type="hidden" name="language" value="es">
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <button
+                type="submit"
+                class="text-xs font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-full
+                      {% if LANGUAGE_CODE == 'es' %}
+                        bg-gray-900 text-white
+                      {% else %}
+                        text-gray-500 hover:text-gray-900 hover:bg-gray-100
+                      {% endif %}"
+              >
+                ES
+              </button>
+            </form>
 
-          <form method="post" action="{% url 'set_language' %}" class="inline">
-            {% csrf_token %}
-            <input type="hidden" name="language" value="fr">
-            <input type="hidden" name="next" value="{{ request.get_full_path }}">
-            <button
-              type="submit"
-              class="text-xs font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-full
-                    {% if LANGUAGE_CODE == 'fr' %}
-                      bg-gray-900 text-white
-                    {% else %}
-                      text-gray-500 hover:text-gray-900 hover:bg-gray-100
-                    {% endif %}"
-            >
-              FR
-            </button>
-          </form>
+            <form method="post" action="{% url 'set_language' %}" class="inline">
+              {% csrf_token %}
+              <input type="hidden" name="language" value="fr">
+              <input type="hidden" name="next" value="{{ request.get_full_path }}">
+              <button
+                type="submit"
+                class="text-xs font-semibold uppercase tracking-[0.18em] px-2 py-1 rounded-full
+                      {% if LANGUAGE_CODE == 'fr' %}
+                        bg-gray-900 text-white
+                      {% else %}
+                        text-gray-500 hover:text-gray-900 hover:bg-gray-100
+                      {% endif %}"
+              >
+                FR
+              </button>
+            </form>
+          </div>
         </div>
 
         <button class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
