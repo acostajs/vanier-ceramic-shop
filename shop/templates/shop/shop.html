@@ -5,7 +5,7 @@
 >
 	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 lg:mb-28">
 		<h1
-			class="text-4xl sm:text-5xl lg:text-6xl font-serif font-normal text-ink mb-4"
+			class="text-4xl sm:text-5xl lg:text-6xl  font-normal text-ink mb-4"
 		>
 			{% translate "My Collections" %}
 		</h1>
@@ -36,7 +36,7 @@
 
 				<div class="flex-1 p-6 flex flex-col">
 					<h2
-						class="text-2xl font-serif font-normal text-ink mb-3 group-hover:text-brand-terracotta transition-colors"
+						class="text-2xl  font-normal text-ink mb-3 group-hover:text-brand-terracotta transition-colors"
 					>
 						{{ collection.name }}
 					</h2>
@@ -50,7 +50,7 @@
 					<div class="mt-auto">
 						<a
 							href="{% url 'shop:collection' collection.id %}"
-							class="inline-flex items-center text-sm sm:text-base font-semibold text-brand-terracotta hover:text-brand-terracotta/90"
+							class="inline-flex items-center text-sm sm:text-base font-normal text-brand-terracotta hover:text-brand-terracotta/90"
 						>
 							{% translate "See Products." %}
 							<svg
@@ -79,7 +79,7 @@
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
 				</svg>
 			</div>
-			<p class="text-2xl text-muted font-medium">
+			<p class="text-2xl text-muted font-normal">
 				{% translate "No collections registered" %}
 			</p>
 			<a href="{% url 'home' %}" class="button-primary mt-6">

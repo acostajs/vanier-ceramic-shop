@@ -45,10 +45,10 @@
 			rel="stylesheet"
 		/>
 
-		<link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/tailwind.css' %}?v=1" />
 		{% block extra_head %}{% endblock %}
 	</head>
-	<body class="min-h-screen flex flex-col bg-canvas text-ink">
+	<body class="min-h-screen flex flex-col bg-canvas text-ink {% block body_class %}{% endblock %}">
 		{% include 'partials/nav.html' %} {% if messages %}
 		<div
 			class="fixed top-24 left-1/2 transform -translate-x-1/2 z-40 w-full max-w-md sm:max-w-lg"
@@ -125,7 +125,7 @@
 
 					<!-- Message text -->
 					<div class="flex-1 min-w-0">
-						<p class="text-sm leading-6 text-ink font-medium">
+						<p class="text-sm leading-6 text-ink font-normal">
 							{{ message }}
 						</p>
 					</div>
@@ -155,9 +155,13 @@
 		</div>
 		{% endif %}
 
+		{% block main %}
 		<main class="flex-1 pb-32">{% block content %}{% endblock %}</main>
+		{% endblock %}
 
+		{% block footer %}
 		{% include 'partials/footer.html' %}
+		{% endblock %}
 
 		<!-- Scroll Reveal & Toast Auto-dismiss Script -->
 		<script>

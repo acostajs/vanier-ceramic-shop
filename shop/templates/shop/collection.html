@@ -26,12 +26,12 @@
 					class="w-full sm:w-1/2 pr-0 sm:pr-8 lg:pr-12 flex flex-col justify-center text-white space-y-4 group-hover:opacity-0 group-hover:-translate-x-4 transition-all duration-500"
 				>
 					<p
-						class="text-sm font-semibold tracking-[0.3em] uppercase text-brand-ochre mb-3"
+						class="text-sm font-normal tracking-[0.3em] uppercase text-brand-ochre mb-3"
 					>
 						{% translate "Collection" %}
 					</p>
 					<h1
-						class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif font-normal"
+						class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl  font-normal"
 					>
 						{{ collection.name }}
 					</h1>
@@ -83,14 +83,14 @@
 				<div class="flex-1 p-6 flex flex-col">
 					<div class="flex justify-between items-start gap-4 mb-2">
 						<h2
-							class="text-2xl font-serif font-normal text-ink group-hover:text-brand-terracotta transition-colors"
+							class="text-2xl  font-normal text-ink group-hover:text-brand-terracotta transition-colors"
 						>
 							{{ product.name }}
 						</h2>
 						<div class="text-right flex-shrink-0">
 							{% if product.discount_percentage > 0 %}
 							<div class="flex flex-col items-end">
-								<span class="text-lg font-bold text-[#a63a3a]">
+								<span class="text-lg font-normal text-[#a63a3a]">
 									{{ product.discounted_price_in_dollars }}
 								</span>
 								<span class="text-xs text-muted line-through">
@@ -98,7 +98,7 @@
 								</span>
 							</div>
 							{% else %}
-							<span class="text-lg font-semibold text-ink">
+							<span class="text-lg font-normal text-ink">
 								{{ product.price_in_dollars }}
 							</span>
 							{% endif %}
@@ -107,15 +107,15 @@
 
 					<div class="mb-4">
 						{% if product.quantity == 0 %}
-						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-red-50 text-error">
+						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-red-50 text-error">
 							{% translate "Sold Out" %}
 						</span>
 						{% elif product.quantity <= 3 %}
-						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-orange-50 text-warning">
+						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-orange-50 text-warning">
 							{% translate "Low Stock" %} ({{ product.quantity }})
 						</span>
 						{% else %}
-						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-semibold uppercase tracking-wider bg-green-50 text-success">
+						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-green-50 text-success">
 							{% translate "In Stock" %}
 						</span>
 						{% endif %}
@@ -131,7 +131,7 @@
 					<div class="mt-auto">
 						<a
 							href="{% url 'shop:product' product.id %}"
-							class="inline-flex items-center text-sm sm:text-base font-semibold text-brand-terracotta hover:text-brand-terracotta/90"
+							class="inline-flex items-center text-sm sm:text-base font-normal text-brand-terracotta hover:text-brand-terracotta/90"
 						>
 							{% translate "See Details." %}
 							<svg
@@ -160,7 +160,7 @@
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
 				</svg>
 			</div>
-			<p class="text-2xl text-muted font-medium">
+			<p class="text-2xl text-muted font-normal">
 				{% translate "No products registered in this category." %}
 			</p>
 			<a href="{% url 'shop:shop' %}" class="button-primary mt-6">
