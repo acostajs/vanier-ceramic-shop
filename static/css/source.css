@@ -2,13 +2,51 @@
 @config "../../tailwind.config.js";
 
 @utility button-primary {
-  @apply bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase h-[46px] px-6 rounded-sm inline-flex items-center justify-center transition-all duration-200 hover:bg-[#2b2a28];
+  @apply bg-primary text-on-primary text-[13px] font-normal tracking-[1.5px] uppercase h-[46px] px-6 rounded-sm inline-flex items-center justify-center transition-all duration-200 hover:bg-[#2b2a28];
 }
 
 @utility button-secondary {
-  @apply bg-transparent text-ink border border-hairline text-[13px] font-semibold tracking-[1.5px] uppercase h-[46px] px-6 rounded-sm inline-flex items-center justify-center transition-all duration-200 hover:bg-surface-soft;
+  @apply bg-transparent text-ink border border-hairline text-[13px] font-normal tracking-[1.5px] uppercase h-[46px] px-6 rounded-sm inline-flex items-center justify-center transition-all duration-200 hover:bg-surface-soft;
 }
 
 @utility button-sold-out {
-  @apply bg-surface-soft text-muted text-[13px] font-semibold tracking-[1.5px] uppercase h-[46px] px-6 rounded-sm inline-flex items-center justify-center cursor-not-allowed;
+  @apply bg-surface-soft text-muted text-[13px] font-normal tracking-[1.5px] uppercase h-[46px] px-6 rounded-sm inline-flex items-center justify-center cursor-not-allowed;
+}
+
+@utility scroll-container {
+  width: 100%;
+  height: 100lvh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-padding-top: 5rem;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+@utility scroll-section {
+  width: 100%;
+  height: 100lvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 5rem;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
