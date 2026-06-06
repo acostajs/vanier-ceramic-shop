@@ -9,37 +9,39 @@
 {% block main %}
 <main class="scroll-container">
 	<!-- Section 1: Hero -->
-	<section class="scroll-section hero relative bg-cover bg-center bg-no-repeat"
-		style="background-image: url({% static 'images/about-portrait.avif' %});">
-		<!-- Oatmeal wash overlay to ensure text contrast and premium feel -->
-		<div class="absolute inset-0 bg-canvas/85 backdrop-blur-[2px]"></div>
-
-		<div class="relative w-full max-w-content mx-auto px-4 sm:px-6 lg:px-8 z-10 my-auto">
-			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-				<div class="lg:col-span-8">
-					<h1 class="text-5xl lg:text-7xl xl:text-8xl  font-normal text-ink leading-tight mb-8">
+	<section class="scroll-section hero bg-canvas flex items-center justify-center py-12">
+		<div class="w-full max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+				<!-- Left: Headline, artist copy, CTA (7 columns) -->
+				<div class="lg:col-span-7 flex flex-col justify-center text-left">
+					<h1 class="text-4xl sm:text-5xl lg:text-[64px] font-light text-ink leading-[1.1] tracking-[-0.5px] mb-8">
 						<span class="text-brand-terracotta">Laura Melissa</span><br />
 						{% translate "Ceramics" %}
 					</h1>
-					<p class="text-xl lg:text-2xl text-muted leading-relaxed max-w-2xl">
+					<p class="text-lg lg:text-xl text-body font-light leading-relaxed max-w-xl mb-8">
 						{% blocktranslate %} Unique handcrafted ceramics and pottery. Each
 						piece tells a story of earth, fire, and time. {% endblocktranslate %}
 					</p>
+					<div class="flex flex-col sm:flex-row gap-4">
+						<a href="{% url 'shop:shop' %}"
+							class="button-primary px-8 hover:-translate-y-0.5 text-center flex items-center justify-center">
+							{% translate "Shop Collections" %}
+							<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+									d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+							</svg>
+						</a>
+						<a href="{% url 'about' %}"
+							class="button-secondary px-8 hover:-translate-y-0.5 text-center flex items-center justify-center">
+							{% translate "Read Biography" %}
+						</a>
+					</div>
 				</div>
 
-				<div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-5 justify-center items-center lg:items-center w-full">
-					<a href="{% url 'shop:shop' %}"
-						class="button-primary w-full sm:w-72 lg:w-80 text-center hover:-translate-y-0.5">
-						{% translate "Shop Collections" %}
-						<svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-								d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-						</svg>
-					</a>
-					<a href="{% url 'about' %}"
-						class="button-secondary w-full sm:w-72 lg:w-80 text-center hover:-translate-y-0.5">
-						{% translate "Learn More" %}
-					</a>
+				<!-- Right: Full-height image (5 columns) -->
+				<div class="lg:col-span-5 h-[300px] sm:h-[400px] lg:h-[500px] rounded-md border border-hairline overflow-hidden">
+					<img src="{% static 'images/about-portrait.avif' %}" alt="Laura Melissa Ceramics"
+						class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
 				</div>
 			</div>
 		</div>
