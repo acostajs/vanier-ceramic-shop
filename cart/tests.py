@@ -95,7 +95,7 @@ class CartItemModelTests(BaseCartSetupMixin, TestCase):
         self.assertEqual(item.unit_cents, 1500)
         self.assertEqual(item.total_cents, 4500)
         self.assertEqual(item.unit_dollars, self.product1.price_in_dollars)
-        self.assertEqual(item.line_dollars, self.product1.price_in_dollars * 3)
+        self.assertEqual(item.line_dollars, "$45.00")
         self.assertIn(self.product1.name, str(item))
 
     def test_unique_product_per_cart_constraint(self):
