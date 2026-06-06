@@ -81,6 +81,11 @@
                 <svg class="w-5 h-5 text-body" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                 </svg>
+                {% if cart_count > 0 %}
+                  <span class="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                    {{ cart_count }}
+                  </span>
+                {% endif %}
               </a>
             {% endif %}
 
@@ -192,8 +197,13 @@
               </span>
             {% endif %}
           </a>
-          <a href="{% url 'cart:cart' %}" class="text-base font-medium text-body hover:text-ink transition-colors py-1 block">
-            {% translate "Cart" %}
+          <a href="{% url 'cart:cart' %}" class="text-base font-medium text-body hover:text-ink transition-colors py-1 block flex items-center justify-between">
+            <span>{% translate "Cart" %}</span>
+            {% if cart_count > 0 %}
+              <span class="bg-brand-terracotta text-white text-xs font-bold rounded-full px-2 py-0.5">
+                {{ cart_count }}
+              </span>
+            {% endif %}
           </a>
         {% else %}
           <a href="{% url 'account:login' %}" class="text-base font-medium text-body hover:text-ink transition-colors py-1 block">
@@ -241,14 +251,17 @@
           button.setAttribute('aria-expanded', 'true');
         }
       }
-
       document.addEventListener("DOMContentLoaded", function () {
         var nav = document.getElementById('main-nav');
         var isHome = {% if request.resolver_match.url_name == 'home' %}true{% else %}false{% endif %};
         
         if (nav && isHome) {
+          var scrollContainer = document.querySelector('.scroll-container');
+          var scrollTarget = scrollContainer || window;
+          
           function handleScroll() {
-            if (window.scrollY > 20) {
+            var scrollTop = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
+            if (scrollTop > 20) {
               nav.classList.add('bg-canvas/70', 'backdrop-blur-md', 'border-hairline');
               nav.classList.remove('bg-transparent', 'border-transparent');
             } else {
@@ -258,7 +271,7 @@
           }
           
           handleScroll();
-          window.addEventListener('scroll', handleScroll);
+          scrollTarget.addEventListener('scroll', handleScroll);
         }
       });
     </script>
