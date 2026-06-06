@@ -14,6 +14,6 @@ class StyledFormMixin:
             else:
                 field.widget.attrs.update(
                     {
-                        "class": "rounded-sm border border-hairline bg-canvas text-ink px-4 py-3 w-full text-base focus:outline-none focus:ring-1 focus:ring-primary"
+                        "class": "rounded-sm border border-hairline bg-canvas text-ink px-4 py-3 w-full text-sm font-light focus:outline-none focus:ring-1 focus:ring-primary"
                     }
                 )
