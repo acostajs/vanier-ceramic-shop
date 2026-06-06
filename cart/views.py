@@ -74,6 +74,7 @@ def checkout(request):
     context = {
         "cart_items": list(cart.items()),
         "subtotal_cents": cart.subtotal_cents(),
+        "subtotal_dollars": cart.subtotal_dollars(),
         "cart_count": cart.count(),
     }
     return render(request, "cart/checkout.html", context)
