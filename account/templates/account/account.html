@@ -6,7 +6,7 @@
 	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="mb-8">
 			<h1
-				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-ink"
+				class="text-3xl sm:text-4xl lg:text-5xl  font-normal text-ink"
 			>
 				{{ account.username }}
 			</h1>
@@ -19,32 +19,32 @@
 			<div
 				class="lg:col-span-1 bg-surface-card rounded-md border border-hairline p-6 sm:p-7 space-y-4"
 			>
-				<h2 class="text-lg font-serif font-medium text-ink mb-2">
+				<h2 class="text-lg  font-normal text-ink mb-2">
 					{% translate "Profile" %}
 				</h2>
 				<p class="text-sm text-body">
-					<span class="font-medium">{% translate "First name" %}:</span>
+					<span class="font-normal">{% translate "First name" %}:</span>
 					{{account.first_name|default:"—" }}
 				</p>
 				<p class="text-sm text-body">
-					<span class="font-medium">{% translate "Last name" %}:</span>
+					<span class="font-normal">{% translate "Last name" %}:</span>
 					{{account.last_name|default:"—" }}
 				</p>
 				<p class="text-sm text-body">
-					<span class="font-medium">{% translate "Email" %}:</span>
+					<span class="font-normal">{% translate "Email" %}:</span>
 					{{user.email}}
 				</p>
 
 				<div class="pt-4 space-y-2 border-t border-hairline mt-2">
 					<a
 						href="{% url 'account:shipping' %}"
-						class="block text-sm font-semibold text-ink hover:text-warning transition-colors"
+						class="block text-sm font-normal text-ink hover:text-warning transition-colors"
 					>
 						{% translate "Update your Shipping Information" %}
 					</a>
 					<a
 						href="{% url 'account:billing' %}"
-						class="block text-sm font-semibold text-ink hover:text-warning transition-colors"
+						class="block text-sm font-normal text-ink hover:text-warning transition-colors"
 					>
 						{% translate "Update your Billing Information" %}
 					</a>
@@ -53,7 +53,7 @@
 				<div class="pt-4 mt-2 border-t border-hairline">
 					<a
 						href="{% url 'account:logout' %}"
-						class="text-sm font-semibold text-red-600 hover:text-red-700 transition-colors"
+						class="text-sm font-normal text-red-600 hover:text-red-700 transition-colors"
 					>
 						{% translate "Logout" %}
 					</a>
@@ -64,7 +64,7 @@
 				class="lg:col-span-2 bg-surface-card rounded-md border border-hairline p-6 sm:p-7"
 			>
 				<h2
-					class="text-lg sm:text-xl font-serif font-medium text-ink mb-4"
+					class="text-lg sm:text-xl  font-normal text-ink mb-4"
 				>
 					{% translate "My Orders" %}
 				</h2>
@@ -83,12 +83,12 @@
 								{{ order.created_at|date:"Y-m-d H:i" }}
 							</p>
 							<p class="mt-2 text-sm text-body">
-								<span class="font-medium">{% translate "Total" %}:</span>
+								<span class="font-normal">{% translate "Total" %}:</span>
 								{{ order.total_in_dollars }}
 							</p>
 							<p class="mt-1">
 								<span
-									class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium {% if order.status == 'paid' %} bg-success/10 text-success {% elif order.status == 'pending' %} bg-warning/10 text-warning {% else %} bg-hairline text-body {% endif %}"
+									class="inline-flex items-center px-3 py-1 rounded-full text-xs font-normal {% if order.status == 'paid' %} bg-success/10 text-success {% elif order.status == 'pending' %} bg-warning/10 text-warning {% else %} bg-hairline text-body {% endif %}"
 								>
 									{{ order.status }}
 								</span>
@@ -98,7 +98,7 @@
 						<div class="sm:text-right">
 							<a
 								href="{% url 'cart:order_details' order.id %}"
-								class="inline-flex items-center px-4 py-2 rounded-sm border border-hairline text-xs sm:text-sm font-semibold text-ink bg-canvas hover:bg-surface-soft transition-colors"
+								class="inline-flex items-center px-4 py-2 rounded-sm border border-hairline text-xs sm:text-sm font-normal text-ink bg-canvas hover:bg-surface-soft transition-colors"
 							>
 								{% translate "View Details" %}
 							</a>

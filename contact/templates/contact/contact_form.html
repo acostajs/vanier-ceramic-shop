@@ -6,7 +6,7 @@
 	<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center mb-10">
 			<h1
-				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-ink mb-3"
+				class="text-3xl sm:text-4xl lg:text-5xl  font-normal text-ink mb-3"
 			>
 				{% translate "Let's talk" %}
 			</h1>
@@ -26,7 +26,7 @@
 			>
 				{% csrf_token %} {{ form.non_field_errors }} {% for field in form %}
 				<div class="pb-4 border-b border-hairline last:border-b-0">
-					<label class="block text-sm font-medium text-body mb-1">
+					<label class="block text-sm font-normal text-body mb-1">
 						{{ field.label }}
 					</label>
 					<div class="mt-1">{{ field }}</div>
@@ -38,7 +38,7 @@
 
 				<button
 					type="submit"
-					class="mt-2 inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-semibold tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+					class="mt-2 inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-normal tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
 				>
 					{% translate "Send" %}
 					<svg

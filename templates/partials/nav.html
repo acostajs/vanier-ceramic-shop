@@ -6,14 +6,14 @@
     <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-[72px]">
         <div class="flex-shrink-0">
-          <a href="{% url 'home' %}" class="text-2xl lg:text-3xl font-serif font-normal text-ink hover:text-brand-terracotta transition-colors duration-300">
+          <a href="{% url 'home' %}" class="text-2xl lg:text-3xl  font-normal text-ink hover:text-brand-terracotta transition-colors duration-300">
             Laura Melissa
           </a>
         </div>
 
         <div class="hidden lg:flex items-center space-x-1">
           <div class="relative group">
-            <button class="text-sm font-medium tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200 flex items-center gap-1">
+            <button class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200 flex items-center gap-1">
               {% translate "Collections" %}
               <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -36,29 +36,29 @@
               {% endif %}
               <li><hr class="my-1 border-hairline"></li>
               <li>
-                <a href="{% url 'shop:shop' %}" class="block px-6 py-3 text-brand-terracotta font-medium hover:text-brand-terracotta/90 hover:bg-surface-soft transition-all duration-150">
+                <a href="{% url 'shop:shop' %}" class="block px-6 py-3 text-brand-terracotta font-normal hover:text-brand-terracotta/90 hover:bg-surface-soft transition-all duration-150">
                   {% translate "See them all!" %}
                 </a>
               </li>
             </ul>
           </div>
 
-          <a href="{% url "about" %}" class="text-sm font-medium tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200"
+          <a href="{% url "about" %}" class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200"
              {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>
             {% translate "About" %}
           </a>
 
           {% if user.is_authenticated %}
-            <a href="{% url 'account:account' %}" class="text-sm font-medium tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200"
+            <a href="{% url 'account:account' %}" class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200"
                {% if request.resolver_match.url_name == 'account' %}aria-current="page"{% endif %}>
               {% translate "Account" %}
             </a>
           {% else %}
-            <a href="{% url 'account:login' %}" class="text-sm font-medium tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200"
+            <a href="{% url 'account:login' %}" class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200"
                {% if request.resolver_match.url_name == 'login' %}aria-current="page"{% endif %}>
               {% translate "Login" %}
             </a>
-            <a href="{% url 'account:registration' %}" class="text-sm font-semibold tracking-[0.5px] text-brand-terracotta hover:text-brand-terracotta/90 px-3 py-2 transition-colors duration-200"
+            <a href="{% url 'account:registration' %}" class="text-sm font-normal tracking-[0.5px] text-brand-terracotta hover:text-brand-terracotta/90 px-3 py-2 transition-colors duration-200"
                {% if request.resolver_match.url_name == 'registration' %}aria-current="page"{% endif %}>
               {% translate "Register" %}
             </a>
@@ -71,7 +71,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
                 </svg>
                 {% if wishlist_count > 0 %}
-                  <span class="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                  <span class="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[10px] font-normal rounded-full w-4 h-4 flex items-center justify-center">
                     {{ wishlist_count }}
                   </span>
                 {% endif %}
@@ -82,7 +82,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                 </svg>
                 {% if cart_count > 0 %}
-                  <span class="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                  <span class="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[10px] font-normal rounded-full w-4 h-4 flex items-center justify-center">
                     {{ cart_count }}
                   </span>
                 {% endif %}
@@ -98,7 +98,7 @@
 
           <!-- Language Dropdown -->
           <div class="relative group ml-4">
-            <button class="text-xs uppercase tracking-[0.18em] font-semibold text-ink hover:text-brand-terracotta px-2 py-2 flex items-center gap-1 transition-colors duration-200">
+            <button class="text-xs uppercase tracking-[0.18em] font-normal text-ink hover:text-brand-terracotta px-2 py-2 flex items-center gap-1 transition-colors duration-200">
               {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}
                 EN
               {% elif request.LANGUAGE_CODE|slice:':2' == 'es' %}
@@ -119,7 +119,7 @@
                   {% csrf_token %}
                   <input type="hidden" name="language" value="en">
                   <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                  <button type="submit" class="w-full text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-surface-soft transition-colors duration-150 {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}text-brand-terracotta{% else %}text-body hover:text-ink{% endif %}">
+                  <button type="submit" class="w-full text-left px-4 py-2.5 text-xs font-normal uppercase tracking-[0.18em] hover:bg-surface-soft transition-colors duration-150 {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}text-brand-terracotta{% else %}text-body hover:text-ink{% endif %}">
                     English (EN)
                   </button>
                 </form>
@@ -129,7 +129,7 @@
                   {% csrf_token %}
                   <input type="hidden" name="language" value="es">
                   <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                  <button type="submit" class="w-full text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-surface-soft transition-colors duration-150 {% if request.LANGUAGE_CODE|slice:':2' == 'es' %}text-brand-terracotta{% else %}text-body hover:text-ink{% endif %}">
+                  <button type="submit" class="w-full text-left px-4 py-2.5 text-xs font-normal uppercase tracking-[0.18em] hover:bg-surface-soft transition-colors duration-150 {% if request.LANGUAGE_CODE|slice:':2' == 'es' %}text-brand-terracotta{% else %}text-body hover:text-ink{% endif %}">
                     Español (ES)
                   </button>
                 </form>
@@ -139,7 +139,7 @@
                   {% csrf_token %}
                   <input type="hidden" name="language" value="fr">
                   <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                  <button type="submit" class="w-full text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] hover:bg-surface-soft transition-colors duration-150 {% if request.LANGUAGE_CODE|slice:':2' == 'fr' %}text-brand-terracotta{% else %}text-body hover:text-ink{% endif %}">
+                  <button type="submit" class="w-full text-left px-4 py-2.5 text-xs font-normal uppercase tracking-[0.18em] hover:bg-surface-soft transition-colors duration-150 {% if request.LANGUAGE_CODE|slice:':2' == 'fr' %}text-brand-terracotta{% else %}text-body hover:text-ink{% endif %}">
                     Français (FR)
                   </button>
                 </form>
@@ -161,7 +161,7 @@
       <div class="flex flex-col space-y-3">
         <!-- Collections Section -->
         <div>
-          <span class="text-xs font-semibold text-muted uppercase tracking-wider block mb-2">{% translate "Collections" %}</span>
+          <span class="text-xs font-normal text-muted uppercase tracking-wider block mb-2">{% translate "Collections" %}</span>
           <div class="pl-3 border-l-2 border-brand-terracotta flex flex-col space-y-2">
             {% if collections %}
               {% for collection in collections %}
@@ -172,7 +172,7 @@
             {% else %}
               <span class="text-sm text-muted italic py-1 block">{% translate "No collections have been registered yet" %}</span>
             {% endif %}
-            <a href="{% url 'shop:shop' %}" class="text-base font-medium text-brand-terracotta hover:text-brand-terracotta/90 transition-colors py-1 block">
+            <a href="{% url 'shop:shop' %}" class="text-base font-normal text-brand-terracotta hover:text-brand-terracotta/90 transition-colors py-1 block">
               {% translate "See them all!" %}
             </a>
           </div>
@@ -181,40 +181,40 @@
         <hr class="border-hairline my-2">
 
         <!-- Navigation Links -->
-        <a href="{% url "about" %}" class="text-base font-medium text-body hover:text-ink transition-colors py-1 block">
+        <a href="{% url "about" %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
           {% translate "About" %}
         </a>
 
         {% if user.is_authenticated %}
-          <a href="{% url 'account:account' %}" class="text-base font-medium text-body hover:text-ink transition-colors py-1 block">
+          <a href="{% url 'account:account' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
             {% translate "Account" %}
           </a>
-          <a href="{% url 'account:wishlist_detail' %}" class="text-base font-medium text-body hover:text-ink transition-colors py-1 block flex items-center justify-between">
+          <a href="{% url 'account:wishlist_detail' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block flex items-center justify-between">
             <span>{% translate "Wishlist" %}</span>
             {% if wishlist_count > 0 %}
-              <span class="bg-brand-terracotta text-white text-xs font-bold rounded-full px-2 py-0.5">
+              <span class="bg-brand-terracotta text-white text-xs font-normal rounded-full px-2 py-0.5">
                 {{ wishlist_count }}
               </span>
             {% endif %}
           </a>
-          <a href="{% url 'cart:cart' %}" class="text-base font-medium text-body hover:text-ink transition-colors py-1 block flex items-center justify-between">
+          <a href="{% url 'cart:cart' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block flex items-center justify-between">
             <span>{% translate "Cart" %}</span>
             {% if cart_count > 0 %}
-              <span class="bg-brand-terracotta text-white text-xs font-bold rounded-full px-2 py-0.5">
+              <span class="bg-brand-terracotta text-white text-xs font-normal rounded-full px-2 py-0.5">
                 {{ cart_count }}
               </span>
             {% endif %}
           </a>
         {% else %}
-          <a href="{% url 'account:login' %}" class="text-base font-medium text-body hover:text-ink transition-colors py-1 block">
+          <a href="{% url 'account:login' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
             {% translate "Login" %}
           </a>
-          <a href="{% url 'account:registration' %}" class="text-base font-semibold text-brand-terracotta hover:text-brand-terracotta/90 transition-colors py-1 block">
+          <a href="{% url 'account:registration' %}" class="text-base font-normal text-brand-terracotta hover:text-brand-terracotta/90 transition-colors py-1 block">
             {% translate "Register" %}
           </a>
         {% endif %}
 
-        <a href="{% url "contact:contact" %}" class="text-base font-medium text-body hover:text-ink transition-colors py-1 block">
+        <a href="{% url "contact:contact" %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
           {% translate "Contact" %}
         </a>
 
@@ -222,12 +222,12 @@
 
         <!-- Language Switcher -->
         <div>
-          <span class="text-xs font-semibold text-muted uppercase tracking-wider block mb-2">{% translate "Language" %}</span>
+          <span class="text-xs font-normal text-muted uppercase tracking-wider block mb-2">{% translate "Language" %}</span>
           <form method="post" action="{% url 'set_language' %}" id="mobile-lang-form">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.get_full_path }}">
             <select name="language" onchange="document.getElementById('mobile-lang-form').submit();"
-                    class="block w-full bg-canvas text-ink text-sm font-semibold py-2.5 px-3 border border-hairline rounded-sm focus:outline-none focus:border-brand-terracotta">
+                    class="block w-full bg-canvas text-ink text-sm font-normal py-2.5 px-3 border border-hairline rounded-sm focus:outline-none focus:border-brand-terracotta">
               <option value="en" {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}selected{% endif %}>English (EN)</option>
               <option value="es" {% if request.LANGUAGE_CODE|slice:':2' == 'es' %}selected{% endif %}>Español (ES)</option>
               <option value="fr" {% if request.LANGUAGE_CODE|slice:':2' == 'fr' %}selected{% endif %}>Français (FR)</option>

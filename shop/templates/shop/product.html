@@ -8,7 +8,7 @@
 		{% include 'partials/breadcrumbs.html' %}
 		<div class="mb-10">
 			<h1
-				class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-ink"
+				class="text-3xl sm:text-4xl lg:text-5xl  font-normal text-ink"
 			>
 				{{ product.name }}
 			</h1>
@@ -34,7 +34,7 @@
 				<article
 					class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8 space-y-5"
 				>
-					<h2 class="text-xs font-semibold tracking-widest text-brand-terracotta uppercase">
+					<h2 class="text-xs font-normal tracking-widest text-brand-terracotta uppercase">
 						{% translate "Product Details" %}
 					</h2>
 
@@ -54,11 +54,11 @@
 								<span class="text-sm text-muted line-through">
 									{% translate "Price" %} {{ product.price_in_dollars }}
 								</span>
-								<span class="text-2xl font-bold text-warning">
+								<span class="text-2xl font-normal text-warning">
 									{{ product.discounted_price_in_dollars }}
 								</span>
 							</div>
-							<p class="text-sm text-warning font-semibold">
+							<p class="text-sm text-warning font-normal">
 								{% translate "Discount:" %} {{ product.discount_percentage }}%
 							</p>
 						</div>
@@ -67,7 +67,7 @@
 							<p class="text-sm text-muted uppercase tracking-wide">
 								{% translate "Price" %}
 							</p>
-							<p class="text-2xl font-bold text-ink">
+							<p class="text-2xl font-normal text-ink">
 								{{ product.price_in_dollars }}
 							</p>
 						</div>
@@ -84,7 +84,7 @@
 							{% csrf_token %}
 							<label
 								for="quantity"
-								class="block text-sm font-medium text-body"
+								class="block text-sm font-normal text-body"
 							>
 								{% translate "Quantity:" %}
 							</label>
@@ -157,7 +157,7 @@
 	</div>
 	{% else %}
 	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
-		<h1 class="text-4xl sm:text-5xl font-serif font-normal text-ink mb-4">
+		<h1 class="text-4xl sm:text-5xl  font-normal text-ink mb-4">
 			{% translate "Product Not Found" %}
 		</h1>
 		<p class="text-lg text-muted">
