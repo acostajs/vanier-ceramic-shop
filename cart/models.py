@@ -73,6 +73,11 @@ class Order(models.Model):
             self.STATUS_CANCELLED,
         }:
             raise ValueError(f"Invalid status: {status}")
+
+        if current_status == self.STATUS_PAID and self.status != self.STATUS_PAID:
+            for item in self.items.all():
+                item.product.discount_from_quantity(item.quantity)
+
         self.status = current_status
         self.save()
 

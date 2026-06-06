@@ -126,6 +126,44 @@ class OrderModelTests(BaseCartSetupMixin, TestCase):
         )
         self.assertEqual(order.total_in_dollars, "$12.34")
 
+    def test_set_status_paid_decrements_inventory(self):
+        from django.core.exceptions import ValidationError
+        from cart.models import OrderItem
+
+        # Set product1 quantity to 5
+        self.product1.quantity = 5
+        self.product1.save()
+
+        order = Order.objects.create(
+            account=self.account,
+            total_cents=1500,
+        )
+        OrderItem.objects.create(
+            order=order,
+            product=self.product1,
+            quantity=2,
+            unit_price_cents=750,
+        )
+
+        order.set_status("paid")
+        self.product1.refresh_from_db()
+        self.assertEqual(self.product1.quantity, 3)
+
+        # Test failure when inventory is insufficient
+        order2 = Order.objects.create(
+            account=self.account,
+            total_cents=1500,
+        )
+        OrderItem.objects.create(
+            order=order2,
+            product=self.product1,
+            quantity=10,
+            unit_price_cents=750,
+        )
+
+        with self.assertRaises(ValidationError):
+            order2.set_status("paid")
+
     def test_fulfill_sets_fields(self):
         order = Order.objects.create(
             account=self.account,
