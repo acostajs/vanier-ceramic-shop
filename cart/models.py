@@ -280,7 +280,7 @@ class CartItem(models.Model):
     @property
     def line_dollars(self):
         """Calculate the total cost of an Item."""
-        return self.product.price_in_dollars * self.quantity
+        return f"${self.total_cents / 100:.2f}"
 
     def __str__(self):
         return f"{self.product.name} x {self.quantity} cart item"
