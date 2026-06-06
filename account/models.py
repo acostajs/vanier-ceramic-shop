@@ -52,17 +52,14 @@ class Wishlist(models.Model):
     def add(self, product: Product):
         """To add a product to the wishlist."""
         self.product.add(product)
-        self.save()
 
     def remove(self, product: Product):
         """To remove a product from the wishlist."""
         self.product.remove(product)
-        self.save()
 
     def clear(self):
         """To clear all products from the wishlist."""
         self.product.clear()
-        self.save()
 
     def count(self):
         """Returns the number of products in the wishlist."""
