@@ -168,7 +168,7 @@ class Order(models.Model):
 
     @property
     def total_in_dollars(self):
-        return self.total_cents // 100
+        return f"${self.total_cents / 100:.2f}"
 
     def __str__(self):
         return f"Order #{self.payment_id} - {self.account.email}"
@@ -245,11 +245,7 @@ class Cart(models.Model):
 
     def subtotal_dollars(self):
         """Total cents added to the cart."""
-        total = 0
-        items = CartItem.objects.filter(cart=self)
-        for item in items:
-            total += item.total_cents
-        return total // 100
+        return f"${self.subtotal_cents() / 100:.2f}"
 
     def __str__(self):
         return f"This cart belongs to account {self.account.email}"

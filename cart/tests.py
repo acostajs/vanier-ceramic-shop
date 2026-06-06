@@ -76,7 +76,7 @@ class CartModelTests(BaseCartSetupMixin, TestCase):
         self.cart.add(self.product1, quantity=2)
         self.cart.add(self.product2, quantity=1)
         self.assertEqual(self.cart.subtotal_cents(), 5500)
-        self.assertEqual(self.cart.subtotal_dollars(), 55)
+        self.assertEqual(self.cart.subtotal_dollars(), "$55.00")
 
     def test_cart_str(self):
         self.assertIn(self.account.email, str(self.cart))
@@ -124,7 +124,7 @@ class OrderModelTests(BaseCartSetupMixin, TestCase):
             account=self.account,
             total_cents=1234,
         )
-        self.assertEqual(order.total_in_dollars, 12)
+        self.assertEqual(order.total_in_dollars, "$12.34")
 
     def test_fulfill_sets_fields(self):
         order = Order.objects.create(
