@@ -8,12 +8,13 @@ module.exports = {
     extend: {
       colors: {
         canvas: "#fcf9f5",
+        "canvas-blur": "rgba(252, 249, 245, 0.85)",
         primary: "#1c1b1a",
         "surface-soft": "#f5f0e6",
         "surface-card": "#efede6",
         "surface-strong": "#e3ded5",
         "surface-dark": "#1c1b1a",
-        hairline: "#decbc6",
+        hairline: "#d9d4cc",
         ink: "#1c1b1a",
         "body-strong": "#2b2a28",
         body: "#4a4845",
