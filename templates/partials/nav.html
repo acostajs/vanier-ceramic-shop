@@ -77,17 +77,11 @@
                 {% endif %}
               </a>
 
-              <a href="{% url 'cart:cart' %}" aria-label="{% translate 'Shopping Cart' %}" class="w-10 h-10 bg-surface-soft hover:bg-surface-strong rounded-sm flex items-center justify-center transition-all duration-200 relative">
-                <svg class="w-5 h-5 text-body" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                </svg>
-                {% if cart_count > 0 %}
-                  <span class="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[10px] font-normal rounded-full w-4 h-4 flex items-center justify-center">
-                    {{ cart_count }}
-                  </span>
-                {% endif %}
-              </a>
             {% endif %}
+
+            <a href="{% url 'cart:cart' %}" class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200">
+              {% translate "Cart" %} [{{ cart_count|default:0 }}]
+            </a>
 
             <a href="{% url "contact:contact" %}" aria-label="{% translate 'Contact Us' %}" class="w-10 h-10 bg-surface-soft hover:bg-surface-strong rounded-sm flex items-center justify-center transition-all duration-200">
               <svg class="w-5 h-5 text-body" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -197,14 +191,6 @@
               </span>
             {% endif %}
           </a>
-          <a href="{% url 'cart:cart' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block flex items-center justify-between">
-            <span>{% translate "Cart" %}</span>
-            {% if cart_count > 0 %}
-              <span class="bg-brand-terracotta text-white text-xs font-normal rounded-full px-2 py-0.5">
-                {{ cart_count }}
-              </span>
-            {% endif %}
-          </a>
         {% else %}
           <a href="{% url 'account:login' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
             {% translate "Login" %}
@@ -213,6 +199,11 @@
             {% translate "Register" %}
           </a>
         {% endif %}
+
+        <a href="{% url 'cart:cart' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block flex items-center justify-between">
+          <span>{% translate "Cart" %}</span>
+          <span class="text-muted text-sm font-normal">[{{ cart_count|default:0 }}]</span>
+        </a>
 
         <a href="{% url "contact:contact" %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
           {% translate "Contact" %}
