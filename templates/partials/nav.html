@@ -2,7 +2,7 @@
 {% load i18n %}
 
 <header>
-  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 {% if request.resolver_match.url_name == 'home' %}bg-transparent border-b border-transparent{% else %}bg-canvas/70 backdrop-blur-md border-b border-hairline{% endif %}">
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 {% if request.resolver_match.url_name == 'home' %}bg-transparent border-b border-transparent{% else %}bg-canvas-blur backdrop-blur-md border-b border-hairline{% endif %}">
     <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-[72px]">
         <div class="flex-shrink-0">
@@ -253,10 +253,10 @@
           function handleScroll() {
             var scrollTop = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
             if (scrollTop > 20) {
-              nav.classList.add('bg-canvas/70', 'backdrop-blur-md', 'border-hairline');
+              nav.classList.add('bg-canvas-blur', 'backdrop-blur-md', 'border-hairline');
               nav.classList.remove('bg-transparent', 'border-transparent');
             } else {
-              nav.classList.remove('bg-canvas/70', 'backdrop-blur-md', 'border-hairline');
+              nav.classList.remove('bg-canvas-blur', 'backdrop-blur-md', 'border-hairline');
               nav.classList.add('bg-transparent', 'border-transparent');
             }
           }
