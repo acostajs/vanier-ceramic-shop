@@ -148,7 +148,7 @@ def transfer_to_cart(request, product_id):
     account = request.user
     wishlist = Wishlist.objects.get(account=account)
     cart = get_object_or_404(Cart, account=account)
-    product = wishlist.product.get(pk=product_id)
+    product = get_object_or_404(wishlist.product, pk=product_id)
     cart.add(product, quantity=1, replace=True)
     wishlist.remove(product)
     msg = _("You have succesfully transfer the item to your shopping cart.")
