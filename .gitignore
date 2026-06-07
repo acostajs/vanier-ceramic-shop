@@ -34,5 +34,3 @@ __pycache__
 .docs
 .agents
 
-# Tailwind CLI binary folder
-.django_tailwind_cli/
