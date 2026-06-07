@@ -3,6 +3,7 @@ from django.test import TestCase, RequestFactory
 from account.models import Account
 from cart.models import Order, Cart, CartItem
 from shop.models import Product, Collection
+from django.urls import reverse
 
 
 class BaseCartSetupMixin:
@@ -417,3 +418,28 @@ class StripeWebhookTests(BaseCartSetupMixin, TestCase):
         self.assertEqual(response.status_code, 200)
         order.refresh_from_db()
         self.assertEqual(order.status, Order.STATUS_CANCELLED)
+
+
+class OrderDetailsViewTests(BaseCartSetupMixin, TestCase):
+    def test_order_details_owner_can_access(self):
+        order = Order.objects.create(
+            account=self.account,
+            total_cents=1000,
+        )
+        self.client.force_login(self.account)
+        response = self.client.get(reverse("cart:order_details", args=[order.id]))
+        self.assertEqual(response.status_code, 200)
+
+    def test_order_details_non_owner_cannot_access(self):
+        other_user = Account.objects.create_user(
+            username="otheruser",
+            email="other@example.com",
+            password="otherpassword",
+        )
+        order = Order.objects.create(
+            account=self.account,
+            total_cents=1000,
+        )
+        self.client.force_login(other_user)
+        response = self.client.get(reverse("cart:order_details", args=[order.id]))
+        self.assertEqual(response.status_code, 404)
