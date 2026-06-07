@@ -3,19 +3,22 @@
 .about-bio-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px; /* gap-10 */
+  gap: 40px;
+  /* gap-10 */
   align-items: start;
 }
 
 @media (min-width: 1024px) {
   .about-bio-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 64px; /* gap-16 */
+    gap: 64px;
+    /* gap-16 */
   }
 }
 
 .about-bio-title {
-  font-size: 30px; /* text-3xl */
+  font-size: 30px;
+  /* text-3xl */
   font-weight: 400;
   color: var(--color-ink);
   margin-bottom: var(--spacing-lg);
@@ -23,7 +26,8 @@
 
 @media (min-width: 640px) {
   .about-bio-title {
-    font-size: 36px; /* text-4xl */
+    font-size: 36px;
+    /* text-4xl */
   }
 }
 
@@ -31,7 +35,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  font-size: 18px; /* text-lg */
+  font-size: 18px;
+  /* text-lg */
   color: var(--color-body);
   line-height: 1.625;
 }
@@ -55,13 +60,15 @@
 .about-bio-name {
   display: block;
   color: var(--color-ink);
-  font-size: 18px; /* text-lg */
+  font-size: 18px;
+  /* text-lg */
   font-weight: 400;
 }
 
 .about-bio-date {
   color: var(--color-muted);
-  font-size: 14px; /* text-sm */
+  font-size: 14px;
+  /* text-sm */
   font-style: italic;
 }
 
@@ -69,18 +76,20 @@
 .about-bio-image-col {
   position: relative;
   width: 100%;
-  max-width: 448px; /* max-w-md */
+  max-width: 448px;
+  /* max-w-md */
 }
 
 @media (min-width: 1024px) {
   .about-bio-image-col {
-    max-w: none;
+    max-width: none;
   }
 }
 
 .showcase-card {
   border-radius: var(--rounded-md);
-  padding: 32px; /* p-8 */
+  padding: 32px;
+  /* p-8 */
   border: 1px solid var(--color-hairline);
   overflow: hidden;
   width: 100%;
@@ -96,13 +105,15 @@
 
 @media (min-width: 1024px) {
   .showcase-card {
-    padding: 40px; /* p-10 */
+    padding: 40px;
+    /* p-10 */
   }
 }
 
 .showcase-img {
   width: 100%;
-  height: 320px; /* h-80 */
+  height: 320px;
+  /* h-80 */
   object-fit: cover;
   border-radius: var(--rounded-md);
   border: 1px solid var(--color-hairline);
@@ -110,13 +121,15 @@
 
 @media (min-width: 640px) {
   .showcase-img {
-    height: 384px; /* h-96 */
+    height: 384px;
+    /* h-96 */
   }
 }
 
 @media (min-width: 1024px) {
   .showcase-img {
-    height: 420px; /* lg:h-[420px] */
+    height: 420px;
+    /* lg:h-[420px] */
   }
 }
 
