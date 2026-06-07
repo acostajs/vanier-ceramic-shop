@@ -7,7 +7,7 @@ from .validation import has_complete_addresses
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, Http404
 
 
 @login_required
@@ -148,9 +148,11 @@ def cancel(request):
 
 
 @login_required
-def order_details(request, order_id):
+def order_details(request: HttpRequest, order_id: int) -> HttpResponse:
     """Display Order Details."""
     order = get_object_or_404(Order, pk=order_id)
+    if order.account != request.user:
+        raise Http404("Order not found.")
 
     context = {"order": order}
     return render(request, "cart/order_details.html", context)
