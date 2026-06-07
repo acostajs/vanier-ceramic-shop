@@ -1,44 +1,38 @@
 {% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Contact Us' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
 
-<section
-	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-canvas"
->
-	<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="text-center mb-10">
-			<h1
-				class="text-3xl sm:text-4xl lg:text-5xl  font-normal text-ink mb-3"
-			>
+<section class="contact-section-wrapper">
+	<div class="container" style="max-w: 768px;">
+		<div class="contact-header">
+			<h1 class="contact-title">
 				{% translate "Let's talk" %}
 			</h1>
-			<p class="text-lg sm:text-xl text-muted">
+			<p class="contact-subtitle">
 				{% blocktranslate %} Share a project idea, a question, or simply say
 				hello. Each message is read with care. {% endblocktranslate %}
 			</p>
 		</div>
 
-		<div
-			class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8 lg:p-10"
-		>
+		<div class="contact-card">
 			<form
 				method="post"
 				action="{% url 'contact:contact_submit' %}"
-				class="space-y-6"
 			>
 				{% csrf_token %} {{ form.non_field_errors }} {% for field in form %}
-				<div class="pb-4 border-b border-hairline last:border-b-0">
-					<label class="block text-sm font-normal text-body mb-1">
+				<div class="contact-form-row">
+					<label>
 						{{ field.label }}
 					</label>
-					<div class="mt-1">{{ field }}</div>
+					<div style="margin-top: var(--spacing-xxs);">{{ field }}</div>
 					{% if field.errors %}
-					<div class="mt-1 text-sm text-red-600">{{ field.errors }}</div>
+					<div class="error-text">{{ field.errors }}</div>
 					{% endif %}
 				</div>
 				{% endfor %}
 
 				<button
 					type="submit"
-					class="mt-2 inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-normal tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+					class="button-primary"
+					style="margin-top: var(--spacing-sm);"
 				>
 					{% translate "Send" %}
 					<svg

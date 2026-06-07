@@ -1,65 +1,52 @@
 {% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Shopping Cart' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
 
-<section
-	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-canvas"
->
-	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-		<h1
-			class="text-3xl sm:text-4xl lg:text-5xl  font-normal text-ink mb-6"
-		>
+<section class="cart-section">
+	<div class="container">
+		<h1 class="product-detail-title" style="margin-bottom: var(--spacing-lg);">
 			{% translate "Your Cart" %}
 		</h1>
 
 		{% if cart_items %}
-		<div
-			class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8 space-y-8"
-		>
-			<div class="overflow-x-auto">
-				<table class="min-w-full border-separate border-spacing-y-2">
+		<div class="cart-card">
+			<div class="cart-table-wrapper">
+				<table class="cart-table">
 					<thead>
-						<tr
-							class="text-xs sm:text-sm uppercase tracking-wide text-muted"
-						>
-							<th class="text-left py-2 pr-4">{% translate "Product" %}</th>
-							<th class="text-right py-2 px-4">{% translate "Unit" %}</th>
-							<th class="text-center py-2 px-4">{% translate "Qty" %}</th>
-							<th class="text-right py-2 px-4">{% translate "Line" %}</th>
-							<th class="text-right py-2 pl-4">{% translate "Actions" %}</th>
+						<tr>
+							<th class="cart-th text-left">{% translate "Product" %}</th>
+							<th class="cart-th text-right">{% translate "Unit" %}</th>
+							<th class="cart-th text-center">{% translate "Qty" %}</th>
+							<th class="cart-th text-right">{% translate "Line" %}</th>
+							<th class="cart-th text-right">{% translate "Actions" %}</th>
 						</tr>
 					</thead>
 					<tbody>
 						{% for item in cart_items %}
-						<tr class="bg-canvas rounded-sm border border-hairline">
-							<td class="py-3 pr-4 align-top">
+						<tr class="cart-tr">
+							<td class="cart-td">
 								<a
 									href="{% url 'shop:product' item.product.id %}"
-									class="flex items-center gap-3 text-sm sm:text-base text-ink hover:text-warning"
+									class="cart-item-link"
 								>
-									<div
-										class="w-14 h-14 rounded-sm overflow-hidden bg-hairline flex-shrink-0"
-									>
+									<div class="cart-item-img-box">
 										<img
 											src="{{ item.product.image.url }}"
 											alt="{{ item.product.name }}"
-											class="w-full h-full object-cover"
 											loading="lazy"
 										/>
 									</div>
-									<span class="font-normal">{{ item.product.name }}</span>
+									<span class="cart-item-name">{{ item.product.name }}</span>
 								</a>
 							</td>
 
-							<td
-								class="py-3 px-4 text-right text-sm sm:text-base text-body-strong align-middle"
-							>
+							<td class="cart-td text-right cart-price-td">
 								{{ item.unit_dollars }}
 							</td>
 
-							<td class="py-3 px-4 text-center align-middle">
+							<td class="cart-td text-center">
 								<form
 									method="post"
 									action="{% url 'cart:update_cart' item.product.id %}"
-									class="inline-flex items-center gap-2"
+									class="cart-qty-form"
 								>
 									{% csrf_token %}
 									<input
@@ -68,24 +55,22 @@
 										value="{{ item.quantity }}"
 										min="1"
 										max="{{ item.product.quantity }}"
-										class="w-16 rounded-sm border border-hairline px-2 py-1 text-sm text-ink text-center focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+										class="cart-qty-input"
 									/>
 									<button
 										type="submit"
-										class="px-3 py-1.5 rounded-sm border border-hairline text-xs sm:text-sm font-normal text-body bg-canvas hover:bg-surface-soft transition-colors"
+										class="cart-update-btn"
 									>
 										{% translate "Update" %}
 									</button>
 								</form>
 							</td>
 
-							<td
-								class="py-3 px-4 text-right text-sm sm:text-base text-ink font-normal align-middle"
-							>
+							<td class="cart-td text-right cart-price-td">
 								{{ item.line_dollars }}
 							</td>
 
-							<td class="py-3 pl-4 pr-2 text-right align-middle">
+							<td class="cart-td text-right">
 								<form
 									method="post"
 									action="{% url 'cart:remove_from_cart' item.product.id %}"
@@ -94,7 +79,7 @@
 									{% csrf_token %}
 									<button
 										type="submit"
-										class="px-3 py-1.5 rounded-sm bg-error/10 text-xs sm:text-sm font-normal text-error hover:bg-error/20 transition-colors"
+										class="cart-remove-btn"
 									>
 										{% translate "Remove" %}
 									</button>
@@ -105,14 +90,14 @@
 					</tbody>
 
 					<tfoot>
-						<tr>
+						<tr class="cart-subtotal-row">
 							<td
 								colspan="3"
-								class="pt-4 text-right text-sm sm:text-base font-normal text-body"
+								class="cart-subtotal-label text-right"
 							>
 								{% translate "Total" %}
 							</td>
-							<td class="pt-4 text-right text-xl font-normal text-ink">
+							<td class="cart-subtotal-value text-right">
 								{{ subtotal_dollars }}
 							</td>
 							<td></td>
@@ -121,14 +106,12 @@
 				</table>
 			</div>
 
-			<div
-				class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-hairline"
-			>
+			<div class="cart-actions-row">
 				<form method="post" action="{% url 'cart:clear_cart' %}">
 					{% csrf_token %}
 					<button
 						type="submit"
-						class="button-secondary px-6"
+						class="button-secondary"
 					>
 						{% translate "Clear Cart" %}
 					</button>
@@ -143,10 +126,8 @@
 			</div>
 		</div>
 		{% else %}
-		<div
-			class="bg-surface-card rounded-md border border-hairline p-8 text-center"
-		>
-			<p class="text-lg text-muted mb-4">
+		<div class="cart-card text-center" style="padding: var(--spacing-xl);">
+			<p class="product-detail-desc" style="margin-bottom: var(--spacing-md);">
 				{% translate "Your cart is empty." %}
 			</p>
 			<a

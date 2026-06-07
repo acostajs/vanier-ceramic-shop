@@ -1,52 +1,36 @@
 {% extends 'base.html' %} {% load i18n %} {% block title %}{{ collection.name }} | Laura Melissa Ceramics{% endblock %} {% block content %}
 
-<section class="pt-28 lg:pt-32 pb-20 bg-canvas">
+<section class="collection-detail-header-section">
 	{% if collection %}
-	<article
-		class="relative overflow-hidden group min-h-[260px] sm:min-h-[340px] lg:min-h-[420px]"
-	>
+	<article class="collection-banner">
 		{# Full‑width background image #}
 		<div
-			class="absolute inset-0 bg-cover bg-center"
+			class="collection-banner-bg"
 			style="background-image: url('{{ collection.image.url }}');"
 		></div>
 
 		{# Dark overlay for readability #}
-		<div
-			class="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition-colors duration-500"
-		></div>
+		<div class="collection-banner-overlay"></div>
 
 		{# Content constrained in the middle with generous padding #}
-		<div
-			class="relative z-10 max-w-content mx-auto px-6 sm:px-10 lg:px-16 py-12 sm:py-16 lg:py-20"
-		>
-			<div class="flex flex-col sm:flex-row">
+		<div class="collection-banner-content">
+			<div class="collection-banner-flex">
 				{# Left: label + title #}
-				<div
-					class="w-full sm:w-1/2 pr-0 sm:pr-8 lg:pr-12 flex flex-col justify-center text-white space-y-4 group-hover:opacity-0 group-hover:-translate-x-4 transition-all duration-500"
-				>
-					<p
-						class="text-sm font-normal tracking-[0.3em] uppercase text-brand-ochre mb-3"
-					>
+				<div class="collection-banner-left">
+					<p class="collection-banner-label">
 						{% translate "Collection" %}
 					</p>
-					<h1
-						class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl  font-normal"
-					>
+					<h1 class="collection-banner-title">
 						{{ collection.name }}
 					</h1>
 					{% if collection.year %}
-					<p class="text-sm text-brand-sand">{{ collection.year }}</p>
+					<p class="collection-banner-year">{{ collection.year }}</p>
 					{% endif %}
 				</div>
 
 				{# Right: description on hover #} {% if collection.description %}
-				<div
-					class="w-full sm:w-1/2 pl-0 sm:pl-8 lg:pl-12 mt-8 sm:mt-0 flex items-center text-white opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500"
-				>
-					<p
-						class="text-sm sm:text-base lg:text-lg leading-relaxed max-w-md text-on-primary"
-					>
+				<div class="collection-banner-right">
+					<p class="collection-banner-desc">
 						{{ collection.description }}
 					</p>
 				</div>
@@ -58,84 +42,76 @@
 </section>
 
 {% if collection %}
-<section
-	class="pt-16 lg:pt-28 pb-18 lg:pb-22 bg-canvas"
->
-	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+<section class="collection-products-section">
+	<div class="container">
 		{% include 'partials/breadcrumbs.html' %}
 		{% if products %}
-		<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
+		<div class="collections-grid">
 			{% for product in products %}
-			<article
-				class="group bg-surface-card rounded-md border border-hairline transition-all duration-500 hover:-translate-y-1.5 hover:scale-[1.01] flex flex-col overflow-hidden"
-			>
+			<article class="collection-card">
 				{% if product.image %}
-				<div class="aspect-[4/3] overflow-hidden bg-canvas">
+				<div class="collection-card-img-wrapper">
 					<img
 						src="{{ product.image.url }}"
 						alt="{{ product.name }}"
-						class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-105 transition-all duration-700"
+						class="collection-card-img"
 						loading="lazy"
 					/>
 				</div>
 				{% endif %}
 
-				<div class="flex-1 p-6 flex flex-col">
-					<div class="flex justify-between items-start gap-4 mb-2">
-						<h2
-							class="text-2xl  font-normal text-ink group-hover:text-brand-terracotta transition-colors"
-						>
+				<div class="collection-card-body">
+					<div class="product-card-header">
+						<h2 class="product-card-title">
 							{{ product.name }}
 						</h2>
-						<div class="text-right flex-shrink-0">
+						<div class="product-card-price-wrapper">
 							{% if product.discount_percentage > 0 %}
-							<div class="flex flex-col items-end">
-								<span class="text-lg font-normal text-error">
+							<div class="product-card-price-wrapper">
+								<span class="product-card-price-discounted">
 									{{ product.discounted_price_in_dollars }}
 								</span>
-								<span class="text-xs text-muted line-through">
+								<span class="product-card-price-old">
 									{{ product.price_in_dollars }}
 								</span>
 							</div>
 							{% else %}
-							<span class="text-lg font-normal text-ink">
+							<span class="product-card-price">
 								{{ product.price_in_dollars }}
 							</span>
 							{% endif %}
 						</div>
 					</div>
 
-					<div class="mb-4">
+					<div class="product-card-stock-wrapper">
 						{% if product.quantity == 0 %}
-						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-red-50 text-error">
+						<span class="badge badge-error">
 							{% translate "Sold Out" %}
 						</span>
 						{% elif product.quantity <= 3 %}
-						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-orange-50 text-warning">
+						<span class="badge badge-warning">
 							{% translate "Low Stock" %} ({{ product.quantity }})
 						</span>
 						{% else %}
-						<span class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-green-50 text-success">
+						<span class="badge badge-success">
 							{% translate "In Stock" %}
 						</span>
 						{% endif %}
 					</div>
 
 					{% if product.description %}
-					<p
-						class="text-sm sm:text-base text-muted leading-relaxed mb-5 line-clamp-3"
-					>
+					<p class="product-card-desc">
 						{{ product.description }}
 					</p>
 					{% endif %}
-					<div class="mt-auto">
+					<div class="product-card-footer">
 						<a
 							href="{% url 'shop:product' product.id %}"
-							class="inline-flex items-center text-sm sm:text-base font-normal text-brand-terracotta hover:text-brand-terracotta/90"
+							class="product-card-link"
 						>
 							{% translate "See Details." %}
 							<svg
-								class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+								class="w-4 h-4 ml-2"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -154,16 +130,16 @@
 			{% endfor %}
 		</div>
 		{% else %}
-		<div class="text-center py-32 reveal">
-			<div class="w-32 h-32 bg-hairline rounded-md flex items-center justify-center mx-auto mb-8">
-				<svg class="w-16 h-16 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+		<div class="shop-empty-state reveal">
+			<div class="shop-empty-icon-box">
+				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
 				</svg>
 			</div>
-			<p class="text-2xl text-muted font-normal">
+			<p class="shop-empty-title">
 				{% translate "No products registered in this category." %}
 			</p>
-			<a href="{% url 'shop:shop' %}" class="button-primary mt-6">
+			<a href="{% url 'shop:shop' %}" class="button-primary">
 				{% translate "Explore Other Collections" %}
 			</a>
 		</div>

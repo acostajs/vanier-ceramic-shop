@@ -1,49 +1,39 @@
 {% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Shipping Info' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
 
-<section
-	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-canvas"
->
-	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-		<h1
-			class="text-3xl sm:text-4xl lg:text-5xl  font-normal text-ink mb-6"
-		>
+<section class="auth-form-section">
+	<div class="container">
+		<h1 class="product-detail-title" style="margin-bottom: var(--spacing-lg);">
 			{% translate "Shipping Information" %}
 		</h1>
 
-		<div
-			class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8 mb-8"
-		>
-			<h2
-				class="text-lg sm:text-xl  font-normal text-ink mb-4"
-			>
+		<div class="auth-card" style="margin-bottom: var(--spacing-lg);">
+			<h2 class="orders-title" style="margin-bottom: var(--spacing-md);">
 				{% translate "Current address" %}
 			</h2>
-			<div class="overflow-x-auto">
-				<table class="min-w-full text-sm text-left text-body">
+			<div class="cart-table-wrapper">
+				<table class="cart-table" style="text-align: left;">
 					<thead>
-						<tr
-							class="uppercase tracking-wide text-xs text-muted border-b border-hairline"
-						>
-							<th class="py-2 pr-4">{% translate "Address line 1" %}</th>
-							<th class="py-2 px-4">{% translate "Address line 2" %}</th>
-							<th class="py-2 px-4">{% translate "City" %}</th>
-							<th class="py-2 px-4">{% translate "Postal Code" %}</th>
-							<th class="py-2 pl-4">{% translate "Country" %}</th>
+						<tr>
+							<th class="cart-th text-left">{% translate "Address line 1" %}</th>
+							<th class="cart-th text-left">{% translate "Address line 2" %}</th>
+							<th class="cart-th text-left">{% translate "City" %}</th>
+							<th class="cart-th text-left">{% translate "Postal Code" %}</th>
+							<th class="cart-th text-left">{% translate "Country" %}</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="border-b border-hairline">
-							<td class="py-3 pr-4">
+						<tr class="cart-tr">
+							<td class="cart-td">
 								{{ account.shipping_address_line1|default:"—" }}
 							</td>
-							<td class="py-3 px-4">
+							<td class="cart-td">
 								{{ account.shipping_address_line2|default:"—" }}
 							</td>
-							<td class="py-3 px-4">{{ account.shipping_city|default:"—" }}</td>
-							<td class="py-3 px-4">
+							<td class="cart-td">{{ account.shipping_city|default:"—" }}</td>
+							<td class="cart-td">
 								{{ account.shipping_postal_code|default:"—" }}
 							</td>
-							<td class="py-3 pl-4">
+							<td class="cart-td">
 								{{ account.shipping_country|default:"—" }}
 							</td>
 						</tr>
@@ -52,42 +42,35 @@
 			</div>
 		</div>
 
-		<div
-			class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8"
-		>
-			<h2
-				class="text-lg sm:text-xl  font-normal text-ink mb-4"
-			>
+		<div class="auth-card">
+			<h2 class="orders-title" style="margin-bottom: var(--spacing-md);">
 				{% translate "Update shipping address" %}
 			</h2>
 
 			<form
 				method="post"
 				action="{% url 'account:shipping_submit' %}"
-				class="space-y-5"
 			>
 				{% csrf_token %} {{ form.non_field_errors }} {% for field in form %}
-				<div class="space-y-1">
+				<div class="form-group">
 					{{ field.label_tag }}
-					<div class="mt-1">{{ field }}</div>
+					<div>{{ field }}</div>
 					{% if field.errors %}
-					<div class="mt-1 text-sm text-red-600">{{ field.errors }}</div>
+					<div class="error-text">{{ field.errors }}</div>
 					{% endif %}
 				</div>
 				{% endfor %}
 
-				<div
-					class="mt-4 flex flex-col sm:flex-row gap-4 items-center justify-between"
-				>
+				<div class="cart-actions-row" style="margin-top: var(--spacing-md);">
 					<a
 						href="{% url 'account:account' %}"
-						class="text-sm sm:text-base font-normal text-ink hover:text-warning transition-colors"
+						class="checkout-back-link"
 					>
 						← {% translate "Go Back" %}
 					</a>
 					<button
 						type="submit"
-						class="inline-flex items-center justify-center h-[46px] px-6 rounded-sm bg-primary text-on-primary text-[13px] font-normal tracking-[1.5px] uppercase transition-colors duration-200 hover:bg-[#2b2a28]"
+						class="button-primary"
 					>
 						{% translate "Submit" %}
 					</button>

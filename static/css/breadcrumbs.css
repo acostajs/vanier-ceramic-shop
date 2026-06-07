@@ -1,0 +1,41 @@
+/* Breadcrumbs */
+
+.breadcrumbs-nav {
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-lg);
+}
+
+.breadcrumbs-list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  list-style: none;
+  font-size: var(--typography-body-sm-size);
+  color: var(--color-muted);
+  font-weight: 300;
+  flex-wrap: wrap;
+}
+
+.breadcrumbs-link {
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbs-link:hover {
+  color: var(--color-brand-terracotta);
+  text-decoration: underline;
+}
+
+.breadcrumbs-separator {
+  width: 16px;
+  height: 16px;
+  color: var(--color-hairline);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.breadcrumbs-current {
+  color: var(--color-ink);
+  font-weight: 400;
+}

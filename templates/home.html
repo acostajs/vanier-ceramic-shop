@@ -4,57 +4,53 @@
 
 {% block title %}{% translate "Home" %} | Laura Melissa Ceramics{% endblock %}
 
-{% block body_class %}h-screen overflow-hidden{% endblock %}
-
 {% block main %}
-<main class="scroll-container">
+<main class="flex-1">
 	<!-- Section 1: Hero -->
-	<section class="scroll-section hero bg-canvas flex items-center justify-center py-12">
-		<div class="w-full max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+	<section class="home-hero flex-row-center">
+		<div class="container">
+			<div class="hero-grid">
 				<!-- Left: Headline, artist copy, CTA (7 columns) -->
-				<div class="lg:col-span-7 flex flex-col justify-center text-left">
-					<h1 class="text-4xl sm:text-5xl lg:text-[64px] font-light text-ink leading-[1.1] tracking-[-0.5px] mb-8">
-						<span class="text-brand-terracotta">Laura Melissa</span><br />
+				<div class="hero-content">
+					<h1 class="hero-title">
+						<span class="hero-title-highlight">Laura Melissa</span><br />
 						{% translate "Ceramics" %}
 					</h1>
-					<p class="text-lg lg:text-xl text-body font-light leading-relaxed max-w-xl mb-8">
+					<p class="hero-copy">
 						{% blocktranslate %} Unique handcrafted ceramics and pottery. Each
 						piece tells a story of earth, fire, and time. {% endblocktranslate %}
 					</p>
-					<div class="flex flex-col sm:flex-row gap-4">
-						<a href="{% url 'shop:shop' %}"
-							class="button-primary px-8 hover:-translate-y-0.5 text-center flex items-center justify-center">
+					<div class="hero-actions">
+						<a href="{% url 'shop:shop' %}" class="button-primary">
 							{% translate "Shop Collections" %}
 							<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 									d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
 							</svg>
 						</a>
-						<a href="{% url 'about' %}"
-							class="button-secondary px-8 hover:-translate-y-0.5 text-center flex items-center justify-center">
+						<a href="{% url 'about' %}" class="button-secondary">
 							{% translate "Read Biography" %}
 						</a>
 					</div>
 				</div>
 
 				<!-- Right: Full-height image (5 columns) -->
-				<div class="lg:col-span-5 h-[300px] sm:h-[400px] lg:h-[500px] rounded-md border border-hairline overflow-hidden">
+				<div class="hero-image-col">
 					<img src="{% static 'images/about-portrait.avif' %}" alt="Laura Melissa Ceramics"
-						class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+						class="hero-image" loading="eager" fetchpriority="high" />
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- Section 2: Recent Work -->
-	<section class="scroll-section recent-work bg-canvas">
-		<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 w-full">
-			<div class="text-center mb-8 lg:mb-12 reveal">
-				<h2 class="text-3xl lg:text-5xl  font-normal text-ink mb-4">
+	<section class="recent-work-section">
+		<div class="container">
+			<div class="section-header reveal">
+				<h2 class="section-title">
 					{% translate "Recent Work" %}
 				</h2>
-				<p class="text-base lg:text-lg text-muted max-w-2xl mx-auto">
+				<p class="section-subtitle">
 					{% blocktranslate %} Discover the latest collections, each piece
 					handcrafted with care and precision on the potter's wheel.
 					{% endblocktranslate %}
@@ -62,69 +58,63 @@
 			</div>
 
 			<!-- Product Slider: Horizontal Scroll on Mobile/Tablet, 3-up Grid on Desktop -->
-			<div class="flex overflow-x-auto snap-x snap-mandatory gap-6 scrollbar-none pb-4 lg:grid lg:grid-cols-3 lg:overflow-x-visible lg:snap-none lg:gap-8 w-full">
+			<div class="product-slider">
 				{% if recent_products %}
 				{% for product in recent_products %}
-				<article
-					class="group bg-surface-card rounded-md overflow-hidden border border-hairline transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal flex flex-col flex-shrink-0 w-80 sm:w-96 lg:w-full snap-center">
+				<article class="product-card reveal">
 					{% if product.image %}
-					<div class="aspect-video overflow-hidden bg-canvas relative">
+					<div class="product-card-img-wrapper">
 						<img src="{{ product.image.url }}" alt="{{ product.name }}"
-							class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
-							loading="lazy" />
+							class="product-card-img" loading="lazy" />
 					</div>
 					{% endif %}
-					<div class="p-5 flex-1 flex flex-col">
-						<div class="flex justify-between items-start gap-4 mb-2">
-							<h3 class="text-xl lg:text-2xl  font-normal text-ink group-hover:text-brand-terracotta transition-colors">
+					<div class="product-card-body">
+						<div class="product-card-header">
+							<h3 class="product-card-title">
 								{{ product.name }}
 							</h3>
-							<div class="text-right flex-shrink-0">
+							<div class="product-card-price-wrapper">
 								{% if product.discount_percentage > 0 %}
-								<div class="flex flex-col items-end">
-									<span class="text-lg font-normal text-error">
+								<div class="product-card-price-wrapper">
+									<span class="product-card-price-discounted">
 										{{ product.discounted_price_in_dollars }}
 									</span>
-									<span class="text-xs text-muted line-through">
+									<span class="product-card-price-old">
 										{{ product.price_in_dollars }}
 									</span>
 								</div>
 								{% else %}
-								<span class="text-lg font-normal text-ink">
+								<span class="product-card-price">
 									{{ product.price_in_dollars }}
 								</span>
 								{% endif %}
 							</div>
 						</div>
 
-						<div class="mb-4">
+						<div class="product-card-stock-wrapper">
 							{% if product.quantity == 0 %}
-							<span
-								class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-red-50 text-error">
+							<span class="badge badge-error">
 								{% translate "Sold Out" %}
 							</span>
-							{% elif product.quantity <= 3 %} <span
-								class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-orange-50 text-warning">
+							{% elif product.quantity <= 3 %}
+							<span class="badge badge-warning">
 								{% translate "Low Stock" %} ({{ product.quantity }})
-								</span>
-								{% else %}
-								<span
-									class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-green-50 text-success">
-									{% translate "In Stock" %}
-								</span>
-								{% endif %}
+							</span>
+							{% else %}
+							<span class="badge badge-success">
+								{% translate "In Stock" %}
+							</span>
+							{% endif %}
 						</div>
 
-						<p class="text-sm text-body leading-relaxed mb-4 line-clamp-3">
+						<p class="product-card-desc">
 							{{ product.description }}
 						</p>
 
-						<div class="mt-auto">
-							<a href="{% url 'shop:product' product.id %}"
-								class="inline-flex items-center text-sm font-normal text-brand-terracotta hover:text-brand-terracotta/90 transition-colors">
+						<div class="product-card-footer">
+							<a href="{% url 'shop:product' product.id %}" class="product-card-link">
 								{% translate "See Details" %}
-								<svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none"
-									stroke="currentColor" viewBox="0 0 24 24">
+								<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 										d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
 								</svg>
@@ -136,46 +126,42 @@
 				{% else %}
 				{# Fallback mineral-toned product cards #}
 				<!-- Card 1: Sage Green Glaze Bowl -->
-				<article
-					class="group bg-surface-card rounded-md overflow-hidden border border-hairline transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal flex flex-col flex-shrink-0 w-80 sm:w-96 lg:w-full snap-center">
-					<div class="aspect-video overflow-hidden bg-canvas relative">
+				<article class="product-card reveal">
+					<div class="product-card-img-wrapper">
 						<img src="{% static 'images/about-statement.avif' %}" alt="Sage Green Bowl"
-							class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
-							loading="lazy" />
+							class="product-card-img" loading="lazy" />
 					</div>
-					<div class="p-5 flex-1 flex flex-col">
-						<div class="flex justify-between items-start gap-4 mb-2">
-							<h3 class="text-xl lg:text-2xl  font-normal text-ink group-hover:text-brand-terracotta transition-colors">
+					<div class="product-card-body">
+						<div class="product-card-header">
+							<h3 class="product-card-title">
 								{% translate "Sage Glazed Bowl" %}
 							</h3>
-							<div class="text-right flex-shrink-0">
-								<span class="text-lg font-normal text-ink">
+							<div class="product-card-price-wrapper">
+								<span class="product-card-price">
 									$65.00
 								</span>
 							</div>
 						</div>
 
-						<div class="mb-4">
-							<span
-								class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-green-50 text-success">
+						<div class="product-card-stock-wrapper">
+							<span class="badge badge-success">
 								{% translate "In Stock" %}
 							</span>
 						</div>
 
-						<p class="text-sm font-normal tracking-[0.2px] text-muted mb-3">
+						<p class="product-card-specs">
 							{% translate "Dimensions:" %} 15cm × 15cm × 8cm &bull; {% translate "Clay:" %} Sandstone
 						</p>
 
-						<p class="text-sm text-body leading-relaxed mb-4 line-clamp-3">
-							{% translate "Hand-thrown stoneware bowl featuring a rustic, dripped sage green glaze finish. Perfect for daily rituals." %}
+						<p class="product-card-desc">
+							{% translate "Hand-thrown stoneware bowl featuring a rustic, dripped sage green glaze
+							finish. Perfect for daily rituals." %}
 						</p>
 
-						<div class="mt-auto">
-							<a href="{% url 'shop:shop' %}"
-								class="inline-flex items-center text-sm font-normal text-brand-terracotta hover:text-brand-terracotta/90 transition-colors">
+						<div class="product-card-footer">
+							<a href="{% url 'shop:shop' %}" class="product-card-link">
 								{% translate "See Details" %}
-								<svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none"
-									stroke="currentColor" viewBox="0 0 24 24">
+								<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 										d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
 								</svg>
@@ -185,46 +171,42 @@
 				</article>
 
 				<!-- Card 2: Celadon Tea Cup -->
-				<article
-					class="group bg-surface-card rounded-md overflow-hidden border border-hairline transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal flex flex-col flex-shrink-0 w-80 sm:w-96 lg:w-full snap-center">
-					<div class="aspect-video overflow-hidden bg-canvas relative">
+				<article class="product-card reveal">
+					<div class="product-card-img-wrapper">
 						<img src="{% static 'images/home-hero-img.avif' %}" alt="Celadon Tea Cup"
-							class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
-							loading="lazy" />
+							class="product-card-img" loading="lazy" />
 					</div>
-					<div class="p-5 flex-1 flex flex-col">
-						<div class="flex justify-between items-start gap-4 mb-2">
-							<h3 class="text-xl lg:text-2xl  font-normal text-ink group-hover:text-brand-terracotta transition-colors">
+					<div class="product-card-body">
+						<div class="product-card-header">
+							<h3 class="product-card-title">
 								{% translate "Celadon Ochre Cup" %}
 							</h3>
-							<div class="text-right flex-shrink-0">
-								<span class="text-lg font-normal text-ink">
+							<div class="product-card-price-wrapper">
+								<span class="product-card-price">
 									$48.00
 								</span>
 							</div>
 						</div>
 
-						<div class="mb-4">
-							<span
-								class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-green-50 text-success">
+						<div class="product-card-stock-wrapper">
+							<span class="badge badge-success">
 								{% translate "In Stock" %}
 							</span>
 						</div>
 
-						<p class="text-sm font-normal tracking-[0.2px] text-muted mb-3">
+						<p class="product-card-specs">
 							{% translate "Dimensions:" %} 8cm × 8cm × 10cm &bull; {% translate "Clay:" %} Stoneware
 						</p>
 
-						<p class="text-sm text-body leading-relaxed mb-4 line-clamp-3">
-							{% translate "A delicate tea cup showcasing the crackled beauty of a mineral-tinted celadon glaze over a textured stoneware body." %}
+						<p class="product-card-desc">
+							{% translate "A delicate tea cup showcasing the crackled beauty of a mineral-tinted celadon
+							glaze over a textured stoneware body." %}
 						</p>
 
-						<div class="mt-auto">
-							<a href="{% url 'shop:shop' %}"
-								class="inline-flex items-center text-sm font-normal text-brand-terracotta hover:text-brand-terracotta/90 transition-colors">
+						<div class="product-card-footer">
+							<a href="{% url 'shop:shop' %}" class="product-card-link">
 								{% translate "See Details" %}
-								<svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none"
-									stroke="currentColor" viewBox="0 0 24 24">
+								<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 										d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
 								</svg>
@@ -234,46 +216,42 @@
 				</article>
 
 				<!-- Card 3: Terracotta Studio Vase -->
-				<article
-					class="group bg-surface-card rounded-md overflow-hidden border border-hairline transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] reveal flex flex-col flex-shrink-0 w-80 sm:w-96 lg:w-full snap-center">
-					<div class="aspect-video overflow-hidden bg-canvas relative">
+				<article class="product-card reveal">
+					<div class="product-card-img-wrapper">
 						<img src="{% static 'images/about-portrait.avif' %}" alt="Terracotta Studio Vase"
-							class="w-full h-full object-cover group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
-							loading="lazy" />
+							class="product-card-img" loading="lazy" />
 					</div>
-					<div class="p-5 flex-1 flex flex-col">
-						<div class="flex justify-between items-start gap-4 mb-2">
-							<h3 class="text-xl lg:text-2xl  font-normal text-ink group-hover:text-brand-terracotta transition-colors">
+					<div class="product-card-body">
+						<div class="product-card-header">
+							<h3 class="product-card-title">
 								{% translate "Terracotta Studio Vase" %}
 							</h3>
-							<div class="text-right flex-shrink-0">
-								<span class="text-lg font-normal text-ink">
+							<div class="product-card-price-wrapper">
+								<span class="product-card-price">
 									$120.00
 								</span>
 							</div>
 						</div>
 
-						<div class="mb-4">
-							<span
-								class="inline-flex items-center px-2 py-0.5 rounded-xs text-[11px] font-normal uppercase tracking-wider bg-green-50 text-success">
+						<div class="product-card-stock-wrapper">
+							<span class="badge badge-success">
 								{% translate "In Stock" %}
 							</span>
 						</div>
 
-						<p class="text-sm font-normal tracking-[0.2px] text-muted mb-3">
+						<p class="product-card-specs">
 							{% translate "Dimensions:" %} 12cm × 12cm × 24cm &bull; {% translate "Clay:" %} Terracotta
 						</p>
 
-						<p class="text-sm text-body leading-relaxed mb-4 line-clamp-3">
-							{% translate "Tall, unglazed terracotta exterior vase with a glazed white interior for flower staging. Exudes hand-carved finger marks." %}
+						<p class="product-card-desc">
+							{% translate "Tall, unglazed terracotta exterior vase with a glazed white interior for
+							flower staging. Exudes hand-carved finger marks." %}
 						</p>
 
-						<div class="mt-auto">
-							<a href="{% url 'shop:shop' %}"
-								class="inline-flex items-center text-sm font-normal text-brand-terracotta hover:text-brand-terracotta/90 transition-colors">
+						<div class="product-card-footer">
+							<a href="{% url 'shop:shop' %}" class="product-card-link">
 								{% translate "See Details" %}
-								<svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none"
-									stroke="currentColor" viewBox="0 0 24 24">
+								<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 										d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
 								</svg>
@@ -287,31 +265,30 @@
 	</section>
 
 	<!-- Section 3: About Me -->
-	<section class="scroll-section about-me bg-surface-soft">
-		<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 w-full">
-			<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-				<div class="reveal">
-					<h2 class="text-4xl lg:text-5xl  font-normal text-ink mb-6 leading-tight">
+	<section class="about-me-section">
+		<div class="container relative z-10">
+			<div class="about-me-grid">
+				<div class="about-me-content reveal relative">
+					<h2 class="about-me-heading">
 						{% translate "A little bit" %}
 						<br />
-						<span class="text-brand-terracotta">{% translate "about me" %}</span>
+						<span class="about-me-highlight">{% translate "about me" %}</span>
 					</h2>
-					<p class="text-base lg:text-lg text-muted leading-relaxed mb-8 max-w-lg">
+					<p class="about-me-copy">
 						{% blocktranslate %} Trained as an Industrial Designer, I found
 						ceramics to be the perfect union of form, function, and emotion. Each
 						piece emerges from the potter's wheel, shaped by circular movement and
 						fired with intention. {% endblocktranslate %}
 					</p>
-					<a href="{% url 'about' %}" class="button-secondary hover:-translate-y-0.5">
+					<a href="{% url 'about' %}" class="button-terracotta">
 						{% translate "Read my story" %}
 					</a>
 				</div>
 
-				<!-- About Image (Hidden on mobile/tablet to keep section height perfectly in 100lvh) -->
-				<div class="relative reveal hidden lg:block">
-					<div class="bg-surface-card rounded-md p-12 lg:p-16 border border-hairline overflow-hidden">
+				<!-- About Image -->
+				<div class="about-me-image-wrapper reveal">
+					<div class="ceramic-oval-frame">
 						<img src="{% static 'images/about-teaser-img.avif' %}" alt="Laura Melissa at work"
-							class="w-full h-[400px] lg:h-[450px] object-cover rounded-md border border-hairline"
 							loading="lazy" />
 					</div>
 				</div>
@@ -319,36 +296,28 @@
 		</div>
 	</section>
 
-	<!-- Section 4: Contact & Footer -->
-	<section class="scroll-section contact-footer bg-canvas min-h-lvh flex flex-col justify-between pt-24 lg:pt-32">
+	<!-- Section 4: Contact -->
+	<section class="home-contact-section">
 		<!-- Let's Talk CTA -->
-		<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center flex-1 flex flex-col justify-center items-center reveal w-full">
-			<h2 class="text-4xl lg:text-5xl  font-normal mb-6">
+		<div class="container home-contact-container reveal">
+			<h2 class="home-contact-heading">
 				{% translate "Let's talk" %}
 			</h2>
-			<p class="text-xl lg:text-2xl mb-8 lg:mb-12 max-w-2xl mx-auto leading-relaxed">
+			<p class="home-contact-copy">
 				{% blocktranslate %} Ready to bring your vision to life through ceramics?
 				Let's create something beautiful together. {% endblocktranslate %}
 			</p>
-			<div class="bg-surface-card border border-hairline rounded-md p-8 lg:p-12 w-full max-w-xl">
-				<a href="{% url 'contact:contact' %}" class="button-primary px-12 hover:-translate-y-0.5 w-full sm:w-auto">
+			<div class="home-contact-card">
+				<a href="{% url 'contact:contact' %}" class="button-primary">
 					{% translate "Get in touch" %}
 					<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="M17 8l4 4m0 0l-4 4m4-4H3">
 						</path>
 					</svg>
 				</a>
 			</div>
 		</div>
-
-		<!-- Footer Inclusion -->
-		<div class="w-full">
-			{% include 'partials/footer.html' %}
-		</div>
 	</section>
 </main>
-{% endblock %}
-
-{% block footer %}
-{# Left empty since the footer is included inside the last scroll snap section #}
 {% endblock %}
