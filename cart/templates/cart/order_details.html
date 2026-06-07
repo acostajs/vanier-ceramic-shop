@@ -7,7 +7,7 @@
 			<h1 class="product-detail-title">
 				{% translate "Order details" %}
 			</h1>
-			<p class="product-detail-desc" style="margin-top: var(--spacing-xxs); color: var(--color-muted);">
+			<p class="product-detail-desc mt-xxs text-muted">
 				{% blocktranslate %} Thank you for your purchase. Here is a summary of
 				your order. {% endblocktranslate %}
 			</p>
@@ -20,7 +20,7 @@
 					<p class="product-detail-label-muted">
 						{% translate "Payment ID" %}
 					</p>
-					<p style="margin-top: var(--spacing-xxs); font-family: monospace; font-size: 14px; color: var(--color-ink); word-break: break-all;">
+					<p class="order-payment-id-val">
 						{{ order.payment_id|default:"—" }}
 					</p>
 				</div>
@@ -28,7 +28,7 @@
 					<p class="product-detail-label-muted">
 						{% translate "Total" %}
 					</p>
-					<p class="cart-subtotal-value" style="margin-top: var(--spacing-xxs);">
+					<p class="cart-subtotal-value mt-xxs">
 						{{ order.total_in_dollars }}
 					</p>
 				</div>
@@ -36,20 +36,20 @@
 					<p class="product-detail-label-muted">
 						{% translate "Status" %}
 					</p>
-					<p class="order-status-badge {% if order.status == 'paid' %}status-paid{% elif order.status == 'pending' %}status-pending{% else %}status-other{% endif %}" style="margin-top: var(--spacing-xxs);">
+					<p class="order-status-badge {% if order.status == 'paid' %}status-paid{% elif order.status == 'pending' %}status-pending{% else %}status-other{% endif %} mt-xxs">
 						{{ order.status }}
 					</p>
 				</div>
 			</div>
 
-			<div style="border-bottom: 1px solid var(--color-hairline); padding-bottom: var(--spacing-md);">
+			<div class="order-detail-section-border">
 				<p class="product-detail-label-muted">
 					{% translate "Placed on" %}
 				</p>
-				<p style="margin-top: var(--spacing-xxs); font-size: 14px; color: var(--color-body-strong);">{{ order.created_at }}</p>
+				<p class="order-date-val">{{ order.created_at }}</p>
 			</div>
 
-			<div style="border-bottom: 1px solid var(--color-hairline); padding-bottom: var(--spacing-md);">
+			<div class="order-detail-section-border">
 				<div class="order-addresses-grid">
 					<!-- Billing -->
 					<div class="order-address-box">
@@ -82,7 +82,7 @@
 
 		<!-- Items list -->
 		<div class="order-items-box">
-			<p class="product-detail-label-muted" style="margin-bottom: var(--spacing-md);">
+			<p class="product-detail-label-muted mb-md">
 				{% translate "Items in this order" %}
 			</p>
 
@@ -133,13 +133,13 @@
 				{% endfor %}
 			</div>
 			{% else %}
-			<p class="product-detail-desc" style="color: var(--color-muted);">
+			<p class="product-detail-desc text-muted">
 				{% translate "No items found for this order." %}
 			</p>
 			{% endif %}
 		</div>
 
-		<div style="margin-top: var(--spacing-lg);">
+		<div class="mt-lg">
 			<a
 				href="{% url 'account:account' %}"
 				class="checkout-back-link"

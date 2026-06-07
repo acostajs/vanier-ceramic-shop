@@ -306,6 +306,24 @@ main.flex-1 {
   color: var(--color-muted);
 }
 
+.hidden {
+  display: none !important;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+
+.mt-lg {
+  margin-top: var(--spacing-lg);
+}
+
+
+
 
 
 
