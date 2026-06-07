@@ -189,6 +189,8 @@ class OrderModelTests(BaseCartSetupMixin, TestCase):
 
         order.refresh_from_db()
         self.assertEqual(order.payment_id, "pi_123")
+        self.assertEqual(order.name, "Juan")
+        self.assertEqual(order.email, "[email protected]")
         self.assertEqual(order.total_cents, 5000)
         self.assertEqual(order.billing_city, "BCity")
         self.assertEqual(order.shipping_city, "SCity")

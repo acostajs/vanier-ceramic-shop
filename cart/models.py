@@ -23,6 +23,8 @@ class Order(models.Model):
     account = models.ForeignKey(
         Account, on_delete=models.PROTECT, null=True, blank=True
     )
+    name = models.CharField(_("name"), max_length=255, blank=True, null=True)
+    email = models.EmailField(_("email"), blank=True, null=True)
     payment_id = models.CharField(
         _("payment_id"), max_length=255, unique=True, null=True, blank=True
     )
