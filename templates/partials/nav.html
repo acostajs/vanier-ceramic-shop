@@ -2,7 +2,7 @@
 {% load i18n %}
 
 <header>
-  <nav id="main-nav" class="nav-bar {% if request.resolver_match.url_name == 'home' %}bg-transparent{% else %}bg-canvas-blur{% endif %}">
+  <nav id="main-nav" class="nav-bar {% if request.resolver_match.url_name == 'home' %}bg-transparent{% else %}bg-canvas-blur{% endif %}" data-is-home="{% if request.resolver_match.url_name == 'home' %}true{% else %}false{% endif %}">
     <div class="container">
       <div class="nav-container">
         <div>
@@ -243,7 +243,7 @@
       }
       document.addEventListener("DOMContentLoaded", function () {
         var nav = document.getElementById('main-nav');
-        var isHome = {% if request.resolver_match.url_name == 'home' %}true{% else %}false{% endif %};
+        var isHome = nav && nav.getAttribute('data-is-home') === 'true';
         
         if (nav && isHome) {
           function handleScroll() {
