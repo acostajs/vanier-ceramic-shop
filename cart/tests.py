@@ -307,6 +307,33 @@ class CartViewTests(BaseCartSetupMixin, TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
+    @patch("cart.views.stripe.checkout.Session.retrieve")
+    def test_success_clears_cart_when_paid(self, mock_retrieve):
+        from unittest.mock import MagicMock
+
+        mock_session = MagicMock()
+        mock_session.payment_status = "paid"
+        mock_retrieve.return_value = mock_session
+
+        self.client.login(username="juan", password="testpass123")
+        cart = Cart.objects.get(account=self.account)
+        cart.add(self.product1, quantity=1)
+        self.assertEqual(cart.count(), 1)
+
+        url = reverse("cart:success") + "?session_id=cs_test_123"
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+        # Cart should be cleared
+        self.assertEqual(cart.count(), 0)
+
+        # Refreshing success page with same session_id should not double-clear if items added in between
+        cart.add(self.product1, quantity=1)
+        self.assertEqual(cart.count(), 1)
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(cart.count(), 1)
+
 
 class StripeWebhookTests(BaseCartSetupMixin, TestCase):
     """Test Stripe webhook handling."""

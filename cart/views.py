@@ -1,3 +1,4 @@
+import stripe
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from .models import Order, Cart
@@ -133,16 +134,28 @@ def create_checkout_session(request):
 
 
 @login_required
-def success(request):
+def success(request: HttpRequest) -> HttpResponse:
     """Handle successful Stripe Payments."""
     session_id = request.GET.get("session_id")
-    cart = get_cart(request)
-    cart.clear()
-    messages.success(request, _("Payment successful! Your order has been placed."))
+    if session_id:
+        processed_sessions = request.session.setdefault("processed_stripe_sessions", [])
+        if session_id not in processed_sessions:
+            try:
+                session = stripe.checkout.Session.retrieve(session_id)
+                if session.payment_status == "paid":
+                    cart = get_cart(request)
+                    cart.clear()
+                    processed_sessions.append(session_id)
+                    request.session.modified = True
+                    messages.success(
+                        request, _("Payment successful! Your order has been placed.")
+                    )
+            except Exception:
+                pass
     return render(request, "cart/success.html", {"session_id": session_id})
 
 
-def cancel(request):
+def cancel(request: HttpRequest) -> HttpResponse:
     """Handle cancelled Stripe Checkout Sessions."""
     return render(request, "cart/cancel.html")
 
