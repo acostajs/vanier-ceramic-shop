@@ -281,5 +281,31 @@ main.flex-1 {
   text-align: center;
 }
 
+/* Inline styles removal helpers */
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mt-xxs {
+  margin-top: var(--spacing-xxs);
+}
+
+.p-xl {
+  padding: var(--spacing-xl);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+
 
 
