@@ -30,8 +30,7 @@ def add_to_cart(request, product_id):
     qty = parse_quantity(request)
     cart.add(product, quantity=qty)
     messages.success(request, _(f"Added {product.name} (x{qty}) to cart."))
-    context = {"product": product}
-    return render(request, "shop/product.html", context)
+    return redirect("shop:product", product_id=product.id)
 
 
 @login_required

@@ -180,7 +180,7 @@ def shipping_submit(request):
         messages.success(request, msg)
         return redirect("account:account")
 
-    return render(request, "account/shipping.html", {"form": form})
+    return render(request, "account/shipping.html", {"form": form, "account": account})
 
 
 @login_required(login_url="account:login")
@@ -206,4 +206,4 @@ def billing_submit(request):
         messages.success(request, msg)
         return redirect("account:account")
 
-    return render(request, "account/billing.html", {"form": form})
+    return render(request, "account/billing.html", {"form": form, "account": account})
