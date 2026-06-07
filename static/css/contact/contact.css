@@ -112,3 +112,16 @@
   min-height: 120px;
   resize: vertical;
 }
+
+.contact-container {
+  max-width: 768px;
+}
+
+.contact-field-wrapper {
+  margin-top: var(--spacing-xxs);
+}
+
+.contact-submit-btn {
+  margin-top: var(--spacing-sm);
+}
+
