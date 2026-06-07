@@ -1,16 +1,10 @@
 /* Checkout Page Styles */
 
 .checkout-back-link {
-  font-size: 14px;
+  font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
   color: var(--color-ink);
   text-decoration: none;
   transition: color 0.2s ease;
-}
-
-@media (min-width: 640px) {
-  .checkout-back-link {
-    font-size: 16px;
-  }
 }
 
 .checkout-back-link:hover {
