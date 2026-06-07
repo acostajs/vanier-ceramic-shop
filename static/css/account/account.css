@@ -2,25 +2,18 @@
 
 .account-section {
   background-color: var(--color-canvas);
-  padding-top: 112px; /* pt-28 */
-  padding-bottom: 64px; /* pb-16 */
-}
-
-@media (min-width: 1024px) {
-  .account-section {
-    padding-top: 128px; /* lg:pt-32 */
-    padding-bottom: 80px; /* lg:pb-20 */
-  }
+  padding-top: clamp(7rem, 6rem + 5vw, 8rem);
+  padding-bottom: clamp(4rem, 3.5rem + 2.5vw, 5rem);
 }
 
 .account-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px; /* gap-8 */
+  gap: var(--spacing-xl);
   align-items: start;
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .account-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -30,33 +23,33 @@
   background-color: var(--color-surface-card);
   border-radius: var(--rounded-md);
   border: 1px solid var(--color-hairline);
-  padding: var(--spacing-lg); /* p-6 */
+  padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md); /* space-y-4 */
+  gap: var(--spacing-md);
 }
 
-@media (min-width: 640px) {
+@container (min-width: 40rem) {
   .profile-card {
-    padding: 28px; /* p-7 */
+    padding: 1.75rem; /* 28px */
   }
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .profile-card {
     grid-column: span 1;
   }
 }
 
 .profile-title {
-  font-size: 18px; /* text-lg */
+  font-size: var(--typography-title-md-size);
   font-weight: 400;
   color: var(--color-ink);
   margin-bottom: var(--spacing-xs);
 }
 
 .profile-info-text {
-  font-size: 14px; /* text-sm */
+  font-size: var(--typography-body-sm-size);
   color: var(--color-body);
 }
 
@@ -75,7 +68,7 @@
 
 .profile-link {
   display: block;
-  font-size: 14px;
+  font-size: var(--typography-body-sm-size);
   font-weight: 400;
   color: var(--color-ink);
   text-decoration: none;
@@ -93,7 +86,7 @@
 }
 
 .logout-link {
-  font-size: 14px;
+  font-size: var(--typography-body-sm-size);
   font-weight: 400;
   color: var(--color-error);
   text-decoration: none;
@@ -101,7 +94,7 @@
 }
 
 .logout-link:hover {
-  color: #a63a3a;
+  color: var(--color-error);
 }
 
 /* My Orders Panel */
@@ -109,31 +102,31 @@
   background-color: var(--color-surface-card);
   border-radius: var(--rounded-md);
   border: 1px solid var(--color-hairline);
-  padding: var(--spacing-lg); /* p-6 */
+  padding: var(--spacing-lg);
 }
 
-@media (min-width: 640px) {
+@container (min-width: 40rem) {
   .orders-card {
-    padding: 28px; /* p-7 */
+    padding: 1.75rem; /* 28px */
   }
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .orders-card {
     grid-column: span 2;
   }
 }
 
 .orders-title {
-  font-size: 18px; /* text-lg */
+  font-size: var(--typography-title-md-size);
   font-weight: 400;
   color: var(--color-ink);
   margin-bottom: var(--spacing-md);
 }
 
-@media (min-width: 640px) {
+@container (min-width: 40rem) {
   .orders-title {
-    font-size: 20px; /* text-xl */
+    font-size: clamp(1.125rem, 1.075rem + 0.25vw, 1.25rem); /* 18px to 20px */
   }
 }
 
@@ -147,15 +140,15 @@
 .orders-list-item {
   border: 1px solid var(--color-hairline);
   border-radius: var(--rounded-sm);
-  padding: var(--spacing-md); /* p-4 */
+  padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
 }
 
-@media (min-width: 640px) {
+@container (min-width: 40rem) {
   .orders-list-item {
-    padding: 20px; /* p-5 */
+    padding: 1.25rem; /* 20px */
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -168,18 +161,18 @@
 }
 
 .orders-item-id {
-  font-size: 14px;
+  font-size: var(--typography-body-sm-size);
   color: var(--color-muted);
 }
 
 .orders-item-date {
-  font-size: 12px;
+  font-size: var(--typography-copyright-size);
   color: var(--color-muted);
-  margin-top: 2px;
+  margin-top: 0.125rem; /* 2px */
 }
 
 .orders-item-total {
-  font-size: 14px;
+  font-size: var(--typography-body-sm-size);
   color: var(--color-body);
   margin-top: var(--spacing-xs);
 }
@@ -192,7 +185,7 @@
   text-align: left;
 }
 
-@media (min-width: 640px) {
+@container (min-width: 40rem) {
   .orders-item-action-wrapper {
     text-align: right;
   }

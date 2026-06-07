@@ -3,40 +3,29 @@
 .about-bio-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
-  /* gap-10 */
+  gap: 2.5rem; /* 40px */
   align-items: start;
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .about-bio-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 64px;
-    /* gap-16 */
+    gap: 4rem; /* 64px */
   }
 }
 
 .about-bio-title {
-  font-size: 30px;
-  /* text-3xl */
+  font-size: clamp(1.875rem, 1.625rem + 1.25vw, 2.25rem); /* 30px to 36px */
   font-weight: 400;
   color: var(--color-ink);
   margin-bottom: var(--spacing-lg);
-}
-
-@media (min-width: 640px) {
-  .about-bio-title {
-    font-size: 36px;
-    /* text-4xl */
-  }
 }
 
 .about-bio-story {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  font-size: 18px;
-  /* text-lg */
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* 16px to 18px */
   color: var(--color-body);
   line-height: 1.625;
 }
@@ -60,15 +49,13 @@
 .about-bio-name {
   display: block;
   color: var(--color-ink);
-  font-size: 18px;
-  /* text-lg */
+  font-size: var(--typography-title-md-size);
   font-weight: 400;
 }
 
 .about-bio-date {
   color: var(--color-muted);
-  font-size: 14px;
-  /* text-sm */
+  font-size: var(--typography-body-sm-size);
   font-style: italic;
 }
 
@@ -76,11 +63,10 @@
 .about-bio-image-col {
   position: relative;
   width: 100%;
-  max-width: 448px;
-  /* max-w-md */
+  max-width: 28rem; /* 448px */
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .about-bio-image-col {
     max-width: none;
   }
@@ -88,8 +74,7 @@
 
 .showcase-card {
   border-radius: var(--rounded-md);
-  padding: 32px;
-  /* p-8 */
+  padding: clamp(2rem, 1.75rem + 1vw, 2.5rem); /* 32px to 40px */
   border: 1px solid var(--color-hairline);
   overflow: hidden;
   width: 100%;
@@ -103,33 +88,23 @@
   background-color: var(--color-surface-card);
 }
 
-@media (min-width: 1024px) {
-  .showcase-card {
-    padding: 40px;
-    /* p-10 */
-  }
-}
-
 .showcase-img {
   width: 100%;
-  height: 320px;
-  /* h-80 */
+  height: 20rem; /* 320px */
   object-fit: cover;
   border-radius: var(--rounded-md);
   border: 1px solid var(--color-hairline);
 }
 
-@media (min-width: 640px) {
+@container (min-width: 40rem) {
   .showcase-img {
-    height: 384px;
-    /* h-96 */
+    height: 24rem; /* 384px */
   }
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .showcase-img {
-    height: 420px;
-    /* lg:h-[420px] */
+    height: 26.25rem; /* 420px */
   }
 }
 

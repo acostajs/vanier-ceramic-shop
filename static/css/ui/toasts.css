@@ -2,12 +2,12 @@
 
 .toast-container {
   position: fixed;
-  top: 96px; /* top-24 */
+  top: 6rem; /* top-24 */
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
   width: 90%;
-  max-width: 480px; /* sm:max-w-lg */
+  max-width: 30rem; /* sm:max-w-lg */
   pointer-events: none;
 }
 
@@ -24,11 +24,11 @@
 
 .toast-body {
   background-color: rgba(252, 249, 245, 0.9); /* canvas/90 */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
   border: 1px solid var(--color-hairline);
   border-radius: var(--rounded-sm);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1.25rem 1.5625rem -0.3125rem rgba(0, 0, 0, 0.1), 0 0.625rem 0.625rem -0.3125rem rgba(0, 0, 0, 0.04);
   padding: var(--spacing-md) var(--spacing-lg);
   display: flex;
   align-items: start;
@@ -36,10 +36,10 @@
 }
 
 .toast-icon {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 0.125rem;
 }
 
 .toast-icon.text-success {
@@ -70,7 +70,7 @@
 .toast-close-btn {
   margin-left: var(--spacing-xs);
   padding: var(--spacing-xxs);
-  margin-top: -4px;
+  margin-top: -0.25rem;
   background: transparent;
   border: none;
   color: var(--color-muted);
@@ -86,7 +86,7 @@
 @keyframes slideInFade {
   from {
     opacity: 0;
-    transform: translateY(-16px);
+    transform: translateY(-1rem);
   }
   to {
     opacity: 1;
