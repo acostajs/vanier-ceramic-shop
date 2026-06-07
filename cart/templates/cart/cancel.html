@@ -2,9 +2,7 @@
 
 <section class="cart-section">
 	<div class="auth-container text-center">
-		<div
-			style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 9999px; background-color: rgba(166, 58, 58, 0.1); color: var(--color-error); margin-bottom: var(--spacing-lg); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);"
-		>
+		<div class="cancel-icon-badge">
 			<svg
 				class="w-8 h-8"
 				fill="none"
@@ -20,19 +18,16 @@
 			</svg>
 		</div>
 
-		<h1
-			class="product-detail-title"
-			style="margin-bottom: var(--spacing-sm);"
-		>
+		<h1 class="product-detail-title order-status-title">
 			{% translate "Payment canceled" %}
 		</h1>
-		<p class="product-detail-desc" style="color: var(--color-muted); margin-bottom: var(--spacing-lg);">
+		<p class="product-detail-desc order-status-desc">
 			{% blocktranslate %} Your payment was canceled and no charge was made. You
 			can review your cart and try again whenever you are ready.
 			{%endblocktranslate %}
 		</p>
 
-		<div class="hero-actions" style="justify-content: center;">
+		<div class="hero-actions order-status-actions">
 			<a
 				href="{% url 'cart:cart' %}"
 				class="button-primary"
