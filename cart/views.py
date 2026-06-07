@@ -7,10 +7,11 @@ from .validation import has_complete_addresses
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
+from django.http import HttpRequest, HttpResponse
 
 
 @login_required
-def cart(request):
+def cart(request: HttpRequest) -> HttpResponse:
     """Display Cart."""
     cart = get_cart(request)
     context = {
@@ -23,36 +24,42 @@ def cart(request):
 
 @login_required
 @require_POST
-def add_to_cart(request, product_id):
+def add_to_cart(request: HttpRequest, product_id: int) -> HttpResponse:
     """To add a product to Cart."""
     cart = get_cart(request)
     product = get_object_or_404(Product, pk=product_id)
     qty = parse_quantity(request)
     cart.add(product, quantity=qty)
-    messages.success(request, _(f"Added {product.name} (x{qty}) to cart."))
+    messages.success(
+        request,
+        _("Added %(name)s (x%(qty)d) to cart.") % {"name": product.name, "qty": qty},
+    )
     return redirect("shop:product", product_id=product.id)
 
 
 @login_required
 @require_POST
-def update_cart(request, product_id):
+def update_cart(request: HttpRequest, product_id: int) -> HttpResponse:
     """To add a product to Cart."""
     cart = get_cart(request)
     product = get_object_or_404(Product, pk=product_id)
     qty = parse_quantity(request)
     cart.add(product, quantity=qty, replace=True)
-    messages.success(request, _(f"Updated {product.name} (x{qty}) to cart."))
+    messages.success(
+        request,
+        _("Updated %(name)s (x%(qty)d) to cart.") % {"name": product.name, "qty": qty},
+    )
     return redirect("cart:cart")
 
 
 @login_required
 @require_POST
-def remove_from_cart(request, product_id):
+def remove_from_cart(request: HttpRequest, product_id: int) -> HttpResponse:
     """To add a product to Cart."""
     cart = get_cart(request)
     product = get_object_or_404(Product, pk=product_id)
     cart.remove(product)
-    messages.success(request, _(f"Removed {product.name} from cart."))
+    messages.success(request, _("Removed %(name)s from cart.") % {"name": product.name})
     return redirect("cart:cart")
 
 
