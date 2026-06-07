@@ -235,20 +235,36 @@ class Cart(models.Model):
         """Remove all products from the cart."""
         CartItem.objects.filter(cart=self).delete()
 
-    def count(self):
+    def count(self) -> int:
         """Count all items in the cart."""
-        total_quantity = 0
-        for item in CartItem.objects.filter(cart=self):
-            total_quantity += item.quantity
-        return total_quantity
+        from django.db.models import Sum
 
-    def subtotal_cents(self):
+        return (
+            CartItem.objects.filter(cart=self).aggregate(total=Sum("quantity"))["total"]
+            or 0
+        )
+
+    def subtotal_cents(self) -> int:
         """Total cents added to the cart."""
-        total = 0
-        items = CartItem.objects.filter(cart=self)
-        for item in items:
-            total += item.total_cents
-        return total
+        from django.db.models import Sum, F, Case, When, IntegerField
+
+        items = CartItem.objects.filter(cart=self).annotate(
+            unit_price_cents=Case(
+                When(
+                    product__discount_percentage__gt=0,
+                    then=F("product__price_in_cents")
+                    - (
+                        F("product__price_in_cents")
+                        * F("product__discount_percentage")
+                        / 100
+                    ),
+                ),
+                default=F("product__price_in_cents"),
+                output_field=IntegerField(),
+            )
+        )
+        result = items.aggregate(subtotal=Sum(F("quantity") * F("unit_price_cents")))
+        return result["subtotal"] or 0
 
     def subtotal_dollars(self):
         """Total cents added to the cart."""
