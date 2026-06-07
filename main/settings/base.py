@@ -122,4 +122,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Base security (overridden in prod)
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
-ALLOWED_HOSTS = ["*"]
