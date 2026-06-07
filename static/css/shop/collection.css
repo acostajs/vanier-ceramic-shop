@@ -1,32 +1,15 @@
 /* Collection detail page styles */
 
 .collection-detail-header-section {
-  padding-top: 112px; /* pt-28 */
+  padding-top: clamp(7rem, 6rem + 5vw, 8rem);
   padding-bottom: 0;
-}
-
-@media (min-width: 1024px) {
-  .collection-detail-header-section {
-    padding-top: 128px; /* lg:pt-32 */
-  }
 }
 
 .collection-banner {
   position: relative;
   overflow: hidden;
-  min-height: 260px;
-}
-
-@media (min-width: 640px) {
-  .collection-banner {
-    min-height: 340px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .collection-banner {
-    min-height: 420px;
-  }
+  min-height: clamp(16.25rem, 12.25rem + 10vw, 26.25rem); /* 260px to 420px */
+  container-type: inline-size;
 }
 
 .collection-banner-bg {
@@ -56,19 +39,7 @@
 .collection-banner-content {
   position: relative;
   z-index: 10;
-  padding: 48px var(--spacing-lg); /* py-12 px-6 */
-}
-
-@media (min-width: 640px) {
-  .collection-banner-content {
-    padding: 64px 40px; /* py-16 px-10 */
-  }
-}
-
-@media (min-width: 1024px) {
-  .collection-banner-content {
-    padding: 80px 64px; /* py-20 px-16 */
-  }
+  padding: clamp(3rem, 2rem + 5vw, 5rem) clamp(1.5rem, 1rem + 2vw, 4rem);
 }
 
 .collection-banner-flex {
@@ -76,7 +47,7 @@
   flex-direction: column;
 }
 
-@media (min-width: 640px) {
+@container (min-width: 40rem) {
   .collection-banner-flex {
     flex-direction: row;
     align-items: center;
@@ -92,26 +63,26 @@
   transition: all 0.5s ease;
 }
 
-@media (min-width: 640px) {
+@container (min-width: 40rem) {
   .collection-banner-left {
     width: 50%;
-    padding-right: 32px; /* pr-8 */
+    padding-right: 2rem; /* 32px */
   }
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .collection-banner-left {
-    padding-right: 48px; /* pr-12 */
+    padding-right: 3rem; /* 48px */
   }
 }
 
 .collection-banner:hover .collection-banner-left {
   opacity: 0;
-  transform: translateX(-16px); /* -translate-x-4 */
+  transform: translateX(-1rem); /* 16px */
 }
 
 .collection-banner-label {
-  font-size: 14px;
+  font-size: var(--typography-body-sm-size);
   font-weight: 400;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -120,57 +91,40 @@
 }
 
 .collection-banner-title {
-  font-size: 36px; /* text-4xl */
+  font-size: var(--typography-display-xl-size);
   font-weight: 400;
   margin-bottom: var(--spacing-xs);
-  line-height: 1.1;
-}
-
-@media (min-width: 640px) {
-  .collection-banner-title {
-    font-size: 48px; /* text-5xl */
-  }
-}
-
-@media (min-width: 1024px) {
-  .collection-banner-title {
-    font-size: 60px; /* text-6xl */
-  }
-}
-
-@media (min-width: 1280px) {
-  .collection-banner-title {
-    font-size: 72px; /* text-7xl */
-  }
+  line-height: var(--typography-display-xl-lh);
+  letter-spacing: var(--typography-display-xl-ls);
 }
 
 .collection-banner-year {
-  font-size: 14px;
+  font-size: var(--typography-body-sm-size);
   color: var(--color-brand-sand);
 }
 
 .collection-banner-right {
   width: 100%;
-  margin-top: 32px; /* mt-8 */
+  margin-top: 2rem; /* 32px */
   color: white;
   display: flex;
   align-items: center;
   opacity: 0;
-  transform: translateX(16px); /* translate-x-4 */
+  transform: translateX(1rem); /* 16px */
   transition: all 0.5s ease;
 }
 
-@media (min-width: 640px) {
+@container (min-width: 40rem) {
   .collection-banner-right {
     width: 50%;
     margin-top: 0;
-    padding-left: 32px; /* pl-8 */
+    padding-left: 2rem; /* 32px */
   }
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .collection-banner-right {
-    padding-left: 48px; /* pl-12 */
+    padding-left: 3rem; /* 48px */
   }
 }
 
@@ -180,34 +134,15 @@
 }
 
 .collection-banner-desc {
-  font-size: 14px;
+  font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1.125rem);
   line-height: 1.6;
   color: var(--color-on-primary);
-  max-w: 448px; /* max-w-md */
-}
-
-@media (min-width: 640px) {
-  .collection-banner-desc {
-    font-size: 16px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .collection-banner-desc {
-    font-size: 18px; /* text-lg */
-  }
+  max-width: 28rem; /* 448px */
 }
 
 /* Products grid section list spacing */
 .collection-products-section {
-  padding-top: 64px; /* pt-16 */
-  padding-bottom: 72px; /* pb-18 */
+  padding-top: clamp(4rem, 3.5rem + 5vw, 7rem);
+  padding-bottom: clamp(4.5rem, 4rem + 3.5vw, 5.5rem);
   background-color: var(--color-canvas);
-}
-
-@media (min-width: 1024px) {
-  .collection-products-section {
-    padding-top: 112px; /* lg:pt-28 */
-    padding-bottom: 88px; /* lg:pb-22 */
-  }
 }

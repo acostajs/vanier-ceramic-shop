@@ -2,69 +2,33 @@
 
 .contact-section-wrapper {
   background-color: var(--color-canvas);
-  padding-top: 112px; /* pt-28 */
-  padding-bottom: 64px; /* pb-16 */
-}
-
-@media (min-width: 1024px) {
-  .contact-section-wrapper {
-    padding-top: 128px; /* lg:pt-32 */
-    padding-bottom: 80px; /* lg:pb-20 */
-  }
+  padding-top: clamp(7rem, 6rem + 5vw, 8rem);
+  padding-bottom: clamp(4rem, 3.5rem + 2.5vw, 5rem);
 }
 
 .contact-header {
   text-align: center;
-  margin-bottom: 40px; /* mb-10 */
+  margin-bottom: 2.5rem; /* 40px */
 }
 
 .contact-title {
-  font-size: 30px; /* text-3xl */
+  font-size: var(--typography-display-lg-size);
   font-weight: 400;
   color: var(--color-ink);
   margin-bottom: var(--spacing-sm);
-}
-
-@media (min-width: 640px) {
-  .contact-title {
-    font-size: 36px; /* text-4xl */
-  }
-}
-
-@media (min-width: 1024px) {
-  .contact-title {
-    font-size: 48px; /* text-5xl */
-  }
+  line-height: var(--typography-display-lg-lh);
 }
 
 .contact-subtitle {
-  font-size: 18px; /* text-lg */
+  font-size: clamp(1.125rem, 1.075rem + 0.25vw, 1.25rem);
   color: var(--color-muted);
-}
-
-@media (min-width: 640px) {
-  .contact-subtitle {
-    font-size: 20px; /* text-xl */
-  }
 }
 
 .contact-card {
   background-color: var(--color-surface-card);
   border-radius: var(--rounded-md);
   border: 1px solid var(--color-hairline);
-  padding: var(--spacing-lg); /* p-6 */
-}
-
-@media (min-width: 640px) {
-  .contact-card {
-    padding: 32px; /* p-8 */
-  }
-}
-
-@media (min-width: 1024px) {
-  .contact-card {
-    padding: 40px; /* p-10 */
-  }
+  padding: clamp(1.5rem, 1.25rem + 1vw, 2.5rem);
 }
 
 .contact-form-row {
@@ -80,7 +44,7 @@
 
 .contact-card label {
   display: block;
-  font-size: 14px;
+  font-size: var(--typography-body-sm-size);
   font-weight: 400;
   color: var(--color-body);
   margin-bottom: var(--spacing-xxs);
@@ -95,7 +59,7 @@
   font-size: var(--typography-body-sm-size);
   border: 1px solid var(--color-hairline);
   border-radius: var(--rounded-sm);
-  padding: 12px 16px;
+  padding: 0.75rem 1rem;
   width: 100%;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -109,12 +73,12 @@
 }
 
 .contact-card textarea {
-  min-height: 120px;
+  min-height: 7.5rem; /* 120px */
   resize: vertical;
 }
 
 .contact-container {
-  max-width: 768px;
+  max-width: 48rem; /* 768px */
 }
 
 .contact-field-wrapper {
@@ -124,4 +88,3 @@
 .contact-submit-btn {
   margin-top: var(--spacing-sm);
 }
-

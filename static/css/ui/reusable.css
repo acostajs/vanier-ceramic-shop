@@ -28,16 +28,17 @@ main.flex-1 {
   margin-right: auto;
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
+  container-type: inline-size;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 40rem) {
   .container {
     padding-left: var(--spacing-lg);
     padding-right: var(--spacing-lg);
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 64rem) {
   .container {
     padding-left: var(--spacing-xl);
     padding-right: var(--spacing-xl);
@@ -93,7 +94,7 @@ main.flex-1 {
   gap: var(--spacing-lg);
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .grid-cols-2 {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -105,13 +106,13 @@ main.flex-1 {
   gap: var(--spacing-lg);
 }
 
-@media (min-width: 768px) {
+@container (min-width: 48rem) {
   .grid-cols-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1024px) {
+@container (min-width: 64rem) {
   .grid-cols-3 {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -219,7 +220,7 @@ main.flex-1 {
   font-size: var(--typography-body-sm-size);
   border: 1px solid var(--color-hairline);
   border-radius: var(--rounded-sm);
-  padding: 12px 16px;
+  padding: 0.75rem 1rem;
   width: 100%;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -234,9 +235,9 @@ main.flex-1 {
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
+  padding: 0.125rem 0.5rem;
   border-radius: var(--rounded-xs);
-  font-size: 11px;
+  font-size: var(--typography-caption-uppercase-size);
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -266,7 +267,7 @@ main.flex-1 {
 }
 
 .main-content-wrapper {
-  padding-bottom: 128px;
+  padding-bottom: 8rem;
 }
 
 .relative {
