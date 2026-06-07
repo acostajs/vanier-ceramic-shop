@@ -145,10 +145,10 @@ def clear_wishlist(request):
 
 @login_required
 @require_POST
-def transfer_to_cart(request, product_id):
+def transfer_to_cart(request: HttpRequest, product_id: int) -> HttpResponse:
     """Transfer all the products in the wishlist to the user account related cart."""
     account = request.user
-    wishlist = Wishlist.objects.get(account=account)
+    wishlist = get_object_or_404(Wishlist, account=account)
     cart = get_object_or_404(Cart, account=account)
     product = get_object_or_404(wishlist.product, pk=product_id)
     cart.add(product, quantity=1, replace=True)
