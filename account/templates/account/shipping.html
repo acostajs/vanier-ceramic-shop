@@ -2,16 +2,16 @@
 
 <section class="auth-form-section">
 	<div class="container">
-		<h1 class="product-detail-title" style="margin-bottom: var(--spacing-lg);">
+		<h1 class="product-detail-title mb-lg">
 			{% translate "Shipping Information" %}
 		</h1>
 
-		<div class="auth-card" style="margin-bottom: var(--spacing-lg);">
-			<h2 class="orders-title" style="margin-bottom: var(--spacing-md);">
+		<div class="auth-card mb-lg">
+			<h2 class="orders-title mb-md">
 				{% translate "Current address" %}
 			</h2>
 			<div class="cart-table-wrapper">
-				<table class="cart-table" style="text-align: left;">
+				<table class="cart-table text-left">
 					<thead>
 						<tr>
 							<th class="cart-th text-left">{% translate "Address line 1" %}</th>
@@ -43,7 +43,7 @@
 		</div>
 
 		<div class="auth-card">
-			<h2 class="orders-title" style="margin-bottom: var(--spacing-md);">
+			<h2 class="orders-title mb-md">
 				{% translate "Update shipping address" %}
 			</h2>
 
@@ -61,7 +61,7 @@
 				</div>
 				{% endfor %}
 
-				<div class="cart-actions-row" style="margin-top: var(--spacing-md);">
+				<div class="cart-actions-row mt-md">
 					<a
 						href="{% url 'account:account' %}"
 						class="checkout-back-link"
