@@ -34,3 +34,6 @@ SECURE_HSTS_PRELOAD = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+if not SECRET_KEY or SECRET_KEY == "django-insecure-fallback-key-for-local-dev-only":
+    raise ValueError("DJANGO_SECRET_KEY must be set to a secure value in production!")
