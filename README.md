@@ -34,7 +34,7 @@ The application upgrades a ceramic artist’s static portfolio into a functional
 ## Tech Stack
 
 * **Backend:** Django 5.2 (Python 3.13+)
-* **Frontend:** Django Templates, Tailwind CSS (Tailwind v4 standalone compiler)
+* **Frontend:** Django Templates, Modern CSS (Vanilla, CSS Variables)
 * **Payments:** Stripe Checkout API & Stripe Webhooks
 * **Database:** PostgreSQL (production), SQLite (local development)
 * **Tooling & Environment:** Astral `uv` (package and virtual environment management)
@@ -95,18 +95,9 @@ uv run manage.py createsuperuser
 ```
 
 ### 4. Running the Development Server
-You can run the Django development server along with the Tailwind CSS compiler in watch mode:
+You can run the Django development server:
 
 ```bash
-# Run both Django server and Tailwind watch concurrently
-uv run manage.py tailwind runserver
-```
-Alternatively, if you wish to run them separately:
-```bash
-# Terminal 1: Watch Tailwind compilation
-uv run manage.py tailwind watch
-
-# Terminal 2: Start Django server
 uv run manage.py runserver
 ```
 
