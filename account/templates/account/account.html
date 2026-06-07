@@ -1,104 +1,90 @@
 {% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'My Account' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
 
-<section
-	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-canvas"
->
-	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="mb-8">
-			<h1
-				class="text-3xl sm:text-4xl lg:text-5xl  font-normal text-ink"
-			>
+<section class="account-section">
+	<div class="container">
+		<div class="order-detail-header">
+			<h1 class="product-detail-title">
 				{{ account.username }}
 			</h1>
-			<p class="text-sm sm:text-base text-muted mt-1">
+			<p class="product-detail-desc" style="color: var(--color-muted); margin-top: var(--spacing-xxs);">
 				{% translate "Account Panel" %}
 			</p>
 		</div>
 
-		<div class="grid lg:grid-cols-3 gap-8 items-start">
-			<div
-				class="lg:col-span-1 bg-surface-card rounded-md border border-hairline p-6 sm:p-7 space-y-4"
-			>
-				<h2 class="text-lg  font-normal text-ink mb-2">
+		<div class="account-grid">
+			<div class="profile-card">
+				<h2 class="profile-title">
 					{% translate "Profile" %}
 				</h2>
-				<p class="text-sm text-body">
-					<span class="font-normal">{% translate "First name" %}:</span>
+				<p class="profile-info-text">
+					<span class="profile-info-label">{% translate "First name" %}:</span>
 					{{account.first_name|default:"—" }}
 				</p>
-				<p class="text-sm text-body">
-					<span class="font-normal">{% translate "Last name" %}:</span>
+				<p class="profile-info-text">
+					<span class="profile-info-label">{% translate "Last name" %}:</span>
 					{{account.last_name|default:"—" }}
 				</p>
-				<p class="text-sm text-body">
-					<span class="font-normal">{% translate "Email" %}:</span>
+				<p class="profile-info-text">
+					<span class="profile-info-label">{% translate "Email" %}:</span>
 					{{user.email}}
 				</p>
 
-				<div class="pt-4 space-y-2 border-t border-hairline mt-2">
+				<div class="profile-links-group">
 					<a
 						href="{% url 'account:shipping' %}"
-						class="block text-sm font-normal text-ink hover:text-warning transition-colors"
+						class="profile-link"
 					>
 						{% translate "Update your Shipping Information" %}
 					</a>
 					<a
 						href="{% url 'account:billing' %}"
-						class="block text-sm font-normal text-ink hover:text-warning transition-colors"
+						class="profile-link"
 					>
 						{% translate "Update your Billing Information" %}
 					</a>
 				</div>
 
-				<div class="pt-4 mt-2 border-t border-hairline">
+				<div class="profile-logout-btn">
 					<a
 						href="{% url 'account:logout' %}"
-						class="text-sm font-normal text-red-600 hover:text-red-700 transition-colors"
+						class="logout-link"
 					>
 						{% translate "Logout" %}
 					</a>
 				</div>
 			</div>
 
-			<div
-				class="lg:col-span-2 bg-surface-card rounded-md border border-hairline p-6 sm:p-7"
-			>
-				<h2
-					class="text-lg sm:text-xl  font-normal text-ink mb-4"
-				>
+			<div class="orders-card">
+				<h2 class="orders-title">
 					{% translate "My Orders" %}
 				</h2>
 
 				{% if orders %}
-				<ul class="space-y-4">
+				<ul class="orders-list">
 					{% for order in orders %}
-					<li
-						class="border border-hairline rounded-sm p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
-					>
-						<div>
-							<p class="text-sm text-muted">
+					<li class="orders-list-item">
+						<div class="orders-item-info">
+							<p class="orders-item-id">
 								{% translate "Order" %} #{{ order.id }}
 							</p>
-							<p class="text-xs text-muted mt-0.5">
+							<p class="orders-item-date">
 								{{ order.created_at|date:"Y-m-d H:i" }}
 							</p>
-							<p class="mt-2 text-sm text-body">
-								<span class="font-normal">{% translate "Total" %}:</span>
+							<p class="orders-item-total">
+								<span class="profile-info-label">{% translate "Total" %}:</span>
 								{{ order.total_in_dollars }}
 							</p>
-							<p class="mt-1">
-								<span
-									class="inline-flex items-center px-3 py-1 rounded-full text-xs font-normal {% if order.status == 'paid' %} bg-success/10 text-success {% elif order.status == 'pending' %} bg-warning/10 text-warning {% else %} bg-hairline text-body {% endif %}"
-								>
+							<p class="orders-item-status-wrapper">
+								<span class="order-status-badge {% if order.status == 'paid' %}status-paid{% elif order.status == 'pending' %}status-pending{% else %}status-other{% endif %}">
 									{{ order.status }}
 								</span>
 							</p>
 						</div>
 
-						<div class="sm:text-right">
+						<div class="orders-item-action-wrapper">
 							<a
 								href="{% url 'cart:order_details' order.id %}"
-								class="inline-flex items-center px-4 py-2 rounded-sm border border-hairline text-xs sm:text-sm font-normal text-ink bg-canvas hover:bg-surface-soft transition-colors"
+								class="cart-update-btn"
 							>
 								{% translate "View Details" %}
 							</a>
@@ -107,7 +93,7 @@
 					{% endfor %}
 				</ul>
 				{% else %}
-				<p class="text-sm sm:text-base text-muted">
+				<p class="product-detail-desc" style="color: var(--color-muted);">
 					{% translate "No orders yet" %}.
 				</p>
 				{% endif %}

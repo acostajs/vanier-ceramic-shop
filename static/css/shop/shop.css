@@ -1,0 +1,178 @@
+/* Shop Collections landing */
+
+.shop-section {
+  background-color: var(--color-canvas);
+  padding-top: 112px; /* pt-28 */
+  padding-bottom: 80px; /* pb-20 */
+}
+
+@media (min-width: 1024px) {
+  .shop-section {
+    padding-top: 152px; /* lg:pt-38 */
+    padding-bottom: 112px; /* lg:pb-28 */
+  }
+}
+
+.shop-header {
+  text-align: center;
+  margin-bottom: 64px; /* mb-16 */
+}
+
+@media (min-width: 1024px) {
+  .shop-header {
+    margin-bottom: 112px; /* mb-28 */
+  }
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px; /* gap-8 */
+}
+
+@media (min-width: 768px) {
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .collections-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px; /* gap-10 */
+  }
+}
+
+.collection-card {
+  background-color: var(--color-surface-card);
+  border-radius: var(--rounded-md);
+  border: 1px solid var(--color-hairline);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.5s ease, scale 0.5s ease;
+  text-decoration: none;
+}
+
+.collection-card:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+.collection-card-img-wrapper {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--color-canvas);
+}
+
+.collection-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease, filter 0.7s ease;
+}
+
+.collection-card:hover .collection-card-img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.collection-card-body {
+  flex: 1;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-card-title {
+  font-size: 24px; /* text-2xl */
+  font-weight: 400;
+  color: var(--color-ink);
+  margin-bottom: var(--spacing-sm);
+  transition: color 0.2s ease;
+}
+
+.collection-card:hover .collection-card-title {
+  color: var(--color-brand-terracotta);
+}
+
+.collection-card-desc {
+  font-size: 14px;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .collection-card-desc {
+    font-size: 16px;
+  }
+}
+
+.collection-card-link-wrapper {
+  margin-top: auto;
+}
+
+.collection-card-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-brand-terracotta);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .collection-card-link {
+    font-size: 16px;
+  }
+}
+
+.collection-card-link:hover {
+  color: rgba(200, 122, 83, 0.9);
+}
+
+.collection-card-link svg {
+  width: 16px;
+  height: 16px;
+  margin-left: var(--spacing-xs);
+  transition: transform 0.25s ease;
+}
+
+.collection-card:hover .collection-card-link svg {
+  transform: translateX(4px);
+}
+
+/* Empty placeholder */
+.shop-empty-state {
+  text-align: center;
+  padding: 128px 0; /* py-32 */
+}
+
+.shop-empty-icon-box {
+  width: 128px; /* w-32 */
+  height: 128px; /* h-32 */
+  background-color: var(--color-hairline);
+  border-radius: var(--rounded-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-xl) auto;
+}
+
+.shop-empty-icon-box svg {
+  width: 64px;
+  height: 64px;
+  color: var(--color-muted);
+}
+
+.shop-empty-title {
+  font-size: 24px;
+  color: var(--color-muted);
+  font-weight: 400;
+  margin-bottom: var(--spacing-lg);
+}

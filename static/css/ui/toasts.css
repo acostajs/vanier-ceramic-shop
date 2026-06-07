@@ -1,0 +1,95 @@
+/* Django Toasts & Messages */
+
+.toast-container {
+  position: fixed;
+  top: 96px; /* top-24 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  width: 90%;
+  max-width: 480px; /* sm:max-w-lg */
+  pointer-events: none;
+}
+
+.toast-message {
+  margin-bottom: var(--spacing-sm);
+  transition: opacity 0.5s ease;
+  pointer-events: auto;
+  animation: slideInFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-message:last-child {
+  margin-bottom: 0;
+}
+
+.toast-body {
+  background-color: rgba(252, 249, 245, 0.9); /* canvas/90 */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-sm);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  align-items: start;
+  gap: var(--spacing-sm);
+}
+
+.toast-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.toast-icon.text-success {
+  color: var(--color-success);
+}
+
+.toast-icon.text-error {
+  color: var(--color-error);
+}
+
+.toast-icon.text-warning {
+  color: var(--color-warning);
+}
+
+.toast-icon.text-info {
+  color: var(--color-brand-sage);
+}
+
+.toast-text {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--typography-body-sm-size);
+  line-height: 1.5;
+  color: var(--color-ink);
+  font-weight: 300;
+}
+
+.toast-close-btn {
+  margin-left: var(--spacing-xs);
+  padding: var(--spacing-xxs);
+  margin-top: -4px;
+  background: transparent;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.toast-close-btn:hover {
+  color: var(--color-body);
+}
+
+@keyframes slideInFade {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

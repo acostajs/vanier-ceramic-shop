@@ -1,0 +1,195 @@
+/* Product detail page */
+
+.product-detail-section {
+  background-color: var(--color-canvas);
+  padding-top: 112px; /* pt-28 */
+  padding-bottom: 64px; /* pb-16 */
+}
+
+@media (min-width: 1024px) {
+  .product-detail-section {
+    padding-top: 128px; /* lg:pt-32 */
+    padding-bottom: 80px; /* lg:pb-20 */
+  }
+}
+
+.product-detail-title-wrapper {
+  margin-bottom: 40px; /* mb-10 */
+}
+
+.product-detail-title {
+  font-size: 30px; /* text-3xl */
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+@media (min-width: 640px) {
+  .product-detail-title {
+    font-size: 36px; /* text-4xl */
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-detail-title {
+    font-size: 48px; /* text-5xl */
+  }
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px; /* gap-10 */
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .product-detail-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 64px; /* gap-16 */
+  }
+}
+
+.product-detail-img-box {
+  background-color: var(--color-surface-card);
+  border-radius: var(--rounded-md);
+  padding: var(--spacing-lg); /* p-6 */
+  border: 1px solid var(--color-hairline);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .product-detail-img-box {
+    padding: 32px; /* p-8 */
+  }
+}
+
+.product-detail-img {
+  width: 100%;
+  height: 320px; /* h-80 */
+  object-fit: cover;
+  border-radius: var(--rounded-md);
+  border: 1px solid var(--color-hairline);
+}
+
+@media (min-width: 640px) {
+  .product-detail-img {
+    height: 384px; /* h-96 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-detail-img {
+    height: 420px; /* lg:h-[420px] */
+  }
+}
+
+.product-detail-card {
+  background-color: var(--color-surface-card);
+  border-radius: var(--rounded-md);
+  border: 1px solid var(--color-hairline);
+  padding: var(--spacing-lg); /* p-6 */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* space-y-5 approx */
+}
+
+@media (min-width: 640px) {
+  .product-detail-card {
+    padding: 32px; /* p-8 */
+  }
+}
+
+.product-detail-card-subtitle {
+  font-size: 12px; /* text-xs */
+  font-weight: 400;
+  letter-spacing: 0.15em; /* tracking-widest */
+  color: var(--color-brand-terracotta);
+  text-transform: uppercase;
+}
+
+.product-detail-desc {
+  font-size: 16px; /* text-base */
+  color: var(--color-body);
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  .product-detail-desc {
+    font-size: 18px; /* text-lg */
+  }
+}
+
+.product-detail-row {
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-hairline);
+}
+
+.product-detail-label-muted {
+  font-size: 14px; /* text-sm */
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.product-detail-price {
+  font-size: 24px; /* text-2xl */
+  font-weight: 400;
+  color: var(--color-ink);
+}
+
+.product-detail-price-old {
+  font-size: 14px; /* text-sm */
+  color: var(--color-muted);
+  text-decoration: line-through;
+  margin-right: var(--spacing-xs);
+}
+
+.product-detail-price-discounted {
+  font-size: 24px; /* text-2xl */
+  font-weight: 400;
+  color: var(--color-warning);
+}
+
+.product-discount-tag {
+  font-size: 14px; /* text-sm */
+  color: var(--color-warning);
+  font-weight: 400;
+  margin-top: var(--spacing-xxs);
+}
+
+/* Quantity input and add forms */
+.product-quantity-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.product-quantity-input-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.quantity-input {
+  width: 80px; /* w-20 */
+  border-radius: var(--rounded-sm);
+  border: 1px solid var(--color-hairline);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  text-align: center;
+  font-size: 16px; /* text-base */
+  color: var(--color-ink);
+  outline: none;
+  background-color: var(--color-canvas);
+}
+
+.quantity-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(28, 27, 26, 0.1);
+}
+
+.product-stock-warning {
+  font-size: 12px; /* text-xs */
+  color: var(--color-muted);
+  margin-top: var(--spacing-xxs);
+}

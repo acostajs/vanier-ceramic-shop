@@ -2,97 +2,96 @@
 {% load i18n %}
 
 <header>
-  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 {% if request.resolver_match.url_name == 'home' %}bg-transparent border-b border-transparent{% else %}bg-canvas-blur backdrop-blur-md border-b border-hairline{% endif %}">
-    <div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-[72px]">
-        <div class="flex-shrink-0">
-          <a href="{% url 'home' %}" class="text-2xl lg:text-3xl  font-normal text-ink hover:text-brand-terracotta transition-colors duration-300">
+  <nav id="main-nav" class="nav-bar {% if request.resolver_match.url_name == 'home' %}bg-transparent{% else %}bg-canvas-blur{% endif %}">
+    <div class="container">
+      <div class="nav-container">
+        <div>
+          <a href="{% url 'home' %}" class="nav-logo">
             Laura Melissa
           </a>
         </div>
 
-        <div class="hidden lg:flex items-center space-x-1">
-          <div class="relative group">
-            <button class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200 flex items-center gap-1">
+        <div class="nav-menu-desktop">
+          <div class="nav-item-relative">
+            <button class="nav-link">
               {% translate "Collections" %}
               <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
 
-            <ul class="absolute top-full left-0 mt-2 w-64 bg-canvas rounded-sm shadow-2xl border border-hairline opacity-0 invisible group-hover:opacity-100 group-hover:visible transform scale-95 group-hover:scale-100 transition-all duration-200 z-50 py-2">
+            <ul class="nav-dropdown">
               {% if collections %}
                 {% for collection in collections %}
                   <li>
-                    <a href="{% url "shop:collection" collection.id %}" class="block px-6 py-3 text-body hover:text-ink hover:bg-surface-soft transition-colors duration-150">
+                    <a href="{% url "shop:collection" collection.id %}" class="nav-dropdown-link">
                       {{ collection.name }}
                     </a>
                   </li>
                 {% endfor %}
               {% else %}
-                <li class="px-6 py-3 text-muted italic">
+                <li class="nav-dropdown-link italic">
                   {% translate "No collections have been registered yet" %}
                 </li>
               {% endif %}
-              <li><hr class="my-1 border-hairline"></li>
+              <li><hr class="nav-dropdown-divider"></li>
               <li>
-                <a href="{% url 'shop:shop' %}" class="block px-6 py-3 text-brand-terracotta font-normal hover:text-brand-terracotta/90 hover:bg-surface-soft transition-all duration-150">
+                <a href="{% url 'shop:shop' %}" class="nav-dropdown-highlight">
                   {% translate "See them all!" %}
                 </a>
               </li>
             </ul>
           </div>
 
-          <a href="{% url "about" %}" class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200"
+          <a href="{% url "about" %}" class="nav-link"
              {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>
             {% translate "About" %}
           </a>
 
           {% if user.is_authenticated %}
-            <a href="{% url 'account:account' %}" class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200"
+            <a href="{% url 'account:account' %}" class="nav-link"
                {% if request.resolver_match.url_name == 'account' %}aria-current="page"{% endif %}>
               {% translate "Account" %}
             </a>
           {% else %}
-            <a href="{% url 'account:login' %}" class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200"
+            <a href="{% url 'account:login' %}" class="nav-link"
                {% if request.resolver_match.url_name == 'login' %}aria-current="page"{% endif %}>
               {% translate "Login" %}
             </a>
-            <a href="{% url 'account:registration' %}" class="text-sm font-normal tracking-[0.5px] text-brand-terracotta hover:text-brand-terracotta/90 px-3 py-2 transition-colors duration-200"
+            <a href="{% url 'account:registration' %}" class="nav-link"
                {% if request.resolver_match.url_name == 'registration' %}aria-current="page"{% endif %}>
               {% translate "Register" %}
             </a>
           {% endif %}
 
-          <div class="flex items-center space-x-2 ml-4">
+          <div class="nav-actions">
             {% if user.is_authenticated %}
-              <a href="{% url 'account:wishlist_detail' %}" aria-label="{% translate 'Wishlist' %}" class="w-10 h-10 bg-surface-soft hover:bg-surface-strong rounded-sm flex items-center justify-center transition-all duration-200 relative">
-                <svg class="w-5 h-5 text-body" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <a href="{% url 'account:wishlist_detail' %}" aria-label="{% translate 'Wishlist' %}" class="icon-btn">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/>
                 </svg>
                 {% if wishlist_count > 0 %}
-                  <span class="absolute -top-1 -right-1 bg-brand-terracotta text-white text-[10px] font-normal rounded-full w-4 h-4 flex items-center justify-center">
+                  <span class="icon-btn-badge">
                     {{ wishlist_count }}
                   </span>
                 {% endif %}
               </a>
-
             {% endif %}
 
-            <a href="{% url 'cart:cart' %}" class="text-sm font-normal tracking-[0.5px] text-body hover:text-ink px-3 py-2 transition-colors duration-200">
+            <a href="{% url 'cart:cart' %}" class="nav-link">
               {% translate "Cart" %} [{{ cart_count|default:0 }}]
             </a>
 
-            <a href="{% url "contact:contact" %}" aria-label="{% translate 'Contact Us' %}" class="w-10 h-10 bg-surface-soft hover:bg-surface-strong rounded-sm flex items-center justify-center transition-all duration-200">
-              <svg class="w-5 h-5 text-body" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="{% url "contact:contact" %}" aria-label="{% translate 'Contact Us' %}" class="icon-btn">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.27 7.27c.883.883 2.317.883 3.2 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
             </a>
           </div>
 
           <!-- Language Dropdown -->
-          <div class="relative group ml-4">
-            <button class="text-xs uppercase tracking-[0.18em] font-normal text-ink hover:text-brand-terracotta px-2 py-2 flex items-center gap-1 transition-colors duration-200">
+          <div class="nav-item-relative">
+            <button class="lang-btn">
               {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}
                 EN
               {% elif request.LANGUAGE_CODE|slice:':2' == 'es' %}
@@ -107,13 +106,13 @@
               </svg>
             </button>
 
-            <ul class="absolute top-full right-0 mt-1 w-36 bg-canvas rounded-sm shadow-xl border border-hairline opacity-0 invisible group-hover:opacity-100 group-hover:visible transform scale-95 group-hover:scale-100 transition-all duration-200 z-50 py-1">
+            <ul class="nav-dropdown nav-dropdown-right">
               <li>
                 <form method="post" action="{% url 'set_language' %}" class="block">
                   {% csrf_token %}
                   <input type="hidden" name="language" value="en">
                   <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                  <button type="submit" class="w-full text-left px-4 py-2.5 text-xs font-normal uppercase tracking-[0.18em] hover:bg-surface-soft transition-colors duration-150 {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}text-brand-terracotta{% else %}text-body hover:text-ink{% endif %}">
+                  <button type="submit" class="lang-dropdown-btn {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}active{% endif %}">
                     English (EN)
                   </button>
                 </form>
@@ -123,7 +122,7 @@
                   {% csrf_token %}
                   <input type="hidden" name="language" value="es">
                   <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                  <button type="submit" class="w-full text-left px-4 py-2.5 text-xs font-normal uppercase tracking-[0.18em] hover:bg-surface-soft transition-colors duration-150 {% if request.LANGUAGE_CODE|slice:':2' == 'es' %}text-brand-terracotta{% else %}text-body hover:text-ink{% endif %}">
+                  <button type="submit" class="lang-dropdown-btn {% if request.LANGUAGE_CODE|slice:':2' == 'es' %}active{% endif %}">
                     Español (ES)
                   </button>
                 </form>
@@ -133,7 +132,7 @@
                   {% csrf_token %}
                   <input type="hidden" name="language" value="fr">
                   <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                  <button type="submit" class="w-full text-left px-4 py-2.5 text-xs font-normal uppercase tracking-[0.18em] hover:bg-surface-soft transition-colors duration-150 {% if request.LANGUAGE_CODE|slice:':2' == 'fr' %}text-brand-terracotta{% else %}text-body hover:text-ink{% endif %}">
+                  <button type="submit" class="lang-dropdown-btn {% if request.LANGUAGE_CODE|slice:':2' == 'fr' %}active{% endif %}">
                     Français (FR)
                   </button>
                 </form>
@@ -142,7 +141,7 @@
           </div>
         </div>
 
-        <button id="mobile-menu-button" class="lg:hidden p-2 rounded-sm hover:bg-surface-soft transition-colors duration-200"
+        <button id="mobile-menu-button" class="mobile-menu-toggle"
                 aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu()">
           <svg class="w-6 h-6 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -151,74 +150,74 @@
       </div>
     </div>
 
-    <div class="lg:hidden hidden px-4 pt-2 pb-6 border-t border-hairline bg-canvas/95 backdrop-blur-md space-y-4" id="mobile-menu">
-      <div class="flex flex-col space-y-3">
+    <div class="nav-menu-mobile hidden" id="mobile-menu">
+      <div class="mobile-menu-group">
         <!-- Collections Section -->
         <div>
-          <span class="text-xs font-normal text-muted uppercase tracking-wider block mb-2">{% translate "Collections" %}</span>
-          <div class="pl-3 border-l-2 border-brand-terracotta flex flex-col space-y-2">
+          <span class="mobile-group-title">{% translate "Collections" %}</span>
+          <div class="mobile-submenu">
             {% if collections %}
               {% for collection in collections %}
-                <a href="{% url "shop:collection" collection.id %}" class="text-base text-body hover:text-ink transition-colors py-1 block">
+                <a href="{% url "shop:collection" collection.id %}" class="mobile-link">
                   {{ collection.name }}
                 </a>
               {% endfor %}
             {% else %}
-              <span class="text-sm text-muted italic py-1 block">{% translate "No collections have been registered yet" %}</span>
+              <span class="mobile-link italic">{% translate "No collections have been registered yet" %}</span>
             {% endif %}
-            <a href="{% url 'shop:shop' %}" class="text-base font-normal text-brand-terracotta hover:text-brand-terracotta/90 transition-colors py-1 block">
+            <a href="{% url 'shop:shop' %}" class="mobile-link-highlight">
               {% translate "See them all!" %}
             </a>
           </div>
         </div>
 
-        <hr class="border-hairline my-2">
+        <hr class="hr-mobile">
 
         <!-- Navigation Links -->
-        <a href="{% url "about" %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
+        <a href="{% url "about" %}" class="mobile-link">
           {% translate "About" %}
         </a>
 
         {% if user.is_authenticated %}
-          <a href="{% url 'account:account' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
+          <a href="{% url 'account:account' %}" class="mobile-link">
             {% translate "Account" %}
           </a>
-          <a href="{% url 'account:wishlist_detail' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block flex items-center justify-between">
+          <a href="{% url 'account:wishlist_detail' %}" class="mobile-link">
             <span>{% translate "Wishlist" %}</span>
             {% if wishlist_count > 0 %}
-              <span class="bg-brand-terracotta text-white text-xs font-normal rounded-full px-2 py-0.5">
+              <span class="badge badge-success">
                 {{ wishlist_count }}
               </span>
             {% endif %}
           </a>
         {% else %}
-          <a href="{% url 'account:login' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
+          <a href="{% url 'account:login' %}" class="mobile-link">
             {% translate "Login" %}
           </a>
-          <a href="{% url 'account:registration' %}" class="text-base font-normal text-brand-terracotta hover:text-brand-terracotta/90 transition-colors py-1 block">
+          <a href="{% url 'account:registration' %}" class="mobile-link-highlight">
             {% translate "Register" %}
           </a>
         {% endif %}
 
-        <a href="{% url 'cart:cart' %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block flex items-center justify-between">
+        <a href="{% url 'cart:cart' %}" class="mobile-link">
           <span>{% translate "Cart" %}</span>
-          <span class="text-muted text-sm font-normal">[{{ cart_count|default:0 }}]</span>
+          <span>[{{ cart_count|default:0 }}]</span>
         </a>
 
-        <a href="{% url "contact:contact" %}" class="text-base font-normal text-body hover:text-ink transition-colors py-1 block">
+        <a href="{% url "contact:contact" %}" class="mobile-link">
           {% translate "Contact" %}
         </a>
 
-        <hr class="border-hairline my-2">
+        <hr class="hr-mobile">
 
         <!-- Language Switcher -->
         <div>
-          <span class="text-xs font-normal text-muted uppercase tracking-wider block mb-2">{% translate "Language" %}</span>
+          <span class="mobile-group-title">{% translate "Language" %}</span>
           <form method="post" action="{% url 'set_language' %}" id="mobile-lang-form">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.get_full_path }}">
             <select name="language" onchange="document.getElementById('mobile-lang-form').submit();"
-                    class="block w-full bg-canvas text-ink text-sm font-normal py-2.5 px-3 border border-hairline rounded-sm focus:outline-none focus:border-brand-terracotta">
+                    class="mobile-select-lang">
               <option value="en" {% if request.LANGUAGE_CODE|slice:':2' == 'en' %}selected{% endif %}>English (EN)</option>
               <option value="es" {% if request.LANGUAGE_CODE|slice:':2' == 'es' %}selected{% endif %}>Español (ES)</option>
               <option value="fr" {% if request.LANGUAGE_CODE|slice:':2' == 'fr' %}selected{% endif %}>Français (FR)</option>
@@ -247,22 +246,19 @@
         var isHome = {% if request.resolver_match.url_name == 'home' %}true{% else %}false{% endif %};
         
         if (nav && isHome) {
-          var scrollContainer = document.querySelector('.scroll-container');
-          var scrollTarget = scrollContainer || window;
-          
           function handleScroll() {
-            var scrollTop = scrollContainer ? scrollContainer.scrollTop : window.scrollY;
+            var scrollTop = window.scrollY;
             if (scrollTop > 20) {
-              nav.classList.add('bg-canvas-blur', 'backdrop-blur-md', 'border-hairline');
-              nav.classList.remove('bg-transparent', 'border-transparent');
+              nav.classList.add('bg-canvas-blur');
+              nav.classList.remove('bg-transparent');
             } else {
-              nav.classList.remove('bg-canvas-blur', 'backdrop-blur-md', 'border-hairline');
-              nav.classList.add('bg-transparent', 'border-transparent');
+              nav.classList.remove('bg-canvas-blur');
+              nav.classList.add('bg-transparent');
             }
           }
           
           handleScroll();
-          scrollTarget.addEventListener('scroll', handleScroll);
+          window.addEventListener('scroll', handleScroll);
         }
       });
     </script>

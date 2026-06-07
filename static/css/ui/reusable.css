@@ -1,0 +1,285 @@
+/* Reusable Global styles and grid layouts */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+main.flex-1 {
+  flex: 1 0 auto;
+}
+
+/* Containers */
+.container {
+  width: 100%;
+  max-width: var(--max-width-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
+  }
+}
+
+/* Aspect ratio custom helpers for safety */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+.aspect-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+/* Image wrappers */
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Layout helpers */
+.flex-row-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Grid systems */
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+}
+
+@media (min-width: 1024px) {
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid-cols-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Common Typography Classes */
+.display-xl {
+  font-size: var(--typography-display-xl-size);
+  font-weight: var(--typography-display-xl-weight);
+  line-height: var(--typography-display-xl-lh);
+  letter-spacing: var(--typography-display-xl-ls);
+}
+
+.display-lg {
+  font-size: var(--typography-display-lg-size);
+  font-weight: var(--typography-display-lg-weight);
+  line-height: var(--typography-display-lg-lh);
+  letter-spacing: var(--typography-display-lg-ls);
+}
+
+.display-md {
+  font-size: var(--typography-display-md-size);
+  font-weight: var(--typography-display-md-weight);
+  line-height: var(--typography-display-md-lh);
+  letter-spacing: var(--typography-display-md-ls);
+}
+
+.display-sm {
+  font-size: var(--typography-display-sm-size);
+  font-weight: var(--typography-display-sm-weight);
+  line-height: var(--typography-display-sm-lh);
+  letter-spacing: var(--typography-display-sm-ls);
+}
+
+.title-lg {
+  font-size: var(--typography-title-lg-size);
+  font-weight: var(--typography-title-lg-weight);
+  line-height: var(--typography-title-lg-lh);
+  letter-spacing: var(--typography-title-lg-ls);
+}
+
+.title-md {
+  font-size: var(--typography-title-md-size);
+  font-weight: var(--typography-title-md-weight);
+  line-height: var(--typography-title-md-lh);
+  letter-spacing: var(--typography-title-md-ls);
+}
+
+.title-sm {
+  font-size: var(--typography-title-sm-size);
+  font-weight: var(--typography-title-sm-weight);
+  line-height: var(--typography-title-sm-lh);
+  letter-spacing: var(--typography-title-sm-ls);
+}
+
+.body-md {
+  font-size: var(--typography-body-md-size);
+  font-weight: var(--typography-body-md-weight);
+  line-height: var(--typography-body-md-lh);
+  letter-spacing: var(--typography-body-md-ls);
+  color: var(--color-body);
+}
+
+.body-sm {
+  font-size: var(--typography-body-sm-size);
+  font-weight: var(--typography-body-sm-weight);
+  line-height: var(--typography-body-sm-lh);
+  letter-spacing: var(--typography-body-sm-ls);
+  color: var(--color-body);
+}
+
+.caption {
+  font-size: var(--typography-caption-size);
+  font-weight: var(--typography-caption-weight);
+  line-height: var(--typography-caption-lh);
+  letter-spacing: var(--typography-caption-ls);
+}
+
+.caption-uppercase {
+  font-size: var(--typography-caption-uppercase-size);
+  font-weight: var(--typography-caption-uppercase-weight);
+  line-height: var(--typography-caption-uppercase-lh);
+  letter-spacing: var(--typography-caption-uppercase-ls);
+  text-transform: uppercase;
+}
+
+/* Common form components defaults */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+  font-size: var(--typography-body-sm-size);
+  color: var(--color-body);
+  font-weight: 300;
+}
+
+.form-input {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--typography-body-sm-size);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-sm);
+  padding: 12px 16px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-brand-terracotta);
+  box-shadow: 0 0 0 2px rgba(200, 122, 83, 0.1);
+}
+
+/* Badge colors */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--rounded-xs);
+  font-size: 11px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-success {
+  background-color: rgba(59, 122, 87, 0.08); /* bg-green-50 approx */
+  color: var(--color-success);
+}
+
+.badge-warning {
+  background-color: rgba(201, 122, 52, 0.08); /* bg-orange-50 approx */
+  color: var(--color-warning);
+}
+
+.badge-error {
+  background-color: rgba(166, 58, 58, 0.08); /* bg-red-50 approx */
+  color: var(--color-error);
+}
+
+/* Reusable card component (mineral toned) */
+.card-base {
+  background-color: var(--color-surface-card);
+  border-radius: var(--rounded-md);
+  border: 1px solid var(--color-hairline);
+  overflow: hidden;
+}
+
+.main-content-wrapper {
+  padding-bottom: 128px;
+}
+
+.relative {
+  position: relative;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+

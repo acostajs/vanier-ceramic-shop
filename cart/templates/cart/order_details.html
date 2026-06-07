@@ -1,163 +1,148 @@
 {% extends 'base.html' %} {% load i18n %} {% block title %}Order #{{ order.id }} | Laura Melissa Ceramics{% endblock %} {% load static %} {% block content %}
 
-<section
-	class="pt-28 lg:pt-32 pb-16 lg:pb-20 bg-canvas"
->
-	<div class="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+<section class="cart-section">
+	<div class="container">
 		{% include 'partials/breadcrumbs.html' %}
-		<div class="mb-8">
-			<h1
-				class="text-3xl sm:text-4xl lg:text-5xl  font-normal text-ink"
-			>
+		<div class="order-detail-header">
+			<h1 class="product-detail-title">
 				{% translate "Order details" %}
 			</h1>
-			<p class="mt-2 text-muted">
+			<p class="product-detail-desc" style="margin-top: var(--spacing-xxs); color: var(--color-muted);">
 				{% blocktranslate %} Thank you for your purchase. Here is a summary of
 				your order. {% endblocktranslate %}
 			</p>
 		</div>
 
 		<!-- Order summary card -->
-		<div
-			class="bg-surface-card rounded-md border border-hairline p-6 sm:p-8 space-y-6"
-		>
-			<div class="grid sm:grid-cols-3 gap-4 border-b border-hairline pb-4">
+		<div class="cart-card">
+			<div class="order-detail-grid-top">
 				<div>
-					<p class="text-xs uppercase tracking-wide text-muted">
+					<p class="product-detail-label-muted">
 						{% translate "Payment ID" %}
 					</p>
-					<p class="mt-1 font-mono text-sm text-ink break-all">
+					<p style="margin-top: var(--spacing-xxs); font-family: monospace; font-size: 14px; color: var(--color-ink); word-break: break-all;">
 						{{ order.payment_id|default:"—" }}
 					</p>
 				</div>
 				<div>
-					<p class="text-xs uppercase tracking-wide text-muted">
+					<p class="product-detail-label-muted">
 						{% translate "Total" %}
 					</p>
-					<p class="mt-1 text-xl font-normal text-ink">
+					<p class="cart-subtotal-value" style="margin-top: var(--spacing-xxs);">
 						{{ order.total_in_dollars }}
 					</p>
 				</div>
 				<div>
-					<p class="text-xs uppercase tracking-wide text-muted">
+					<p class="product-detail-label-muted">
 						{% translate "Status" %}
 					</p>
-					<p
-						class="mt-1 inline-flex items-center px-3 py-1 rounded-full text-sm font-normal {% if order.status == 'paid' %} bg-success/10 text-success {% elif order.status == 'pending' %} bg-warning/10 text-warning {% else %} bg-hairline text-body {% endif %}"
-					>
+					<p class="order-status-badge {% if order.status == 'paid' %}status-paid{% elif order.status == 'pending' %}status-pending{% else %}status-other{% endif %}" style="margin-top: var(--spacing-xxs);">
 						{{ order.status }}
 					</p>
 				</div>
 			</div>
 
-			<div class="border-b border-hairline pb-4">
-				<p class="text-xs uppercase tracking-wide text-muted">
+			<div style="border-bottom: 1px solid var(--color-hairline); padding-bottom: var(--spacing-md);">
+				<p class="product-detail-label-muted">
 					{% translate "Placed on" %}
 				</p>
-				<p class="mt-1 text-sm text-body-strong">{{ order.created_at }}</p>
+				<p style="margin-top: var(--spacing-xxs); font-size: 14px; color: var(--color-body-strong);">{{ order.created_at }}</p>
 			</div>
 
-		<div class="border-b border-hairline pb-4">
-			<div class="grid sm:grid-cols-2 gap-6">
-				<!-- Billing -->
-				<div>
-				<p class="text-xs uppercase tracking-wide text-muted mb-1">
-					{% translate "Billing address" %}
-				</p>
-				<div class="text-sm text-body-strong leading-relaxed">
-					<p>{{ order.billing_address_line1 }}</p>
-					{% if order.billing_address_line2 %}
-					<p>{{ order.billing_address_line2 }}</p>
-					{% endif %}
-					<p>{{ order.billing_city }} {{ order.billing_postal_code }}</p>
-					<p>{{ order.billing_country }}</p>
-				</div>
-				</div>
+			<div style="border-bottom: 1px solid var(--color-hairline); padding-bottom: var(--spacing-md);">
+				<div class="order-addresses-grid">
+					<!-- Billing -->
+					<div class="order-address-box">
+						<p class="product-detail-label-muted">
+							{% translate "Billing address" %}
+						</p>
+						<p>{{ order.billing_address_line1 }}</p>
+						{% if order.billing_address_line2 %}
+						<p>{{ order.billing_address_line2 }}</p>
+						{% endif %}
+						<p>{{ order.billing_city }} {{ order.billing_postal_code }}</p>
+						<p>{{ order.billing_country }}</p>
+					</div>
 
-				<!-- Shipping -->
-				<div>
-				<p class="text-xs uppercase tracking-wide text-muted mb-1">
-					{% translate "Shipping address" %}
-				</p>
-				<div class="text-sm text-body-strong leading-relaxed">
-					<p>{{ order.shipping_address_line1 }}</p>
-					{% if order.shipping_address_line2 %}
-					<p>{{ order.shipping_address_line2 }}</p>
-					{% endif %}
-					<p>{{ order.shipping_city }} {{ order.shipping_postal_code }}</p>
-					<p>{{ order.shipping_country }}</p>
-				</div>
+					<!-- Shipping -->
+					<div class="order-address-box">
+						<p class="product-detail-label-muted">
+							{% translate "Shipping address" %}
+						</p>
+						<p>{{ order.shipping_address_line1 }}</p>
+						{% if order.shipping_address_line2 %}
+						<p>{{ order.shipping_address_line2 }}</p>
+						{% endif %}
+						<p>{{ order.shipping_city }} {{ order.shipping_postal_code }}</p>
+						<p>{{ order.shipping_country }}</p>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- Items list -->
-		<div
-			class="mt-10 bg-surface-card rounded-md border border-hairline p-6 sm:p-8"
-		>
-			<p class="text-xs uppercase tracking-wide text-muted mb-4">
+		<div class="order-items-box">
+			<p class="product-detail-label-muted" style="margin-bottom: var(--spacing-md);">
 				{% translate "Items in this order" %}
 			</p>
 
 			{% if order.items.all %}
-			<div class="divide-y divide-hairline">
+			<div class="order-items-list">
 				{% for item in order.items.all %}
-				<div
-					class="py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
-				>
-					<div class="flex items-start gap-4">
+				<div class="order-item-row">
+					<div class="order-item-left">
 						{% if item.product.image %}
 						<img
 							src="{{ item.product.image.url }}"
 							alt="{{ item.product.name }}"
-							class="w-16 h-16 rounded-sm object-cover border border-hairline"
+							class="order-item-thumb"
 							loading="lazy"
 						/>
 						{% endif %}
-						<div>
-							<p class="text-sm font-normal text-ink">
+						<div class="order-item-info">
+							<p class="order-item-name">
 								{{ item.product.name }}
 							</p>
 							{% if item.product.collection %}
-							<p class="text-xs text-muted">
+							<p class="order-item-collection">
 								{{ item.product.collection.name }}
 							</p>
 							{% endif %} {% if item.product.description %}
-							<p class="mt-1 text-xs text-muted line-clamp-2">
+							<p class="order-item-desc">
 								{{ item.product.description }}
 							</p>
 							{% endif %}
 						</div>
 					</div>
 
-					<div class="text-sm text-body-strong text-left sm:text-right space-y-1">
+					<div class="order-item-right">
 						<p>
 							{% translate "Quantity" %}:
-							<span class="font-normal">{{ item.quantity }}</span>
+							<span class="order-item-detail-val">{{ item.quantity }}</span>
 						</p>
 						<p>
 							{% translate "Unit price" %}:
-							<span class="font-normal">${{ item.unit_price_dollars }}</span>
+							<span class="order-item-detail-val">${{ item.unit_price_dollars }}</span>
 						</p>
 						<p>
 							{% translate "Subtotal" %}:
-							<span class="font-normal">${{ item.line_total_dollars }}</span>
+							<span class="order-item-detail-val">${{ item.line_total_dollars }}</span>
 						</p>
 					</div>
 				</div>
 				{% endfor %}
 			</div>
 			{% else %}
-			<p class="text-sm text-muted">
+			<p class="product-detail-desc" style="color: var(--color-muted);">
 				{% translate "No items found for this order." %}
 			</p>
 			{% endif %}
 		</div>
 
-		<div class="mt-8">
+		<div style="margin-top: var(--spacing-lg);">
 			<a
 				href="{% url 'account:account' %}"
-				class="inline-flex items-center text-sm sm:text-base font-normal text-ink hover:text-warning transition-colors"
+				class="checkout-back-link"
 			>
 				← {% translate "Back to Account" %}
 			</a>
