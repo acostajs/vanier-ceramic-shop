@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from .models import Account, Wishlist
 from shop.models import Product, Collection
 
@@ -143,3 +144,22 @@ class WishlistContextProcessorTests(TestCase):
 
         context = wishlist_info(request)
         self.assertEqual(context["wishlist_count"], 1)
+
+
+class LogoutViewTests(TestCase):
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            username="testuser",
+            email="testuser@example.com",
+            password="testpassword",
+        )
+
+    def test_logout_get_requests_are_rejected(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("account:logout"))
+        self.assertEqual(response.status_code, 405)
+
+    def test_logout_post_request_succeeds(self):
+        self.client.force_login(self.user)
+        response = self.client.post(reverse("account:logout"))
+        self.assertEqual(response.status_code, 302)
