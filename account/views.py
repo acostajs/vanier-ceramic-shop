@@ -12,6 +12,7 @@ from django.contrib.auth import (
     logout as auth_logout,
 )
 from django.utils.translation import gettext_lazy as _
+from django.http import HttpRequest, HttpResponse
 
 
 def registration(request):
@@ -72,10 +73,11 @@ def login_submit(request):
 
 
 @login_required
-def logout(request):
-    """Display Logout form for the User from Account Session."""
+@require_POST
+def logout(request: HttpRequest) -> HttpResponse:
+    """Logout the User from Account Session."""
     auth_logout(request)
-    msg = "You have logout Successfully."
+    msg = _("You have logged out successfully.")
     messages.success(request, msg)
     return redirect("account:login")
 

@@ -45,9 +45,13 @@
 				</div>
 
 				<div class="profile-logout-btn">
+					<form action="{% url 'account:logout' %}" method="post" id="logout-form" style="display: none;">
+						{% csrf_token %}
+					</form>
 					<a
-						href="{% url 'account:logout' %}"
+						href="#"
 						class="logout-link"
+						onclick="document.getElementById('logout-form').submit(); return false;"
 					>
 						{% translate "Logout" %}
 					</a>
