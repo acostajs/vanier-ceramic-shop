@@ -99,6 +99,21 @@ class CartItemModelTests(BaseCartSetupMixin, TestCase):
         self.assertEqual(item.line_dollars, "$45.00")
         self.assertIn(self.product1.name, str(item))
 
+    def test_cart_item_totals_with_discount(self):
+        self.product1.discount_percentage = 10
+        self.product1.save()
+
+        item = CartItem.objects.create(
+            cart=self.cart,
+            product=self.product1,
+            quantity=3,
+        )
+
+        self.assertEqual(item.unit_cents, 1350)
+        self.assertEqual(item.total_cents, 4050)
+        self.assertEqual(item.unit_dollars, "$13.50")
+        self.assertEqual(item.line_dollars, "$40.50")
+
     def test_unique_product_per_cart_constraint(self):
         CartItem.objects.create(cart=self.cart, product=self.product1, quantity=1)
         with self.assertRaises(Exception):

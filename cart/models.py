@@ -282,22 +282,22 @@ class CartItem(models.Model):
     quantity = models.IntegerField(_("quantity"), validators=[MinValueValidator(1)])
 
     @property
-    def total_cents(self):
+    def total_cents(self) -> int:
         """Calculate the total cost of an Item."""
-        return self.quantity * self.product.price_in_cents
+        return self.quantity * self.unit_cents
 
     @property
-    def unit_cents(self):
+    def unit_cents(self) -> int:
         """Returns the price in cents of a single unit."""
-        return self.product.price_in_cents
+        return self.product.get_discounted_price()
 
     @property
-    def unit_dollars(self):
+    def unit_dollars(self) -> str:
         """Returns the price in dollars of a single unit."""
-        return self.product.price_in_dollars
+        return self.product.discounted_price_in_dollars
 
     @property
-    def line_dollars(self):
+    def line_dollars(self) -> str:
         """Calculate the total cost of an Item."""
         return f"${self.total_cents / 100:.2f}"
 
