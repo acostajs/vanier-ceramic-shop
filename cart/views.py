@@ -41,7 +41,7 @@ def add_to_cart(request: HttpRequest, product_id: int) -> HttpResponse:
 @login_required
 @require_POST
 def update_cart(request: HttpRequest, product_id: int) -> HttpResponse:
-    """To add a product to Cart."""
+    """Update the quantity of a product in the Cart."""
     cart = get_cart(request)
     product = get_object_or_404(Product, pk=product_id)
     qty = parse_quantity(request)
@@ -56,7 +56,7 @@ def update_cart(request: HttpRequest, product_id: int) -> HttpResponse:
 @login_required
 @require_POST
 def remove_from_cart(request: HttpRequest, product_id: int) -> HttpResponse:
-    """To add a product to Cart."""
+    """Remove a product completely from the Cart."""
     cart = get_cart(request)
     product = get_object_or_404(Product, pk=product_id)
     cart.remove(product)
@@ -66,8 +66,8 @@ def remove_from_cart(request: HttpRequest, product_id: int) -> HttpResponse:
 
 @login_required
 @require_POST
-def clear_cart(request):
-    """To add a product to Cart."""
+def clear_cart(request: HttpRequest) -> HttpResponse:
+    """Remove all products from the Cart."""
     cart = get_cart(request)
     cart.clear()
     messages.success(request, _("Cart Cleared."))
