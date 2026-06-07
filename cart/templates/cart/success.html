@@ -2,9 +2,7 @@
 
 <section class="cart-section">
 	<div class="auth-container text-center">
-		<div
-			style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 9999px; background-color: rgba(59, 122, 87, 0.1); color: var(--color-success); margin-bottom: var(--spacing-lg); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);"
-		>
+		<div class="success-icon-badge">
 			<svg
 				class="w-8 h-8"
 				fill="none"
@@ -20,19 +18,16 @@
 			</svg>
 		</div>
 
-		<h1
-			class="product-detail-title"
-			style="margin-bottom: var(--spacing-sm);"
-		>
+		<h1 class="product-detail-title order-status-title">
 			{% translate "Order successful" %}
 		</h1>
-		<p class="product-detail-desc" style="color: var(--color-muted); margin-bottom: var(--spacing-lg);">
+		<p class="product-detail-desc order-status-desc">
 			{% blocktranslate %} Thank you for your purchase. Your pieces are now
 			being prepared with the same care they were created with.
 			{%endblocktranslate %}
 		</p>
 
-		<div class="hero-actions" style="justify-content: center;">
+		<div class="hero-actions order-status-actions">
 			<a
 				href="{% url 'shop:shop' %}"
 				class="button-primary"
