@@ -127,7 +127,7 @@ def create_checkout_session(request):
 
 @login_required
 def success(request):
-    """Handle succesful Stripe Payments."""
+    """Handle successful Stripe Payments."""
     session_id = request.GET.get("session_id")
     cart = get_cart(request)
     cart.clear()

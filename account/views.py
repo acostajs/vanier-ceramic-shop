@@ -151,7 +151,7 @@ def transfer_to_cart(request, product_id):
     product = get_object_or_404(wishlist.product, pk=product_id)
     cart.add(product, quantity=1, replace=True)
     wishlist.remove(product)
-    msg = _("You have succesfully transfer the item to your shopping cart.")
+    msg = _("You have successfully transferred the item to your shopping cart.")
     messages.success(request, msg)
 
     return redirect("cart:cart")
