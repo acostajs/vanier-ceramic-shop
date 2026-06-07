@@ -1,0 +1,152 @@
+/* Authentication forms and info updates */
+
+.auth-form-section {
+  background-color: var(--color-canvas);
+  padding-top: 112px; /* pt-28 */
+  padding-bottom: 64px; /* pb-16 */
+}
+
+@media (min-width: 1024px) {
+  .auth-form-section {
+    padding-top: 128px; /* lg:pt-32 */
+    padding-bottom: 80px; /* lg:pb-20 */
+  }
+}
+
+.auth-container {
+  max-w: 448px; /* max-w-md */
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .auth-container {
+    max-w: 512px; /* sm:max-w-lg */
+  }
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.auth-title {
+  font-size: 30px; /* text-3xl */
+  font-weight: 400;
+  color: var(--color-ink);
+  margin-bottom: var(--spacing-xxs);
+}
+
+@media (min-width: 640px) {
+  .auth-title {
+    font-size: 36px; /* text-4xl */
+  }
+}
+
+.auth-subtitle {
+  font-size: 14px; /* text-sm */
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .auth-subtitle {
+    font-size: 16px;
+  }
+}
+
+.auth-card {
+  background-color: var(--color-surface-card);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-md);
+  padding: var(--spacing-lg); /* p-6 */
+}
+
+@media (min-width: 640px) {
+  .auth-card {
+    padding: 32px; /* p-8 */
+  }
+}
+
+/* Auth forms error handling */
+.errorlist {
+  list-style: none;
+  background-color: rgba(166, 58, 58, 0.08);
+  border: 1px solid var(--color-error);
+  border-radius: var(--rounded-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  font-size: 14px;
+  color: var(--color-error);
+}
+
+.error-text {
+  font-size: 14px;
+  color: var(--color-error);
+  margin-top: var(--spacing-xxs);
+}
+
+/* Global input fields styling in form containers */
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.auth-card form p {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxs);
+}
+
+.auth-card label {
+  font-size: var(--typography-body-sm-size);
+  color: var(--color-body);
+  font-weight: 300;
+}
+
+.auth-card input[type="text"],
+.auth-card input[type="email"],
+.auth-card input[type="password"],
+.auth-card input[type="number"],
+.auth-card select,
+.auth-card textarea {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--typography-body-sm-size);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--rounded-sm);
+  padding: 12px 16px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-card input[type="text"]:focus,
+.auth-card input[type="email"]:focus,
+.auth-card input[type="password"]:focus,
+.auth-card input[type="number"]:focus,
+.auth-card select:focus,
+.auth-card textarea:focus {
+  outline: none;
+  border-color: var(--color-brand-terracotta);
+  box-shadow: 0 0 0 2px rgba(200, 122, 83, 0.1);
+}
+
+.auth-footer-link {
+  display: block;
+  text-align: center;
+  margin-top: var(--spacing-lg);
+}
+
+.auth-link {
+  font-size: 14px;
+  color: var(--color-body);
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  color: var(--color-warning);
+}

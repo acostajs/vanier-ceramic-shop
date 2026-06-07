@@ -1,0 +1,98 @@
+/* Buttons styling */
+
+.button-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-family: var(--font-sans);
+  font-size: var(--typography-button-size);
+  font-weight: var(--typography-button-weight);
+  line-height: var(--typography-button-lh);
+  letter-spacing: var(--typography-button-ls);
+  text-transform: uppercase;
+  height: 46px;
+  padding: 0 var(--spacing-lg);
+  border-radius: var(--rounded-sm);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button-primary:hover {
+  background-color: #2b2a28;
+}
+
+.button-secondary {
+  background-color: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-hairline);
+  font-family: var(--font-sans);
+  font-size: var(--typography-button-size);
+  font-weight: var(--typography-button-weight);
+  line-height: var(--typography-button-lh);
+  letter-spacing: var(--typography-button-ls);
+  text-transform: uppercase;
+  height: 46px;
+  padding: 0 var(--spacing-lg);
+  border-radius: var(--rounded-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button-secondary:hover {
+  background-color: var(--color-surface-soft);
+}
+
+.button-sold-out {
+  background-color: var(--color-surface-soft);
+  color: var(--color-muted);
+  font-family: var(--font-sans);
+  font-size: var(--typography-button-size);
+  font-weight: var(--typography-button-weight);
+  line-height: var(--typography-button-lh);
+  letter-spacing: var(--typography-button-ls);
+  text-transform: uppercase;
+  height: 46px;
+  padding: 0 var(--spacing-lg);
+  border-radius: var(--rounded-sm);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+.button-terracotta {
+  background-color: var(--color-brand-terracotta);
+  color: var(--color-on-primary);
+  font-family: var(--font-sans);
+  font-size: var(--typography-button-size);
+  font-weight: var(--typography-button-weight);
+  line-height: var(--typography-button-lh);
+  letter-spacing: var(--typography-button-ls);
+  text-transform: uppercase;
+  height: 46px;
+  padding: 0 var(--spacing-xl);
+  border-radius: var(--rounded-sm);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 15px -3px rgba(200, 122, 83, 0.25), 0 4px 6px -2px rgba(200, 122, 83, 0.1);
+}
+
+.button-terracotta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(200, 122, 83, 0.4), 0 10px 10px -5px rgba(200, 122, 83, 0.2);
+}
