@@ -4,16 +4,18 @@ from .forms import ContactForm
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
+from django.conf import settings
+from django.http import HttpRequest, HttpResponse
 
 
-def contact(request):
+def contact(request: HttpRequest) -> HttpResponse:
     form = ContactForm()
     context = {"form": form}
     return render(request, "contact/contact_form.html", context)
 
 
 @require_POST
-def contact_submit(request):
+def contact_submit(request: HttpRequest) -> HttpResponse:
     form = ContactForm(request.POST)
     if not form.is_valid():
         return render(request, "contact/contact_form.html", {"form": form})
@@ -26,7 +28,7 @@ def contact_submit(request):
             f"Hi {data['name']}, thank you for contacting us.\n"
             f"We will get back to you soon."
         ),
-        from_email="from@example.com",
+        from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[data["email"]],
         fail_silently=False,
     )
