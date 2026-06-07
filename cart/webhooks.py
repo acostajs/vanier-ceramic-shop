@@ -1,12 +1,12 @@
 import os
 import stripe
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 from .models import Order
 
 
 @csrf_exempt
-def stripe_webhook(request):
+def stripe_webhook(request: HttpRequest) -> HttpResponse:
     """Handle Stripe events."""
     payload = request.body
     sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
@@ -15,7 +15,7 @@ def stripe_webhook(request):
         event = stripe.Webhook.construct_event(
             payload, sig_header, os.environ["STRIPE_WEBHOOK_SECRET"]
         )
-    except (ValueError, stripe.error.SignatureVerificationError):
+    except (ValueError, stripe.SignatureVerificationError):
         return HttpResponse(status=400)
 
     if (
