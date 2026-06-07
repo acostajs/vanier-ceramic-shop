@@ -19,14 +19,14 @@
 		"Integrated Stripe Checkout for secure payment processing in test mode",
 		"Configured AWS S3 for handling product image uploads and media storage",
 		"Set up PostgreSQL as the primary database for production deployment on Render",
-		"Developed accessible, responsive templates using Django and Tailwind CSS"
+		"Developed accessible, responsive templates using Django and modern CSS (Vanilla, CSS Variables)"
 	],
 
 	"tech_stack": [
 		"Python",
 		"Django",
 		"Django Templates",
-		"Tailwind CSS",
+		"Modern CSS (Vanilla, CSS Variables)",
 		"Stripe Checkout",
 		"PostgreSQL (prod)",
 		"AWS S3",
