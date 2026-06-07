@@ -19,6 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 AUTH_USER_MODEL = "account.Account"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 DEFAULT_FROM_EMAIL = "Laura Melissa Ceramics <info@lauramelissa.com>"
+LOGIN_URL = "account:login"
 
 
 # Stripe

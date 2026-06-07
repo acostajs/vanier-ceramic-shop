@@ -71,7 +71,7 @@ def login_submit(request):
     return render(request, "account/login.html", {"form": form})
 
 
-@login_required(login_url="account:login")
+@login_required
 def logout(request):
     """Display Logout form for the User from Account Session."""
     auth_logout(request)
@@ -80,7 +80,7 @@ def logout(request):
     return redirect("account:login")
 
 
-@login_required(login_url="account:login")
+@login_required
 def account(request):
     """Display User Account Information."""
     account = request.user
@@ -93,7 +93,7 @@ def account(request):
     return render(request, "account/account.html", context)
 
 
-@login_required(login_url="account:login")
+@login_required
 @require_GET
 def wishlist_detail(request):
     """Display the wishlist if the user is logged in."""
@@ -107,7 +107,7 @@ def wishlist_detail(request):
     return render(request, "account/wishlist.html", context)
 
 
-@login_required(login_url="account:login")
+@login_required
 @require_POST
 def add_to_wishlist(request, product_id):
     """Adds a product to the wishlist if the user is logged in."""
@@ -118,7 +118,7 @@ def add_to_wishlist(request, product_id):
     return redirect("shop:product", product_id)
 
 
-@login_required(login_url="account:login")
+@login_required
 @require_POST
 def remove_from_wishlist(request, product_id):
     """Removes a product from the wishlist if the user is logged in."""
@@ -130,7 +130,7 @@ def remove_from_wishlist(request, product_id):
     return redirect("account:wishlist_detail")
 
 
-@login_required(login_url="account:login")
+@login_required
 @require_POST
 def clear_wishlist(request):
     """Clear the wishlist from all products if the user is logged in."""
@@ -141,7 +141,7 @@ def clear_wishlist(request):
     return redirect("account:wishlist_detail")
 
 
-@login_required(login_url="account:login")
+@login_required
 @require_POST
 def transfer_to_cart(request, product_id):
     """Transfer all the products in the wishlist to the user account related cart."""
@@ -157,7 +157,7 @@ def transfer_to_cart(request, product_id):
     return redirect("cart:cart")
 
 
-@login_required(login_url="account:login")
+@login_required
 def shipping(request):
     """Display Shipping formulary."""
     account = request.user
@@ -167,7 +167,7 @@ def shipping(request):
     return render(request, "account/shipping.html", context)
 
 
-@login_required(login_url="account:login")
+@login_required
 @require_POST
 def shipping_submit(request):
     """Handles update of the user shipping information."""
@@ -183,7 +183,7 @@ def shipping_submit(request):
     return render(request, "account/shipping.html", {"form": form, "account": account})
 
 
-@login_required(login_url="account:login")
+@login_required
 def billing(request):
     """Display Billing formulary."""
     account = request.user
@@ -193,7 +193,7 @@ def billing(request):
     return render(request, "account/billing.html", context)
 
 
-@login_required(login_url="account:login")
+@login_required
 @require_POST
 def billing_submit(request):
     """Handles the update of the user billing information."""
