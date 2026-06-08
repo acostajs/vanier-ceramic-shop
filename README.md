@@ -1,4 +1,4 @@
-# Ceramics Portfolio – Full-Stack Django E-Commerce
+# Laura Melissa Ceramics – Full-Stack Django E-Commerce
 
 **Full-Stack Django Project · Freelancer Simulation**
 
@@ -10,7 +10,7 @@ The application upgrades a ceramic artist’s static portfolio into a functional
 
 ## Key Features
 
-### 🎨 Design System & Branding (Compliance with `design.md`)
+### 🎨 Design System & Branding
 * **Warm Oatmeal Canvas:** Solid base backdrop using `{colors.canvas}` (`#fcf9f5`) to evoke a natural studio space.
 * **5-Color Mineral Palette:** Curated accent tones inspired by natural slip clays: Terracotta (`#c87a53`), Sage (`#8fa48f`), Celadon (`#b2c4be`), Ochre (`#d4a359`), and Sand (`#e3ded5`).
 * **Editorial Typography:** Exclusively uses the **Inter** font family, restricted to Light (300) and Regular (400) weights to convey minimalist luxury without bold structural distractions.
@@ -51,7 +51,6 @@ The application is structured into modular Django apps for scalability:
 * **`cart`:** Shopping cart database logic, Stripe Checkout session generators, payment success/cancel handling, and Stripe webhook endpoints.
 * **`account`:** Custom user profiles (`Account`), shipping and billing addresses, and customer `Wishlist` models.
 * **`contact`:** Customer contact form submissions saved to models, dispatching confirmation emails via console backends.
-* **`portfolio`:** Contains screenshots and JSON metadata accessed dynamically by the developer's external portfolio site.
 
 ---
 
