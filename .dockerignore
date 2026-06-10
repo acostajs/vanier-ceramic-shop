@@ -1,0 +1,17 @@
+.git
+.github
+.dockerignore
+Dockerfile
+.venv
+venv
+*.pyc
+__pycache__
+db.sqlite3
+mediafiles/
+staticfiles/
+.env
+.env.local
+.docs
+.agents
+.pytest_cache
+.ruff_cache
