@@ -539,9 +539,8 @@ msgstr "Prix"
 
 
 #: shop/templates/shop/product.html:60
-#, python-format
-msgid "Discount %%:"
-msgstr "Remise %% :"
+msgid "Discount:"
+msgstr "Remise :"
 
 #: shop/templates/shop/product.html:86
 msgid "Quantity:"
@@ -591,7 +590,7 @@ msgstr "Aucune collection enregistrée"
 
 #: templates/about.html:13
 msgid ""
-" Ceramist exploring time as form, color as accent, and\n"
+" I explore time as form, color as accent, and\n"
 "\t\t\tthe circle as a living language. "
 msgstr ""
 " Céramiste qui explore le temps comme forme, la couleur comme accent "
@@ -742,13 +741,9 @@ msgstr ""
 "et sont vendues au Mexique, en Colombie, aux États‑Unis et au Canada. "
 
 
-#: templates/base.html:9
-msgid ""
-"\"Laura Melissa Ceramics - Handcrafted Ceramic Art &\n"
-"\t\t\tPottery\" "
-msgstr ""
-"\"Laura Melissa Ceramics - Art céramique artisanal &\n"
-"\t\t\tpoterie\" "
+#: templates/base.html:10
+msgid "Laura Melissa Ceramics - Handcrafted Ceramic Art & Pottery"
+msgstr "Laura Melissa Ceramics - Art céramique artisanal & poterie"
 
 #: templates/home.html:24
 msgid ""
