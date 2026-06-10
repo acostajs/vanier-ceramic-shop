@@ -185,10 +185,12 @@
           <a href="{% url 'account:login' %}" class="mobile-link">{% translate "Login" %}</a>
           <a href="{% url 'account:registration' %}" class="mobile-link-highlight">{% translate "Register" %}</a>
         {% endif %}
-        <a href="{% url 'cart:cart' %}" class="mobile-link">
-          <span>{% translate "Cart" %}</span>
-          <span>[{{ cart_count|default:0 }}]</span>
-        </a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'cart:cart' %}" class="mobile-link">
+            <span>{% translate "Cart" %}</span>
+            <span>[{{ cart_count|default:0 }}]</span>
+          </a>
+        {% endif %}
         <a href="{% url 'contact:contact' %}" class="mobile-link">{% translate "Contact" %}</a>
         <hr class="hr-mobile">
         <!-- Language Switcher -->
