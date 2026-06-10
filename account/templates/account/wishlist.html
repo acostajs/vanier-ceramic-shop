@@ -32,7 +32,7 @@
                     </td>
                     <td class="cart-td text-right cart-price-td">{{ product.price_in_dollars }}</td>
                     <td class="cart-td text-right cart-price-td">
-                      {% if product.discounted_price_in_dollars %}
+                      {% if product.discount_percentage > 0 %}
                         {{ product.discounted_price_in_dollars }}
                       {% else %}
                         <span class="text-muted">—</span>
