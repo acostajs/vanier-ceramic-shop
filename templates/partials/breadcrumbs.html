@@ -4,11 +4,13 @@
     <li>
       <a href="{% url 'home' %}" class="breadcrumbs-link">{% translate "Home" %}</a>
     </li>
-    
     {% if product %}
       <li>
-        <svg class="breadcrumbs-separator" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        <svg class="breadcrumbs-separator"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </li>
       <li>
@@ -16,17 +18,24 @@
       </li>
       {% if product.collection %}
         <li>
-          <svg class="breadcrumbs-separator" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          <svg class="breadcrumbs-separator"
+               fill="none"
+               stroke="currentColor"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
         </li>
         <li>
-          <a href="{% url 'shop:collection' product.collection.id %}" class="breadcrumbs-link">{{ product.collection.name }}</a>
+          <a href="{% url 'shop:collection' product.collection.id %}"
+             class="breadcrumbs-link">{{ product.collection.name }}</a>
         </li>
       {% endif %}
       <li>
-        <svg class="breadcrumbs-separator" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        <svg class="breadcrumbs-separator"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </li>
       <li>
@@ -34,16 +43,22 @@
       </li>
     {% elif collection %}
       <li>
-        <svg class="breadcrumbs-separator" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        <svg class="breadcrumbs-separator"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </li>
       <li>
         <a href="{% url 'shop:shop' %}" class="breadcrumbs-link">{% translate "Collections" %}</a>
       </li>
       <li>
-        <svg class="breadcrumbs-separator" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        <svg class="breadcrumbs-separator"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </li>
       <li>
@@ -51,16 +66,22 @@
       </li>
     {% elif order %}
       <li>
-        <svg class="breadcrumbs-separator" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        <svg class="breadcrumbs-separator"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </li>
       <li>
         <a href="{% url 'account:account' %}" class="breadcrumbs-link">{% translate "Account" %}</a>
       </li>
       <li>
-        <svg class="breadcrumbs-separator" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        <svg class="breadcrumbs-separator"
+             fill="none"
+             stroke="currentColor"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </li>
       <li>

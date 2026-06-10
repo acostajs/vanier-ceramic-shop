@@ -1,109 +1,77 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'My Account' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
-
-<section class="account-section">
-	<div class="container">
-		<div class="order-detail-header">
-			<h1 class="product-detail-title">
-				{{ account.username }}
-			</h1>
-			<p class="product-detail-desc text-muted mt-xxs">
-				{% translate "Account Panel" %}
-			</p>
-		</div>
-
-		<div class="account-grid">
-			<div class="profile-card">
-				<h2 class="profile-title">
-					{% translate "Profile" %}
-				</h2>
-				<p class="profile-info-text">
-					<span class="profile-info-label">{% translate "First name" %}:</span>
-					{{account.first_name|default:"—" }}
-				</p>
-				<p class="profile-info-text">
-					<span class="profile-info-label">{% translate "Last name" %}:</span>
-					{{account.last_name|default:"—" }}
-				</p>
-				<p class="profile-info-text">
-					<span class="profile-info-label">{% translate "Email" %}:</span>
-					{{user.email}}
-				</p>
-
-				<div class="profile-links-group">
-					<a
-						href="{% url 'account:shipping' %}"
-						class="profile-link"
-					>
-						{% translate "Update your Shipping Information" %}
-					</a>
-					<a
-						href="{% url 'account:billing' %}"
-						class="profile-link"
-					>
-						{% translate "Update your Billing Information" %}
-					</a>
-				</div>
-
-				<div class="profile-logout-btn">
-					<form action="{% url 'account:logout' %}" method="post" id="logout-form" class="hidden">
-						{% csrf_token %}
-					</form>
-					<a
-						href="#"
-						class="logout-link"
-						onclick="document.getElementById('logout-form').submit(); return false;"
-					>
-						{% translate "Logout" %}
-					</a>
-				</div>
-			</div>
-
-			<div class="orders-card">
-				<h2 class="orders-title">
-					{% translate "My Orders" %}
-				</h2>
-
-				{% if orders %}
-				<ul class="orders-list">
-					{% for order in orders %}
-					<li class="orders-list-item">
-						<div class="orders-item-info">
-							<p class="orders-item-id">
-								{% translate "Order" %} #{{ order.id }}
-							</p>
-							<p class="orders-item-date">
-								{{ order.created_at|date:"Y-m-d H:i" }}
-							</p>
-							<p class="orders-item-total">
-								<span class="profile-info-label">{% translate "Total" %}:</span>
-								{{ order.total_in_dollars }}
-							</p>
-							<p class="orders-item-status-wrapper">
-								<span class="order-status-badge {% if order.status == 'paid' %}status-paid{% elif order.status == 'pending' %}status-pending{% else %}status-other{% endif %}">
-									{{ order.status }}
-								</span>
-							</p>
-						</div>
-
-						<div class="orders-item-action-wrapper">
-							<a
-								href="{% url 'cart:order_details' order.id %}"
-								class="cart-update-btn"
-							>
-								{% translate "View Details" %}
-							</a>
-						</div>
-					</li>
-					{% endfor %}
-				</ul>
-				{% else %}
-				<p class="product-detail-desc text-muted">
-					{% translate "No orders yet" %}.
-				</p>
-				{% endif %}
-			</div>
-		</div>
-	</div>
-</section>
-
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+  {% translate 'My Account' %} | Laura Melissa Ceramics
+{% endblock %}
+{% block content %}
+  <section class="account-section">
+    <div class="container">
+      <div class="order-detail-header">
+        <h1 class="product-detail-title">{{ account.username }}</h1>
+        <p class="product-detail-desc text-muted mt-xxs">{% translate "Account Panel" %}</p>
+      </div>
+      <div class="account-grid">
+        <div class="profile-card">
+          <h2 class="profile-title">{% translate "Profile" %}</h2>
+          <p class="profile-info-text">
+            <span class="profile-info-label">{% translate "First name" %}:</span>
+            {{ account.first_name|default:"—" }}
+          </p>
+          <p class="profile-info-text">
+            <span class="profile-info-label">{% translate "Last name" %}:</span>
+            {{ account.last_name|default:"—" }}
+          </p>
+          <p class="profile-info-text">
+            <span class="profile-info-label">{% translate "Email" %}:</span>
+            {{ user.email }}
+          </p>
+          <div class="profile-links-group">
+            <a href="{% url 'account:shipping' %}" class="profile-link">{% translate "Update your Shipping Information" %}</a>
+            <a href="{% url 'account:billing' %}" class="profile-link">{% translate "Update your Billing Information" %}</a>
+          </div>
+          <div class="profile-logout-btn">
+            <form action="{% url 'account:logout' %}"
+                  method="post"
+                  id="logout-form"
+                  class="hidden">
+              {% csrf_token %}
+            </form>
+            <a href="#"
+               class="logout-link"
+               onclick="document.getElementById('logout-form').submit(); return false;">{% translate "Logout" %}</a>
+          </div>
+        </div>
+        <div class="orders-card">
+          <h2 class="orders-title">{% translate "My Orders" %}</h2>
+          {% if orders %}
+            <ul class="orders-list">
+              {% for order in orders %}
+                <li class="orders-list-item">
+                  <div class="orders-item-info">
+                    <p class="orders-item-id">{% translate "Order" %} #{{ order.id }}</p>
+                    <p class="orders-item-date">{{ order.created_at|date:"Y-m-d H:i" }}</p>
+                    <p class="orders-item-total">
+                      <span class="profile-info-label">{% translate "Total" %}:</span>
+                      {{ order.total_in_dollars }}
+                    </p>
+                    <p class="orders-item-status-wrapper">
+                      <span class="order-status-badge {% if order.status == 'paid' %}status-paid{% elif order.status == 'pending' %}status-pending{% else %}status-other{% endif %}">
+                        {{ order.status }}
+                      </span>
+                    </p>
+                  </div>
+                  <div class="orders-item-action-wrapper">
+                    <a href="{% url 'cart:order_details' order.id %}"
+                       class="cart-update-btn">{% translate "View Details" %}</a>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="product-detail-desc text-muted">{% translate "No orders yet" %}.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

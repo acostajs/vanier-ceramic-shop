@@ -1,162 +1,100 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{{ product.name }} | Laura Melissa Ceramics{% endblock %} {% block content %}
-
-<section class="product-detail-section">
-	{% if product %}
-	<div class="container">
-		{% include 'partials/breadcrumbs.html' %}
-		<div class="product-detail-title-wrapper">
-			<h1 class="product-detail-title">
-				{{ product.name }}
-			</h1>
-		</div>
-
-		<div class="product-detail-grid">
-			<div>
-				{% if product.image %}
-				<div class="product-detail-img-box">
-					<img
-						src="{{ product.image.url }}"
-						alt="{{ product.name }}"
-						class="product-detail-img"
-						fetchpriority="high"
-					/>
-				</div>
-				{% endif %}
-			</div>
-
-			<div>
-				<article class="product-detail-card">
-					<h2 class="product-detail-card-subtitle">
-						{% translate "Product Details" %}
-					</h2>
-
-					{% if product.description %}
-					<p class="product-detail-desc">
-						{{ product.description }}
-					</p>
-					{% endif %}
-
-					<div class="product-detail-row">
-						{% if product.discount_percentage > 0 %}
-						<div class="product-quantity-form">
-							<p class="product-detail-label-muted">
-								{% translate "Limited offer" %}
-							</p>
-							<div class="flex-row-center">
-								<span class="product-detail-price-old">
-									{% translate "Price" %} {{ product.price_in_dollars }}
-								</span>
-								<span class="product-detail-price-discounted">
-									{{ product.discounted_price_in_dollars }}
-								</span>
-							</div>
-							<p class="product-discount-tag">
-								{% translate "Discount:" %} {{ product.discount_percentage }}%
-							</p>
-						</div>
-						{% else %}
-						<div class="product-quantity-form">
-							<p class="product-detail-label-muted">
-								{% translate "Price" %}
-							</p>
-							<p class="product-detail-price">
-								{{ product.price_in_dollars }}
-							</p>
-						</div>
-						{% endif %}
-					</div>
-
-					<div class="product-detail-row">
-						{% if product.quantity > 0 %}
-						<form
-							action="{% url 'cart:add_to_cart' product.id %}"
-							method="POST"
-							class="product-quantity-form"
-						>
-							{% csrf_token %}
-							<label
-								for="quantity"
-								class="form-label"
-							>
-								{% translate "Quantity:" %}
-							</label>
-							<div class="product-quantity-input-row">
-								<input
-									type="number"
-									id="quantity"
-									name="quantity"
-									value="1"
-									min="1"
-									max="{{ product.quantity }}"
-									class="quantity-input"
-								/>
-								<button
-									type="submit"
-									class="button-primary"
-								>
-									{% translate "Add to Cart" %}
-								</button>
-							</div>
-							<p class="product-stock-warning">
-								{% translate "Available stock:" %} {{ product.quantity }}
-							</p>
-						</form>
-						{% else %}
-						<div class="product-quantity-form">
-							<button
-								disabled
-								class="button-sold-out"
-							>
-								{% translate "Sold Out" %}
-							</button>
-						</div>
-						{% endif %}
-					</div>
-
-					{% if user.is_authenticated %}
-					<div class="product-detail-row">
-						<form
-							action="{% url 'account:add_to_wishlist' product.id %}"
-							method="POST"
-							class="inline-block"
-						>
-							{% csrf_token %}
-							<button
-								type="submit"
-								class="button-secondary"
-							>
-								{% translate "Add to Wishlist" %}
-								<svg
-									class="w-4 h-4 ml-2"
-									fill="none"
-									stroke="currentColor"
-									viewBox="0 0 24 24"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z"
-									/>
-								</svg>
-							</button>
-						</form>
-					</div>
-					{% endif %}
-				</article>
-			</div>
-		</div>
-	</div>
-	{% else %}
-	<div class="container text-center">
-		<h1 class="product-detail-title">
-			{% translate "Product Not Found" %}
-		</h1>
-		<p class="product-detail-desc">
-			{% translate "The product you are looking for does not exist." %}
-		</p>
-	</div>
-	{% endif %}
-</section>
-
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{{ product.name }} | Laura Melissa Ceramics{% endblock %}
+{% block content %}
+  <section class="product-detail-section">
+    {% if product %}
+      <div class="container">
+        {% include 'partials/breadcrumbs.html' %}
+        <div class="product-detail-title-wrapper">
+          <h1 class="product-detail-title">{{ product.name }}</h1>
+        </div>
+        <div class="product-detail-grid">
+          <div>
+            {% if product.image %}
+              <div class="product-detail-img-box">
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}"
+                     class="product-detail-img"
+                     fetchpriority="high" />
+              </div>
+            {% endif %}
+          </div>
+          <div>
+            <article class="product-detail-card">
+              <h2 class="product-detail-card-subtitle">{% translate "Product Details" %}</h2>
+              {% if product.description %}
+                <p class="product-detail-desc">{{ product.description }}</p>
+              {% endif %}
+              <div class="product-detail-row">
+                {% if product.discount_percentage > 0 %}
+                  <div class="product-quantity-form">
+                    <p class="product-detail-label-muted">{% translate "Limited offer" %}</p>
+                    <div class="flex-row-center">
+                      <span class="product-detail-price-old">{% translate "Price" %} {{ product.price_in_dollars }}</span>
+                      <span class="product-detail-price-discounted">{{ product.discounted_price_in_dollars }}</span>
+                    </div>
+                    <p class="product-discount-tag">{% translate "Discount:" %} {{ product.discount_percentage }}%</p>
+                  </div>
+                {% else %}
+                  <div class="product-quantity-form">
+                    <p class="product-detail-label-muted">{% translate "Price" %}</p>
+                    <p class="product-detail-price">{{ product.price_in_dollars }}</p>
+                  </div>
+                {% endif %}
+              </div>
+              <div class="product-detail-row">
+                {% if product.quantity > 0 %}
+                  <form action="{% url 'cart:add_to_cart' product.id %}"
+                        method="POST"
+                        class="product-quantity-form">
+                    {% csrf_token %}
+                    <label for="quantity" class="form-label">{% translate "Quantity:" %}</label>
+                    <div class="product-quantity-input-row">
+                      <input type="number"
+                             id="quantity"
+                             name="quantity"
+                             value="1"
+                             min="1"
+                             max="{{ product.quantity }}"
+                             class="quantity-input" />
+                      <button type="submit" class="button-primary">{% translate "Add to Cart" %}</button>
+                    </div>
+                    <p class="product-stock-warning">{% translate "Available stock:" %} {{ product.quantity }}</p>
+                  </form>
+                {% else %}
+                  <div class="product-quantity-form">
+                    <button disabled class="button-sold-out">{% translate "Sold Out" %}</button>
+                  </div>
+                {% endif %}
+              </div>
+              {% if user.is_authenticated %}
+                <div class="product-detail-row">
+                  <form action="{% url 'account:add_to_wishlist' product.id %}"
+                        method="POST"
+                        class="inline-block">
+                    {% csrf_token %}
+                    <button type="submit" class="button-secondary">
+                      {% translate "Add to Wishlist" %}
+                      <svg class="w-4 h-4 ml-2"
+                           fill="none"
+                           stroke="currentColor"
+                           viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
+                      </svg>
+                    </button>
+                  </form>
+                </div>
+              {% endif %}
+            </article>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="container text-center">
+        <h1 class="product-detail-title">{% translate "Product Not Found" %}</h1>
+        <p class="product-detail-desc">{% translate "The product you are looking for does not exist." %}</p>
+      </div>
+    {% endif %}
+  </section>
 {% endblock %}

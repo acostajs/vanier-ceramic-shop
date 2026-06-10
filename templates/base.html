@@ -1,162 +1,108 @@
-{% load static %} {% load i18n %}
+{% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<title>
-			{% block title %}{% blocktranslate %}Laura Melissa Ceramics - Handcrafted Ceramic Art & Pottery{% endblocktranslate %}{% endblock %}
-		</title>
-
-		<meta
-			name="description"
-			content="Discover unique handcrafted ceramics by Laura Melissa. Exquisite pottery, artisanal tableware, and custom ceramic sculptures made with love and precision. Shop now for timeless pieces."
-		/>
-
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:title"
-			content="Laura Melissa Ceramics - Handcrafted Ceramic Art"
-		/>
-		<meta
-			property="og:description"
-			content="Unique handcrafted ceramics, pottery, and artisanal tableware by Laura Melissa. Shop exquisite, timeless pieces."
-		/>
-		<meta property="og:image" content="{% static 'images/og-image-ceramics.jpg' %}" />
-		<meta property="og:url" content="https://www.lauramelissajaramillo.com/" />
-
-		<link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}" />
-
-		<!-- Keywords & Business -->
-		<meta
-			name="keywords"
-			content="ceramics, pottery, handcrafted ceramics, artisanal pottery, Laura Melissa, ceramic shop, handmade pottery, ceramic art"
-		/>
-		<meta name="author" content="Laura Melissa" />
-		<meta name="robots" content="index, follow" />
-
-		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&display=swap"
-			rel="stylesheet"
-		/>
-
-		<link rel="stylesheet" href="{% static 'css/style.css' %}?v=1" />
-		{% block extra_head %}{% endblock %}
-	</head>
-	<body class="{% block body_class %}{% endblock %}">
-		{% include 'partials/nav.html' %} {% if messages %}
-		<div class="toast-container">
-			{% for message in messages %}
-			<div class="toast-message {{ message.tags }}">
-				<div class="toast-body">
-					<!-- Icon -->
-					{% if message.tags == 'success' %}
-					<svg
-						class="toast-icon text-success"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M5 13l4 4L19 7"
-						></path>
-					</svg>
-					{% elif message.tags == 'error' or message.tags == 'danger' %}
-					<svg
-						class="toast-icon text-error"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-						></path>
-					</svg>
-					{% elif message.tags == 'info' %}
-					<svg
-						class="toast-icon text-info"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-						></path>
-					</svg>
-					{% elif message.tags == 'warning' %}
-					<svg
-						class="toast-icon text-warning"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-						></path>
-					</svg>
-					{% else %}
-					<div class="toast-icon bg-surface-strong"></div>
-					{% endif %}
-
-					<!-- Message text -->
-					<div class="toast-text">
-						<p>
-							{{ message }}
-						</p>
-					</div>
-
-					<!-- Auto-dismiss button -->
-					<button
-						onclick="this.parentElement.parentElement.remove()"
-						class="toast-close-btn"
-					>
-						<svg
-							class="w-4 h-4"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M6 18L18 6M6 6l12 12"
-							></path>
-						</svg>
-					</button>
-				</div>
-			</div>
-			{% endfor %}
-		</div>
-		{% endif %}
-
-		{% block main %}
-		<main class="flex-1 main-content-wrapper">{% block content %}{% endblock %}</main>
-		{% endblock %}
-
-		{% block footer %}
-		{% include 'partials/footer.html' %}
-		{% endblock %}
-
-		<!-- Scroll Reveal & Toast Auto-dismiss Script -->
-		<script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        {% blocktranslate %}Laura Melissa Ceramics - Handcrafted Ceramic Art & Pottery{% endblocktranslate %}
+      {% endblock %}
+    </title>
+    <meta name="description"
+          content="Discover unique handcrafted ceramics by Laura Melissa. Exquisite pottery, artisanal tableware, and custom ceramic sculptures made with love and precision. Shop now for timeless pieces." />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title"
+          content="Laura Melissa Ceramics - Handcrafted Ceramic Art" />
+    <meta property="og:description"
+          content="Unique handcrafted ceramics, pottery, and artisanal tableware by Laura Melissa. Shop exquisite, timeless pieces." />
+    <meta property="og:image"
+          content="{% static 'images/og-image-ceramics.jpg' %}" />
+    <meta property="og:url" content="https://www.lauramelissajaramillo.com/" />
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.png' %}" />
+    <!-- Keywords & Business -->
+    <meta name="keywords"
+          content="ceramics, pottery, handcrafted ceramics, artisanal pottery, Laura Melissa, ceramic shop, handmade pottery, ceramic art" />
+    <meta name="author" content="Laura Melissa" />
+    <meta name="robots" content="index, follow" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1" />
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    {% include 'partials/nav.html' %}
+    {% if messages %}
+      <div class="toast-container">
+        {% for message in messages %}
+          <div class="toast-message {{ message.tags }}">
+            <div class="toast-body">
+              <!-- Icon -->
+              {% if message.tags == 'success' %}
+                <svg class="toast-icon text-success"
+                     fill="none"
+                     stroke="currentColor"
+                     viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              {% elif message.tags == 'error' or message.tags == 'danger' %}
+                <svg class="toast-icon text-error"
+                     fill="none"
+                     stroke="currentColor"
+                     viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                  </path>
+                </svg>
+              {% elif message.tags == 'info' %}
+                <svg class="toast-icon text-info"
+                     fill="none"
+                     stroke="currentColor"
+                     viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                  </path>
+                </svg>
+              {% elif message.tags == 'warning' %}
+                <svg class="toast-icon text-warning"
+                     fill="none"
+                     stroke="currentColor"
+                     viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                  </path>
+                </svg>
+              {% else %}
+                <div class="toast-icon bg-surface-strong"></div>
+              {% endif %}
+              <!-- Message text -->
+              <div class="toast-text">
+                <p>{{ message }}</p>
+              </div>
+              <!-- Auto-dismiss button -->
+              <button onclick="this.parentElement.parentElement.remove()"
+                      class="toast-close-btn">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% block main %}
+      <main class="flex-1 main-content-wrapper">
+        {% block content %}{% endblock %}
+      </main>
+    {% endblock %}
+    {% block footer %}
+      {% include 'partials/footer.html' %}
+    {% endblock %}
+    <!-- Scroll Reveal & Toast Auto-dismiss Script -->
+    <script>
 			document.addEventListener("DOMContentLoaded", function () {
 				// Scroll Reveal
 				var revealElements = document.querySelectorAll(".reveal");
@@ -191,7 +137,7 @@
 					}, 5000);
 				});
 			});
-		</script>
-		{% block extra_js %}{% endblock %}
-	</body>
+    </script>
+    {% block extra_js %}{% endblock %}
+  </body>
 </html>

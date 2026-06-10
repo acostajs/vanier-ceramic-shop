@@ -1,47 +1,26 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Order Success' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
-
-<section class="cart-section">
-	<div class="auth-container text-center">
-		<div class="success-icon-badge">
-			<svg
-				class="w-8 h-8"
-				fill="none"
-				stroke="currentColor"
-				viewBox="0 0 24 24"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M5 13l4 4L19 7"
-				></path>
-			</svg>
-		</div>
-
-		<h1 class="product-detail-title order-status-title">
-			{% translate "Order successful" %}
-		</h1>
-		<p class="product-detail-desc order-status-desc">
-			{% blocktranslate %} Thank you for your purchase. Your pieces are now
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+  {% translate 'Order Success' %} | Laura Melissa Ceramics
+{% endblock %}
+{% block content %}
+  <section class="cart-section">
+    <div class="auth-container text-center">
+      <div class="success-icon-badge">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      <h1 class="product-detail-title order-status-title">{% translate "Order successful" %}</h1>
+      <p class="product-detail-desc order-status-desc">
+        {% blocktranslate %} Thank you for your purchase. Your pieces are now
 			being prepared with the same care they were created with.
 			{%endblocktranslate %}
-		</p>
-
-		<div class="hero-actions order-status-actions">
-			<a
-				href="{% url 'shop:shop' %}"
-				class="button-primary"
-			>
-				{% translate "Continue browsing" %}
-			</a>
-			<a
-				href="{% url 'account:account' %}"
-				class="button-secondary"
-			>
-				{% translate "View your orders" %}
-			</a>
-		</div>
-	</div>
-</section>
-
+      </p>
+      <div class="hero-actions order-status-actions">
+        <a href="{% url 'shop:shop' %}" class="button-primary">{% translate "Continue browsing" %}</a>
+        <a href="{% url 'account:account' %}" class="button-secondary">{% translate "View your orders" %}</a>
+      </div>
+    </div>
+  </section>
 {% endblock %}

@@ -1,143 +1,136 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
-
-{% block title %}{% translate "Home" %} | Laura Melissa Ceramics{% endblock %}
-
+{% block title %}
+  {% translate "Home" %} | Laura Melissa Ceramics
+{% endblock %}
 {% block main %}
-<main class="flex-1">
-	<!-- Section 1: Hero -->
-	<section class="home-hero flex-row-center">
-		<div class="container">
-			<div class="hero-grid">
-				<!-- Left: Headline, artist copy, CTA (7 columns) -->
-				<div class="hero-content">
-					<h1 class="hero-title">
-						<span class="hero-title-highlight">Laura Melissa Jaramillo Rueda</span><br />
-					</h1>
-					<p class="hero-copy">
-						{% blocktranslate %} Unique handcrafted ceramics and pottery. Each
+  <main class="flex-1">
+    <!-- Section 1: Hero -->
+    <section class="home-hero flex-row-center">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left: Headline, artist copy, CTA (7 columns) -->
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span class="hero-title-highlight">Laura Melissa Jaramillo Rueda</span>
+              <br />
+            </h1>
+            <p class="hero-copy">
+              {% blocktranslate %} Unique handcrafted ceramics and pottery. Each
 						piece tells a story of earth, fire, and time. {% endblocktranslate %}
-					</p>
-					<div class="hero-actions">
-						<a href="{% url 'shop:shop' %}" class="button-primary">
-							{% translate "Shop Collections" %}
-							<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-									d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-							</svg>
-						</a>
-						<a href="{% url 'about' %}" class="button-secondary">
-							{% translate "Read Biography" %}
-						</a>
-					</div>
-				</div>
-
-				<!-- Right: Full-height image (5 columns) -->
-				<div class="hero-image-col">
-					<img src="{% static 'images/home-hero.avif' %}" alt="Laura Melissa Ceramics" class="hero-image"
-						loading="eager" fetchpriority="high" />
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Section 2: Recent Work -->
-	<section class="recent-work-section">
-		<div class="section-subtitle-wrapper">
-			<p class="section-subtitle">
-				{% blocktranslate %} Discover the latest collections, each piece handcrafted with care and precision on
+            </p>
+            <div class="hero-actions">
+              <a href="{% url 'shop:shop' %}" class="button-primary">
+                {% translate "Shop Collections" %}
+                <svg class="w-4 h-4 ml-2"
+                     fill="none"
+                     stroke="currentColor"
+                     viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </a>
+              <a href="{% url 'about' %}" class="button-secondary">{% translate "Read Biography" %}</a>
+            </div>
+          </div>
+          <!-- Right: Full-height image (5 columns) -->
+          <div class="hero-image-col">
+            <img src="{% static 'images/home-hero.avif' %}"
+                 alt="Laura Melissa Ceramics"
+                 class="hero-image"
+                 loading="eager"
+                 fetchpriority="high" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section 2: Recent Work -->
+    <section class="recent-work-section">
+      <div class="section-subtitle-wrapper">
+        <p class="section-subtitle">
+          {% blocktranslate %} Discover the latest collections, each piece handcrafted with care and precision on
 				the potter's wheel. {% endblocktranslate %}
-			</p>
-		</div>
-		<div class="container">
-			<div class="section-header reveal">
-				<h2 class="section-title">
-					{% translate "Recent Work" %}
-				</h2>
-			</div>
-
-			<!-- Product Slider: Horizontal Scroll on Mobile/Tablet, 3-up Grid on Desktop -->
-			<div class="product-slider">
-				{% if recent_products %}
-				{% for product in recent_products %}
-				<!-- The Anchor wraps everything inside the loop execution -->
-				<a href="{% url 'shop:product' product.id %}" class="product-card-wrapper-link">
-
-					{% if product.image %}
-					<article class="product-card reveal" style="background-image: url('{{ product.image.url }}');">
-						{% else %}
-						<article class="product-card reveal" style="background-color: var(--color-surface-card);">
-							{% endif %}
-							<div class="product-card-title-wrapper">
-								<h3 class="product-card-title">
-									{{ product.name }}
-								</h3>
-							</div>
-
-						</article>
-				</a>
-				{% endfor %}
-				{% else %}
-				<h2>{% translate "There is no recent work." %}</h2>
-				{% endif %}
-			</div>
-	</section>
-
-	<!-- Section 3: About Me -->
-	<section class="about-me-section">
-		<div class="container relative z-10">
-			<div class="about-me-grid">
-				<div class="about-me-content reveal relative">
-					<h2 class="about-me-heading">
-						{% translate "A little bit" %}
-						<br />
-						<span class="about-me-highlight">{% translate "about me" %}</span>
-					</h2>
-					<p class="about-me-copy">
-						{% blocktranslate %} Trained as an Industrial Designer, I found
+        </p>
+      </div>
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title">{% translate "Recent Work" %}</h2>
+        </div>
+        <!-- Product Slider: Horizontal Scroll on Mobile/Tablet, 3-up Grid on Desktop -->
+        <div class="product-slider">
+          {% if recent_products %}
+            {% for product in recent_products %}
+              <!-- The Anchor wraps everything inside the loop execution -->
+              <a href="{% url 'shop:product' product.id %}"
+                 class="product-card-wrapper-link">
+                {% if product.image %}
+                  <article class="product-card reveal"
+                           style="background-image: url('{{ product.image.url }}')">
+                  {% else %}
+                    <article class="product-card reveal"
+                             style="background-color: var(--color-surface-card)">
+                    {% endif %}
+                    <div class="product-card-title-wrapper">
+                      <h3 class="product-card-title">{{ product.name }}</h3>
+                    </div>
+                  </article>
+                </a>
+              {% endfor %}
+            {% else %}
+              <h2>{% translate "There is no recent work." %}</h2>
+            {% endif %}
+          </div>
+        </section>
+        <!-- Section 3: About Me -->
+        <section class="about-me-section">
+          <div class="container relative z-10">
+            <div class="about-me-grid">
+              <div class="about-me-content reveal relative">
+                <h2 class="about-me-heading">
+                  {% translate "A little bit" %}
+                  <br />
+                  <span class="about-me-highlight">{% translate "about me" %}</span>
+                </h2>
+                <p class="about-me-copy">
+                  {% blocktranslate %} Trained as an Industrial Designer, I found
 						ceramics to be the perfect union of form, function, and emotion. Each
 						piece emerges from the potter's wheel, shaped by circular movement and
 						fired with intention. {% endblocktranslate %}
-					</p>
-					<a href="{% url 'about' %}" class="button-terracotta">
-						{% translate "Read my story" %}
-					</a>
-				</div>
-
-				<!-- About Image -->
-				<div class="about-me-image-wrapper reveal">
-					<div class="ceramic-oval-frame">
-						<img src="{% static 'images/about-teaser-img.avif' %}" alt="Laura Melissa at work"
-							loading="lazy" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Section 4: Contact -->
-	<section class="home-contact-section">
-		<!-- Let's Talk CTA -->
-		<div class="container home-contact-container reveal">
-			<h2 class="home-contact-heading">
-				{% translate "Let's talk" %}
-			</h2>
-			<p class="home-contact-copy">
-				{% blocktranslate %} Ready to bring your vision to life through ceramics?
+                </p>
+                <a href="{% url 'about' %}" class="button-terracotta">{% translate "Read my story" %}</a>
+              </div>
+              <!-- About Image -->
+              <div class="about-me-image-wrapper reveal">
+                <div class="ceramic-oval-frame">
+                  <img src="{% static 'images/about-teaser-img.avif' %}"
+                       alt="Laura Melissa at work"
+                       loading="lazy" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Section 4: Contact -->
+        <section class="home-contact-section">
+          <!-- Let's Talk CTA -->
+          <div class="container home-contact-container reveal">
+            <h2 class="home-contact-heading">{% translate "Let's talk" %}</h2>
+            <p class="home-contact-copy">
+              {% blocktranslate %} Ready to bring your vision to life through ceramics?
 				Let's create something beautiful together. {% endblocktranslate %}
-			</p>
-			<div class="home-contact-card">
-				<a href="{% url 'contact:contact' %}" class="button-primary">
-					{% translate "Get in touch" %}
-					<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-							d="M17 8l4 4m0 0l-4 4m4-4H3">
-						</path>
-					</svg>
-				</a>
-			</div>
-		</div>
-	</section>
-</main>
-{% endblock %}
+            </p>
+            <div class="home-contact-card">
+              <a href="{% url 'contact:contact' %}" class="button-primary">
+                {% translate "Get in touch" %}
+                <svg class="w-4 h-4 ml-2"
+                     fill="none"
+                     stroke="currentColor"
+                     viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+    {% endblock %}

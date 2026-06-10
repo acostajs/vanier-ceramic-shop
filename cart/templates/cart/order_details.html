@@ -1,153 +1,113 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}Order #{{ order.id }} | Laura Melissa Ceramics{% endblock %} {% load static %} {% block content %}
-
-<section class="cart-section">
-	<div class="container">
-		{% include 'partials/breadcrumbs.html' %}
-		<div class="order-detail-header">
-			<h1 class="product-detail-title">
-				{% translate "Order details" %}
-			</h1>
-			<p class="product-detail-desc mt-xxs text-muted">
-				{% blocktranslate %} Thank you for your purchase. Here is a summary of
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}Order #{{ order.id }} | Laura Melissa Ceramics{% endblock %}
+{% load static %}
+{% block content %}
+  <section class="cart-section">
+    <div class="container">
+      {% include 'partials/breadcrumbs.html' %}
+      <div class="order-detail-header">
+        <h1 class="product-detail-title">{% translate "Order details" %}</h1>
+        <p class="product-detail-desc mt-xxs text-muted">
+          {% blocktranslate %} Thank you for your purchase. Here is a summary of
 				your order. {% endblocktranslate %}
-			</p>
-		</div>
-
-		<!-- Order summary card -->
-		<div class="cart-card">
-			<div class="order-detail-grid-top">
-				<div>
-					<p class="product-detail-label-muted">
-						{% translate "Payment ID" %}
-					</p>
-					<p class="order-payment-id-val">
-						{{ order.payment_id|default:"—" }}
-					</p>
-				</div>
-				<div>
-					<p class="product-detail-label-muted">
-						{% translate "Total" %}
-					</p>
-					<p class="cart-subtotal-value mt-xxs">
-						{{ order.total_in_dollars }}
-					</p>
-				</div>
-				<div>
-					<p class="product-detail-label-muted">
-						{% translate "Status" %}
-					</p>
-					<p class="order-status-badge {% if order.status == 'paid' %}status-paid{% elif order.status == 'pending' %}status-pending{% else %}status-other{% endif %} mt-xxs">
-						{{ order.status }}
-					</p>
-				</div>
-			</div>
-
-			<div class="order-detail-section-border">
-				<p class="product-detail-label-muted">
-					{% translate "Placed on" %}
-				</p>
-				<p class="order-date-val">{{ order.created_at }}</p>
-			</div>
-
-			<div class="order-detail-section-border">
-				<div class="order-addresses-grid">
-					<!-- Billing -->
-					<div class="order-address-box">
-						<p class="product-detail-label-muted">
-							{% translate "Billing address" %}
-						</p>
-						<p>{{ order.billing_address_line1 }}</p>
-						{% if order.billing_address_line2 %}
-						<p>{{ order.billing_address_line2 }}</p>
-						{% endif %}
-						<p>{{ order.billing_city }} {{ order.billing_postal_code }}</p>
-						<p>{{ order.billing_country }}</p>
-					</div>
-
-					<!-- Shipping -->
-					<div class="order-address-box">
-						<p class="product-detail-label-muted">
-							{% translate "Shipping address" %}
-						</p>
-						<p>{{ order.shipping_address_line1 }}</p>
-						{% if order.shipping_address_line2 %}
-						<p>{{ order.shipping_address_line2 }}</p>
-						{% endif %}
-						<p>{{ order.shipping_city }} {{ order.shipping_postal_code }}</p>
-						<p>{{ order.shipping_country }}</p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Items list -->
-		<div class="order-items-box">
-			<p class="product-detail-label-muted mb-md">
-				{% translate "Items in this order" %}
-			</p>
-
-			{% if order.items.all %}
-			<div class="order-items-list">
-				{% for item in order.items.all %}
-				<div class="order-item-row">
-					<div class="order-item-left">
-						{% if item.product.image %}
-						<img
-							src="{{ item.product.image.url }}"
-							alt="{{ item.product.name }}"
-							class="order-item-thumb"
-							loading="lazy"
-						/>
-						{% endif %}
-						<div class="order-item-info">
-							<p class="order-item-name">
-								{{ item.product.name }}
-							</p>
-							{% if item.product.collection %}
-							<p class="order-item-collection">
-								{{ item.product.collection.name }}
-							</p>
-							{% endif %} {% if item.product.description %}
-							<p class="order-item-desc">
-								{{ item.product.description }}
-							</p>
-							{% endif %}
-						</div>
-					</div>
-
-					<div class="order-item-right">
-						<p>
-							{% translate "Quantity" %}:
-							<span class="order-item-detail-val">{{ item.quantity }}</span>
-						</p>
-						<p>
-							{% translate "Unit price" %}:
-							<span class="order-item-detail-val">${{ item.unit_price_dollars }}</span>
-						</p>
-						<p>
-							{% translate "Subtotal" %}:
-							<span class="order-item-detail-val">${{ item.line_total_dollars }}</span>
-						</p>
-					</div>
-				</div>
-				{% endfor %}
-			</div>
-			{% else %}
-			<p class="product-detail-desc text-muted">
-				{% translate "No items found for this order." %}
-			</p>
-			{% endif %}
-		</div>
-
-		<div class="mt-lg">
-			<a
-				href="{% url 'account:account' %}"
-				class="checkout-back-link"
-			>
-				← {% translate "Back to Account" %}
-			</a>
-		</div>
-	</div>
-</section>
-
+        </p>
+      </div>
+      <!-- Order summary card -->
+      <div class="cart-card">
+        <div class="order-detail-grid-top">
+          <div>
+            <p class="product-detail-label-muted">{% translate "Payment ID" %}</p>
+            <p class="order-payment-id-val">{{ order.payment_id|default:"—" }}</p>
+          </div>
+          <div>
+            <p class="product-detail-label-muted">{% translate "Total" %}</p>
+            <p class="cart-subtotal-value mt-xxs">{{ order.total_in_dollars }}</p>
+          </div>
+          <div>
+            <p class="product-detail-label-muted">{% translate "Status" %}</p>
+            <p class="order-status-badge {% if order.status == 'paid' %}status-paid{% elif order.status == 'pending' %}status-pending{% else %}status-other{% endif %} mt-xxs">
+              {{ order.status }}
+            </p>
+          </div>
+        </div>
+        <div class="order-detail-section-border">
+          <p class="product-detail-label-muted">{% translate "Placed on" %}</p>
+          <p class="order-date-val">{{ order.created_at }}</p>
+        </div>
+        <div class="order-detail-section-border">
+          <div class="order-addresses-grid">
+            <!-- Billing -->
+            <div class="order-address-box">
+              <p class="product-detail-label-muted">{% translate "Billing address" %}</p>
+              <p>{{ order.billing_address_line1 }}</p>
+              {% if order.billing_address_line2 %}
+                <p>{{ order.billing_address_line2 }}</p>
+              {% endif %}
+              <p>{{ order.billing_city }} {{ order.billing_postal_code }}</p>
+              <p>{{ order.billing_country }}</p>
+            </div>
+            <!-- Shipping -->
+            <div class="order-address-box">
+              <p class="product-detail-label-muted">{% translate "Shipping address" %}</p>
+              <p>{{ order.shipping_address_line1 }}</p>
+              {% if order.shipping_address_line2 %}
+                <p>{{ order.shipping_address_line2 }}</p>
+              {% endif %}
+              <p>{{ order.shipping_city }} {{ order.shipping_postal_code }}</p>
+              <p>{{ order.shipping_country }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Items list -->
+      <div class="order-items-box">
+        <p class="product-detail-label-muted mb-md">{% translate "Items in this order" %}</p>
+        {% if order.items.all %}
+          <div class="order-items-list">
+            {% for item in order.items.all %}
+              <div class="order-item-row">
+                <div class="order-item-left">
+                  {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}"
+                         alt="{{ item.product.name }}"
+                         class="order-item-thumb"
+                         loading="lazy" />
+                  {% endif %}
+                  <div class="order-item-info">
+                    <p class="order-item-name">{{ item.product.name }}</p>
+                    {% if item.product.collection %}
+                      <p class="order-item-collection">{{ item.product.collection.name }}</p>
+                    {% endif %}
+                    {% if item.product.description %}
+                      <p class="order-item-desc">{{ item.product.description }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="order-item-right">
+                  <p>
+                    {% translate "Quantity" %}:
+                    <span class="order-item-detail-val">{{ item.quantity }}</span>
+                  </p>
+                  <p>
+                    {% translate "Unit price" %}:
+                    <span class="order-item-detail-val">${{ item.unit_price_dollars }}</span>
+                  </p>
+                  <p>
+                    {% translate "Subtotal" %}:
+                    <span class="order-item-detail-val">${{ item.line_total_dollars }}</span>
+                  </p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="product-detail-desc text-muted">{% translate "No items found for this order." %}</p>
+        {% endif %}
+      </div>
+      <div class="mt-lg">
+        <a href="{% url 'account:account' %}" class="checkout-back-link">← {% translate "Back to Account" %}</a>
+      </div>
+    </div>
+  </section>
 {% endblock %}
