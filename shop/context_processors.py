@@ -1,6 +1,6 @@
+from django.utils.functional import SimpleLazyObject
 from .models import Collection
 
 
 def collections_processor(request):
-    collections = Collection.objects.all()
-    return {"collections": collections}
+    return {"collections": SimpleLazyObject(lambda: list(Collection.objects.all()))}
