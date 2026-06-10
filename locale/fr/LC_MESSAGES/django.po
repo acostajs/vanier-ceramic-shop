@@ -935,6 +935,16 @@ msgstr "Informations de livraison"
 msgid "Billing Info"
 msgstr "Informations de facturation"
 
+msgid "Discover unique handcrafted ceramics by Laura Melissa. Exquisite pottery, artisanal tableware, and custom ceramic sculptures made with love and precision. Shop now for timeless pieces."
+msgstr "Découvrez des céramiques uniques fabriquées à la main par Laura Melissa. Vaisselle exquise, poterie artisanale et sculptures en céramique personnalisées créées avec amour et précision. Achetez dès maintenant des pièces intempelles."
+
+msgid "Laura Melissa Ceramics - Handcrafted Ceramic Art"
+msgstr "Céramiques Laura Melissa - Art céramique fait main"
+
+msgid "Unique handcrafted ceramics, pottery, and artisanal tableware by Laura Melissa. Shop exquisite, timeless pieces."
+msgstr "Céramiques, poteries et vaisselles artisanales uniques fabriquées à la main par Laura Melissa. Achetez des pièces exquises et intemporelles."
+
+
 
 
 
