@@ -1,3 +1,12 @@
+---
+title: Ceramic Shop
+emoji: 🏺
+colorFrom: red
+colorTo: yellow
+sdk: docker
+app_port: 7860
+---
+
 # Laura Melissa Ceramics – Full-Stack Django E-Commerce
 
 **Full-Stack Django Project · Freelancer Simulation**
