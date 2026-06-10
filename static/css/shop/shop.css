@@ -2,13 +2,30 @@
 
 .shop-section {
   background-color: var(--color-canvas);
-  padding-top: clamp(7rem, 6rem + 5vw, 9.5rem);
-  padding-bottom: clamp(5rem, 4.5rem + 5vw, 7rem);
 }
 
 .shop-header {
-  text-align: center;
+  padding-top: clamp(7rem, 6rem + 5vw, 9.5rem);
   margin-bottom: clamp(4rem, 3rem + 5vw, 7rem);
+  background-color: var(--color-brand-ochre);
+  padding-bottom: clamp(5rem, 4.5rem + 5vw, 7rem);
+}
+
+.shop-hero-title {
+  font-size: var(--typography-display-xs-size);
+  font-weight: var(--typography-display-xs-weight);
+  line-height: var(--typography-display-xs-lh);
+  letter-spacing: var(--typography-display-xs-ls);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-on-primary);
+}
+
+.shop-hero-subtitle {
+  font-size: var(--typography-display-xl-size);
+  font-weight: var(--typography-display-xl-weight);
+  line-height: var(--typography-display-xl-lh);
+  letter-spacing: var(--typography-display-xl-ls);
+  color: var(--color-on-primary);
 }
 
 .collections-grid {
@@ -26,7 +43,8 @@
 @container (min-width: 80rem) {
   .collections-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem; /* 40px */
+    gap: 2.5rem;
+    /* 40px */
   }
 }
 
@@ -86,7 +104,8 @@
   font-size: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
   color: var(--color-muted);
   line-height: 1.6;
-  margin-bottom: 1.25rem; /* 20px */
+  margin-bottom: 1.25rem;
+  /* 20px */
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -125,12 +144,15 @@
 /* Empty placeholder */
 .shop-empty-state {
   text-align: center;
-  padding: 8rem 0; /* 128px */
+  padding: 8rem 0;
+  /* 128px */
 }
 
 .shop-empty-icon-box {
-  width: 8rem; /* 128px */
-  height: 8rem; /* 128px */
+  width: 8rem;
+  /* 128px */
+  height: 8rem;
+  /* 128px */
   background-color: var(--color-hairline);
   border-radius: var(--rounded-md);
   display: flex;
