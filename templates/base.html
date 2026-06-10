@@ -8,7 +8,7 @@
     <title>
       {% block title %}
         {% blocktranslate %}Laura Melissa Ceramics - Handcrafted Ceramic Art & Pottery{% endblocktranslate %}
-      {% endblock %}
+      {% endblock title %}
     </title>
     {% translate "Discover unique handcrafted ceramics by Laura Melissa. Exquisite pottery, artisanal tableware, and custom ceramic sculptures made with love and precision. Shop now for timeless pieces." as meta_desc %}
     <meta name="description" content="{{ meta_desc }}" />
@@ -33,9 +33,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300..900;1,300..900&display=swap"
           rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1" />
-    {% block extra_head %}{% endblock %}
+    {% block extra_head %}
+    {% endblock extra_head %}
   </head>
-  <body class="{% block body_class %}{% endblock %}">
+  <body class="{% block body_class %}{% endblock body_class %}">
     {% include 'partials/nav.html' %}
     {% if messages %}
       <div class="toast-container">
@@ -95,12 +96,13 @@
     {% endif %}
     {% block main %}
       <main class="flex-1 main-content-wrapper">
-        {% block content %}{% endblock %}
+        {% block content %}
+        {% endblock content %}
       </main>
-    {% endblock %}
+    {% endblock main %}
     {% block footer %}
       {% include 'partials/footer.html' %}
-    {% endblock %}
+    {% endblock footer %}
     <!-- Scroll Reveal & Toast Auto-dismiss Script -->
     <script>
 			document.addEventListener("DOMContentLoaded", function () {
@@ -138,6 +140,7 @@
 				});
 			});
     </script>
-    {% block extra_js %}{% endblock %}
+    {% block extra_js %}
+    {% endblock extra_js %}
   </body>
 </html>
