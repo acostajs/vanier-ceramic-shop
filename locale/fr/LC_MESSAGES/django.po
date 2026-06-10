@@ -896,4 +896,23 @@ msgstr "Contactez-nous"
 msgid "Breadcrumb"
 msgstr "Fil d'Ariane"
 
+msgid "About Our Story"
+msgstr "À propos de notre histoire"
+
+msgid "About me"
+msgstr "À propos de moi"
+
+msgid "Read Biography"
+msgstr "Lire la biographie"
+
+msgid "Product Details"
+msgstr "Détails du produit"
+
+msgid "Explore Other Collections"
+msgstr "Explorer d'autres collections"
+
+msgid "Back to Home"
+msgstr "Retour à l'accueil"
+
+
 

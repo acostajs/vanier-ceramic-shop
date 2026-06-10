@@ -890,3 +890,22 @@ msgstr "Contáctanos"
 msgid "Breadcrumb"
 msgstr "Rastro de navegación"
 
+msgid "About Our Story"
+msgstr "Sobre nuestra historia"
+
+msgid "About me"
+msgstr "Sobre mí"
+
+msgid "Read Biography"
+msgstr "Leer biografía"
+
+msgid "Product Details"
+msgstr "Detalles del producto"
+
+msgid "Explore Other Collections"
+msgstr "Explorar otras colecciones"
+
+msgid "Back to Home"
+msgstr "Volver al inicio"
+
+
