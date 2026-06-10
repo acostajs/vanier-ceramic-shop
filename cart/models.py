@@ -68,9 +68,6 @@ class Order(models.Model):
 
     def set_status(self, status: str) -> None:
         """Represents the status of an Order,"""
-        if self.status == self.STATUS_PAID:
-            return
-
         current_status = status.lower()
         if current_status not in {
             self.STATUS_PENDING,
@@ -79,6 +76,9 @@ class Order(models.Model):
         }:
             raise ValueError(f"Invalid status: {status}")
 
+        if current_status == self.STATUS_PAID and self.status == self.STATUS_PAID:
+            return
+
         if current_status == self.STATUS_PAID and self.status != self.STATUS_PAID:
             for item in self.items.all():
                 item.product.discount_from_quantity(item.quantity)
@@ -86,38 +86,28 @@ class Order(models.Model):
         self.status = current_status
         self.save(update_fields=["status"])
 
-    def fulfill(
-        self,
-        name: str,
-        email: str,
-        payment_id: str,
-        total_cents: int,
-        billing_address_line1: str,
-        billing_address_line2: str,
-        billing_city: str,
-        billing_postal_code: str,
-        billing_country: str,
-        shipping_address_line1: str,
-        shipping_address_line2: str,
-        shipping_city: str,
-        shipping_postal_code: str,
-        shipping_country: str,
-    ) -> None:
+    def fulfill(self, payment_id: str, **kwargs) -> None:
         """Fulfill order with payment details."""
-        self.name = name
-        self.email = email
+        account = self.account
+        if account:
+            self.name = f"{account.first_name} {account.last_name}".strip()
+            self.email = account.email
+            self.billing_address_line1 = account.billing_address_line1
+            self.billing_address_line2 = account.billing_address_line2
+            self.billing_city = account.billing_city
+            self.billing_postal_code = account.billing_postal_code
+            self.billing_country = account.billing_country
+            self.shipping_address_line1 = account.shipping_address_line1
+            self.shipping_address_line2 = account.shipping_address_line2
+            self.shipping_city = account.shipping_city
+            self.shipping_postal_code = account.shipping_postal_code
+            self.shipping_country = account.shipping_country
+
+        for field, value in kwargs.items():
+            if hasattr(self, field):
+                setattr(self, field, value)
+
         self.payment_id = payment_id
-        self.total_cents = total_cents
-        self.billing_address_line1 = billing_address_line1
-        self.billing_address_line2 = billing_address_line2
-        self.billing_city = billing_city
-        self.billing_postal_code = billing_postal_code
-        self.billing_country = billing_country
-        self.shipping_address_line1 = shipping_address_line1
-        self.shipping_address_line2 = shipping_address_line2
-        self.shipping_city = shipping_city
-        self.shipping_postal_code = shipping_postal_code
-        self.shipping_country = shipping_country
         self.save()
 
     @classmethod
@@ -181,7 +171,8 @@ class Order(models.Model):
         return f"${self.total_cents / 100:.2f}"
 
     def __str__(self):
-        return f"Order #{self.payment_id} - {self.account.email}"
+        email = self.account.email if self.account else "No account"
+        return f"Order #{self.payment_id} - {email}"
 
 
 class OrderItem(models.Model):
