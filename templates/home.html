@@ -13,8 +13,7 @@
 				<!-- Left: Headline, artist copy, CTA (7 columns) -->
 				<div class="hero-content">
 					<h1 class="hero-title">
-						<span class="hero-title-highlight">Laura Melissa</span><br />
-						{% translate "Ceramics" %}
+						<span class="hero-title-highlight">Laura Melissa Jaramillo Rueda</span><br />
 					</h1>
 					<p class="hero-copy">
 						{% blocktranslate %} Unique handcrafted ceramics and pottery. Each
@@ -36,8 +35,8 @@
 
 				<!-- Right: Full-height image (5 columns) -->
 				<div class="hero-image-col">
-					<img src="{% static 'images/about-portrait.avif' %}" alt="Laura Melissa Ceramics"
-						class="hero-image" loading="eager" fetchpriority="high" />
+					<img src="{% static 'images/home-hero.avif' %}" alt="Laura Melissa Ceramics" class="hero-image"
+						loading="eager" fetchpriority="high" />
 				</div>
 			</div>
 		</div>
@@ -45,223 +44,44 @@
 
 	<!-- Section 2: Recent Work -->
 	<section class="recent-work-section">
+		<div class="section-subtitle-wrapper">
+			<p class="section-subtitle">
+				{% blocktranslate %} Discover the latest collections, each piece handcrafted with care and precision on
+				the potter's wheel. {% endblocktranslate %}
+			</p>
+		</div>
 		<div class="container">
 			<div class="section-header reveal">
 				<h2 class="section-title">
 					{% translate "Recent Work" %}
 				</h2>
-				<p class="section-subtitle">
-					{% blocktranslate %} Discover the latest collections, each piece
-					handcrafted with care and precision on the potter's wheel.
-					{% endblocktranslate %}
-				</p>
 			</div>
 
 			<!-- Product Slider: Horizontal Scroll on Mobile/Tablet, 3-up Grid on Desktop -->
 			<div class="product-slider">
 				{% if recent_products %}
 				{% for product in recent_products %}
-				<article class="product-card reveal">
+				<!-- The Anchor wraps everything inside the loop execution -->
+				<a href="{% url 'shop:product' product.id %}" class="product-card-wrapper-link">
+
 					{% if product.image %}
-					<div class="product-card-img-wrapper">
-						<img src="{{ product.image.url }}" alt="{{ product.name }}"
-							class="product-card-img" loading="lazy" />
-					</div>
-					{% endif %}
-					<div class="product-card-body">
-						<div class="product-card-header">
-							<h3 class="product-card-title">
-								{{ product.name }}
-							</h3>
-							<div class="product-card-price-wrapper">
-								{% if product.discount_percentage > 0 %}
-								<div class="product-card-price-wrapper">
-									<span class="product-card-price-discounted">
-										{{ product.discounted_price_in_dollars }}
-									</span>
-									<span class="product-card-price-old">
-										{{ product.price_in_dollars }}
-									</span>
-								</div>
-								{% else %}
-								<span class="product-card-price">
-									{{ product.price_in_dollars }}
-								</span>
-								{% endif %}
-							</div>
-						</div>
-
-						<div class="product-card-stock-wrapper">
-							{% if product.quantity == 0 %}
-							<span class="badge badge-error">
-								{% translate "Sold Out" %}
-							</span>
-							{% elif product.quantity <= 3 %}
-							<span class="badge badge-warning">
-								{% translate "Low Stock" %} ({{ product.quantity }})
-							</span>
-							{% else %}
-							<span class="badge badge-success">
-								{% translate "In Stock" %}
-							</span>
+					<article class="product-card reveal" style="background-image: url('{{ product.image.url }}');">
+						{% else %}
+						<article class="product-card reveal" style="background-color: var(--color-surface-card);">
 							{% endif %}
-						</div>
+							<div class="product-card-title-wrapper">
+								<h3 class="product-card-title">
+									{{ product.name }}
+								</h3>
+							</div>
 
-						<p class="product-card-desc">
-							{{ product.description }}
-						</p>
-
-						<div class="product-card-footer">
-							<a href="{% url 'shop:product' product.id %}" class="product-card-link">
-								{% translate "See Details" %}
-								<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-								</svg>
-							</a>
-						</div>
-					</div>
-				</article>
+						</article>
+				</a>
 				{% endfor %}
 				{% else %}
-				{# Fallback mineral-toned product cards #}
-				<!-- Card 1: Sage Green Glaze Bowl -->
-				<article class="product-card reveal">
-					<div class="product-card-img-wrapper">
-						<img src="{% static 'images/about-statement.avif' %}" alt="Sage Green Bowl"
-							class="product-card-img" loading="lazy" />
-					</div>
-					<div class="product-card-body">
-						<div class="product-card-header">
-							<h3 class="product-card-title">
-								{% translate "Sage Glazed Bowl" %}
-							</h3>
-							<div class="product-card-price-wrapper">
-								<span class="product-card-price">
-									$65.00
-								</span>
-							</div>
-						</div>
-
-						<div class="product-card-stock-wrapper">
-							<span class="badge badge-success">
-								{% translate "In Stock" %}
-							</span>
-						</div>
-
-						<p class="product-card-specs">
-							{% translate "Dimensions:" %} 15cm × 15cm × 8cm &bull; {% translate "Clay:" %} Sandstone
-						</p>
-
-						<p class="product-card-desc">
-							{% translate "Hand-thrown stoneware bowl featuring a rustic, dripped sage green glaze
-							finish. Perfect for daily rituals." %}
-						</p>
-
-						<div class="product-card-footer">
-							<a href="{% url 'shop:shop' %}" class="product-card-link">
-								{% translate "See Details" %}
-								<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-								</svg>
-							</a>
-						</div>
-					</div>
-				</article>
-
-				<!-- Card 2: Celadon Tea Cup -->
-				<article class="product-card reveal">
-					<div class="product-card-img-wrapper">
-						<img src="{% static 'images/home-hero-img.avif' %}" alt="Celadon Tea Cup"
-							class="product-card-img" loading="lazy" />
-					</div>
-					<div class="product-card-body">
-						<div class="product-card-header">
-							<h3 class="product-card-title">
-								{% translate "Celadon Ochre Cup" %}
-							</h3>
-							<div class="product-card-price-wrapper">
-								<span class="product-card-price">
-									$48.00
-								</span>
-							</div>
-						</div>
-
-						<div class="product-card-stock-wrapper">
-							<span class="badge badge-success">
-								{% translate "In Stock" %}
-							</span>
-						</div>
-
-						<p class="product-card-specs">
-							{% translate "Dimensions:" %} 8cm × 8cm × 10cm &bull; {% translate "Clay:" %} Stoneware
-						</p>
-
-						<p class="product-card-desc">
-							{% translate "A delicate tea cup showcasing the crackled beauty of a mineral-tinted celadon
-							glaze over a textured stoneware body." %}
-						</p>
-
-						<div class="product-card-footer">
-							<a href="{% url 'shop:shop' %}" class="product-card-link">
-								{% translate "See Details" %}
-								<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-								</svg>
-							</a>
-						</div>
-					</div>
-				</article>
-
-				<!-- Card 3: Terracotta Studio Vase -->
-				<article class="product-card reveal">
-					<div class="product-card-img-wrapper">
-						<img src="{% static 'images/about-portrait.avif' %}" alt="Terracotta Studio Vase"
-							class="product-card-img" loading="lazy" />
-					</div>
-					<div class="product-card-body">
-						<div class="product-card-header">
-							<h3 class="product-card-title">
-								{% translate "Terracotta Studio Vase" %}
-							</h3>
-							<div class="product-card-price-wrapper">
-								<span class="product-card-price">
-									$120.00
-								</span>
-							</div>
-						</div>
-
-						<div class="product-card-stock-wrapper">
-							<span class="badge badge-success">
-								{% translate "In Stock" %}
-							</span>
-						</div>
-
-						<p class="product-card-specs">
-							{% translate "Dimensions:" %} 12cm × 12cm × 24cm &bull; {% translate "Clay:" %} Terracotta
-						</p>
-
-						<p class="product-card-desc">
-							{% translate "Tall, unglazed terracotta exterior vase with a glazed white interior for
-							flower staging. Exudes hand-carved finger marks." %}
-						</p>
-
-						<div class="product-card-footer">
-							<a href="{% url 'shop:shop' %}" class="product-card-link">
-								{% translate "See Details" %}
-								<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-										d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-								</svg>
-							</a>
-						</div>
-					</div>
-				</article>
+				<h2>{% translate "There is no recent work." %}</h2>
 				{% endif %}
 			</div>
-		</div>
 	</section>
 
 	<!-- Section 3: About Me -->
