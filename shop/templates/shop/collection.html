@@ -1,149 +1,107 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{{ collection.name }} | Laura Melissa Ceramics{% endblock %} {% block content %}
-
-<section class="collection-detail-header-section">
-	{% if collection %}
-	<article class="collection-banner">
-		{# Full‑width background image #}
-		<div
-			class="collection-banner-bg"
-			style="background-image: url('{{ collection.image.url }}');"
-		></div>
-
-		{# Dark overlay for readability #}
-		<div class="collection-banner-overlay"></div>
-
-		{# Content constrained in the middle with generous padding #}
-		<div class="collection-banner-content">
-			<div class="collection-banner-flex">
-				{# Left: label + title #}
-				<div class="collection-banner-left">
-					<p class="collection-banner-label">
-						{% translate "Collection" %}
-					</p>
-					<h1 class="collection-banner-title">
-						{{ collection.name }}
-					</h1>
-					{% if collection.year %}
-					<p class="collection-banner-year">{{ collection.year }}</p>
-					{% endif %}
-				</div>
-
-				{# Right: description on hover #} {% if collection.description %}
-				<div class="collection-banner-right">
-					<p class="collection-banner-desc">
-						{{ collection.description }}
-					</p>
-				</div>
-				{% endif %}
-			</div>
-		</div>
-	</article>
-	{% endif %}
-</section>
-
-{% if collection %}
-<section class="collection-products-section">
-	<div class="container">
-		{% include 'partials/breadcrumbs.html' %}
-		{% if products %}
-		<div class="collections-grid">
-			{% for product in products %}
-			<article class="collection-card">
-				{% if product.image %}
-				<div class="collection-card-img-wrapper">
-					<img
-						src="{{ product.image.url }}"
-						alt="{{ product.name }}"
-						class="collection-card-img"
-						loading="lazy"
-					/>
-				</div>
-				{% endif %}
-
-				<div class="collection-card-body">
-					<div class="product-card-header">
-						<h2 class="product-card-title">
-							{{ product.name }}
-						</h2>
-						<div class="product-card-price-wrapper">
-							{% if product.discount_percentage > 0 %}
-							<div class="product-card-price-wrapper">
-								<span class="product-card-price-discounted">
-									{{ product.discounted_price_in_dollars }}
-								</span>
-								<span class="product-card-price-old">
-									{{ product.price_in_dollars }}
-								</span>
-							</div>
-							{% else %}
-							<span class="product-card-price">
-								{{ product.price_in_dollars }}
-							</span>
-							{% endif %}
-						</div>
-					</div>
-
-					<div class="product-card-stock-wrapper">
-						{% if product.quantity == 0 %}
-						<span class="badge badge-error">
-							{% translate "Sold Out" %}
-						</span>
-						{% elif product.quantity <= 3 %}
-						<span class="badge badge-warning">
-							{% translate "Low Stock" %} ({{ product.quantity }})
-						</span>
-						{% else %}
-						<span class="badge badge-success">
-							{% translate "In Stock" %}
-						</span>
-						{% endif %}
-					</div>
-
-					{% if product.description %}
-					<p class="product-card-desc">
-						{{ product.description }}
-					</p>
-					{% endif %}
-					<div class="product-card-footer">
-						<a
-							href="{% url 'shop:product' product.id %}"
-							class="product-card-link"
-						>
-							{% translate "See Details." %}
-							<svg
-								class="w-4 h-4 ml-2"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									d="M17 8l4 4m0 0l-4 4m4-4H3"
-								></path>
-							</svg>
-						</a>
-					</div>
-				</div>
-			</article>
-			{% endfor %}
-		</div>
-		{% else %}
-		<div class="shop-empty-state reveal">
-			<div class="shop-empty-icon-box">
-				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-				</svg>
-			</div>
-			<p class="shop-empty-title">
-				{% translate "No products registered in this category." %}
-			</p>
-			<a href="{% url 'shop:shop' %}" class="button-primary">
-				{% translate "Explore Other Collections" %}
-			</a>
-		</div>
-		{% endif %}
-	</div>
-</section>
-{% endif %} {% endblock %}
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{{ collection.name }} | Laura Melissa Ceramics{% endblock %}
+{% block content %}
+  <section class="collection-detail-header-section">
+    {% if collection %}
+      <article class="collection-banner">
+        {# Full‑width background image #}
+        <div class="collection-banner-bg"
+             style="background-image: url('{{ collection.image.url }}')"></div>
+        {# Dark overlay for readability #}
+        <div class="collection-banner-overlay"></div>
+        {# Content constrained in the middle with generous padding #}
+        <div class="collection-banner-content">
+          <div class="collection-banner-flex">
+            {# Left: label + title #}
+            <div class="collection-banner-left">
+              <p class="collection-banner-label">{% translate "Collection" %}</p>
+              <h1 class="collection-banner-title">{{ collection.name }}</h1>
+              {% if collection.year %}
+                <p class="collection-banner-year">{{ collection.year }}</p>
+              {% endif %}
+            </div>
+            {# Right: description on hover #}
+            {% if collection.description %}
+              <div class="collection-banner-right">
+                <p class="collection-banner-desc">{{ collection.description }}</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </article>
+    {% endif %}
+  </section>
+  {% if collection %}
+    <section class="collection-products-section">
+      <div class="container">
+        {% include 'partials/breadcrumbs.html' %}
+        {% if products %}
+          <div class="collections-grid">
+            {% for product in products %}
+              <article class="collection-card">
+                {% if product.image %}
+                  <div class="collection-card-img-wrapper">
+                    <img src="{{ product.image.url }}"
+                         alt="{{ product.name }}"
+                         class="collection-card-img"
+                         loading="lazy" />
+                  </div>
+                {% endif %}
+                <div class="collection-card-body">
+                  <div class="product-card-header">
+                    <h2 class="product-card-title">{{ product.name }}</h2>
+                    <div class="product-card-price-wrapper">
+                      {% if product.discount_percentage > 0 %}
+                        <div class="product-card-price-wrapper">
+                          <span class="product-card-price-discounted">{{ product.discounted_price_in_dollars }}</span>
+                          <span class="product-card-price-old">{{ product.price_in_dollars }}</span>
+                        </div>
+                      {% else %}
+                        <span class="product-card-price">{{ product.price_in_dollars }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="product-card-stock-wrapper">
+                    {% if product.quantity == 0 %}
+                      <span class="badge badge-error">{% translate "Sold Out" %}</span>
+                    {% elif product.quantity <= 3 %}
+                      <span class="badge badge-warning">{% translate "Low Stock" %} ({{ product.quantity }})</span>
+                    {% else %}
+                      <span class="badge badge-success">{% translate "In Stock" %}</span>
+                    {% endif %}
+                  </div>
+                  {% if product.description %}
+                    <p class="product-card-desc">{{ product.description }}</p>
+                  {% endif %}
+                  <div class="product-card-footer">
+                    <a href="{% url 'shop:product' product.id %}" class="product-card-link">
+                      {% translate "See Details." %}
+                      <svg class="w-4 h-4 ml-2"
+                           fill="none"
+                           stroke="currentColor"
+                           viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="shop-empty-state reveal">
+            <div class="shop-empty-icon-box">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4">
+                </path>
+              </svg>
+            </div>
+            <p class="shop-empty-title">{% translate "No products registered in this category." %}</p>
+            <a href="{% url 'shop:shop' %}" class="button-primary">{% translate "Explore Other Collections" %}</a>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

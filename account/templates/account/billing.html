@@ -1,83 +1,56 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Billing Info' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
-
-<section class="auth-form-section">
-	<div class="container">
-		<h1 class="product-detail-title mb-lg">
-			{% translate "Billing Information" %}
-		</h1>
-
-		<div class="auth-card mb-lg">
-			<h2 class="orders-title mb-md">
-				{% translate "Current billing address" %}
-			</h2>
-			<div class="cart-table-wrapper">
-				<table class="cart-table text-left">
-					<thead>
-						<tr>
-							<th class="cart-th text-left">{% translate "Address line 1" %}</th>
-							<th class="cart-th text-left">{% translate "Address line 2" %}</th>
-							<th class="cart-th text-left">{% translate "City" %}</th>
-							<th class="cart-th text-left">{% translate "Postal Code" %}</th>
-							<th class="cart-th text-left">{% translate "Country" %}</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="cart-tr">
-							<td class="cart-td">
-								{{ account.billing_address_line1|default:"—" }}
-							</td>
-							<td class="cart-td">
-								{{ account.billing_address_line2|default:"—" }}
-							</td>
-							<td class="cart-td">{{ account.billing_city|default:"—" }}</td>
-							<td class="cart-td">
-								{{ account.billing_postal_code|default:"—" }}
-							</td>
-							<td class="cart-td">
-								{{ account.billing_country|default:"—" }}
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-
-		<div class="auth-card">
-			<h2 class="orders-title mb-md">
-				{% translate "Update billing address" %}
-			</h2>
-
-			<form
-				method="post"
-				action="{% url 'account:billing_submit' %}"
-			>
-				{% csrf_token %} {{ form.non_field_errors }} {% for field in form %}
-				<div class="form-group">
-					{{ field.label_tag }}
-					<div>{{ field }}</div>
-					{% if field.errors %}
-					<div class="error-text">{{ field.errors }}</div>
-					{% endif %}
-				</div>
-				{% endfor %}
-
-				<div class="cart-actions-row mt-md">
-					<a
-						href="{% url 'account:account' %}"
-						class="checkout-back-link"
-					>
-						← {% translate "Go Back" %}
-					</a>
-					<button
-						type="submit"
-						class="button-primary"
-					>
-						{% translate "Submit" %}
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</section>
-
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+  {% translate 'Billing Info' %} | Laura Melissa Ceramics
+{% endblock %}
+{% block content %}
+  <section class="auth-form-section">
+    <div class="container">
+      <h1 class="product-detail-title mb-lg">{% translate "Billing Information" %}</h1>
+      <div class="auth-card mb-lg">
+        <h2 class="orders-title mb-md">{% translate "Current billing address" %}</h2>
+        <div class="cart-table-wrapper">
+          <table class="cart-table text-left">
+            <thead>
+              <tr>
+                <th class="cart-th text-left">{% translate "Address line 1" %}</th>
+                <th class="cart-th text-left">{% translate "Address line 2" %}</th>
+                <th class="cart-th text-left">{% translate "City" %}</th>
+                <th class="cart-th text-left">{% translate "Postal Code" %}</th>
+                <th class="cart-th text-left">{% translate "Country" %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="cart-tr">
+                <td class="cart-td">{{ account.billing_address_line1|default:"—" }}</td>
+                <td class="cart-td">{{ account.billing_address_line2|default:"—" }}</td>
+                <td class="cart-td">{{ account.billing_city|default:"—" }}</td>
+                <td class="cart-td">{{ account.billing_postal_code|default:"—" }}</td>
+                <td class="cart-td">{{ account.billing_country|default:"—" }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="auth-card">
+        <h2 class="orders-title mb-md">{% translate "Update billing address" %}</h2>
+        <form method="post" action="{% url 'account:billing_submit' %}">
+          {% csrf_token %} {{ form.non_field_errors }}
+          {% for field in form %}
+            <div class="form-group">
+              {{ field.label_tag }}
+              <div>{{ field }}</div>
+              {% if field.errors %}
+                <div class="error-text">{{ field.errors }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <div class="cart-actions-row mt-md">
+            <a href="{% url 'account:account' %}" class="checkout-back-link">← {% translate "Go Back" %}</a>
+            <button type="submit" class="button-primary">{% translate "Submit" %}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 {% endblock %}

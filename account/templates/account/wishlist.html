@@ -1,124 +1,78 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'My Wishlist' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
-
-<section class="cart-section">
-	<div class="container">
-		<h1 class="product-detail-title mb-lg">
-			{% translate "Your Wishlist" %}
-		</h1>
-
-		{% if wishlist_products %}
-		<div class="cart-card">
-			<div class="cart-table-wrapper">
-				<table class="cart-table">
-					<thead>
-						<tr>
-							<th class="cart-th text-left">{% translate "Product" %}</th>
-							<th class="cart-th text-right">{% translate "Unit Price" %}</th>
-							<th class="cart-th text-right">{% translate "Discounted Price" %}</th>
-							<th class="cart-th text-right" colspan="2">{% translate "Actions" %}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for product in wishlist_products %}
-						<tr class="cart-tr">
-							<td class="cart-td">
-								<a
-									href="{% url 'shop:product' product.id %}"
-									class="cart-item-link"
-								>
-									<div class="cart-item-img-box">
-										<img
-											src="{{ product.image.url }}"
-											alt="{{ product.name }}"
-											loading="lazy"
-										/>
-									</div>
-									<span class="cart-item-name">{{ product.name }}</span>
-								</a>
-							</td>
-
-							<td class="cart-td text-right cart-price-td">
-								{{ product.price_in_dollars }}
-							</td>
-
-							<td class="cart-td text-right cart-price-td">
-								{% if product.discounted_price_in_dollars %}
-									{{ product.discounted_price_in_dollars }}
-								{% else %}
-									<span class="text-muted">—</span>
-								{% endif %}
-							</td>
-
-							<td class="cart-td text-right">
-								<form
-									method="post"
-									action="{% url 'account:remove_from_wishlist' product.id %}"
-									class="inline-block"
-								>
-									{% csrf_token %}
-									<button
-										type="submit"
-										class="cart-remove-btn"
-									>
-										{% translate "Remove" %}
-									</button>
-								</form>
-							</td>
-
-							<td class="cart-td text-right">
-								<form
-									method="post"
-									action="{% url 'account:transfer_to_cart' product.id %}"
-									class="inline-block"
-								>
-									{% csrf_token %}
-									<button
-										type="submit"
-										class="cart-update-btn"
-									>
-										{% translate "Transfer to Cart" %}
-									</button>
-								</form>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-
-			<div class="cart-actions-row">
-				<form method="post" action="{% url 'account:clear_wishlist' %}">
-					{% csrf_token %}
-					<button
-						type="submit"
-						class="button-secondary"
-					>
-						{% translate "Clear Wishlist" %}
-					</button>
-				</form>
-
-				<a
-					href="{% url 'shop:shop' %}"
-					class="button-primary"
-				>
-					{% translate "Continue Shopping" %}
-				</a>
-			</div>
-		</div>
-		{% else %}
-		<div class="cart-card text-center p-xl">
-			<p class="product-detail-desc mb-md">
-				{% translate "Your wishlist is empty." %}
-			</p>
-			<a
-				href="{% url 'shop:shop' %}"
-				class="button-primary"
-			>
-				{% translate "Continue Shopping" %}
-			</a>
-		</div>
-		{% endif %}
-	</div>
-</section>
-
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+  {% translate 'My Wishlist' %} | Laura Melissa Ceramics
+{% endblock %}
+{% block content %}
+  <section class="cart-section">
+    <div class="container">
+      <h1 class="product-detail-title mb-lg">{% translate "Your Wishlist" %}</h1>
+      {% if wishlist_products %}
+        <div class="cart-card">
+          <div class="cart-table-wrapper">
+            <table class="cart-table">
+              <thead>
+                <tr>
+                  <th class="cart-th text-left">{% translate "Product" %}</th>
+                  <th class="cart-th text-right">{% translate "Unit Price" %}</th>
+                  <th class="cart-th text-right">{% translate "Discounted Price" %}</th>
+                  <th class="cart-th text-right" colspan="2">{% translate "Actions" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for product in wishlist_products %}
+                  <tr class="cart-tr">
+                    <td class="cart-td">
+                      <a href="{% url 'shop:product' product.id %}" class="cart-item-link">
+                        <div class="cart-item-img-box">
+                          <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy" />
+                        </div>
+                        <span class="cart-item-name">{{ product.name }}</span>
+                      </a>
+                    </td>
+                    <td class="cart-td text-right cart-price-td">{{ product.price_in_dollars }}</td>
+                    <td class="cart-td text-right cart-price-td">
+                      {% if product.discounted_price_in_dollars %}
+                        {{ product.discounted_price_in_dollars }}
+                      {% else %}
+                        <span class="text-muted">—</span>
+                      {% endif %}
+                    </td>
+                    <td class="cart-td text-right">
+                      <form method="post"
+                            action="{% url 'account:remove_from_wishlist' product.id %}"
+                            class="inline-block">
+                        {% csrf_token %}
+                        <button type="submit" class="cart-remove-btn">{% translate "Remove" %}</button>
+                      </form>
+                    </td>
+                    <td class="cart-td text-right">
+                      <form method="post"
+                            action="{% url 'account:transfer_to_cart' product.id %}"
+                            class="inline-block">
+                        {% csrf_token %}
+                        <button type="submit" class="cart-update-btn">{% translate "Transfer to Cart" %}</button>
+                      </form>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="cart-actions-row">
+            <form method="post" action="{% url 'account:clear_wishlist' %}">
+              {% csrf_token %}
+              <button type="submit" class="button-secondary">{% translate "Clear Wishlist" %}</button>
+            </form>
+            <a href="{% url 'shop:shop' %}" class="button-primary">{% translate "Continue Shopping" %}</a>
+          </div>
+        </div>
+      {% else %}
+        <div class="cart-card text-center p-xl">
+          <p class="product-detail-desc mb-md">{% translate "Your wishlist is empty." %}</p>
+          <a href="{% url 'shop:shop' %}" class="button-primary">{% translate "Continue Shopping" %}</a>
+        </div>
+      {% endif %}
+    </div>
+  </section>
 {% endblock %}

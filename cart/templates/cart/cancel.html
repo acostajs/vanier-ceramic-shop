@@ -1,47 +1,26 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Order Cancelled' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
-
-<section class="cart-section">
-	<div class="auth-container text-center">
-		<div class="cancel-icon-badge">
-			<svg
-				class="w-8 h-8"
-				fill="none"
-				stroke="currentColor"
-				viewBox="0 0 24 24"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M6 18L18 6M6 6l12 12"
-				></path>
-			</svg>
-		</div>
-
-		<h1 class="product-detail-title order-status-title">
-			{% translate "Payment canceled" %}
-		</h1>
-		<p class="product-detail-desc order-status-desc">
-			{% blocktranslate %} Your payment was canceled and no charge was made. You
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+  {% translate 'Order Cancelled' %} | Laura Melissa Ceramics
+{% endblock %}
+{% block content %}
+  <section class="cart-section">
+    <div class="auth-container text-center">
+      <div class="cancel-icon-badge">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </div>
+      <h1 class="product-detail-title order-status-title">{% translate "Payment canceled" %}</h1>
+      <p class="product-detail-desc order-status-desc">
+        {% blocktranslate %} Your payment was canceled and no charge was made. You
 			can review your cart and try again whenever you are ready.
 			{%endblocktranslate %}
-		</p>
-
-		<div class="hero-actions order-status-actions">
-			<a
-				href="{% url 'cart:cart' %}"
-				class="button-primary"
-			>
-				{% translate "Back to cart" %}
-			</a>
-			<a
-				href="{% url 'shop:shop' %}"
-				class="button-secondary"
-			>
-				{% translate "Continue browsing" %}
-			</a>
-		</div>
-	</div>
-</section>
-
+      </p>
+      <div class="hero-actions order-status-actions">
+        <a href="{% url 'cart:cart' %}" class="button-primary">{% translate "Back to cart" %}</a>
+        <a href="{% url 'shop:shop' %}" class="button-secondary">{% translate "Continue browsing" %}</a>
+      </div>
+    </div>
+  </section>
 {% endblock %}

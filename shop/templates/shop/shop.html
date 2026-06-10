@@ -1,68 +1,62 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Shop Collections' %} | Laura Melissa Ceramics
-{%endblock %} {% block content %}
-
-<section class="shop-section">
-	<div class="container shop-header">
-		<h1 class="shop-hero-title">
-			{% translate "My Collections" %}
-		</h1>
-		<p class="shop-hero-subtitle">
-			{% blocktranslate %} Explore the universe of different shapes and colors.
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+  {% translate 'Shop Collections' %} | Laura Melissa Ceramics
+{% endblock %}
+{% block content %}
+  <section class="shop-section">
+    <div class="container shop-header">
+      <h1 class="shop-hero-title">{% translate "My Collections" %}</h1>
+      <p class="shop-hero-subtitle">
+        {% blocktranslate %} Explore the universe of different shapes and colors.
 			Each collection represents a different phase of my passion for clay.
 			{%endblocktranslate %}
-		</p>
-	</div>
-
-	<div class="container">
-		{% if collections %}
-		<div class="collections-grid">
-			{% for collection in collections %}
-			<article class="collection-card">
-				<div class="collection-card-img-wrapper">
-					<img src="{{ collection.image.url }}" alt="{{ collection.name }}" class="collection-card-img"
-						loading="lazy" />
-				</div>
-
-				<div class="collection-card-body">
-					<h2 class="collection-card-title">
-						{{ collection.name }}
-					</h2>
-					{% if collection.description %}
-					<p class="collection-card-desc">
-						{{ collection.description }}
-					</p>
-					{% endif %}
-					<div class="collection-card-link-wrapper">
-						<a href="{% url 'shop:collection' collection.id %}" class="collection-card-link">
-							{% translate "See Products." %}
-							<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-									d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-							</svg>
-						</a>
-					</div>
-				</div>
-			</article>
-			{% endfor %}
-		</div>
-		{% else %}
-		<div class="shop-empty-state reveal">
-			<div class="shop-empty-icon-box">
-				<svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-						d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-					</path>
-				</svg>
-			</div>
-			<p class="shop-empty-title">
-				{% translate "No collections registered" %}
-			</p>
-			<a href="{% url 'home' %}" class="button-primary">
-				{% translate "Back to Home" %}
-			</a>
-		</div>
-		{% endif %}
-	</div>
-</section>
-
+      </p>
+    </div>
+    <div class="container">
+      {% if collections %}
+        <div class="collections-grid">
+          {% for collection in collections %}
+            <article class="collection-card">
+              <div class="collection-card-img-wrapper">
+                <img src="{{ collection.image.url }}"
+                     alt="{{ collection.name }}"
+                     class="collection-card-img"
+                     loading="lazy" />
+              </div>
+              <div class="collection-card-body">
+                <h2 class="collection-card-title">{{ collection.name }}</h2>
+                {% if collection.description %}
+                  <p class="collection-card-desc">{{ collection.description }}</p>
+                {% endif %}
+                <div class="collection-card-link-wrapper">
+                  <a href="{% url 'shop:collection' collection.id %}"
+                     class="collection-card-link">
+                    {% translate "See Products." %}
+                    <svg class="w-4 h-4 ml-2"
+                         fill="none"
+                         stroke="currentColor"
+                         viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="shop-empty-state reveal">
+          <div class="shop-empty-icon-box">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+              </path>
+            </svg>
+          </div>
+          <p class="shop-empty-title">{% translate "No collections registered" %}</p>
+          <a href="{% url 'home' %}" class="button-primary">{% translate "Back to Home" %}</a>
+        </div>
+      {% endif %}
+    </div>
+  </section>
 {% endblock %}

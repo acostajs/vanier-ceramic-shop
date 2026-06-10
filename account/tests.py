@@ -163,3 +163,34 @@ class LogoutViewTests(TestCase):
         self.client.force_login(self.user)
         response = self.client.post(reverse("account:logout"))
         self.assertEqual(response.status_code, 302)
+
+
+class WishlistDetailViewTests(TestCase):
+    def setUp(self):
+        self.user = Account.objects.create_user(
+            username="user_no_wishlist",
+            email="no_wishlist@example.com",
+            password="password123",
+        )
+
+    def test_wishlist_detail_creates_wishlist_if_not_exists(self):
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("account:wishlist_detail"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_transfer_to_cart_creates_cart_if_not_exists(self):
+        from account.models import Wishlist
+        from shop.models import Collection, Product
+        from cart.models import Cart
+
+        wishlist = Wishlist.objects.create(account=self.user)
+        col = Collection.objects.create(name="Col")
+        prod = Product.objects.create(name="Prod", price_in_cents=100, collection=col)
+        wishlist.add(prod)
+
+        Cart.objects.filter(account=self.user).delete()
+
+        self.client.force_login(self.user)
+        response = self.client.post(reverse("account:transfer_to_cart", args=[prod.id]))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(Cart.objects.filter(account=self.user).exists())

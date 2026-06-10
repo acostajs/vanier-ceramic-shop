@@ -14,6 +14,12 @@ pre-commit:
       run: uv run ruff check --fix {staged_files}
       stage_fixed: true
 
+    djlint-format:
+      glob: "*.html"
+      run: uv run djlint {staged_files} --reformat
+      stage_fixed: true
+
+
 pre-push:
   commands:
     django-tests:
