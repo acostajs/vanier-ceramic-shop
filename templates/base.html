@@ -10,14 +10,14 @@
         {% blocktranslate %}Laura Melissa Ceramics - Handcrafted Ceramic Art & Pottery{% endblocktranslate %}
       {% endblock %}
     </title>
-    <meta name="description"
-          content="Discover unique handcrafted ceramics by Laura Melissa. Exquisite pottery, artisanal tableware, and custom ceramic sculptures made with love and precision. Shop now for timeless pieces." />
+    {% translate "Discover unique handcrafted ceramics by Laura Melissa. Exquisite pottery, artisanal tableware, and custom ceramic sculptures made with love and precision. Shop now for timeless pieces." as meta_desc %}
+    <meta name="description" content="{{ meta_desc }}" />
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title"
-          content="Laura Melissa Ceramics - Handcrafted Ceramic Art" />
-    <meta property="og:description"
-          content="Unique handcrafted ceramics, pottery, and artisanal tableware by Laura Melissa. Shop exquisite, timeless pieces." />
+    {% translate "Laura Melissa Ceramics - Handcrafted Ceramic Art" as og_title %}
+    <meta property="og:title" content="{{ og_title }}" />
+    {% translate "Unique handcrafted ceramics, pottery, and artisanal tableware by Laura Melissa. Shop exquisite, timeless pieces." as og_desc %}
+    <meta property="og:description" content="{{ og_desc }}" />
     <meta property="og:image"
           content="{% static 'images/og-image-ceramics.jpg' %}" />
     <meta property="og:url" content="https://www.lauramelissajaramillo.com/" />
