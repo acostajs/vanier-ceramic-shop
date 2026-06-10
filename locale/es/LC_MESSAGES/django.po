@@ -865,3 +865,28 @@ msgstr "Poco stock"
 
 msgid "In Stock"
 msgstr "En stock"
+
+msgid "Navigation"
+msgstr "Navegación"
+
+msgid "Home"
+msgstr "Inicio"
+
+msgid "Wishlist"
+msgstr "Lista de deseos"
+
+msgid "Cart"
+msgstr "Carrito"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Contact Us"
+msgstr "Contáctanos"
+
+msgid "Breadcrumb"
+msgstr "Rastro de navegación"
+

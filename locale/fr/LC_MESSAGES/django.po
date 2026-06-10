@@ -872,3 +872,28 @@ msgstr "Stock faible"
 msgid "In Stock"
 msgstr "En stock"
 
+msgid "Navigation"
+msgstr "Navigation"
+
+msgid "Home"
+msgstr "Accueil"
+
+msgid "Wishlist"
+msgstr "Liste d'envies"
+
+msgid "Cart"
+msgstr "Panier"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Language"
+msgstr "Langue"
+
+msgid "Contact Us"
+msgstr "Contactez-nous"
+
+msgid "Breadcrumb"
+msgstr "Fil d'Ariane"
+
+
