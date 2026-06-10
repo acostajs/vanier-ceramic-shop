@@ -938,6 +938,13 @@ msgstr "Cerámicas Laura Melissa - Arte cerámico hecho a mano"
 msgid "Unique handcrafted ceramics, pottery, and artisanal tableware by Laura Melissa. Shop exquisite, timeless pieces."
 msgstr "Piezas de cerámica, alfarería y vajilla artesanal únicas hechas a mano por Laura Melissa. Compra piezas exquisitas y atemporales."
 
+msgid "Contact confirmation"
+msgstr "Confirmación de contacto"
+
+msgid "Hi %(name)s, thank you for contacting us.\nWe will get back to you soon."
+msgstr "Hola %(name)s, gracias por ponerte en contacto con nosotros.\nNos comunicaremos contigo pronto."
+
+
 
 
 

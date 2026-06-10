@@ -23,11 +23,11 @@ def contact_submit(request: HttpRequest) -> HttpResponse:
     form.save()
     data = form.cleaned_data
     send_mail(
-        subject="Contact confirmation",
-        message=(
-            f"Hi {data['name']}, thank you for contacting us.\n"
-            f"We will get back to you soon."
-        ),
+        subject=_("Contact confirmation"),
+        message=_(
+            "Hi %(name)s, thank you for contacting us.\nWe will get back to you soon."
+        )
+        % {"name": data["name"]},
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[data["email"]],
         fail_silently=False,
