@@ -2,66 +2,82 @@
 #    uv pip compile pyproject.toml -o requirements.txt
 asgiref==3.11.0
     # via django
-boto3==1.42.30
-    # via project (pyproject.toml)
-botocore==1.42.30
-    # via
-    #   boto3
-    #   s3transfer
 certifi==2025.11.12
-    # via requests
+    # via
+    #   cloudinary
+    #   requests
 charset-normalizer==3.4.4
     # via requests
 click==8.3.1
-    # via uvicorn
+    # via djlint
+cloudinary==1.44.2
+    # via
+    #   project (pyproject.toml)
+    #   django-cloudinary-storage
+colorama==0.4.6
+    # via djlint
+cssbeautifier==1.15.4
+    # via djlint
 dj-database-url==3.1.0
     # via project (pyproject.toml)
 django==5.2.8
     # via
     #   project (pyproject.toml)
     #   dj-database-url
-    #   django-storages
-django-storages==1.14.6
+django-cloudinary-storage==0.3.0
     # via project (pyproject.toml)
+djlint==1.39.0
+    # via project (pyproject.toml)
+editorconfig==0.17.1
+    # via
+    #   cssbeautifier
+    #   jsbeautifier
 gunicorn==23.0.0
     # via project (pyproject.toml)
-h11==0.16.0
-    # via uvicorn
 idna==3.11
     # via requests
-jmespath==1.0.1
+jsbeautifier==1.15.4
     # via
-    #   boto3
-    #   botocore
+    #   cssbeautifier
+    #   djlint
+json5==0.14.0
+    # via djlint
 packaging==25.0
     # via gunicorn
+pathspec==1.1.1
+    # via djlint
 pillow==12.0.0
     # via project (pyproject.toml)
 psycopg2-binary==2.9.11
     # via project (pyproject.toml)
-python-dateutil==2.9.0.post0
-    # via botocore
 python-dotenv==1.2.1
     # via project (pyproject.toml)
+pyyaml==6.0.3
+    # via djlint
+regex==2026.5.9
+    # via djlint
 requests==2.32.5
-    # via stripe
+    # via
+    #   django-cloudinary-storage
+    #   stripe
 ruff==0.14.7
     # via project (pyproject.toml)
-s3transfer==0.16.0
-    # via boto3
 six==1.17.0
-    # via python-dateutil
+    # via
+    #   cloudinary
+    #   cssbeautifier
+    #   jsbeautifier
 sqlparse==0.5.4
     # via django
 stripe==14.0.1
     # via project (pyproject.toml)
+tqdm==4.68.2
+    # via djlint
 typing-extensions==4.15.0
     # via stripe
 urllib3==2.5.0
     # via
-    #   botocore
+    #   cloudinary
     #   requests
-uvicorn==0.40.0
-    # via project (pyproject.toml)
 whitenoise==6.11.0
     # via project (pyproject.toml)
