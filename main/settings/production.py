@@ -1,6 +1,8 @@
 from .base import *
 import os
 
+ALLOWED_HOSTS.append(".hf.space")
+
 DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 
 # Storage
