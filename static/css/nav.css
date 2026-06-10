@@ -38,15 +38,11 @@ header {
   font-size: var(--typography-logo-size);
   font-weight: 400;
   color: var(--color-brand-terracotta);
-  text-decoration: none;
-  transition: text-decoration 0.5s ease-in-out;
-  text-underline-offset: 0.5rem;
+  transition: color 0.3s ease-in-out;
 }
 
 .nav-logo:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--color-brand-terracotta);
-  text-decoration-thickness: 0.125rem;
+  color: var(--color-ink);
 }
 
 /* Desktop Menu */
@@ -66,7 +62,7 @@ header {
   font-size: var(--typography-nav-link-size);
   letter-spacing: var(--typography-nav-link-ls);
   font-weight: var(--typography-nav-link-weight);
-  color: var(--color-body);
+  color: var(--color-ink);
   padding: var(--spacing-xs) var(--spacing-sm);
   text-decoration: none;
   transition: color 0.2s ease;
@@ -79,11 +75,23 @@ header {
 }
 
 .nav-link:hover {
-  color: var(--color-ink);
+  color: var(--color-brand-terracotta);
 }
 
 .nav-link[aria-current="page"] {
   color: var(--color-brand-terracotta);
+}
+
+.register {
+  background-color: var(--color-brand-terracotta);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--rounded-sm);
+  color: var(--color-canvas);
+  transition: all 0.2s ease;
+}
+
+.register:hover {
+  background-color: var(--color-ink);
 }
 
 /* Dropdown Menu Group */
@@ -253,11 +261,16 @@ header {
   display: flex;
   align-items: center;
   padding: var(--spacing-xs);
+
   background: none;
   border: none;
   border-radius: var(--rounded-sm);
   cursor: pointer;
   transition: background-color 0.2s ease;
+
+  >svg {
+    color: var(--color-brand-terracotta);
+  }
 }
 
 @container (min-width: 64rem) {
