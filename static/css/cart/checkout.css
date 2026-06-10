@@ -13,6 +13,160 @@
 
 .checkout-form-container {
   display: flex;
-  justify-content: flex-end;
-  margin-top: var(--spacing-md);
+  width: 100%;
+}
+
+.checkout-form-container .button-primary {
+  width: 100%;
+  /* Full width action button on small mobile views */
+}
+
+/* Base structural setup for responsive layout hooks */
+.cart-table-wrapper {
+  container-type: inline-size;
+  container-name: cart-wrapper;
+  width: 100%;
+}
+
+/* ==========================================================================
+   MOBILE QUERY (max-width: 48rem)
+   Stops columns overflowing and wraps checkout fields safely
+   ========================================================================== */
+@container cart-wrapper (max-width: 48rem) {
+  .cart-table thead {
+    display: none;
+  }
+
+  .cart-table,
+  .cart-table tbody,
+  .cart-table tr,
+  .cart-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .cart-tr {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: var(--color-canvas);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--rounded-md);
+  }
+
+  .cart-td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: var(--spacing-xs) 0;
+    border: none !important;
+  }
+
+  .cart-td[data-label="Product"] {
+    justify-content: flex-start;
+    text-align: left;
+    border-bottom: 1px solid var(--color-hairline) !important;
+    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  /* Extract dynamic localized content names using the data tags */
+  .cart-td::before {
+    content: attr(data-label);
+    font-size: var(--typography-body-sm-size);
+    font-weight: 500;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    float: left;
+  }
+
+  .cart-td[data-label="Product"]::before {
+    display: none;
+  }
+
+  .cart-table tfoot,
+  .cart-table tfoot tr,
+  .cart-table tfoot td {
+    display: block;
+    width: 100%;
+  }
+
+  .cart-subtotal-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 2px solid var(--color-hairline);
+  }
+
+  .cart-subtotal-row td {
+    padding: 0;
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   DESKTOP QUERY (min-width: 48.01rem)
+   Unfolds elements back into their standard wide table format
+   ========================================================================== */
+@container cart-wrapper (min-width: 48.01rem) {
+  .cart-table {
+    display: table;
+  }
+
+  .cart-table thead {
+    display: table-header-group;
+  }
+
+  .cart-table tbody {
+    display: table-row-group;
+  }
+
+  .cart-table tfoot {
+    display: table-footer-group;
+  }
+
+  .cart-table tr {
+    display: table-row;
+  }
+
+  .cart-table th {
+    display: table-cell;
+  }
+
+  .cart-table td {
+    display: table-cell;
+    vertical-align: middle;
+    padding: var(--spacing-sm);
+    border-top: 1px solid var(--color-hairline);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .cart-td:first-child {
+    border-left: 1px solid var(--color-hairline);
+    border-top-left-radius: var(--rounded-sm);
+    border-bottom-left-radius: var(--rounded-sm);
+  }
+
+  .cart-td:last-child {
+    border-right: 1px solid var(--color-hairline);
+    border-top-right-radius: var(--rounded-sm);
+    border-bottom-right-radius: var(--rounded-sm);
+  }
+
+  .cart-subtotal-row td {
+    padding-top: var(--spacing-md);
+    border: none;
+  }
+
+  /* Reset form wrappers back to their standard layout positions */
+  .checkout-form-container {
+    width: auto;
+  }
+
+  .checkout-form-container .button-primary {
+    width: auto;
+  }
 }

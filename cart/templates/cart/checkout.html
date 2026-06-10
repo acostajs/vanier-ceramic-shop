@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Checkout' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
+{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Checkout' %} | Laura Melissa Ceramics
+{%endblock %} {% block content %}
 
 <section class="cart-section">
 	<div class="container">
@@ -27,65 +28,47 @@
 						<tbody>
 							{% for item in cart_items %}
 							<tr class="cart-tr">
-								<td class="cart-td">
-									<a
-										href="{% url 'shop:product' item.product.id %}"
-										class="cart-item-link"
-									>
+								<!-- Product Column -->
+								<td class="cart-td" data-label="{% translate 'Product' %}">
+									<a href="{% url 'shop:product' item.product.id %}" class="cart-item-link">
 										<div class="cart-item-img-box">
-											<img
-												src="{{ item.product.image.url }}"
-												alt="{{ item.product.name }}"
-												loading="lazy"
-											/>
+											<img src="{{ item.product.image.url }}" alt="{{ item.product.name }}"
+												loading="lazy" />
 										</div>
 										<span class="cart-item-name">{{ item.product.name }}</span>
 									</a>
 								</td>
 
-								<td class="cart-td text-right cart-price-td">
+								<!-- Unit Price Column -->
+								<td class="cart-td text-right cart-price-td" data-label="{% translate 'Unit' %}">
 									{{ item.unit_dollars }}
 								</td>
 
-								<td class="cart-td text-center">
-									<form
-										method="post"
-										action="{% url 'cart:update_cart_checkout' item.product.id %}"
-										class="cart-qty-form"
-									>
+								<!-- Quantity Column -->
+								<td class="cart-td text-center" data-label="{% translate 'Qty' %}">
+									<form method="post" action="{% url 'cart:update_cart_checkout' item.product.id %}"
+										class="cart-qty-form">
 										{% csrf_token %}
-										<input
-											type="number"
-											name="quantity"
-											value="{{ item.quantity }}"
-											min="1"
-											max="{{ item.product.quantity }}"
-											class="cart-qty-input"
-										/>
-										<button
-											type="submit"
-											class="cart-update-btn"
-										>
+										<input type="number" name="quantity" value="{{ item.quantity }}" min="1"
+											max="{{ item.product.quantity }}" class="cart-qty-input" />
+										<button type="submit" class="cart-update-btn">
 											{% translate "Update" %}
 										</button>
 									</form>
 								</td>
 
-								<td class="cart-td text-right cart-price-td">
+								<!-- Line Total Column -->
+								<td class="cart-td text-right cart-price-td" data-label="{% translate 'Line' %}">
 									{{ item.line_dollars }}
 								</td>
 
-								<td class="cart-td text-right">
-									<form
-										method="post"
+								<!-- Actions Column -->
+								<td class="cart-td text-right" data-label="{% translate 'Actions' %}">
+									<form method="post"
 										action="{% url 'cart:remove_from_cart_checkout' item.product.id %}"
-										class="inline-block"
-									>
+										class="inline-block">
 										{% csrf_token %}
-										<button
-											type="submit"
-											class="cart-remove-btn"
-										>
+										<button type="submit" class="cart-remove-btn">
 											{% translate "Remove" %}
 										</button>
 									</form>
@@ -95,10 +78,7 @@
 						</tbody>
 						<tfoot>
 							<tr class="cart-subtotal-row">
-								<td
-									colspan="3"
-									class="cart-subtotal-label text-right"
-								>
+								<td colspan="3" class="cart-subtotal-label text-right">
 									{% translate "Total" %}
 								</td>
 								<td class="cart-subtotal-value text-right">
@@ -112,19 +92,13 @@
 			</div>
 
 			<div class="cart-actions-row">
-				<a
-					href="{% url 'cart:cart' %}"
-					class="checkout-back-link"
-				>
+				<a href="{% url 'cart:cart' %}" class="checkout-back-link">
 					← {% translate "Back to Cart" %}
 				</a>
 
 				<form method="post" action="{% url 'cart:create_checkout_session' %}" class="checkout-form-container">
 					{% csrf_token %}
-					<button
-						type="submit"
-						class="button-primary"
-					>
+					<button type="submit" class="button-primary">
 						{% translate "Proceed to Payment" %}
 					</button>
 				</form>
@@ -135,10 +109,7 @@
 			<p class="product-detail-desc mb-md">
 				{% translate "Your cart is empty." %}
 			</p>
-			<a
-				href="{% url 'shop:shop' %}"
-				class="button-primary"
-			>
+			<a href="{% url 'shop:shop' %}" class="button-primary">
 				{% translate "Continue Shopping" %}
 			</a>
 		</div>
