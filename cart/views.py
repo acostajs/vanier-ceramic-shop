@@ -1,4 +1,5 @@
 import stripe
+import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from .models import Order, Cart
@@ -9,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse, Http404
+
+logger = logging.getLogger(__name__)
 
 
 @login_required
@@ -153,8 +156,8 @@ def success(request: HttpRequest) -> HttpResponse:
                     messages.success(
                         request, _("Payment successful! Your order has been placed.")
                     )
-            except Exception:
-                pass
+            except stripe.StripeError as e:
+                logger.error("Stripe session retrieval failed: %s", e)
     return render(request, "cart/success.html", {"session_id": session_id})
 
 
