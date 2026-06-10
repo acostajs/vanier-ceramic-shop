@@ -52,23 +52,7 @@ def stripe_webhook(request: HttpRequest) -> HttpResponse:
         if not order.account:
             return HttpResponse(status=400)
 
-        account = order.account
-        order.fulfill(
-            name=f"{account.first_name} {account.last_name}".strip(),
-            email=account.email,
-            payment_id=pi_id,
-            total_cents=order.total_cents,
-            billing_address_line1=account.billing_address_line1,
-            billing_address_line2=account.billing_address_line2,
-            billing_city=account.billing_city,
-            billing_postal_code=account.billing_postal_code,
-            billing_country=account.billing_country,
-            shipping_address_line1=account.shipping_address_line1,
-            shipping_address_line2=account.shipping_address_line2,
-            shipping_city=account.shipping_city,
-            shipping_postal_code=account.shipping_postal_code,
-            shipping_country=account.shipping_country,
-        )
+        order.fulfill(payment_id=pi_id)
 
         order.set_status("paid")
 
