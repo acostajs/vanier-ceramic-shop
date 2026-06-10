@@ -99,7 +99,7 @@ def account(request):
 @require_GET
 def wishlist_detail(request):
     """Display the wishlist if the user is logged in."""
-    wishlist, _ = Wishlist.objects.get_or_create(account=request.user)
+    wishlist, _created = Wishlist.objects.get_or_create(account=request.user)
     wishlist_products = wishlist.product.all()
 
     context = {
@@ -114,7 +114,7 @@ def wishlist_detail(request):
 def add_to_wishlist(request, product_id):
     """Adds a product to the wishlist if the user is logged in."""
     product = get_object_or_404(Product, pk=product_id)
-    wishlist, _ = Wishlist.objects.get_or_create(account=request.user)
+    wishlist, _created = Wishlist.objects.get_or_create(account=request.user)
     wishlist.add(product)
     messages.success(request, _("Added %(name)s to wishlist.") % {"name": product.name})
     return redirect("shop:product", product_id)
@@ -126,7 +126,7 @@ def remove_from_wishlist(request, product_id):
     """Removes a product from the wishlist if the user is logged in."""
     product = get_object_or_404(Product, pk=product_id)
     user = request.user
-    wishlist, _ = Wishlist.objects.get_or_create(account=user)
+    wishlist, _created = Wishlist.objects.get_or_create(account=user)
     wishlist.remove(product)
     messages.info(
         request, _("Removed %(name)s from wishlist.") % {"name": product.name}
@@ -138,7 +138,7 @@ def remove_from_wishlist(request, product_id):
 @require_POST
 def clear_wishlist(request):
     """Clear the wishlist from all products if the user is logged in."""
-    wishlist, _ = Wishlist.objects.get_or_create(account=request.user)
+    wishlist, _created = Wishlist.objects.get_or_create(account=request.user)
     wishlist.clear()
     msg = _("Wishlist cleared.")
     messages.info(request, msg)
@@ -150,8 +150,8 @@ def clear_wishlist(request):
 def transfer_to_cart(request: HttpRequest, product_id: int) -> HttpResponse:
     """Transfer all the products in the wishlist to the user account related cart."""
     account = request.user
-    wishlist, _ = Wishlist.objects.get_or_create(account=account)
-    cart, _ = Cart.objects.get_or_create(account=account)
+    wishlist, _created_w = Wishlist.objects.get_or_create(account=account)
+    cart, _created_c = Cart.objects.get_or_create(account=account)
     product = get_object_or_404(wishlist.product, pk=product_id)
     cart.add(product, quantity=1, replace=True)
     wishlist.remove(product)
