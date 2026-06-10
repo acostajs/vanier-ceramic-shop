@@ -36,7 +36,7 @@
     {% endblock extra_head %}
   </head>
   <body class="{% block body_class %}{% endblock body_class %}">
-    {% include 'partials/nav.html' %}
+    {% include "partials/nav.html" %}
     {% if messages %}
       <div class="toast-container">
         {% for message in messages %}
@@ -100,7 +100,7 @@
       </main>
     {% endblock main %}
     {% block footer %}
-      {% include 'partials/footer.html' %}
+      {% include "partials/footer.html" %}
     {% endblock footer %}
     <!-- Scroll Reveal & Toast Auto-dismiss Script -->
     <script>
