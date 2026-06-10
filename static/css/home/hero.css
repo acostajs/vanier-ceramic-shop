@@ -35,15 +35,11 @@
 
 .hero-title {
   font-size: var(--typography-display-home-title-size);
-  font-weight: var(--typography-display-home-title-weight);
+  font-weight: var(--typography-display-xl-weight);
   color: var(--color-ink);
   line-height: var(--typography-display-home-title-lh);
   letter-spacing: var(--typography-display-home-title-ls);
   margin-bottom: var(--spacing-xl);
-}
-
-.hero-title-highlight {
-  color: var(--color-brand-terracotta);
 }
 
 .hero-copy {

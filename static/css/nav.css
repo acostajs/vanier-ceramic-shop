@@ -37,13 +37,16 @@ header {
 .nav-logo {
   font-size: var(--typography-logo-size);
   font-weight: 400;
-  color: var(--color-ink);
+  color: var(--color-brand-terracotta);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: text-decoration 0.5s ease-in-out;
+  text-underline-offset: 0.5rem;
 }
 
 .nav-logo:hover {
-  color: var(--color-brand-terracotta);
+  text-decoration: underline;
+  text-decoration-color: var(--color-brand-terracotta);
+  text-decoration-thickness: 0.125rem;
 }
 
 /* Desktop Menu */
