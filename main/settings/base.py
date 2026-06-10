@@ -6,12 +6,7 @@ import stripe
 
 load_dotenv()
 
-ALLOWED_HOSTS = []
-
-if os.getenv("RENDER_EXTERNAL_HOSTNAME"):
-    ALLOWED_HOSTS.append(os.getenv("RENDER_EXTERNAL_HOSTNAME"))
-
-ALLOWED_HOSTS += ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
