@@ -856,3 +856,12 @@ msgstr "Cuenta"
 #: templates/partials/nav.html:63
 msgid "Login"
 msgstr "Iniciar sesión"
+
+msgid "Sold Out"
+msgstr "Agotado"
+
+msgid "Low Stock"
+msgstr "Poco stock"
+
+msgid "In Stock"
+msgstr "En stock"
