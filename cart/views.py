@@ -169,7 +169,9 @@ def cancel(request: HttpRequest) -> HttpResponse:
 @login_required
 def order_details(request: HttpRequest, order_id: int) -> HttpResponse:
     """Display Order Details."""
-    order = get_object_or_404(Order, pk=order_id)
+    order = get_object_or_404(
+        Order.objects.prefetch_related("items__product__collection"), pk=order_id
+    )
     if order.account != request.user:
         raise Http404("Order not found.")
 
