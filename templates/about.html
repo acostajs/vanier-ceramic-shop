@@ -1,112 +1,105 @@
-{% extends "base.html" %} {% load i18n %} {% block title %}{% translate "About Our Story" %} | Laura Melissa Ceramics
-{%endblock %} {% load static %} {% block content %}
-
-<section class="about-hero-section">
-	<div class="container about-hero-container">
-		<h1 class="about-hero-title">
-			{% translate "About me" %}
-		</h1>
-		<p class="about-hero-subtitle">
-			{% blocktranslate %} I explore time as form, color as accent, and
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+  {% translate "About Our Story" %} | Laura Melissa Ceramics
+{% endblock %}
+{% load static %}
+{% block content %}
+  <section class="about-hero-section">
+    <div class="container about-hero-container">
+      <h1 class="about-hero-title">{% translate "About me" %}</h1>
+      <p class="about-hero-subtitle">
+        {% blocktranslate %} I explore time as form, color as accent, and
 			the circle as a living language. {% endblocktranslate %}
-		</p>
-	</div>
-
-	<div class="container about-bio-container">
-		<div class="about-bio-grid">
-
-			<div class="about-bio-story">
-				<h2 class="about-bio-title">
-					{% translate "Statement" %}
-				</h2>
-				<p>
-					{% blocktranslate %} My work stems from a deep fascination with the
+      </p>
+    </div>
+    <div class="container about-bio-container">
+      <div class="about-bio-grid">
+        <div class="about-bio-story">
+          <h2 class="about-bio-title">{% translate "Statement" %}</h2>
+          <p>
+            {% blocktranslate %} My work stems from a deep fascination with the
 					potter's wheel and the forms that emerge from circular movement.
 					{%endblocktranslate %}
-				</p>
-				<p>
-					{% blocktranslate %} I am interested in rotation: that primary,
+          </p>
+          <p>
+            {% blocktranslate %} I am interested in rotation: that primary,
 					repetitive, and constant gesture that allows us to think about time,
 					form, and memory. {% endblocktranslate %}
-				</p>
-				<p>
-					{% blocktranslate %} In my practice, the circle and concentric forms
+          </p>
+          <p>
+            {% blocktranslate %} In my practice, the circle and concentric forms
 					are inevitable presences. I am drawn to their ability to reveal
 					movement, their enveloping quality, and their insistence. They define
 					not only the aesthetics of my pieces but embody a vision of time as
 					something that repeats, accumulates, and intertwines.
 					{%endblocktranslate %}
-				</p>
-				<p>
-					{% blocktranslate %} I work with the circle as a structure open to
+          </p>
+          <p>
+            {% blocktranslate %} I work with the circle as a structure open to
 					constant transformation, that contains and, at the same time, is
 					infinite. {% endblocktranslate %}
-				</p>
-				<p>
-					{% blocktranslate %} In this process, color is a tool that intervenes
+          </p>
+          <p>
+            {% blocktranslate %} In this process, color is a tool that intervenes
 					directly in the construction of formal language. It allows me to
 					highlight planes, outline volumes, and mark rhythms, tracing visual
 					accents that guide the gaze and reveal internal tensions. Color does
 					not decorate: it activates the surface, exposes its layers, and
 					amplifies the form. {% endblocktranslate %}
-				</p>
-				<p class="font-normal italic">
-					{% blocktranslate %} My work is an exploration of time as form, color
+          </p>
+          <p class="font-normal italic">
+            {% blocktranslate %} My work is an exploration of time as form, color
 					as accent, and the circle as language. {% endblocktranslate %}
-				</p>
-			</div>
-
-			<div class="showcase-card">
-				<img src="{% static 'images/about-statement.avif' %}" alt="Circular ceramic work by Laura Melissa"
-					class="showcase-img" loading="lazy" />
-			</div>
-		</div>
-
-	</div>
-</section>
-
-<section class="bio-section-soft">
-	<div class="container">
-
-		<div>
-			<h2 class="about-bio-title">
-				{% translate "BIO" %}
-			</h2>
-			<div class="about-bio-story">
-				<p>
-					{% blocktranslate %} Trained as an Industrial Designer, she finds in
+          </p>
+        </div>
+        <div class="showcase-card">
+          <img src="{% static 'images/about-statement.avif' %}"
+               alt="Circular ceramic work by Laura Melissa"
+               class="showcase-img"
+               loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bio-section-soft">
+    <div class="container">
+      <div>
+        <h2 class="about-bio-title">{% translate "BIO" %}</h2>
+        <div class="about-bio-story">
+          <p>
+            {% blocktranslate %} Trained as an Industrial Designer, she finds in
 					ceramics the manifestation of her passion for manual work and crafts,
 					and it is in the practice of the potter's wheel where she develops
 					most of her pieces. Attention to detail, exploration of form, and the
 					possibilities that arise from circular movement, as well as her bold
 					use of colors, define her style. {% endblocktranslate %}
-				</p>
-				<p>
-					{% blocktranslate %} Her pieces are a fusion of the utilitarian,
+          </p>
+          <p>
+            {% blocktranslate %} Her pieces are a fusion of the utilitarian,
 					symbolic, and decorative, allowing the viewer to freely interpret
 					their use and purpose. {% endblocktranslate %}
-				</p>
-				<p>
-					{% blocktranslate %} In recent years, her selection for the Mexican
+          </p>
+          <p>
+            {% blocktranslate %} In recent years, her selection for the Mexican
 					Utilitarian Ceramics Biennial of IVEC and her participation in the
 					collective exhibition "1000 Vases" during Design Week in Milan stand
 					out. She currently lives in Xalapa, Veracruz where her workshop is
 					located and is co-founder of the ceramics objects store & workshop
 					Satélite & Co, a space where she produces her work and teaches wheel
 					throwing workshops. {% endblocktranslate %}
-				</p>
-				<p>
-					{% blocktranslate %} Her pieces have been exhibited in Oaxaca, Mexico,
+          </p>
+          <p>
+            {% blocktranslate %} Her pieces have been exhibited in Oaxaca, Mexico,
 					and Milan, Italy, and are sold in Mexico, Colombia, the United States,
 					and Canada. {% endblocktranslate %}
-				</p>
-				<div class="about-bio-signature">
-					<strong class="about-bio-name">Laura Melissa Jaramillo Rueda.</strong>
-					<em class="about-bio-date">(Bucaramanga, Colombia. 1987)</em>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
+          </p>
+          <div class="about-bio-signature">
+            <strong class="about-bio-name">Laura Melissa Jaramillo Rueda.</strong>
+            <em class="about-bio-date">(Bucaramanga, Colombia. 1987)</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

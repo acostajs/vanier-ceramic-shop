@@ -1,56 +1,41 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Contact Us' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
-
-<section class="contact-section-wrapper">
-	<div class="container contact-container">
-		<div class="contact-header">
-			<h1 class="contact-title">
-				{% translate "Let's talk" %}
-			</h1>
-			<p class="contact-subtitle">
-				{% blocktranslate %} Share a project idea, a question, or simply say
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+  {% translate 'Contact Us' %} | Laura Melissa Ceramics
+{% endblock %}
+{% block content %}
+  <section class="contact-section-wrapper">
+    <div class="container contact-container">
+      <div class="contact-header">
+        <h1 class="contact-title">{% translate "Let's talk" %}</h1>
+        <p class="contact-subtitle">
+          {% blocktranslate %} Share a project idea, a question, or simply say
 				hello. Each message is read with care. {% endblocktranslate %}
-			</p>
-		</div>
-
-		<div class="contact-card">
-			<form
-				method="post"
-				action="{% url 'contact:contact_submit' %}"
-			>
-				{% csrf_token %} {{ form.non_field_errors }} {% for field in form %}
-				<div class="contact-form-row">
-					<label>
-						{{ field.label }}
-					</label>
-					<div class="contact-field-wrapper">{{ field }}</div>
-					{% if field.errors %}
-					<div class="error-text">{{ field.errors }}</div>
-					{% endif %}
-				</div>
-				{% endfor %}
-
-				<button
-					type="submit"
-					class="button-primary contact-submit-btn"
-				>
-					{% translate "Send" %}
-					<svg
-						class="w-5 h-5 ml-2"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M5 13l4 4L19 7"
-						></path>
-					</svg>
-				</button>
-			</form>
-		</div>
-	</div>
-</section>
-
+        </p>
+      </div>
+      <div class="contact-card">
+        <form method="post" action="{% url 'contact:contact_submit' %}">
+          {% csrf_token %} {{ form.non_field_errors }}
+          {% for field in form %}
+            <div class="contact-form-row">
+              <label>{{ field.label }}</label>
+              <div class="contact-field-wrapper">{{ field }}</div>
+              {% if field.errors %}
+                <div class="error-text">{{ field.errors }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <button type="submit" class="button-primary contact-submit-btn">
+            {% translate "Send" %}
+            <svg class="w-5 h-5 ml-2"
+                 fill="none"
+                 stroke="currentColor"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
 {% endblock %}

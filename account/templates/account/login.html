@@ -1,50 +1,36 @@
-{% extends 'base.html' %} {% load i18n %} {% block title %}{% translate 'Login' %} | Laura Melissa Ceramics{% endblock %} {% block content %}
-
-<section class="auth-form-section">
-	<div class="container auth-container">
-		<div class="auth-header">
-			<h1 class="auth-title">
-				{% translate "Log In" %}
-			</h1>
-			<p class="auth-subtitle">
-				{% blocktranslate %} Access your account to view orders, manage your
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+  {% translate 'Login' %} | Laura Melissa Ceramics
+{% endblock %}
+{% block content %}
+  <section class="auth-form-section">
+    <div class="container auth-container">
+      <div class="auth-header">
+        <h1 class="auth-title">{% translate "Log In" %}</h1>
+        <p class="auth-subtitle">
+          {% blocktranslate %} Access your account to view orders, manage your
 				wishlist, and keep track of your favorite pieces. {%endblocktranslate%}
-			</p>
-		</div>
-
-		<div class="auth-card">
-			<form
-				method="post"
-				action="{% url 'account:login_submit' %}"
-			>
-				{% csrf_token %} {{ form.non_field_errors }} {% for field in form %}
-				<div class="form-group">
-					{{ field.label_tag }}
-					<div>{{ field }}</div>
-					{% if field.errors %}
-					<div class="error-text">{{ field.errors }}</div>
-					{% endif %}
-				</div>
-				{% endfor %}
-
-				<button
-					type="submit"
-					class="button-primary auth-submit-btn"
-				>
-					{% translate "Log In" %}
-				</button>
-			</form>
-
-			<div class="auth-footer-link">
-				<a
-					href="{% url 'account:registration' %}"
-					class="auth-link"
-				>
-					{% translate "Dont have an account? Register" %}
-				</a>
-			</div>
-		</div>
-	</div>
-</section>
-
+        </p>
+      </div>
+      <div class="auth-card">
+        <form method="post" action="{% url 'account:login_submit' %}">
+          {% csrf_token %} {{ form.non_field_errors }}
+          {% for field in form %}
+            <div class="form-group">
+              {{ field.label_tag }}
+              <div>{{ field }}</div>
+              {% if field.errors %}
+                <div class="error-text">{{ field.errors }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+          <button type="submit" class="button-primary auth-submit-btn">{% translate "Log In" %}</button>
+        </form>
+        <div class="auth-footer-link">
+          <a href="{% url 'account:registration' %}" class="auth-link">{% translate "Dont have an account? Register" %}</a>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
