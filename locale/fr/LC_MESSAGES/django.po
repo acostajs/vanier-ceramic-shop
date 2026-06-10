@@ -863,3 +863,12 @@ msgstr "Compte"
 msgid "Login"
 msgstr "Connexion"
 
+msgid "Sold Out"
+msgstr "Épuisé"
+
+msgid "Low Stock"
+msgstr "Stock faible"
+
+msgid "In Stock"
+msgstr "En stock"
+
