@@ -181,35 +181,32 @@ class OrderModelTests(BaseCartSetupMixin, TestCase):
             order2.set_status("paid")
 
     def test_fulfill_sets_fields(self):
+        self.account.first_name = "Juan"
+        self.account.last_name = "Acosta"
+        self.account.billing_city = "BCity"
+        self.account.shipping_city = "SCity"
+        self.account.save()
+
         order = Order.objects.create(
             account=self.account,
-            total_cents=0,
-        )
-
-        order.fulfill(
-            name="Juan",
-            email="[email protected]",
-            payment_id="pi_123",
             total_cents=5000,
-            billing_address_line1="B1",
-            billing_address_line2="B2",
-            billing_city="BCity",
-            billing_postal_code="BZIP",
-            billing_country="BCountry",
-            shipping_address_line1="S1",
-            shipping_address_line2="S2",
-            shipping_city="SCity",
-            shipping_postal_code="SZIP",
-            shipping_country="SCountry",
         )
 
+        # Fulfill without kwargs - should pull from account
+        order.fulfill(payment_id="pi_123")
         order.refresh_from_db()
         self.assertEqual(order.payment_id, "pi_123")
-        self.assertEqual(order.name, "Juan")
+        self.assertEqual(order.name, "Juan Acosta")
         self.assertEqual(order.email, "[email protected]")
         self.assertEqual(order.total_cents, 5000)
         self.assertEqual(order.billing_city, "BCity")
         self.assertEqual(order.shipping_city, "SCity")
+
+        # Fulfill with kwargs override
+        order.fulfill(payment_id="pi_456", billing_city="NewCity")
+        order.refresh_from_db()
+        self.assertEqual(order.payment_id, "pi_456")
+        self.assertEqual(order.billing_city, "NewCity")
 
     def test_order_str(self):
         order = Order.objects.create(
