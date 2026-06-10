@@ -584,10 +584,6 @@ msgstr "Ver productos."
 msgid "No collections registered"
 msgstr "No hay colecciones registradas"
 
-#: templates/about.html:10
-msgid "Laura Melissa"
-msgstr "Laura Melissa"
-
 
 #: templates/about.html:13
 msgid ""
@@ -749,18 +745,6 @@ msgstr ""
 "\"Laura Melissa Ceramics - Arte cerámico hecho a mano y\n"
 "\t\t\talfarería\" "
 
-#: templates/home.html:12
-msgid "Handcrafted Ceramics"
-msgstr "Cerámica hecha a mano"
-
-#: templates/home.html:17
-msgid "Welcome to"
-msgstr "Bienvenida a"
-
-#: templates/home.html:19
-msgid "Ceramics"
-msgstr "Cerámica"
-
 #: templates/home.html:24
 msgid ""
 " Unique handcrafted ceramics and pottery. Each\n"
@@ -773,9 +757,6 @@ msgstr ""
 msgid "Shop Collections"
 msgstr "Ver colecciones"
 
-#: templates/home.html:51
-msgid "Learn More"
-msgstr "Saber más"
 
 #: templates/home.html:79
 msgid "Recent Work"
