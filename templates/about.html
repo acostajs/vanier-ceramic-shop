@@ -1,22 +1,24 @@
-{% extends "base.html" %} {% load i18n %} {% block title %}{% translate "About Our Story" %} | Laura Melissa Ceramics{% endblock %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load i18n %} {% block title %}{% translate "About Our Story" %} | Laura Melissa Ceramics
+{%endblock %} {% load static %} {% block content %}
 
 <section class="about-hero-section">
 	<div class="container about-hero-container">
 		<h1 class="about-hero-title">
-			{% translate "Laura Melissa" %}
+			{% translate "About me" %}
 		</h1>
 		<p class="about-hero-subtitle">
-			{% blocktranslate %} Ceramist exploring time as form, color as accent, and
+			{% blocktranslate %} I explore time as form, color as accent, and
 			the circle as a living language. {% endblocktranslate %}
 		</p>
 	</div>
 
-	<div class="container about-bio-grid">
-		<div>
-			<h2 class="about-bio-title">
-				{% translate "Statement" %}
-			</h2>
+	<div class="container about-bio-container">
+		<div class="about-bio-grid">
+
 			<div class="about-bio-story">
+				<h2 class="about-bio-title">
+					{% translate "Statement" %}
+				</h2>
 				<p>
 					{% blocktranslate %} My work stems from a deep fascination with the
 					potter's wheel and the forms that emerge from circular movement.
@@ -53,35 +55,18 @@
 					as accent, and the circle as language. {% endblocktranslate %}
 				</p>
 			</div>
-		</div>
 
-		<!-- Image -->
-		<div class="about-bio-image-col">
-			<div class="showcase-card bg-surface-soft">
-				<img
-					src="{% static 'images/about-statement.avif' %}"
-					alt="Circular ceramic work by Laura Melissa"
-					class="showcase-img"
-					loading="lazy"
-				/>
+			<div class="showcase-card">
+				<img src="{% static 'images/about-statement.avif' %}" alt="Circular ceramic work by Laura Melissa"
+					class="showcase-img" loading="lazy" />
 			</div>
 		</div>
+
 	</div>
 </section>
 
 <section class="bio-section-soft">
-	<div class="container about-bio-grid">
-		<!-- Image -->
-		<div class="about-bio-image-col">
-			<div class="showcase-card bg-surface-card">
-				<img
-					src="{% static 'images/about-portrait.avif' %}"
-					alt="Portrait of Laura Melissa in her studio"
-					class="showcase-img"
-					loading="lazy"
-				/>
-			</div>
-		</div>
+	<div class="container">
 
 		<div>
 			<h2 class="about-bio-title">
@@ -116,9 +101,7 @@
 					and Canada. {% endblocktranslate %}
 				</p>
 				<div class="about-bio-signature">
-					<strong class="about-bio-name"
-						>Laura Melissa Jaramillo Rueda.</strong
-					>
+					<strong class="about-bio-name">Laura Melissa Jaramillo Rueda.</strong>
 					<em class="about-bio-date">(Bucaramanga, Colombia. 1987)</em>
 				</div>
 			</div>

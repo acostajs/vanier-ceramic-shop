@@ -7,24 +7,23 @@
 }
 
 .about-hero-container {
-  text-align: center;
   margin-bottom: clamp(4rem, 3rem + 5vw, 7rem);
   width: 100%;
 }
 
 .about-hero-title {
-  font-size: var(--typography-display-xl-size);
-  font-weight: 400;
-  color: var(--color-ink);
+  font-size: var(--typography-display-xs-size);
+  font-weight: var(--typography-display-xs-weight);
+  line-height: var(--typography-display-xs-lh);
+  letter-spacing: var(--typography-display-xs-ls);
+  color: var(--color-muted);
   margin-bottom: var(--spacing-xs);
-  line-height: var(--typography-display-xl-lh);
-  letter-spacing: var(--typography-display-xl-ls);
 }
 
 .about-hero-subtitle {
-  font-size: clamp(1.125rem, 1.075rem + 0.25vw, 1.25rem);
-  color: var(--color-muted);
-  max-width: 42rem; /* 672px */
-  margin-left: auto;
-  margin-right: auto;
+  font-size: var(--typography-display-xl-size);
+  font-weight: var(--typography-display-xl-weight);
+  line-height: var(--typography-display-xl-lh);
+  letter-spacing: var(--typography-display-xl-ls);
+  color: var(--color-ink);
 }

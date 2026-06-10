@@ -1,31 +1,41 @@
 /* About Bio & Statement Sections */
+.about-bio-container {
+  background-color: var(--color-surface-soft);
+  padding-top: clamp(2rem, 1.5rem + 5vw, 3rem);
+  padding-bottom: clamp(2rem, 1.5rem + 5vw, 5rem);
+  container-type: inline-size;
+  container-name: bio-section;
+  border-radius: var(--rounded-md);
+}
 
 .about-bio-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem; /* 40px */
-  align-items: start;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-xl);
+  align-items: stretch;
 }
 
-@container (min-width: 64rem) {
+@container bio-section (min-width: 32rem) {
   .about-bio-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 4rem; /* 64px */
+    gap: var(--spacing-xl);
   }
 }
 
 .about-bio-title {
-  font-size: clamp(1.875rem, 1.625rem + 1.25vw, 2.25rem); /* 30px to 36px */
-  font-weight: 400;
-  color: var(--color-ink);
-  margin-bottom: var(--spacing-lg);
+  font-size: var(--typography-display-xs-size);
+  font-weight: var(--typography-display-xs-weight);
+  line-height: var(--typography-display-xs-lh);
+  letter-spacing: var(--typography-display-xs-ls);
+  color: var(--color-muted);
+  margin-bottom: var(--spacing-xs);
 }
 
 .about-bio-story {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); /* 16px to 18px */
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
   color: var(--color-body);
   line-height: 1.625;
 }
@@ -60,56 +70,30 @@
 }
 
 /* Statement Image Showcase Card */
-.about-bio-image-col {
-  position: relative;
-  width: 100%;
-  max-width: 28rem; /* 448px */
-}
-
-@container (min-width: 64rem) {
-  .about-bio-image-col {
-    max-width: none;
-  }
-}
 
 .showcase-card {
-  border-radius: var(--rounded-md);
-  padding: clamp(2rem, 1.75rem + 1vw, 2.5rem); /* 32px to 40px */
-  border: 1px solid var(--color-hairline);
-  overflow: hidden;
+  position: relative;
   width: 100%;
+  aspect-ratio: 4 / 5;
+  height: auto;
+  min-height: 0;
+  border-radius: var(--rounded-md);
+  overflow: hidden;
 }
 
-.showcase-card.bg-surface-soft {
-  background-color: var(--color-surface-soft);
-}
-
-.showcase-card.bg-surface-card {
-  background-color: var(--color-surface-card);
+@container bio-section (min-width: 32rem) {
+  .showcase-card {
+    aspect-ratio: auto;
+    height: 100%;
+  }
 }
 
 .showcase-img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 20rem; /* 320px */
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--rounded-md);
-  border: 1px solid var(--color-hairline);
-}
-
-@container (min-width: 40rem) {
-  .showcase-img {
-    height: 24rem; /* 384px */
-  }
-}
-
-@container (min-width: 64rem) {
-  .showcase-img {
-    height: 26.25rem; /* 420px */
-  }
-}
-
-/* Secondary Bio section spacing */
-.bio-section-soft {
-  padding: var(--spacing-section) 0;
-  background-color: var(--color-surface-soft);
+  object-position: center;
 }
