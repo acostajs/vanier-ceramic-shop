@@ -16,7 +16,7 @@
                 <thead>
                   <tr>
                     <th class="cart-th text-left">{% translate "Product" %}</th>
-                    <th class="cart-th text-right">{% translate "Unit" %}</th>
+                    <th class="cart-th text-right">{% translate "Unit Price" %}</th>
                     <th class="cart-th text-center">{% translate "Qty" %}</th>
                     <th class="cart-th text-right">{% translate "Line" %}</th>
                     <th class="cart-th text-right">{% translate "Actions" %}</th>
@@ -39,7 +39,7 @@
                       </td>
                       <!-- Unit Price Column -->
                       <td class="cart-td text-right cart-price-td"
-                          data-label="{% translate 'Unit' %}">{{ item.unit_dollars }}</td>
+                          data-label="{% translate 'Unit Price' %}">{{ item.unit_dollars }}</td>
                       <!-- Quantity Column -->
                       <td class="cart-td text-center" data-label="{% translate 'Qty' %}">
                         <form method="post"
