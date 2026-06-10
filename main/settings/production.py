@@ -6,25 +6,21 @@ DEBUG = os.getenv("DJANGO_DEBUG", "False") == "True"
 # Storage
 STORAGES = {
     "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
-# AWS
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = "vanier-ceramic-shop-images-juan-2026"
-AWS_S3_REGION_NAME = "us-east-1"
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+# Cloudinary
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_SECRET_KEY"),
+}
 
-AWS_DEFAULT_ACL = "public-read"
-AWS_S3_FILE_OVERWRITE = False
-AWS_QUERYSTRING_AUTH = False
-
-MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
+MEDIA_URL = "/media/"
 
 # Security
 SECURE_SSL_REDIRECT = True
@@ -37,3 +33,12 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 if not SECRET_KEY or SECRET_KEY == "django-insecure-fallback-key-for-local-dev-only":
     raise ValueError("DJANGO_SECRET_KEY must be set to a secure value in production!")
+
+if (
+    not CLOUDINARY_STORAGE["CLOUD_NAME"]
+    or not CLOUDINARY_STORAGE["API_KEY"]
+    or not CLOUDINARY_STORAGE["API_SECRET"]
+):
+    raise ValueError(
+        "Cloudinary credentials (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_SECRET_KEY) must be set in production!"
+    )
