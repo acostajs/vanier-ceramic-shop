@@ -908,4 +908,26 @@ msgstr "Explorar otras colecciones"
 msgid "Back to Home"
 msgstr "Volver al inicio"
 
+msgid "Shopping Cart"
+msgstr "Carrito de compras"
+
+msgid "Order Success"
+msgstr "Pedido exitoso"
+
+msgid "Order Cancelled"
+msgstr "Pedido cancelado"
+
+msgid "My Account"
+msgstr "Mi cuenta"
+
+msgid "My Wishlist"
+msgstr "Mi lista de deseos"
+
+msgid "Shipping Info"
+msgstr "Información de envío"
+
+msgid "Billing Info"
+msgstr "Información de facturación"
+
+
 

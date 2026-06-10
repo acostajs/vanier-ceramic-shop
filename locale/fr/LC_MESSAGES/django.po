@@ -914,5 +914,27 @@ msgstr "Explorer d'autres collections"
 msgid "Back to Home"
 msgstr "Retour à l'accueil"
 
+msgid "Shopping Cart"
+msgstr "Panier d'achat"
+
+msgid "Order Success"
+msgstr "Commande réussie"
+
+msgid "Order Cancelled"
+msgstr "Commande annulée"
+
+msgid "My Account"
+msgstr "Mon compte"
+
+msgid "My Wishlist"
+msgstr "Ma liste d'envies"
+
+msgid "Shipping Info"
+msgstr "Informations de livraison"
+
+msgid "Billing Info"
+msgstr "Informations de facturation"
+
+
 
 
