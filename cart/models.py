@@ -68,6 +68,9 @@ class Order(models.Model):
 
     def set_status(self, status: str) -> None:
         """Represents the status of an Order,"""
+        if self.status == self.STATUS_PAID:
+            return
+
         current_status = status.lower()
         if current_status not in {
             self.STATUS_PENDING,
@@ -81,7 +84,7 @@ class Order(models.Model):
                 item.product.discount_from_quantity(item.quantity)
 
         self.status = current_status
-        self.save()
+        self.save(update_fields=["status"])
 
     def fulfill(
         self,
