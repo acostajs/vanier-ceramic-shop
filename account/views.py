@@ -33,7 +33,7 @@ def registration_submit(request):
         user = form.save()
         Wishlist.objects.create(account=user)
         Cart.objects.create(account=user)
-        msg = "Your account has properly been created."
+        msg = _("Your account has properly been created.")
         messages.success(request, msg)
         return redirect("account:login")
 
@@ -63,7 +63,7 @@ def login_submit(request):
         )
         if user:
             auth_login(request, user)
-            msg = "You have Logged in Successfully."
+            msg = _("You have Logged in Successfully.")
             messages.success(request, msg)
             return redirect("account:account")
         else:
@@ -116,7 +116,7 @@ def add_to_wishlist(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     wishlist = Wishlist.objects.get_or_create(account=request.user)[0]
     wishlist.add(product)
-    messages.success(request, f"Added {product.name} to wishlist.")
+    messages.success(request, _("Added %(name)s to wishlist.") % {"name": product.name})
     return redirect("shop:product", product_id)
 
 
@@ -128,7 +128,9 @@ def remove_from_wishlist(request, product_id):
     user = request.user
     wishlist = Wishlist.objects.get_or_create(account=user)[0]
     wishlist.remove(product)
-    messages.info(request, f"Removed {product.name} from wishlist.")
+    messages.info(
+        request, _("Removed %(name)s from wishlist.") % {"name": product.name}
+    )
     return redirect("account:wishlist_detail")
 
 
@@ -178,7 +180,7 @@ def shipping_submit(request):
     form = ShippingForm(request.POST, instance=account)
     if form.is_valid():
         form.save()
-        msg = "Your Shipping Information has been Updated"
+        msg = _("Your Shipping Information has been Updated")
         messages.success(request, msg)
         return redirect("account:account")
 
@@ -204,7 +206,7 @@ def billing_submit(request):
     form = BillingForm(request.POST, instance=account)
     if form.is_valid():
         form.save()
-        msg = "Your Billing Information has been Updated"
+        msg = _("Your Billing Information has been Updated")
         messages.success(request, msg)
         return redirect("account:account")
 
