@@ -13,6 +13,7 @@ class Collection(models.Model):
     description = models.TextField(_("description"))
     image = models.ImageField(_("image"), upload_to="collections/")
     ceramic_type = models.CharField(_("ceramic type"), max_length=100)
+    year = models.IntegerField(_("year"), blank=True, null=True)
 
     def __str__(self):
         return self.name
