@@ -57,7 +57,7 @@
               {% translate "Login" %}
             </a>
             <a href="{% url 'account:registration' %}"
-               class="nav-link"
+               class="nav-link register"
                {% if request.resolver_match.url_name == 'registration' %}aria-current="page"{% endif %}>
               {% translate "Register" %}
             </a>
