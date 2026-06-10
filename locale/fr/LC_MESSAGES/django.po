@@ -274,7 +274,7 @@ msgid "Wishlist cleared."
 msgstr "Liste de souhaits vidée."
 
 #: account/views.py:154
-msgid "You have succesfully transfer the item to your shopping cart."
+msgid "You have successfully transferred the item to your shopping cart."
 msgstr "Vous avez transféré l'article dans votre panier avec succès."
 
 #: cart/helpers.py:19
