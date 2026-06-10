@@ -95,7 +95,10 @@ def update_cart_checkout(request, product_id):
     qty = parse_quantity(request)
     cart = get_cart(request)
     cart.add(product, quantity=qty, replace=True)
-    messages.success(request, f"Updated {product.name} to x{qty}.")
+    messages.success(
+        request,
+        _("Updated %(name)s to x%(qty)d.") % {"name": product.name, "qty": qty},
+    )
     return redirect("cart:checkout")
 
 
@@ -106,7 +109,7 @@ def remove_from_cart_checkout(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     cart = get_cart(request)
     cart.remove(product)
-    messages.info(request, f"Removed {product.name} from cart.")
+    messages.info(request, _("Removed %(name)s from cart.") % {"name": product.name})
     return redirect("cart:checkout")
 
 
