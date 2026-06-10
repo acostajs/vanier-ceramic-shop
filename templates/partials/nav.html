@@ -65,7 +65,7 @@
           <div class="nav-actions">
             {% if user.is_authenticated %}
               <a href="{% url 'account:wishlist_detail' %}"
-                 aria-label="{% translate 'Wishlist' %}"
+                 aria-label='{% translate "Wishlist" %}'
                  class="icon-btn">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" />
@@ -79,7 +79,7 @@
               <a href="{% url 'cart:cart' %}" class="nav-link">{% translate "Cart" %} [{{ cart_count }}]</a>
             {% endif %}
             <a href="{% url 'contact:contact' %}"
-               aria-label="{% translate 'Contact Us' %}"
+               aria-label='{% translate "Contact Us" %}'
                class="icon-btn">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.27 7.27c.883.883 2.317.883 3.2 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
