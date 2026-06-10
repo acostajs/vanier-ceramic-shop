@@ -5,8 +5,7 @@
       <div class="footer-brand-col">
         <a href="{% url 'home' %}" class="footer-logo">Laura Melissa</a>
         <p class="footer-text">
-          {% blocktranslate %} © 2025 Laura Melissa Ceramics - Handcrafted
-					Ceramic Art. All rights reserved. {% endblocktranslate %}
+          © {% now "Y" %} {% blocktranslate %}Laura Melissa Ceramics - Handcrafted Ceramic Art. All rights reserved.{% endblocktranslate %}
         </p>
       </div>
       <div>
