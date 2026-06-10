@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 #: account/forms.py:47
 msgid "username"
-msgstr ""
+msgstr "nom d'utilisateur"
 
 #: account/forms.py:48
 msgid "password"
