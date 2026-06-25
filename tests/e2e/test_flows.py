@@ -99,6 +99,10 @@ async def test_catalog_browsing_cart_and_checkout_flow(
 
     # Add to cart
     await product_page.add_to_cart(quantity=2)
+    # The view redirects back to the product details page
+    await async_page.wait_for_url("**/shop/product/*/")
+    # Click on the cart link in the header
+    await product_page.click_cart()
     await async_page.wait_for_url("**/cart/")
 
     # 5. Cart Page
@@ -132,4 +136,4 @@ async def test_contact_form_submission(async_page: Page, live_server: Any) -> No
     )
 
     # After submit, should redirect to home page
-    await async_page.wait_for_url(f"{live_server.url}/")
+    await async_page.wait_for_selector(".home-hero")
