@@ -25,7 +25,7 @@ Ensure you have the Python environment set up with `uv` (the default package man
 ### 2. Install Dependencies
 Run the following to synchronize your development and testing dependencies:
 ```bash
-uv pip install -r requirements-test.txt
+uv add -r requirements-test.txt
 ```
 
 ### 3. Install Playwright Browsers
@@ -62,11 +62,11 @@ uv run playwright install
 
 Current total test coverage is **83%**. Below is the module-by-module breakdown of the test coverage:
 
-| Module | Statements | Misses | Coverage % |
-| :--- | :--- | :--- | :--- |
-| **account** | 213 | 46 | 78% |
-| **cart** | 363 | 68 | 81% |
-| **contact** | 56 | 0 | 100% |
-| **shop** | 106 | 0 | 100% |
-| **main** | 95 | 28 | 70% |
-| **TOTAL** | **833** | **142** | **83%** |
+| Module        | Statements    | Misses    | Coverage % |
+| :---          | :---          | :---      | :---       |
+| **account**   | 213           | 46        | 78%        |
+| **cart**      | 363           | 68        | 81%        |
+| **contact**   | 56            | 0         | 100%       |
+| **shop**      | 106           | 0         | 100%       |
+| **main**      | 95            | 28        | 70%        |
+| **TOTAL**     | **833**       | **142**   | **83%**    |
