@@ -50,7 +50,7 @@ async def test_smoke_contact_page(async_page: Page, live_server: LiveServer) -> 
     """Smoke test to verify that the contact page loads correctly."""
     await async_page.goto(f"{live_server.url}/contact/")
     # Check that contact form elements exist
-    await async_page.wait_for_selector("form")
+    await async_page.wait_for_selector(".contact-submit-btn")
     assert "Contact" in await async_page.content()
 
 
