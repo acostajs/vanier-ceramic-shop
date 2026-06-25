@@ -1,12 +1,38 @@
+import os
 import pytest
-from typing import Callable, Any, Coroutine
+from typing import Callable, Any, Coroutine, AsyncGenerator
 from django.contrib.auth import get_user_model
 from account.models import Account, Wishlist
 from shop.models import Collection, Product
 from cart.models import Cart, Order
-from playwright.async_api import Page
+from playwright.async_api import Page, async_playwright
+import pytest_asyncio
 
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 User = get_user_model()
+
+
+@pytest.fixture(scope="session")
+def event_loop() -> Any:
+    """Create an instance of the default event loop for the test session."""
+    import asyncio
+
+    policy = asyncio.get_event_loop_policy()
+    loop = policy.new_event_loop()
+    yield loop
+    loop.close()
+
+
+@pytest_asyncio.fixture
+async def async_page() -> AsyncGenerator[Page, None]:
+    """Async Playwright Page fixture to avoid event loop conflicts in async E2E tests."""
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        context = await browser.new_context()
+        page = await context.new_page()
+        yield page
+        await context.close()
+        await browser.close()
 
 
 @pytest.fixture(autouse=True)

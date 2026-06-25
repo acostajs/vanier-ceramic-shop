@@ -25,6 +25,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "djlint>=1.39.0",
+    "pytest-asyncio>=1.4.0",
     "ruff>=0.14.7",
 ]
 [tool.ruff]
