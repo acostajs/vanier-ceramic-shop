@@ -1,10 +1,11 @@
+import pytest
 from django.urls import reverse
 from django.test import Client
 from contact.models import ContactMessage
-from typing import Any
 
 
-def test_create_contact_message_minimal(db: Any) -> None:
+@pytest.mark.django_db
+def test_create_contact_message_minimal() -> None:
     """Test creating a ContactMessage with minimal details."""
     msg = ContactMessage.objects.create(
         name="Juan",
@@ -19,7 +20,8 @@ def test_create_contact_message_minimal(db: Any) -> None:
     assert msg.is_resolved is False
 
 
-def test_subject_can_be_blank_and_str(db: Any) -> None:
+@pytest.mark.django_db
+def test_subject_can_be_blank_and_str() -> None:
     """Test message representation when subject is blank."""
     msg = ContactMessage.objects.create(
         name="Laura", email="laura@example.com", subject="", message="Hello."
@@ -36,7 +38,8 @@ def test_contact_page_renders_form(client: Client) -> None:
     assert "form" in response.context
 
 
-def test_contact_submit_valid_data(client: Client, db: Any) -> None:
+@pytest.mark.django_db
+def test_contact_submit_valid_data(client: Client) -> None:
     """Test valid contact form submission redirects and creates a message."""
     post_data = {
         "name": "Melissa",
@@ -54,7 +57,8 @@ def test_contact_submit_valid_data(client: Client, db: Any) -> None:
     assert msg.email == "melissa@example.com"
 
 
-def test_contact_submit_invalid_data(client: Client, db: Any) -> None:
+@pytest.mark.django_db
+def test_contact_submit_invalid_data(client: Client) -> None:
     """Test invalid form submission shows errors and does not create a message."""
     post_data = {
         "name": "Melissa",

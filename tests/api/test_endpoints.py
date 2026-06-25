@@ -1,11 +1,11 @@
 import pytest
 import requests
-from typing import Any
+from pytest_django.live_server_helper import LiveServer
 from shop.models import Product
 
 
 @pytest.mark.django_db
-def test_api_products_auth_missing(live_server: Any) -> None:
+def test_api_products_auth_missing(live_server: LiveServer) -> None:
     """Test that requesting without an Authorization header returns 401."""
     url = f"{live_server.url}/en/shop/api/products/"
     response = requests.get(url)
@@ -15,7 +15,7 @@ def test_api_products_auth_missing(live_server: Any) -> None:
 
 
 @pytest.mark.django_db
-def test_api_products_auth_invalid_schema(live_server: Any) -> None:
+def test_api_products_auth_invalid_schema(live_server: LiveServer) -> None:
     """Test that requesting with an invalid authorization schema returns 401."""
     url = f"{live_server.url}/en/shop/api/products/"
     headers = {"Authorization": "Basic c2VjcmV0LWFwaS10b2tlbi0xMjM="}
@@ -26,7 +26,7 @@ def test_api_products_auth_invalid_schema(live_server: Any) -> None:
 
 
 @pytest.mark.django_db
-def test_api_products_auth_invalid_token(live_server: Any) -> None:
+def test_api_products_auth_invalid_token(live_server: LiveServer) -> None:
     """Test that requesting with a wrong bearer token returns 403."""
     url = f"{live_server.url}/en/shop/api/products/"
     headers = {"Authorization": "Bearer wrong-token-123"}
@@ -37,7 +37,7 @@ def test_api_products_auth_invalid_token(live_server: Any) -> None:
 
 
 @pytest.mark.django_db
-def test_api_products_success(live_server: Any, test_product: Product) -> None:
+def test_api_products_success(live_server: LiveServer, test_product: Product) -> None:
     """Test that requesting with correct credentials returns 200 and product list."""
     url = f"{live_server.url}/en/shop/api/products/"
     headers = {"Authorization": "Bearer secret-api-token-123"}

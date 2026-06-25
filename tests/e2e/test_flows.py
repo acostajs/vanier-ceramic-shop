@@ -10,12 +10,16 @@ from tests.e2e.pages.product import ProductDetailPage
 from tests.e2e.pages.cart import CartPage
 from tests.e2e.pages.checkout import CheckoutPage
 from tests.e2e.pages.contact import ContactPage
-from typing import Any, Callable
+from typing import Callable
+from pytest_django.live_server_helper import LiveServer
+from account.models import Account
 from shop.models import Collection, Product
 
 
 @pytest.mark.asyncio
-async def test_user_registration_and_login(async_page: Page, live_server: Any) -> None:
+async def test_user_registration_and_login(
+    async_page: Page, live_server: LiveServer
+) -> None:
     """Test register a new account, login, and verify account detail rendering."""
     # Initialize Page Objects
     register_page = RegisterPage(async_page)
@@ -55,10 +59,10 @@ async def test_user_registration_and_login(async_page: Page, live_server: Any) -
 @pytest.mark.asyncio
 async def test_catalog_browsing_cart_and_checkout_flow(
     async_page: Page,
-    live_server: Any,
+    live_server: LiveServer,
     test_collection: Collection,
     test_product: Product,
-    create_user: Callable[..., Any],
+    create_user: Callable[..., Account],
 ) -> None:
     """Test browsing catalog, adding to cart, wishlisting, transferring, and checkout page verification."""
     # E2E tests need a logged in state for shopping/checkout
@@ -123,7 +127,9 @@ async def test_catalog_browsing_cart_and_checkout_flow(
 
 
 @pytest.mark.asyncio
-async def test_contact_form_submission(async_page: Page, live_server: Any) -> None:
+async def test_contact_form_submission(
+    async_page: Page, live_server: LiveServer
+) -> None:
     """Test contact form submission sends and redirects to home page."""
     contact_page = ContactPage(async_page)
 

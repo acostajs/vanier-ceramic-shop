@@ -1,6 +1,8 @@
 import os
 import pytest
-from typing import Callable, Any, Coroutine, AsyncGenerator
+from typing import Callable, Coroutine, AsyncGenerator, Generator
+import asyncio
+from pytest_django.live_server_helper import LiveServer
 from django.contrib.auth import get_user_model
 from account.models import Account, Wishlist
 from shop.models import Collection, Product
@@ -13,10 +15,8 @@ User = get_user_model()
 
 
 @pytest.fixture(scope="session")
-def event_loop() -> Any:
+def event_loop() -> Generator[asyncio.AbstractEventLoop, None, None]:
     """Create an instance of the default event loop for the test session."""
-    import asyncio
-
     policy = asyncio.get_event_loop_policy()
     loop = policy.new_event_loop()
     yield loop
@@ -36,7 +36,7 @@ async def async_page() -> AsyncGenerator[Page, None]:
 
 
 @pytest.fixture(autouse=True)
-def enable_db_access_for_all_tests(db: Any) -> None:
+def enable_db_access_for_all_tests(db: None) -> None:
     """Fixture to ensure database access is enabled for all tests."""
     pass
 
@@ -49,7 +49,7 @@ def create_user() -> Callable[..., Account]:
         username: str = "testuser",
         email: str = "testuser@example.com",
         password: str = "password123",
-        **kwargs: Any,
+        **kwargs: object,
     ) -> Account:
         user = User.objects.create_user(
             username=username, email=email, password=password, **kwargs
@@ -77,7 +77,7 @@ def create_collection() -> Callable[..., Collection]:
         description: str = "Handcrafted stoneware pieces.",
         ceramic_type: str = "Stoneware",
         year: int = 2026,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> Collection:
         from django.core.files.uploadedfile import SimpleUploadedFile
 
@@ -112,7 +112,7 @@ def create_product(test_collection: Collection) -> Callable[..., Product]:
         quantity: int = 5,
         price_in_cents: int = 4500,
         discount_percentage: int = 0,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> Product:
         from django.core.files.uploadedfile import SimpleUploadedFile
 
@@ -161,7 +161,7 @@ def create_order() -> Callable[..., Order]:
         user: Account,
         total_cents: int = 4500,
         status: str = Order.STATUS_PENDING,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> Order:
         return Order.objects.create(
             account=user, total_cents=total_cents, status=status, **kwargs
@@ -177,11 +177,13 @@ def test_order(test_user: Account, create_order: Callable[..., Order]) -> Order:
 
 
 @pytest.fixture
-def login_user_helper() -> Callable[[Page, str, str, Any], Coroutine[Any, Any, None]]:
+def login_user_helper() -> Callable[
+    [Page, str, str, LiveServer], Coroutine[None, None, None]
+]:
     """Helper fixture to log in a user using Playwright E2E UI login."""
 
     async def _login(
-        page: Page, username: str, password: str, live_server: Any
+        page: Page, username: str, password: str, live_server: LiveServer
     ) -> None:
         await page.goto(f"{live_server.url}/account/login/")
         await page.fill("#id_username", username)
