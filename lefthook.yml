@@ -22,6 +22,6 @@ pre-commit:
 
 pre-push:
   commands:
-    django-tests:
+    pytest:
       tags: backend test
-      run: uv run manage.py test
+      run: uv run pytest
