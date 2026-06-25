@@ -1,4 +1,4 @@
-# Full-Stack Django E-Commerce - QA Showcase
+# QA Showcase - Vanier Ceramic Shop
 
 **Full-Stack Django Production Application with Multi-Layered QA & Test Automation Framework**
 
@@ -6,11 +6,11 @@ This repository features a professional full-stack Django e-commerce showroom an
 
 ---
 
-## 🛠️ QA & Test Automation Showcase
+## QA & Test Automation Showcase
 
 This project enforces a strict test-first mentality. For comprehensive test strategies, test plan briefs, and framework configuration details, see the dedicated documentation:
 
-👉 **[Read the Test Automation & QA Documentation (tests/docs/README.md)](tests/docs/README.md)**
+--> **[Read the Test Automation & QA Documentation (tests/docs/README.md)](tests/docs/README.md)**
 
 ### Core Testing Pillars:
 * **Multi-Layered Automation:** Full coverage spanning unit boundaries, system integration points, backend API endpoints, and end-to-end user browser interactions.
