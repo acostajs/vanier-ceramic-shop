@@ -1,72 +1,131 @@
-# Vanier Ceramic Shop - Test Suite Documentation
+# Test Suite Documentation
 
-[![CI Status](https://github.com/acostajs/vanier-ceramic-shop/actions/workflows/deploy.yml/badge.svg)](https://github.com/acostajs/vanier-ceramic-shop/actions)
-[![Coverage Status](https://img.shields.io/badge/Coverage-83%25-success)](file:///Users/juan/Documents/ceramic-shop/tests/docs/README.md)
+This folder contains the automated test suite for the **Vanier Ceramic Shop**.
 
-This directory contains the automated test suite for the Laura Melissa Ceramic Shop. The suite covers everything from isolated model logic to end-to-end user flows and API integrations.
-
----
-
-## Directory Structure
-
-- **[tests/unit/](file:///Users/juan/Documents/ceramic-shop/tests/unit)**: Isolated unit tests for model fields, validation, and core cart logic.
-- **[tests/integration/](file:///Users/juan/Documents/ceramic-shop/tests/integration)**: Database transactions, ORM query verification, and view status codes.
-- **[tests/api/](file:///Users/juan/Documents/ceramic-shop/tests/api)**: Functional endpoint tests using `requests` and authentication tokens under a local live server.
-- **[tests/e2e/](file:///Users/juan/Documents/ceramic-shop/tests/e2e)**: Playwright-driven end-to-end browser flows verifying user registration, catalog navigation, shopping cart updates, and mock Stripe Element views.
-- **[tests/smoke/](file:///Users/juan/Documents/ceramic-shop/tests/smoke)**: Ultra-fast sanity-check Playwright E2E browser tests targeting all major storefront views to confirm page loading.
+The goal of this project is to show a complete testing strategy for a production-style Django application. The test suite covers everything from small unit tests to full browser automation and performance testing.
 
 ---
 
-## Local Setup & Test Execution
+# Test Types
 
-### 1. Prerequisites
-Ensure you have the Python environment set up with `uv` (the default package manager).
+The project includes several types of automated tests.
 
-### 2. Install Dependencies
-Run the following to synchronize your development and testing dependencies:
+| Folder               | Purpose                                                                                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tests/unit/`        | Tests for models, forms, views, and business logic.                                                                                                      |
+| `tests/integration/` | Tests that verify different parts of the application work together, including database operations and Stripe webhooks.                                   |
+| `tests/api/`         | Tests for API endpoints, authentication, requests, and responses.                                                                                        |
+| `tests/e2e/`         | End-to-end browser tests using Playwright to simulate real user actions like registering, browsing products, adding items to the cart, and checking out. |
+| `tests/smoke/`       | Fast browser tests that confirm the main pages load correctly.                                                                                           |
+| `tests/performance/` | Load testing with Locust to measure application performance under traffic.                                                                               |
+
+---
+
+# Tools Used
+
+* pytest
+* Playwright
+* Locust
+* Coverage.py
+* Ruff
+* GitHub Actions
+
+---
+
+# Getting Started
+
+## Requirements
+
+* Python 3.13+
+* Astral uv
+
+Install the project dependencies:
+
 ```bash
-uv add -r requirements-test.txt
+uv sync
 ```
 
-### 3. Install Playwright Browsers
-Make sure the Playwright browser binaries are installed for end-to-end and smoke tests:
+Install the Playwright browsers:
+
 ```bash
 uv run playwright install
 ```
 
-### 4. Run the Tests
+---
 
-- **Run all tests**:
-  ```bash
-  uv run pytest
-  ```
+# Running Tests
 
-- **Run tests with Coverage Report**:
-  ```bash
-  uv run pytest --cov=account --cov=cart --cov=contact --cov=shop --cov=main --cov-report=term-missing
-  ```
+Run the complete test suite:
 
-- **Run only Smoke Tests**:
-  ```bash
-  uv run pytest tests/smoke/
-  ```
+```bash
+uv run pytest
+```
 
-- **Run only E2E Tests**:
-  ```bash
-  uv run pytest tests/e2e/
-  ```
+Run tests with a coverage report:
+
+```bash
+uv run task coverage
+```
+
+Generate an HTML coverage report:
+
+```bash
+uv run task coverage-report
+```
+
+Run only the smoke tests:
+
+```bash
+uv run pytest tests/smoke/
+```
+
+Run only the end-to-end tests:
+
+```bash
+uv run pytest tests/e2e/
+```
 
 ---
 
-## Test Coverage Report
+# Test Coverage
 
-Current total test coverage is **83%**. Below is the module-by-module breakdown of the test coverage:
+The project currently has **100% test coverage** across every application module.
 
-| Module        | Statements    | Misses    | Coverage % |
-| :---          | :---          | :---      | :---       |
-| **account**   | 213           | 46        | 78%        |
-| **cart**      | 363           | 68        | 81%        |
-| **contact**   | 56            | 0         | 100%       |
-| **shop**      | 106           | 0         | 100%       |
-| **main**      | 95            | 28        | 70%        |
-| **TOTAL**     | **833**       | **142**   | **83%**    |
+| Module    | Coverage |
+| --------- | -------- |
+| account   | 100%     |
+| cart      | 100%     |
+| contact   | 100%     |
+| shop      | 100%     |
+| **Total** | **100%** |
+
+---
+
+# Performance Testing
+
+Performance testing is done with **Locust** to simulate multiple users browsing the store, managing carts, logging in, and completing a mock checkout.
+
+Start the interactive Locust dashboard:
+
+```bash
+uv run task perf
+```
+
+Run the headless performance test:
+
+```bash
+uv run task perf-report
+```
+
+The included benchmark produced the following results:
+
+| Metric                | Result     |
+| --------------------- | ---------- |
+| Average response time | **17 ms**  |
+| Median response time  | **13 ms**  |
+| 90th percentile       | **21 ms**  |
+| Maximum response time | **118 ms** |
+| Failure rate          | **0.00%**  |
+| Total requests        | **39**     |
+
+These results show that the application remains responsive and stable during the included load test.

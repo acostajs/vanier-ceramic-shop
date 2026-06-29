@@ -155,3 +155,54 @@ def test_wishlist_transfer_to_cart(
     assert test_product not in test_wishlist.product.all()
     cart = Cart.objects.get(account=test_user)
     assert cart.products.filter(id=test_product.id).exists()
+
+
+def test_registration_submit_invalid_form(client: Client) -> None:
+    """Test that submitting the registration form with invalid/missing data fails validation."""
+    response = client.post(
+        reverse("account:registration_submit"),
+        {
+            "username": "newuser",
+            "first_name": "Test",
+            "last_name": "User",
+            "email": "invalid-email",  # Invalid email format
+            "password1": "password123",
+            "password2": "mismatchedpassword",  # Password mismatch
+        },
+    )
+    assert response.status_code == 200
+    assert "form" in response.context
+    assert not response.context["form"].is_valid()
+    assert (
+        "email" in response.context["form"].errors
+        or "password2" in response.context["form"].errors
+    )
+
+
+def test_login_submit_invalid_credentials(client: Client) -> None:
+    """Test that submitting the login form with invalid credentials returns an error."""
+    response = client.post(
+        reverse("account:login_submit"),
+        {"username": "nonexistentuser", "password": "wrongpassword"},
+    )
+    assert response.status_code == 200
+    assert "form" in response.context
+    assert (
+        not response.context["form"].is_valid()
+        or response.context["form"].non_field_errors()
+    )
+    assert any(
+        "Invalid username or password" in str(err)
+        for err in response.context["form"].non_field_errors()
+    )
+
+
+def test_wishlist_context_processor_authenticated_no_wishlist(
+    client: Client, test_user: Account
+) -> None:
+    """Test wishlist context processor returns 0 count if user has no Wishlist object."""
+    Wishlist.objects.filter(account=test_user).delete()
+    client.force_login(test_user)
+    response = client.get(reverse("home"))
+    assert response.status_code == 200
+    assert response.context["wishlist_count"] == 0
