@@ -1,6 +1,6 @@
-# Ceramic shop Django E-Commerce | QA & Test Automation Showcase
+# Ceramic shop Django E-Commerce | QA & Test Automation Showcase [![Coverage Status](https://coveralls.io/repos/github/acostajs/ceramic-shop-qa-showcase/badge.svg)](https://coveralls.io/github/acostajs/ceramic-shop-qa-showcase)
 
-A Django e-commerce application built for an artisanal ceramics store. [![codecov](https://codecov.io/gh/acostajs/ceramic-shop-qa-showcase/graph/badge.svg)](https://codecov.io/gh/acostajs/ceramic-shop-qa-showcase)
+A Django e-commerce application built for an artisanal ceramics store. 
 
 Although this project is a complete online store with customer accounts, shopping cart, and Stripe payments, its main purpose is to showcase my **Software QA and Test Automation** skills. The project demonstrates how I build, test, and maintain production-style Python applications using modern QA practices.
 
