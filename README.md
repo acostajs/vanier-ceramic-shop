@@ -1,6 +1,6 @@
 # Full-Stack Django E-Commerce | QA & Test Automation Showcase
 
-A full-stack Django e-commerce application built for an artisanal ceramics store. ![Coverage Status](coverage.svg)
+A full-stack Django e-commerce application built for an artisanal ceramics store. [![codecov](https://codecov.io/gh/acostajs/vanier-ceramic-shop/graph/badge.svg?token=)](https://codecov.io/gh/acostajs/vanier-ceramic-shop)
 
 
 

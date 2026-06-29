@@ -199,12 +199,3 @@ def auth_client(client: Client, test_user: Account) -> Client:
     """Fixture providing a Django test client authenticated with the default test user."""
     client.force_login(test_user)
     return client
-
-
-def pytest_sessionfinish(session, exitstatus):
-    """Automatically update the local README coverage badge when tests pass successfully."""
-    if exitstatus == 0:
-        import os
-
-        print("\n✨ All tests passed! Dynamically updating coverage badge...")
-        os.system("coverage-badge -f -o coverage.svg")

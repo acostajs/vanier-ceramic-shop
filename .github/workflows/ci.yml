@@ -11,9 +11,15 @@ jobs:
       - name: Lint Code
         run: uv run ruff check
       - name: Run Tests
-        run: uv run manage.py test
+        run: uv run task coverage-ci
         env:
           DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
           DJANGO_DEBUG: ${{ secrets.DJANGO_DEBUG }}
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}

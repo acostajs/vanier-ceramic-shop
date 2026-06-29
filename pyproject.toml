@@ -9,14 +9,9 @@ dependencies = [
     "dj-database-url[postgres]>=3.1.0",
     "django>=5.2.8",
     "django-cloudinary-storage>=0.3.0",
-    "faker>=25.8.0",
     "gunicorn>=23.0.0",
     "pillow>=12.0.0",
-    "playwright>=1.48.0",
     "psycopg2-binary>=2.9.11",
-    "pytest>=8.3.0",
-    "pytest-django>=4.9.0",
-    "pytest-playwright>=0.6.0",
     "python-dotenv>=1.2.1",
     "stripe>=14.0.1",
     "whitenoise>=6.11.0",
@@ -24,16 +19,18 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "coverage-badge>=1.1.2",
     "djlint>=1.39.0",
     "pytest-asyncio>=1.4.0",
     "pytest-cov>=7.1.0",
-    "pytest-watcher>=0.4.0",
     "requests>=2.32.5",
     "ruff>=0.14.7",
     "locust>=2.44.4",
-    "setuptools<70",
     "taskipy>=1.14.1",
+    "faker>=40.23.0",
+    "playwright>=1.61.0",
+    "pytest>=9.1.1",
+    "pytest-django>=4.12.0",
+    "pytest-playwright>=0.8.0",
 ]
 [tool.ruff]
 lint.extend-per-file-ignores = { "main/settings/**.py" = ["F403", "F405"] }
@@ -48,12 +45,10 @@ DJANGO_SETTINGS_MODULE = "main.settings.development"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 addopts = "--cov=account --cov=cart --cov=contact --cov=shop --cov-report=term-missing --ignore=tests/smoke"
 
-[tool.pytest_watch]
-onpass = "coverage-badge -f -o coverage.svg"
-
 [tool.taskipy.tasks]
 perf = "locust -f tests/performance/locustfile.py --host http://127.0.0.1:8000"
 perf-report = "locust -f tests/performance/locustfile.py --host http://127.0.0.1:8000 --headless -t 2m --html tests/docs/performance/report.html"
 coverage = "pytest --cov=account --cov=cart --cov=contact --cov=shop --cov-report=term-missing"
 coverage-report = "pytest --cov=account --cov=cart --cov=contact --cov=shop --cov-report=html"
+coverage-ci = "pytest --cov=account --cov=cart --cov=contact --cov=shop --cov-report=xml"
 start = "uv run manage.py runserver"
