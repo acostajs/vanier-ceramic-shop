@@ -124,7 +124,7 @@ uv run ruff check
 To trigger the automated backend testing runtime:
 
 ```bash
-uv run manage.py test
+uv run pytest
 
 ```
 

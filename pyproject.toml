@@ -31,6 +31,7 @@ dev = [
     "pytest-watcher>=0.4.0",
     "requests>=2.32.5",
     "ruff>=0.14.7",
+    "locust>=2.44.4",
     "setuptools<70",
 ]
 [tool.ruff]
@@ -44,7 +45,7 @@ exclude = ".venv,venv,staticfiles,mediafiles"
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "main.settings.development"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
-addopts = "--cov=account --cov=cart --cov=contact --cov=shop --cov=main --cov-report=term-missing --ignore=tests/smoke"
+addopts = "--cov=account --cov=cart --cov=contact --cov=shop --cov-report=term-missing --ignore=tests/smoke"
 
 [tool.pytest_watch]
 onpass = "coverage-badge -f -o coverage.svg"

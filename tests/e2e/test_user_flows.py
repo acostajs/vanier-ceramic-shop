@@ -10,6 +10,7 @@ from tests.e2e.pages.product import ProductDetailPage
 from tests.e2e.pages.cart import CartPage
 from tests.e2e.pages.checkout import CheckoutPage
 from tests.e2e.pages.contact import ContactPage
+from tests.e2e.pages.wishlist import WishlistPage
 from typing import Callable
 from pytest_django.live_server_helper import LiveServer
 from account.models import Account
@@ -143,3 +144,50 @@ async def test_contact_form_submission(
 
     # After submit, should redirect to home page
     await async_page.wait_for_selector(".home-hero")
+
+
+@pytest.mark.asyncio
+async def test_wishlist_flow(
+    async_page: Page,
+    live_server: LiveServer,
+    test_collection: Collection,
+    test_product: Product,
+    create_user: Callable[..., Account],
+) -> None:
+    """Test login, adding to wishlist, verifying on wishlist page, and removing."""
+    # 1. Create a shopper user
+    create_user(username="wishlist_shopper", password="shopperpassword123")
+
+    # 2. Initialize Page Objects
+    login_page = LoginPage(async_page)
+    product_page = ProductDetailPage(async_page)
+    wishlist_page = WishlistPage(async_page)
+
+    # 3. Log in
+    await login_page.navigate_to(f"{live_server.url}/account/login/")
+    await login_page.login(username="wishlist_shopper", password="shopperpassword123")
+    await async_page.wait_for_url("**/account/")
+
+    # 4. Navigate to product detail page
+    await product_page.navigate_to(f"{live_server.url}/shop/product/{test_product.id}/")
+    await async_page.wait_for_url(f"**/shop/product/{test_product.id}/")
+
+    # 5. Add product to wishlist
+    await product_page.add_to_wishlist()
+    # Wait for wishlist redirect/render to complete (it redirects back to the product details page)
+    await async_page.wait_for_url(f"**/shop/product/{test_product.id}/")
+
+    # 6. Navigate to wishlist page
+    await product_page.click_wishlist()
+    await async_page.wait_for_url("**/account/wishlist/")
+
+    # 7. Verify the product is visible in the wishlist
+    product_row = await wishlist_page.get_row_by_product_name(test_product.name)
+    assert await product_row.is_visible()
+
+    # 8. Remove product from wishlist
+    await wishlist_page.remove_product(test_product.name)
+    await async_page.wait_for_url("**/account/wishlist/")
+
+    # 9. Verify the wishlist is empty
+    assert await wishlist_page.empty_wishlist_message.is_visible()
