@@ -2,6 +2,7 @@ import os
 import pytest
 from typing import Callable, Coroutine, AsyncGenerator, Generator
 import asyncio
+from django.test import Client
 from pytest_django.live_server_helper import LiveServer
 from django.contrib.auth import get_user_model
 from account.models import Account, Wishlist
@@ -191,3 +192,19 @@ def login_user_helper() -> Callable[
         await page.click("button[type='submit']:has-text('Log In')")
 
     return _login
+
+
+@pytest.fixture
+def auth_client(client: Client, test_user: Account) -> Client:
+    """Fixture providing a Django test client authenticated with the default test user."""
+    client.force_login(test_user)
+    return client
+
+
+def pytest_sessionfinish(session, exitstatus):
+    """Automatically update the local README coverage badge when tests pass successfully."""
+    if exitstatus == 0:
+        import os
+
+        print("\n✨ All tests passed! Dynamically updating coverage badge...")
+        os.system("coverage-badge -f -o coverage.svg")

@@ -24,11 +24,14 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "coverage-badge>=1.1.2",
     "djlint>=1.39.0",
     "pytest-asyncio>=1.4.0",
     "pytest-cov>=7.1.0",
+    "pytest-watcher>=0.4.0",
     "requests>=2.32.5",
     "ruff>=0.14.7",
+    "setuptools<70",
 ]
 [tool.ruff]
 lint.extend-per-file-ignores = { "main/settings/**.py" = ["F403", "F405"] }
@@ -38,3 +41,10 @@ profile = "django"
 indent = 2
 exclude = ".venv,venv,staticfiles,mediafiles"
 
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "main.settings.development"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+addopts = "--cov=account --cov=cart --cov=contact --cov=shop --cov=main --cov-report=term-missing --ignore=tests/smoke"
+
+[tool.pytest_watch]
+onpass = "coverage-badge -f -o coverage.svg"

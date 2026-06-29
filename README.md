@@ -1,5 +1,8 @@
 # Full-Stack Django E-Commerce - QA Showcase
 
+[![CI Status](https://github.com/acostajs/vanier-ceramic-shop/actions/workflows/actions.yml/badge.svg)](https://github.com/acostajs/vanier-ceramic-shop/actions/workflows/actions.yml)
+![Coverage Status](coverage.svg)
+
 **Full-Stack Django Production Application with Multi-Layered QA & Test Automation Framework**
 
 This repository features a professional full-stack Django e-commerce showroom and online store built for an artisanal ceramics maker. While fully functional for customer checkout, the architectural focus of this codebase is to demonstrate production-grade **Software Quality Assurance (QA) and Test Automation practices** within a modern Python development ecosystem.

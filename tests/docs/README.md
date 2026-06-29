@@ -1,7 +1,7 @@
 # Vanier Ceramic Shop - Test Suite Documentation
 
-[![CI Status](https://github.com/acostajs/vanier-ceramic-shop/actions/workflows/deploy.yml/badge.svg)](https://github.com/acostajs/vanier-ceramic-shop/actions)
-[![Coverage Status](https://img.shields.io/badge/Coverage-83%25-success)](file:///Users/juan/Documents/ceramic-shop/tests/docs/README.md)
+[![CI Status](https://github.com/acostajs/vanier-ceramic-shop/actions/workflows/actions.yml/badge.svg)](https://github.com/acostajs/vanier-ceramic-shop/actions/workflows/actions.yml)
+![Coverage Status](../../coverage.svg)
 
 This directory contains the automated test suite for the Laura Melissa Ceramic Shop. The suite covers everything from isolated model logic to end-to-end user flows and API integrations.
 
@@ -64,9 +64,9 @@ Current total test coverage is **83%**. Below is the module-by-module breakdown 
 
 | Module        | Statements    | Misses    | Coverage % |
 | :---          | :---          | :---      | :---       |
-| **account**   | 213           | 46        | 78%        |
-| **cart**      | 363           | 68        | 81%        |
-| **contact**   | 56            | 0         | 100%       |
-| **shop**      | 106           | 0         | 100%       |
-| **main**      | 95            | 28        | 70%        |
-| **TOTAL**     | **833**       | **142**   | **83%**    |
+| **account**   | 215           | 16        | 93%        |
+| **cart**   | 361           | 89        | 75%        |
+| **contact**   | 61           | 0        | 100%        |
+| **shop**   | 114           | 8        | 93%        |
+| **main**   | 82           | 28        | 66%        |
+| **TOTAL**     | **833**       | **141**    | **83%**    |
