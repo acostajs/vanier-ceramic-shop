@@ -21,6 +21,7 @@ test*.jpg
 .coverage
 .coverage.*
 htmlcov/
+coverage.xml
 
 # ruff
 .ruff_cache/
