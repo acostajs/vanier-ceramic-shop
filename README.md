@@ -1,143 +1,208 @@
-# Full-Stack Django E-Commerce - QA Showcase
+# Full-Stack Django E-Commerce | QA & Test Automation Showcase
 
-[![CI Status](https://github.com/acostajs/vanier-ceramic-shop/actions/workflows/actions.yml/badge.svg)](https://github.com/acostajs/vanier-ceramic-shop/actions/workflows/actions.yml)
-![Coverage Status](coverage.svg)
+A full-stack Django e-commerce application built for an artisanal ceramics store. ![Coverage Status](coverage.svg)
 
-**Full-Stack Django Production Application with Multi-Layered QA & Test Automation Framework**
 
-This repository features a professional full-stack Django e-commerce showroom and online store built for an artisanal ceramics maker. While fully functional for customer checkout, the architectural focus of this codebase is to demonstrate production-grade **Software Quality Assurance (QA) and Test Automation practices** within a modern Python development ecosystem.
 
----
-
-## 🛠️ QA & Test Automation Showcase
-
-This project enforces a strict test-first mentality. For comprehensive test strategies, test plan briefs, and framework configuration details, see the dedicated documentation:
-
-👉 **[Read the Test Automation & QA Documentation (tests/docs/README.md)](tests/docs/README.md)**
-
-### Core Testing Pillars:
-* **Multi-Layered Automation:** Full coverage spanning unit boundaries, system integration points, backend API endpoints, and end-to-end user browser interactions.
-* **Page Object Model (POM):** Clean, maintainable UI testing separation of concerns where individual view layouts and element selectors are fully encapsulated.
-* **CI/CD Guardrails:** Automated GitHub Actions workflows that run the test matrices and static analysis checking on every incoming Pull Request.
-* **Local Git Hooks:** Automated local safety checks that ensure no linting regressions or broken tests ever leave the developer's computer.
+Although this project is a complete online store with customer accounts, shopping cart, and Stripe payments, its main purpose is to showcase my **Software QA and Test Automation** skills. The project demonstrates how I build, test, and maintain production-style Python applications using modern QA practices.
 
 ---
 
-## Tech Stack
+# Why This Project?
 
-* **Backend Framework:** Django 5.2 (Python 3.13+)
-* **Frontend Architecture:** Django Templates & Native CSS (Vanilla/CSS Variables)
-* **Payment Architecture:** Stripe Checkout API & Stripe Webhook Infrastructure
-* **Database Systems:** PostgreSQL (Production) / SQLite (Local Development)
-* **Dependency & Environment Tooling:** Astral `uv`
-* **Static Analysis & Formatting:** Ruff
-* **Git Hook Management:** Lefthook
+This project highlights my experience with:
 
----
+* Building automated test suites with **pytest**
+* Writing **unit, integration, API, smoke, performance, and end-to-end tests**
+* Using the **Page Object Model (POM)** for maintainable UI automation
+* Running automated tests in **GitHub Actions**
+* Enforcing code quality with **Ruff** and **Git hooks**
+* Working with modern Python development tools and best practices
 
-## Directory Structure
+For more information about the testing strategy, see:
 
-The application architecture decouples business logic from a comprehensive testing lifecycle framework:
-
-* **`tests/`:** Central automation workspace containing distinct validation boundaries:
-  * **`api/`:** Payload structure and server response verification (`test_endpoints.py`).
-  * **`docs/`:** Test strategies and automation specifications (`README.md`).
-  * **`e2e/`:** Browser automation regression flows (`test_flows.py`) leveraging the Page Object Model (POM) pattern.
-    * **`pages/`:** Structural selectors and interface interactions mapped per view (e.g., `home.py`, `cart.py`, `checkout.py`, `account.py`).
-  * **`integration/`:** State transitions and asynchronous Stripe webhook event simulation (`test_integration.py`).
-  * **`smoke/`:** High-priority health checks verifying global platform availability (`test_smoke.py`).
-  * **`unit/`:** Isolated boundary testing for Django models, views, forms, and contexts (`test_account.py`, `test_cart.py`, `test_contact.py`, `test_shop.py`).
-  * **`conftest.py`:** Shared test automation plugins, configuration states, and mock fixtures.
-* **`main/`:** Core runtime orchestration and environmental settings profiles (`base.py`, `development.py`, `production.py`).
-* **`shop/`:** Catalog display, collection listings, and product inventory tracking tracking.
-* **`cart/`:** Checkout flows, session factories, and asynchronous Stripe webhook receipt handling.
-* **`account/`:** User authentication profiles, localized addresses, and client wishlists.
-* **`contact/`:** Customer contact interactions and transactional message dispatch.
+**➡️ [tests/docs/README.md](tests/docs/README.md)**
 
 ---
 
-## Local Setup & Environment Lifecycle
+# Tech Stack
 
-### Prerequisites
+### Backend
+
+* Django 5.2
 * Python 3.13+
-* Astral `uv`
-* Stripe Developer Account (Test Keys)
 
-### 1. Installation
-Clone the repository and compile the virtual environment profile using `uv`:
+### Frontend
+
+* Django Templates
+* HTML
+* CSS
+
+### Database
+
+* PostgreSQL (Production)
+* SQLite (Development)
+
+### Payments
+
+* Stripe Checkout
+* Stripe Webhooks
+
+### Development Tools
+
+* pytest
+* Ruff
+* GitHub Actions
+* Lefthook
+* Astral uv
+
+---
+
+# Project Structure
+
+The application is organized into feature folders and a dedicated testing folder.
+
+```
+tests/
+    api/
+    docs/
+    e2e/
+        pages/
+    integration/
+    performance/
+    smoke/
+    unit/
+    conftest.py
+
+main/
+shop/
+cart/
+account/
+contact/
+```
+
+The **tests/** folder contains different types of automated tests:
+
+* **Unit tests** for models, forms, and views
+* **Integration tests** for application workflows and Stripe webhooks
+* **API tests** for backend endpoints
+* **End-to-end browser tests** using the Page Object Model
+* **Smoke tests** to quickly verify the application works
+* **Performance tests** using Locust
+
+---
+
+# Getting Started
+
+## Requirements
+
+* Python 3.13+
+* Astral uv
+* Stripe test account
+
+## Install
+
 ```bash
-git clone [https://github.com/acostajs/vanier-ceramic-shop.git](https://github.com/acostajs/vanier-ceramic-shop.git) project-name
+git clone https://github.com/acostajs/vanier-ceramic-shop.git
 cd project-name
 
-# Establish local virtual environment and synchronize dependencies
 uv venv
 source .venv/bin/activate
 uv sync
-
 ```
 
-### 2. Environment Configurations
+---
 
-Instantiate a local `.env` block in the project root:
+## Environment Variables
+
+Create a `.env` file in the project root.
 
 ```env
-DJANGO_SECRET_KEY=your-django-secret-key
+DJANGO_SECRET_KEY=your-secret-key
 DJANGO_DEBUG=True
 
-# Stripe keys
 STRIPE_PUBLIC_KEY=pk_test_...
 STRIPE_SECRET_KEY=sk_test_...
 STRIPE_WEBHOOK_SECRET=whsec_...
-
 ```
 
-### 3. Database & App Initialization
+---
 
-Apply database schemas and initialize the web instance:
+## Run the Application
 
 ```bash
 uv run manage.py migrate
 uv run manage.py createsuperuser
 uv run manage.py runserver
-
 ```
 
 ---
 
-## Verification & Guardrails
+# Code Quality
 
-### 1. Static Code Analysis
-
-Run code auditing checks and deterministic code styling formats via **Ruff**:
+Run formatting and linting checks:
 
 ```bash
-# Run styling conformance checks
 uv run ruff format --check
-
-# Execute static analysis linter
 uv run ruff check
-
 ```
 
-### 2. Executing Automated Test Runners
+---
 
-To trigger the automated backend testing runtime:
+# Running Tests
+
+Run the complete test suite:
 
 ```bash
 uv run pytest
-
 ```
 
-### 3. Git Hooks Automation (Lefthook)
+Generate a coverage report:
 
-Automated pre-configured project guardrails are applied locally via **Lefthook**:
+```bash
+uv run task coverage
+```
 
-* **Pre-commit:** Runs `ruff` checks to guarantee code compliance before tracking commits.
-* **Pre-push:** Runs the complete Django regression suite to verify zero breakages reach remote repositories.
+Generate an HTML coverage report:
 
-To activate or reset local Git configurations:
+```bash
+uv run task coverage-report
+```
+
+---
+
+# Performance Testing
+
+Run performance tests with Locust:
+
+```bash
+uv run task perf
+```
+
+Run a headless performance test:
+
+```bash
+uv run task perf-report
+```
+
+The application averages **17 ms response times** with a **0.00% failure rate** during the included load test.
+
+---
+
+# Git Hooks
+
+The project uses **Lefthook** to help keep the codebase clean.
+
+Before every commit:
+
+* Runs Ruff formatting and linting
+
+Before every push:
+
+* Runs the automated test suite
+
+Install the Git hooks with:
 
 ```bash
 uv run lefthook install
-
 ```

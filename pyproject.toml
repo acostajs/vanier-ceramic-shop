@@ -33,6 +33,7 @@ dev = [
     "ruff>=0.14.7",
     "locust>=2.44.4",
     "setuptools<70",
+    "taskipy>=1.14.1",
 ]
 [tool.ruff]
 lint.extend-per-file-ignores = { "main/settings/**.py" = ["F403", "F405"] }
@@ -49,3 +50,10 @@ addopts = "--cov=account --cov=cart --cov=contact --cov=shop --cov-report=term-m
 
 [tool.pytest_watch]
 onpass = "coverage-badge -f -o coverage.svg"
+
+[tool.taskipy.tasks]
+perf = "locust -f tests/performance/locustfile.py --host http://127.0.0.1:8000"
+perf-report = "locust -f tests/performance/locustfile.py --host http://127.0.0.1:8000 --headless -t 2m --html tests/docs/performance/report.html"
+coverage = "pytest --cov=account --cov=cart --cov=contact --cov=shop --cov-report=term-missing"
+coverage-report = "pytest --cov=account --cov=cart --cov=contact --cov=shop --cov-report=html"
+start = "uv run manage.py runserver"
