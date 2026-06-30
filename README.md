@@ -101,7 +101,7 @@ The **tests/** folder contains different types of automated tests:
 ## Install
 
 ```bash
-git clone https://github.com/acostajs/vanier-ceramic-shop.git
+git clone github.com/acostajs/ceramic-shop-qa-showcase.git
 cd project-name
 
 uv venv
