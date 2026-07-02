@@ -24,11 +24,34 @@ def event_loop() -> Generator[asyncio.AbstractEventLoop, None, None]:
     loop.close()
 
 
+def pytest_addoption(parser: pytest.Parser) -> None:
+    parser.addoption(
+        "--browser-name",
+        action="store",
+        default="chromium",
+        choices=["chromium", "chrome", "firefox", "webkit", "safari"],
+        help="Browser type to use: chromium/chrome, firefox, webkit/safari",
+    )
+
+
 @pytest_asyncio.fixture
-async def async_page() -> AsyncGenerator[Page, None]:
+async def async_page(request: pytest.FixtureRequest) -> AsyncGenerator[Page, None]:
     """Async Playwright Page fixture to avoid event loop conflicts in async E2E tests."""
+    browser_name = request.config.getoption("--browser-name") or "chromium"
+    browser_name = browser_name.lower()
+
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+        if browser_name in ("chrome", "chromium"):
+            browser = await p.chromium.launch(headless=True)
+        elif browser_name in ("safari", "webkit"):
+            browser = await p.webkit.launch(headless=True)
+        elif browser_name == "firefox":
+            browser = await p.firefox.launch(headless=True)
+        else:
+            raise ValueError(
+                f"Unsupported browser: {browser_name}. Choose from: chrome/chromium, safari/webkit, firefox"
+            )
+
         context = await browser.new_context()
         page = await context.new_page()
         yield page
