@@ -22,6 +22,7 @@ test*.jpg
 .coverage.*
 htmlcov/
 coverage.xml
+tests/e2e/videos/
 
 # ruff
 .ruff_cache/

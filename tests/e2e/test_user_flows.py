@@ -191,3 +191,149 @@ async def test_wishlist_flow(
 
     # 9. Verify the wishlist is empty
     assert await wishlist_page.empty_wishlist_message.is_visible()
+
+
+@pytest.mark.asyncio
+async def test_long_user_flow_with_video(
+    live_server: LiveServer,
+    test_collection: Collection,
+    test_product: Product,
+    create_user: Callable[..., Account],
+) -> None:
+    """Test long user flow and record a webm video of it with 1s pause between steps."""
+    import asyncio
+    import os
+    from playwright.async_api import async_playwright
+
+    # 1. Create a shopper user
+    create_user(username="video_shopper", password="shopperpassword123")
+
+    # 2. Start Playwright and configure video recording
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        video_dir = os.path.join(os.path.dirname(__file__), "videos")
+        os.makedirs(video_dir, exist_ok=True)
+
+        context = await browser.new_context(
+            record_video_dir=video_dir,
+            record_video_size={"width": 1280, "height": 720},
+        )
+        page = await context.new_page()
+
+        try:
+            # 3. Initialize Page Objects with the custom page
+            login_page = LoginPage(page)
+            home_page = HomePage(page)
+            shop_page = ShopPage(page)
+            collection_page = CollectionPage(page)
+            product_page = ProductDetailPage(page)
+            cart_page = CartPage(page)
+            checkout_page = CheckoutPage(page)
+            contact_page = ContactPage(page)
+            wishlist_page = WishlistPage(page)
+            account_page = AccountPage(page)
+
+            await asyncio.sleep(1.0)
+
+            # 4. Navigate to login page
+            await login_page.navigate_to(f"{live_server.url}/account/login/")
+            await asyncio.sleep(1.0)
+
+            # 5. Log in
+            await login_page.login(
+                username="video_shopper", password="shopperpassword123"
+            )
+            await page.wait_for_url("**/account/")
+            await asyncio.sleep(1.0)
+
+            # 6. Navigate to Home
+            await page.goto(f"{live_server.url}/")
+            await asyncio.sleep(1.0)
+
+            # 7. Go to Shop page
+            await home_page.click_shop_collections()
+            await page.wait_for_url("**/shop/")
+            await asyncio.sleep(1.0)
+
+            # 8. Open collection
+            await shop_page.click_collection_by_name("Stoneware Collection")
+            await page.wait_for_url("**/shop/collection/*/")
+            await asyncio.sleep(1.0)
+
+            # 9. View product detail
+            await collection_page.click_product_details_by_name("Artisanal Vase")
+            await page.wait_for_url("**/shop/product/*/")
+            await asyncio.sleep(1.0)
+
+            # 10. Add to wishlist
+            await product_page.add_to_wishlist()
+            await page.wait_for_url(f"**/shop/product/{test_product.id}/")
+            await asyncio.sleep(1.0)
+
+            # 11. Navigate to wishlist
+            await product_page.click_wishlist()
+            await page.wait_for_url("**/account/wishlist/")
+            await asyncio.sleep(1.0)
+
+            # 12. Verify in wishlist and remove
+            product_row = await wishlist_page.get_row_by_product_name(test_product.name)
+            assert await product_row.is_visible()
+            await wishlist_page.remove_product(test_product.name)
+            await page.wait_for_url("**/account/wishlist/")
+            await asyncio.sleep(1.0)
+
+            # 13. Back to product page
+            await page.goto(f"{live_server.url}/shop/product/{test_product.id}/")
+            await page.wait_for_url(f"**/shop/product/{test_product.id}/")
+            await asyncio.sleep(1.0)
+
+            # 14. Add to cart
+            await product_page.add_to_cart(quantity=3)
+            await page.wait_for_url("**/shop/product/*/")
+            await asyncio.sleep(1.0)
+
+            # 15. View cart
+            await product_page.click_cart()
+            await page.wait_for_url("**/cart/")
+            await asyncio.sleep(1.0)
+
+            # 16. Update quantity in cart
+            await cart_page.update_quantity("Artisanal Vase", 2)
+            await asyncio.sleep(1.0)
+
+            # 17. Go to checkout
+            await cart_page.click_checkout()
+            await page.wait_for_url("**/cart/checkout/")
+            await asyncio.sleep(1.0)
+
+            # 18. Verify checkout total and proceed button
+            assert await checkout_page.proceed_to_payment_button.is_visible()
+            await asyncio.sleep(1.0)
+
+            # 19. Contact page
+            await page.goto(f"{live_server.url}/contact/")
+            await page.wait_for_url("**/contact/")
+            await asyncio.sleep(1.0)
+
+            # 20. Submit message
+            await contact_page.submit_message(
+                name="Video Shopper",
+                email="video_shopper@example.com",
+                subject="Test Feedback",
+                message="This is a test message to record the full flow.",
+            )
+            await page.wait_for_selector(".home-hero")
+            await asyncio.sleep(1.0)
+
+            # 21. Log out
+            await page.goto(f"{live_server.url}/account/")
+            await page.wait_for_url("**/account/")
+            await asyncio.sleep(1.0)
+
+            await account_page.logout()
+            await page.wait_for_url("**/account/login/")
+            await asyncio.sleep(1.0)
+
+        finally:
+            await context.close()
+            await browser.close()
