@@ -1,5 +1,4 @@
 # lefthook.yml
-# https://github.com/evilmartians/lefthook
 
 pre-commit:
   parallel: true
@@ -18,7 +17,6 @@ pre-commit:
       glob: "*.html"
       run: uv run djlint {staged_files} --reformat
       stage_fixed: true
-
 
 pre-push:
   commands:
